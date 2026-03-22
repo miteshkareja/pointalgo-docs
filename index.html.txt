@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PointAlgo Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar for that pro trading tool look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #4a5568; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <aside class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 overflow-y-auto hidden md:block">
+        <div class="p-6">
+            <h1 class="text-xl font-bold text-blue-600">PointAlgo Docs</h1>
+        </div>
+        <nav class="px-4 pb-4">
+            <div class="mb-4">
+                <p class="px-2 mb-2 text-xs font-semibold text-gray-400 uppercase">Getting Started</p>
+                <a href="#introduction" class="block px-2 py-2 text-sm text-blue-600 bg-blue-50 rounded">Introduction</a>
+                <a href="#installation" class="block px-2 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded">Installation</a>
+            </div>
+            <div class="mb-4">
+                <p class="px-2 mb-2 text-xs font-semibold text-gray-400 uppercase">Product Features</p>
+                <a href="#orderflow" class="block px-2 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded">Orderflow Analysis</a>
+                <a href="#indicators" class="block px-2 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded">Technical Indicators</a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="md:ml-64 p-8 lg:p-16">
+        <article class="max-w-4xl mx-auto">
+            <header class="mb-12 border-b border-gray-200 pb-8">
+                <h1 id="introduction" class="text-4xl font-extrabold mb-4">Introduction to PointAlgo</h1>
+                <p class="text-lg text-gray-600">Welcome to the official documentation for PointAlgo trading tools. Here you will find setup guides and logic explanations.</p>
+            </header>
+
+            <section id="orderflow" class="mb-16">
+                <h2 class="text-2xl font-bold mb-4">Orderflow Showcase</h2>
+                <div class="bg-gray-100 border border-dashed border-gray-400 rounded-lg p-10 text-center mb-6">
+                    <p class="text-gray-500 italic">[Place your Product Screenshot or Chart Here]</p>
+                </div>
+                <p class="mb-4 text-gray-700 leading-relaxed">
+                    Like the GoCharting orderflow, our tools allow you to visualize market depth and volume delta directly on your charts.
+                </p>
+                <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                    <li>Real-time Volume Clusters</li>
+                    <li>Imbalance Detection</li>
+                    <li>Cumulative Delta Integration</li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+</body>
+</html>
