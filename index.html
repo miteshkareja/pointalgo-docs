@@ -35,9 +35,10 @@
                 <a href="#what-are-quants" class="sidebar-link block px-4 py-2">What are Quants?</a>
             </div>
             <div>
-                <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Overlay Indicator</h4>
+                <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Overlay Suite</h4>
                 <a href="#gann-pi" class="sidebar-link block px-4 py-2 text-blue-400 font-bold">Gann-Pi Matrix</a>
                 <a href="#auto-fib" class="sidebar-link block px-4 py-2 text-blue-400 font-bold">Auto-Fib Matrix</a>
+                <a href="#heatmap-profile" class="sidebar-link block px-4 py-2 text-blue-400 font-bold border-l-blue-500 bg-blue-900/10">Heatmap Profile & Sweep</a>
             </div>
         </nav>
     </aside>
@@ -388,6 +389,135 @@
                 </div>
 
             </section> 
+
+            <section id="heatmap-profile" class="border-t border-slate-800 pt-20">
+                
+                <div class="mb-16">
+                    <span class="text-blue-500 font-bold text-xs tracking-widest uppercase mb-4 block">Premium Overlay Suite</span>
+                    <h2 class="text-6xl font-black text-white mt-2 mb-6 tracking-tighter">Heatmap Profile & Sweep <span class="text-3xl text-slate-500 font-medium tracking-normal"></span></h2>
+                    <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mb-6">
+                        An advanced volume visualization and liquidity sweep engine that identifies where institutional money is trapped and where stop-losses are being hunted.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        This tool moves beyond standard price action. It dynamically builds a dual-sided Volume Profile on the right edge of your chart to reveal the Point of Control (POC). Simultaneously, its algorithmic engine tracks historical swing highs and lows, scanning for forceful liquidity sweeps (BSL/SSL purges) that signal major market reversals.
+                    </p>
+                </div>
+
+                <div class="mb-20">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic">TradingView Interface</h3>
+                        <span class="bg-blue-600/20 text-blue-400 px-3 py-1 rounded text-[10px] font-bold uppercase border border-blue-500/30 tracking-widest">Live Setup</span>
+                    </div>
+                    <div class="space-y-10">
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">CHART_VIEW: Heatmap Profile.png</div>
+                            <img src="Heatmap Profile.png" alt="PointAlgo Heatmap Chart" class="w-full">
+                        </div>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">SETTINGS_VIEW: Heatmap Profile_settings.png</div>
+                            <img src="Heatmap Profile_settings.png" alt="PointAlgo Heatmap Settings" class="w-full max-h-[500px] object-contain p-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-20">
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800">
+                        <h3 class="text-blue-500 font-bold mb-6 uppercase text-xs tracking-widest flex items-center"><i class="fa-solid fa-crosshairs mr-3 text-lg"></i> Core Use Case</h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span>Identify high-volume nodes (magnet areas) using the Dynamic Profile.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span>Spot institutional "Stop Runs" before the market reverses.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span>Avoid entering trades directly into the Point of Control (POC) chop.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span>Monitor real-time market state via the integrated PointAlgo HUD.</span></li>
+                        </ul>
+                    </div>
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800">
+                        <h3 class="text-emerald-500 font-bold mb-6 uppercase text-xs tracking-widest flex items-center"><i class="fa-solid fa-shield-halved mr-3 text-lg"></i> Key Benefits</h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>Dual-Sided Data:</strong> See exact Buy vs. Sell volume distribution at every price level.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>Automated Memory:</strong> The engine remembers old swing levels and alerts you when they are purged.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>ATR Rejection Filter:</strong> Only triggers sweeps if the price rejection is mathematically significant (ATR Multiplier).</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>Clean UI:</strong> Projects data cleanly to the right side of the chart, keeping candles visible.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-20">
+                    <h3 class="text-2xl font-bold text-white mb-6">What You See on Chart</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-sm">
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300">Right-Aligned Volume Profile (Buy/Sell splits)</div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 text-orange-400 font-medium border-orange-900/30">Point of Control (POC) Line</div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300">Bullish (SSL) & Bearish (BSL) Liquidity Purge Labels</div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300">Real-Time PointAlgo HUD Dashboard</div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-white mb-6">Signal Logic: Liquidity Purges</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-emerald-900/10 border border-emerald-500/20 rounded-2xl">
+                            <h4 class="text-emerald-400 font-bold mb-4 uppercase tracking-widest text-xs"><i class="fa-solid fa-arrow-trend-up mr-2"></i> SSL Sweep (Bullish)</h4>
+                            <ul class="space-y-3 text-sm text-slate-300">
+                                <li>• The algorithm remembers a previous Swing Low.</li>
+                                <li>• Price drops below this low, trapping retail breakout traders.</li>
+                                <li>• Price instantly reverses and closes strongly above the level.</li>
+                                <li>• A green <strong>"▲ LIQ PURGE"</strong> signal is printed, indicating institutions have accumulated longs.</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 bg-red-900/10 border border-red-500/20 rounded-2xl">
+                            <h4 class="text-red-400 font-bold mb-4 uppercase tracking-widest text-xs"><i class="fa-solid fa-arrow-trend-down mr-2"></i> BSL Sweep (Bearish)</h4>
+                            <ul class="space-y-3 text-sm text-slate-300">
+                                <li>• The algorithm remembers a previous Swing High.</li>
+                                <li>• Price pushes above this high to trigger retail stop-losses.</li>
+                                <li>• Price forcefully rejects and closes back below the level.</li>
+                                <li>• A red <strong>"LIQ PURGE ▼"</strong> signal is printed, indicating institutions are offloading positions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-20 pt-16 border-t border-slate-800">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic uppercase">MT5 Platform View</h3>
+                        <span class="bg-slate-800 text-slate-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Terminal Mode</span>
+                    </div>
+                    <div class="space-y-10">
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">CHART_VIEW: Heatmap Profile MT5.png</div>
+                            <img src="Heatmap Profile MT5.png" alt="PointAlgo Heatmap MT5" class="w-full">
+                        </div>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">SETTINGS_VIEW: Heatmap Profile MT5 Settings.png</div>
+                            <img src="Heatmap Profile MT5 Settings.png" alt="PointAlgo Heatmap Settings MT5" class="w-full max-h-[500px] object-contain p-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="p-6 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <h4 class="text-white font-bold mb-4">Best Practices</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li>• Use the HUD to check proximity to the POC; avoid taking breakouts when price is stuck inside the POC gravity well.</li>
+                            <li>• Adjust the "Rejection ATR Requirement" higher (e.g., 2.0) to filter for only the most violent liquidity sweeps.</li>
+                            <li>• Increase "Profile Lookback" to analyze longer-term volume distribution.</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <h4 class="text-white font-bold mb-4">Who is this for?</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li>• Orderflow and Volume Profile traders.</li>
+                            <li>• Smart Money Concept (SMC) traders focusing on liquidity zones.</li>
+                            <li>• Intraday reversal and mean-reversion traders.</li>
+                            <li>• Traders seeking to understand the "why" behind sudden price spikes.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-blue-600 text-white rounded-3xl shadow-xl shadow-blue-900/20 text-center">
+                    <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Summary</h3>
+                    <p class="text-blue-100 leading-relaxed max-w-2xl mx-auto">
+                        The Heatmap Profile & Sweep is the ultimate tool for reading institutional intent. By merging historical volume data with real-time algorithmic stop-run detection, it allows you to stop trading against the smart money and start trading alongside them.
+                    </p>
+                </div>
+
+            </section>
         </div>
     </main>
 
