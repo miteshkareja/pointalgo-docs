@@ -1,41 +1,168 @@
-<section id="algo-science" class="pt-20 border-t border-slate-800/50">
-    <div class="mb-16">
-        <h2 class="text-4xl font-extrabold text-white mb-6">The Science of Trading</h2>
-        <p class="text-slate-400 text-lg leading-relaxed mb-10">
-            Moving from discretionary trading to systematic execution requires a shift in mindset. We replace "I feel" with "The data says."
-        </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PointAlgo Documentation | Systematic Trading</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        
+        .sidebar-link { transition: all 0.2s; border-left: 3px solid transparent; }
+        .sidebar-link:hover { background-color: #1e293b; color: #60a5fa; border-left: 3px solid #475569; }
+        .active-link { background-color: #1e293b; color: #3b82f6; border-left: 3px solid #3b82f6; font-weight: 600; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-[#0b0f1a] text-slate-200 antialiased font-sans">
 
-        <div class="space-y-12">
-            <div id="what-is-algo" class="p-8 bg-[#0f172a] rounded-3xl border border-slate-800">
-                <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
-                    <i class="fa-solid fa-gears text-blue-500 mr-3"></i> What is Algo Trading?
-                </h3>
-                <p class="text-slate-300 leading-relaxed mb-6">
-                    Algorithmic trading is the process of using a pre-defined set of rules (an algorithm) to execute trades. Instead of clicking buttons based on intuition, the system monitors market conditions and executes according to strict logic.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                        <span class="text-blue-400 font-bold block mb-1">Emotionless Execution</span>
-                        The system never gets tired, scared, or greedy.
-                    </div>
-                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                        <span class="text-blue-400 font-bold block mb-1">Backtesting Power</span>
-                        Validate your strategy on years of data in seconds.
-                    </div>
+    <aside class="fixed inset-y-0 left-0 w-72 bg-[#0f172a] border-r border-slate-800 hidden md:block overflow-y-auto z-20">
+        <div class="p-8 pb-6">
+            <a href="https://pointalgo.com" class="text-2xl font-black tracking-tighter text-blue-500 hover:text-blue-400 transition">POINTALGO</a>
+        </div>
+        
+        <nav class="px-4 pb-12 space-y-8">
+            <div>
+                <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Quick Start</h4>
+                <div class="space-y-1">
+                    <a href="#what-is-pointalgo" class="sidebar-link block px-4 py-2 text-sm rounded-r-md">What is PointAlgo?</a>
+                    <a href="#what-is-tradingview" class="sidebar-link block px-4 py-2 text-sm text-slate-400 rounded-r-md">What is TradingView?</a>
+                    <a href="#what-is-mt5" class="sidebar-link block px-4 py-2 text-sm text-slate-400 rounded-r-md">What is MT5?</a>
                 </div>
             </div>
 
-            <div id="what-are-quants" class="p-8 bg-[#0f172a] rounded-3xl border border-slate-800">
-                <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
-                    <i class="fa-solid fa-microchip text-blue-500 mr-3"></i> What are Quants?
-                </h3>
-                <p class="text-slate-300 leading-relaxed mb-6">
-                    "Quants" (Quantitative Analysts) are the architects of modern finance. They use mathematical models and statistical analysis to identify profitable patterns in price action and volume.
-                </p>
-                <blockquote class="border-l-4 border-blue-600 bg-blue-900/10 p-6 rounded-r-xl italic text-slate-400">
-                    "A Quant doesn't guess where the market is going; they calculate the probability of where it could go."
-                </blockquote>
+            <div>
+                <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">The Science</h4>
+                <div class="space-y-1">
+                    <a href="#what-is-algo" class="sidebar-link block px-4 py-2 text-sm text-slate-400 rounded-r-md">What is Algo Trading?</a>
+                    <a href="#what-are-quants" class="sidebar-link block px-4 py-2 text-sm text-slate-400 rounded-r-md">What are Quants?</a>
+                </div>
             </div>
+
+            <div>
+                <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">TradingView Suite</h4>
+                <div class="space-y-1 text-slate-400">
+                    <a href="#" class="sidebar-link block px-4 py-2 text-sm rounded-r-md">Introduction</a>
+                    <a href="#" class="sidebar-link block px-4 py-2 text-sm rounded-r-md pl-8 border-l border-slate-800">Overlay Indicators</a>
+                    <a href="#" class="sidebar-link block px-4 py-2 text-sm rounded-r-md pl-8 border-l border-slate-800">Oscillators</a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="md:ml-72 min-h-screen">
+        <header class="sticky top-0 z-10 bg-[#0b0f1a]/80 backdrop-blur-md border-b border-slate-800 px-8 py-4 flex justify-between items-center text-xs">
+            <div class="font-medium text-slate-500 uppercase tracking-wider">
+                Documentation <i class="fa-solid fa-chevron-right mx-2 opacity-30 text-[8px]"></i> <span class="text-slate-200">PointAlgo Ecosystem</span>
+            </div>
+            <a href="https://pointalgo.com" class="text-sm font-semibold text-blue-400 hover:text-blue-300 transition">Main Site <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a>
+        </header>
+
+        <div class="max-w-4xl mx-auto px-8 py-16">
+            
+            <section id="what-is-pointalgo" class="mb-32">
+                <h1 class="text-5xl font-extrabold text-white mb-6 tracking-tight">What is PointAlgo?</h1>
+                <p class="text-xl text-slate-400 leading-relaxed mb-10 italic">
+                    "Systematic Filtering. Institutional Precision."
+                </p>
+                <p class="text-lg text-slate-300 mb-10 leading-relaxed">
+                    PointAlgo is a <strong>Quantitative Intelligence Platform</strong> built for traders who want speed, accuracy, and logic — not guesswork. We replace cluttered charts and emotional decisions with structured signals backed by data.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800 transition shadow-lg shadow-blue-900/10">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <h3 class="font-bold text-white mb-2 uppercase text-xs tracking-widest text-blue-400">Speed</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Markets move fast — PointAlgo delivers real-time signals so you can act instantly without hesitation.</p>
+                    </div>
+                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800 transition shadow-lg shadow-blue-900/10">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3 class="font-bold text-white mb-2 uppercase text-xs tracking-widest text-blue-400">Accuracy</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Refined, tested logic that filters market noise to focus on high-probability setups.</p>
+                    </div>
+                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800 transition shadow-lg shadow-blue-900/10">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-microchip"></i></div>
+                        <h3 class="font-bold text-white mb-2 uppercase text-xs tracking-widest text-blue-400">Logic</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Rule-based trading frameworks. No black-box confusion — just disciplined, repeatable systems.</p>
+                    </div>
+                </div>
+
+                <div class="bg-blue-600 rounded-3xl p-10 text-white mb-16 shadow-2xl shadow-blue-900/40">
+                    <h2 class="text-2xl font-bold mb-6 italic tracking-tight underline underline-offset-8 decoration-blue-400">Trade Logic, Not Luck</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3"><i class="fa-solid fa-check-circle text-emerald-300"></i><span>Remove emotional trading decisions</span></div>
+                            <div class="flex items-center space-x-3"><i class="fa-solid fa-check-circle text-emerald-300"></i><span>Identify high-quality entries/exits</span></div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3"><i class="fa-solid fa-check-circle text-emerald-300"></i><span>Follow a structured system</span></div>
+                            <div class="flex items-center space-x-3"><i class="fa-solid fa-check-circle text-emerald-300"></i><span>Trade with confidence and clarity</span></div>
+                        </div>
+                    </div>
+                    <div class="mt-10 pt-8 border-t border-white/20 text-center text-xl font-medium italic">
+                        One clear system. One clear signal. One clear action.
+                    </div>
+                </div>
+            </section>
+
+            <section id="algo-science" class="mb-32 pt-16 border-t border-slate-800/50">
+                <h2 class="text-4xl font-extrabold text-white mb-6 tracking-tight">The Science of Trading</h2>
+                <p class="text-lg text-slate-400 mb-12">Moving from discretionary trading to systematic execution requires a shift in mindset. We replace <span class="text-red-400">"I feel"</span> with <span class="text-emerald-400">"The data says."</span></p>
+
+                <div class="space-y-12">
+                    <div id="what-is-algo" class="p-8 bg-[#0f172a] rounded-3xl border border-slate-800 hover:border-blue-500/30 transition">
+                        <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+                            <i class="fa-solid fa-gears text-blue-500 mr-3"></i> What is Algo Trading?
+                        </h3>
+                        <p class="text-slate-300 leading-relaxed mb-6">
+                            Algorithmic trading is the process of using a pre-defined set of rules (an algorithm) to execute trades. Instead of clicking buttons based on intuition, the system monitors market conditions and executes according to strict logic.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-medium">
+                            <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 flex items-center space-x-3 text-slate-400">
+                                <i class="fa-solid fa-brain text-blue-400"></i>
+                                <span><strong>Emotionless Execution:</strong> Never tired, scared, or greedy.</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 flex items-center space-x-3 text-slate-400">
+                                <i class="fa-solid fa-vial text-blue-400"></i>
+                                <span><strong>Backtesting Power:</strong> Validate on years of data in seconds.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="what-are-quants" class="p-8 bg-[#0f172a] rounded-3xl border border-slate-800 hover:border-blue-500/30 transition">
+                        <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+                            <i class="fa-solid fa-calculator text-blue-500 mr-3"></i> What are Quants?
+                        </h3>
+                        <p class="text-slate-300 leading-relaxed mb-6 italic">
+                            "Quants" (Quantitative Analysts) are the architects of modern finance. They use mathematical models and statistical analysis to identify profitable patterns in price action and volume.
+                        </p>
+                        <blockquote class="border-l-4 border-blue-600 bg-blue-900/10 p-6 rounded-r-xl text-slate-400 font-medium leading-relaxed">
+                            "A Quant doesn't guess where the market is going; they calculate the probability of where it could go."
+                        </blockquote>
+                    </div>
+                </div>
+            </section>
+
+            <section id="what-is-tradingview" class="mb-32 pt-16 border-t border-slate-800/50">
+                <h2 class="text-3xl font-bold text-white mb-6">What is TradingView?</h2>
+                <div class="p-8 bg-slate-900/50 border border-slate-800 rounded-3xl italic text-slate-500">
+                    Content for TradingView setup coming soon...
+                </div>
+            </section>
+
+            <section id="what-is-mt5" class="mb-32 pt-16 border-t border-slate-800/50">
+                <h2 class="text-3xl font-bold text-white mb-6">What is MT5?</h2>
+                <div class="p-8 bg-slate-900/50 border border-slate-800 rounded-3xl italic text-slate-500">
+                    Content for MetaTrader 5 integration coming soon...
+                </div>
+            </section>
+
         </div>
-    </div>
-</section>
+    </main>
+
+</body>
+</html>
