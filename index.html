@@ -521,6 +521,44 @@
             </section>
         </div>
     </main>
+              <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar-link');
 
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3 // Triggers when 30% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active class from all links
+                        navLinks.forEach(link => {
+                            link.classList.remove('active-link');
+                            link.classList.remove('text-slate-200');
+                            link.classList.add('text-slate-400');
+                        });
+
+                        // Add active class to the current link
+                        const activeId = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.sidebar-link[href="#${activeId}"]`);
+                        
+                        if (activeLink) {
+                            activeLink.classList.add('active-link');
+                            activeLink.classList.remove('text-slate-400');
+                            activeLink.classList.add('text-slate-200');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
