@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platforms | PointAlgo Documentation</title>
+    <title>The Science | PointAlgo Documentation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -14,6 +14,7 @@
         .sidebar-link:hover { background-color: #1e293b; color: #60a5fa; border-left: 3px solid #475569; }
         .active-link { background-color: #1e293b; color: #3b82f6; border-left: 3px solid #3b82f6; font-weight: 600; }
         html { scroll-behavior: smooth; }
+        .quant-card { background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%); }
     </style>
 </head>
 <body class="bg-[#0b0f1a] text-slate-200 antialiased font-sans">
@@ -55,84 +56,72 @@
     <main class="md:ml-72 min-h-screen pb-24">
         <header class="sticky top-0 z-10 bg-[#0b0f1a]/80 backdrop-blur-md border-b border-slate-800 px-8 py-4 flex justify-between items-center text-xs">
             <div class="font-medium text-slate-500 uppercase tracking-wider">
-                Documentation <i class="fa-solid fa-chevron-right mx-2 opacity-30 text-[8px]"></i> <span class="text-slate-200">Platform Integrations</span>
+                Documentation <i class="fa-solid fa-chevron-right mx-2 opacity-30 text-[8px]"></i> <span class="text-slate-200">The Science of Systems</span>
             </div>
             <a href="https://pointalgo.com" class="text-sm font-semibold text-blue-400 hover:text-blue-300 transition">Main Site <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a>
         </header>
 
         <div class="max-w-4xl mx-auto px-8 py-16">
             
-            <section id="what-is-pointalgo" class="mb-32">
-                <h1 class="text-5xl font-extrabold text-white mb-6 tracking-tight">What is PointAlgo?</h1>
-                <p class="text-lg text-slate-300 mb-10 leading-relaxed">
-                    PointAlgo is a <strong>Quantitative Intelligence Platform</strong> built for traders who want speed, accuracy, and logic. We offer a structured trading system that removes the noise from your charts.
+            <section id="what-is-algo" class="mb-32">
+                <div class="flex items-center space-x-4 mb-8">
+                    <div class="p-3 bg-blue-600/20 rounded-xl"><i class="fa-solid fa-gears text-blue-500 text-3xl"></i></div>
+                    <h2 class="text-4xl font-extrabold text-white tracking-tight">What is Algo Trading?</h2>
+                </div>
+                <p class="text-lg text-slate-300 leading-relaxed mb-8">
+                    Algorithmic trading (or "Algo Trading") is a method of executing orders using automated, pre-programmed trading instructions. These instructions account for variables such as time, price, and volume to send orders to the market without manual intervention.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800"><h3 class="font-bold text-blue-400 mb-2">Speed</h3><p class="text-sm text-slate-400">Act instantly with real-time signal delivery.</p></div>
-                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800"><h3 class="font-bold text-blue-400 mb-2">Accuracy</h3><p class="text-sm text-slate-400">Refined logic that focuses on high-probability setups.</p></div>
-                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800"><h3 class="font-bold text-blue-400 mb-2">Logic</h3><p class="text-sm text-slate-400">Rule-based systems for disciplined, repeatable trading.</p></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="p-8 bg-[#0f172a] border border-slate-800 rounded-3xl">
+                        <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">The Core Advantage</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            The human brain is prone to fatigue, fear, and greed. An algorithm executes purely on <span class="text-white font-semibold">Binary Logic</span>. If the conditions are met, the trade is taken. If not, it waits. This ensures 100% consistency across every session.
+                        </p>
+                    </div>
+                    <div class="p-8 bg-[#0f172a] border border-slate-800 rounded-3xl">
+                        <h4 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Precision & Speed</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Algorithms can scan hundreds of markets and multiple timeframes simultaneously. They react to price movements in milliseconds—speeds that are physically impossible for a manual trader.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-blue-600/10 border border-blue-500/30 rounded-2xl p-8">
+                    <h3 class="text-xl font-bold text-white mb-4">Why it matters for PointAlgo users:</h3>
+                    <p class="text-slate-400">Our indicators are the "Logic Layer." They provide the specific rules your algorithm needs to identify a high-probability setup before an execution occurs.</p>
                 </div>
             </section>
 
-            <section id="what-is-tradingview" class="mb-32 pt-16 border-t border-slate-800/50">
+            <section id="what-are-quants" class="mb-32 pt-16 border-t border-slate-800/50">
                 <div class="flex items-center space-x-4 mb-8">
-                    <div class="p-3 bg-blue-600/20 rounded-xl"><i class="fa-solid fa-chart-line text-blue-500 text-3xl"></i></div>
-                    <h2 class="text-4xl font-extrabold text-white tracking-tight">What is TradingView?</h2>
+                    <div class="p-3 bg-blue-600/20 rounded-xl"><i class="fa-solid fa-microchip text-blue-500 text-3xl"></i></div>
+                    <h2 class="text-4xl font-extrabold text-white tracking-tight">What are Quants?</h2>
                 </div>
                 <p class="text-lg text-slate-300 leading-relaxed mb-8">
-                    TradingView is the gold standard for cloud-based charting. It allows you to analyze financial markets, apply indicators, and track price action in real-time — all from your browser or mobile device without heavy software installation.
+                    A Quantitative Analyst, or "Quant," is a specialist who applies mathematical and statistical methods to financial and risk management problems. In trading, Quants use data to build models that predict the probability of market outcomes.
                 </p>
 
-                <div class="bg-[#0f172a] rounded-3xl border border-slate-800 p-8 mb-10">
-                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Key Advantages</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <ul class="space-y-3 text-slate-400 text-sm">
-                            <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Advanced Multi-Timeframe Charting</li>
-                            <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Thousands of Open-Source Strategies</li>
-                            <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Real-time Global Market Data</li>
-                        </ul>
-                        <ul class="space-y-3 text-slate-400 text-sm">
-                            <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Custom Pine Script (v5) Support</li>
-                            <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Instant Cloud Alerts & Webhooks</li>
-                            <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Seamless Web & Mobile Sync</li>
-                        </ul>
+                <div class="quant-card p-10 rounded-3xl border border-slate-700 shadow-2xl mb-12">
+                    <h4 class="text-white text-2xl font-bold mb-6 italic">"The Data-First Mindset"</h4>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="mt-1"><i class="fa-solid fa-circle-dot text-blue-500 text-[10px]"></i></div>
+                            <p class="text-slate-300"><strong>Probabilistic Thinking:</strong> Quants don't look for "guarantees." They look for an "Edge"—a statistical advantage over a large sample of trades.</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="mt-1"><i class="fa-solid fa-circle-dot text-blue-500 text-[10px]"></i></div>
+                            <p class="text-slate-300"><strong>Market Microstructure:</strong> Quants study how individual orders interact (Orderflow) to understand the true intent of institutional participants.</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="mt-1"><i class="fa-solid fa-circle-dot text-blue-500 text-[10px]"></i></div>
+                            <p class="text-slate-300"><strong>Signal Filtering:</strong> They use advanced math to separate market "noise" from actual trend-shifting signals.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-gradient-to-r from-blue-900/20 to-transparent border border-blue-500/30 rounded-2xl p-8">
-                    <h3 class="text-xl font-bold text-white mb-4">Why PointAlgo uses TradingView</h3>
-                    <p class="text-slate-400 mb-6 italic">PointAlgo provides invite-only indicators on TradingView, ensuring you have the ultimate analysis experience:</p>
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <div class="bg-slate-900/80 p-4 rounded-xl flex-1 border border-slate-800"><strong>Visual Signals:</strong> Direct on-chart entry & target levels.</div>
-                        <div class="bg-slate-900/80 p-4 rounded-xl flex-1 border border-slate-800"><strong>Intuitive UX:</strong> Cleanest interface for high-level strategy.</div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="what-is-mt5" class="mb-32 pt-16 border-t border-slate-800/50">
-                <div class="flex items-center space-x-4 mb-8">
-                    <div class="p-3 bg-blue-600/20 rounded-xl"><i class="fa-solid fa-server text-blue-500 text-3xl"></i></div>
-                    <h2 class="text-4xl font-extrabold text-white tracking-tight">What is MetaTrader 5 (MT5)?</h2>
-                </div>
-                <p class="text-lg text-slate-300 leading-relaxed mb-8">
-                    MetaTrader 5 is a high-performance professional trading platform built for stability and execution. It is the platform of choice for running automated systems (Expert Advisors) across Forex, Indices, and Commodities.
-                </p>
-
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800">
-                        <h4 class="text-white font-bold mb-4 italic">Platform Strengths</h4>
-                        <ul class="space-y-4 text-sm text-slate-400">
-                            <li class="flex items-start"><i class="fa-solid fa-bolt text-blue-500 mt-1 mr-3"></i> <span><strong>Execution Speed:</strong> Industry-leading trade processing for scalp and intraday strategies.</span></li>
-                            <li class="flex items-start"><i class="fa-solid fa-robot text-blue-500 mt-1 mr-3"></i> <span><strong>Automated Trading:</strong> Native support for EX5 Expert Advisors and logic testing.</span></li>
-                        </ul>
-                    </div>
-                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800">
-                        <h4 class="text-white font-bold mb-4 italic">PointAlgo for MT5</h4>
-                        <ul class="space-y-4 text-sm text-slate-400">
-                            <li class="flex items-start"><i class="fa-solid fa-file-code text-blue-500 mt-1 mr-3"></i> <span><strong>Indicator Files:</strong> Custom .ex5 files for direct integration into your terminal.</span></li>
-                            <li class="flex items-start"><i class="fa-solid fa-link text-blue-500 mt-1 mr-3"></i> <span><strong>Broker Sync:</strong> Combine elite analysis with your broker's direct execution.</span></li>
-                        </ul>
-                    </div>
+                <div class="text-center p-8 bg-slate-900/40 rounded-2xl border border-slate-800">
+                    <p class="text-slate-400 italic">"PointAlgo brings the power of Quant-level analysis to your personal trading desk."</p>
                 </div>
             </section>
 
