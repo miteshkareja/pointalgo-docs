@@ -3,143 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PointAlgo Documentation | All Sections Live</title>
+    <title>Gann-Pi Matrix | PointAlgo Documentation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        
         .sidebar-link { transition: all 0.2s; border-left: 3px solid transparent; }
         .sidebar-link:hover { background-color: #1e293b; color: #60a5fa; border-left: 3px solid #475569; }
-        
-        /* Smooth scrolling for the whole page */
         html { scroll-behavior: smooth; }
-        
-        /* Highlight sections when scrolled to */
         section { scroll-margin-top: 100px; }
+        .code-block { background: #020617; border: 1px solid #1e293b; font-family: monospace; color: #94a3b8; }
     </style>
 </head>
 <body class="bg-[#0b0f1a] text-slate-200 antialiased font-sans">
 
     <aside class="fixed inset-y-0 left-0 w-72 bg-[#0f172a] border-r border-slate-800 hidden md:block overflow-y-auto z-20">
         <div class="p-8 pb-6">
-            <a href="https://pointalgo.com" class="text-2xl font-black tracking-tighter text-blue-500 hover:text-blue-400 transition">POINTALGO</a>
+            <a href="https://pointalgo.com" class="text-2xl font-black tracking-tighter text-blue-500">POINTALGO</a>
         </div>
         
         <nav class="px-4 pb-12 space-y-8">
             <div>
                 <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Quick Start</h4>
-                <div class="space-y-1">
-                    <a href="#what-is-pointalgo" class="sidebar-link block px-4 py-2 text-sm rounded-r-md">What is PointAlgo?</a>
-                    <a href="#what-is-tradingview" class="sidebar-link block px-4 py-2 text-sm text-slate-400 rounded-r-md">What is TradingView?</a>
-                    <a href="#what-is-mt5" class="sidebar-link block px-4 py-2 text-sm text-slate-400 rounded-r-md">What is MT5?</a>
+                <div class="space-y-1 text-sm">
+                    <a href="#what-is-pointalgo" class="sidebar-link block px-4 py-2">What is PointAlgo?</a>
+                    <a href="#what-is-tradingview" class="sidebar-link block px-4 py-2">What is TradingView?</a>
+                    <a href="#what-is-mt5" class="sidebar-link block px-4 py-2">What is MT5?</a>
                 </div>
             </div>
 
             <div>
                 <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">The Science</h4>
-                <div class="space-y-1">
-                    <a href="#what-is-algo" class="sidebar-link block px-4 py-2 text-sm text-slate-400 rounded-r-md">What is Algo Trading?</a>
-                    <a href="#what-are-quants" class="sidebar-link block px-4 py-2 text-sm text-slate-400 rounded-r-md">What are Quants?</a>
+                <div class="space-y-1 text-sm">
+                    <a href="#what-is-algo" class="sidebar-link block px-4 py-2">What is Algo Trading?</a>
+                    <a href="#what-are-quants" class="sidebar-link block px-4 py-2">What are Quants?</a>
                 </div>
             </div>
 
             <div>
-                <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">TradingView Suite</h4>
-                <div class="space-y-1 text-slate-400">
-                    <a href="#tv-intro" class="sidebar-link block px-4 py-2 text-sm rounded-r-md">Introduction</a>
-                    <a href="#tv-overlays" class="sidebar-link block px-4 py-2 text-sm rounded-r-md pl-8 border-l border-slate-800">Overlay Indicators</a>
-                    <a href="#tv-oscillators" class="sidebar-link block px-4 py-2 text-sm rounded-r-md pl-8 border-l border-slate-800">Oscillators</a>
+                <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Overlay Indicators</h4>
+                <div class="space-y-1 text-sm">
+                    <a href="#gann-pi" class="sidebar-link block px-4 py-2 text-blue-400 font-bold border-l-blue-500 bg-blue-900/10">Gann-Pi Matrix</a>
+                    <a href="#" class="sidebar-link block px-4 py-2 text-slate-500 italic">Coming Soon...</a>
                 </div>
             </div>
         </nav>
     </aside>
 
     <main class="md:ml-72 min-h-screen pb-24">
-        <header class="sticky top-0 z-10 bg-[#0b0f1a]/80 backdrop-blur-md border-b border-slate-800 px-8 py-4 flex justify-between items-center text-xs">
-            <div class="font-medium text-slate-500 uppercase tracking-wider">
-                PointAlgo <i class="fa-solid fa-chevron-right mx-2 opacity-30 text-[8px]"></i> <span class="text-slate-200 uppercase">System Documentation</span>
+        <header class="sticky top-0 z-10 bg-[#0b0f1a]/80 backdrop-blur-md border-b border-slate-800 px-8 py-4 flex justify-between items-center text-xs uppercase tracking-widest">
+            <div class="text-slate-500 font-bold">
+                Indicators <i class="fa-solid fa-chevron-right mx-2 opacity-30 text-[8px]"></i> <span class="text-slate-200">Gann-Pi Matrix</span>
             </div>
-            <a href="https://pointalgo.com" class="text-sm font-semibold text-blue-400 hover:text-blue-300 transition">Main Site <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i></a>
+            <a href="https://pointalgo.com" class="text-blue-400 font-bold hover:text-blue-300 transition">Back to Terminal</a>
         </header>
 
         <div class="max-w-4xl mx-auto px-8 py-16">
             
-            <section id="what-is-pointalgo" class="mb-32">
-                <h1 class="text-5xl font-extrabold text-white mb-6 tracking-tight">What is PointAlgo?</h1>
-                <p class="text-xl text-slate-400 leading-relaxed mb-10 italic">"Structured signals backed by data and logic."</p>
-                <p class="text-lg text-slate-300 mb-10 leading-relaxed">
-                    PointAlgo is a quantitative trading intelligence platform built for traders who want speed, accuracy, and logic — not guesswork. We believe in rule-based systems that filter noise and focus on high-probability setups.
+            <section id="gann-pi">
+                <div class="mb-4">
+                    <span class="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter border border-blue-500/20">Overlay Indicator</span>
+                </div>
+                <h1 class="text-5xl font-extrabold text-white mb-6 tracking-tight">Gann-Pi Matrix</h1>
+                <p class="text-xl text-slate-400 leading-relaxed mb-12">
+                    A proprietary price-time matrix that identifies institutional reversal zones using **Square of 9 Geometry** and **Pi ($\pi$) Cycle Theory**.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800">
-                        <h3 class="font-bold text-blue-400 mb-2 uppercase text-xs tracking-widest">Speed</h3>
-                        <p class="text-xs text-slate-400">Act instantly with real-time signal delivery.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
+                    <div class="aspect-video bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center justify-center p-4">
+                        <img src="assets/tv-gann-1.png" alt="TradingView View 1" class="rounded shadow-2xl mb-2 hidden">
+                        <span class="text-slate-600 text-xs italic">[TradingView Screenshot 1]</span>
                     </div>
-                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800">
-                        <h3 class="font-bold text-blue-400 mb-2 uppercase text-xs tracking-widest">Accuracy</h3>
-                        <p class="text-xs text-slate-400">Filter noise to focus on refined, tested setups.</p>
+                    <div class="aspect-video bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center justify-center p-4">
+                        <img src="assets/tv-gann-2.png" alt="TradingView View 2" class="rounded shadow-2xl mb-2 hidden">
+                        <span class="text-slate-600 text-xs italic">[TradingView Screenshot 2]</span>
                     </div>
-                    <div class="p-6 bg-[#0f172a] rounded-2xl border border-slate-800">
-                        <h3 class="font-bold text-blue-400 mb-2 uppercase text-xs tracking-widest">Logic</h3>
-                        <p class="text-xs text-slate-400">No black-boxes—only rule-based trading frameworks.</p>
+                    <div class="aspect-video bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center justify-center p-4">
+                        <img src="assets/mt5-gann-1.png" alt="MT5 View 1" class="rounded shadow-2xl mb-2 hidden">
+                        <span class="text-slate-600 text-xs italic">[MT5 Screenshot 1]</span>
+                    </div>
+                    <div class="aspect-video bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center justify-center p-4">
+                        <img src="assets/mt5-gann-2.png" alt="MT5 View 2" class="rounded shadow-2xl mb-2 hidden">
+                        <span class="text-slate-600 text-xs italic">[MT5 Screenshot 2]</span>
                     </div>
                 </div>
-            </section>
 
-            <section id="what-is-tradingview" class="mb-32 pt-16 border-t border-slate-800/50">
-                <h2 class="text-4xl font-extrabold text-white mb-6 tracking-tight">What is TradingView?</h2>
-                <p class="text-lg text-slate-300 mb-8 leading-relaxed">
-                    TradingView is a cloud-based charting platform used by traders to analyze financial markets. It allows you to view price charts, apply indicators, and track markets in real-time from any browser.
-                </p>
-                <div class="bg-[#0f172a] p-8 rounded-3xl border border-slate-800 mb-8">
-                    <h4 class="text-blue-500 font-bold mb-4 text-xs uppercase tracking-widest">Why we use it</h4>
-                    <ul class="space-y-3 text-sm text-slate-400">
-                        <li><i class="fa-solid fa-check mr-2"></i> Access invite-only indicators directly on your chart</li>
-                        <li><i class="fa-solid fa-check mr-2"></i> Get real-time entry, stop-loss, and target levels</li>
-                        <li><i class="fa-solid fa-check mr-2"></i> Clean and intuitive professional interface</li>
-                    </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <div class="p-8 bg-[#0f172a] border border-slate-800 rounded-3xl">
+                        <h3 class="text-white font-bold mb-4 flex items-center">
+                            <i class="fa-solid fa-shapes text-blue-500 mr-2"></i> Price Geometry
+                        </h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            The indicator calculates dynamic Support/Resistance levels using W.D. Gann’s mathematical increments. It utilizes a **Degree Step** (e.g., 45°, 90°) to project price levels from historical pivots.
+                        </p>
+                    </div>
+                    <div class="p-8 bg-[#0f172a] border border-slate-800 rounded-3xl">
+                        <h3 class="text-white font-bold mb-4 flex items-center">
+                            <i class="fa-solid fa-clock text-blue-500 mr-2"></i> Time Cycles
+                        </h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            Using the **Pi ($\pi$) Cycle Period (314)**, the indicator plots a sine wave over the price action. Reversals are most likely to occur when price hits a Gann level exactly when the Pi wave hits its peak threshold.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mb-8 tracking-tight">Signal Logic (Cross Edition)</h2>
+                <div class="space-y-4 mb-16">
+                    <div class="p-6 bg-emerald-900/10 border border-emerald-500/20 rounded-2xl flex items-start space-x-4">
+                        <div class="bg-emerald-500 text-white p-2 rounded-lg text-xs font-black">LONG</div>
+                        <div>
+                            <p class="text-slate-200 font-bold mb-1">Price Crossover S1 Support</p>
+                            <p class="text-xs text-slate-400">Wait for price to cross ABOVE the primary S1 level while the Pi cycle is in the "Green Time Zone".</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-red-900/10 border border-red-500/20 rounded-2xl flex items-start space-x-4">
+                        <div class="bg-red-500 text-white p-2 rounded-lg text-xs font-black">SHORT</div>
+                        <div>
+                            <p class="text-slate-200 font-bold mb-1">Price Crossunder R1 Resistance</p>
+                            <p class="text-xs text-slate-400">Triggered when price falls BELOW the primary R1 level while the Pi cycle is in the "Red Time Zone".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mb-8 tracking-tight">Parameter Guide</h2>
+                <div class="overflow-hidden border border-slate-800 rounded-2xl mb-16">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-900 text-slate-400">
+                            <tr>
+                                <th class="p-4 border-b border-slate-800">Setting</th>
+                                <th class="p-4 border-b border-slate-800">Default</th>
+                                <th class="p-4 border-b border-slate-800">Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800">
+                            <tr>
+                                <td class="p-4 text-blue-400 font-mono">Pivot Lookback</td>
+                                <td class="p-4">20</td>
+                                <td class="p-4 text-slate-500">Determines the anchor high/low for level calculations.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 text-blue-400 font-mono">Degree Increment</td>
+                                <td class="p-4">45.0</td>
+                                <td class="p-4 text-slate-500">Sets the sensitivity of the Gann grid. 45° is standard for intraday.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 text-blue-400 font-mono">Pi Cycle Period</td>
+                                <td class="p-4">314</td>
+                                <td class="p-4 text-slate-500">The historical cycle based on 3.14. Lower numbers = faster signals.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
-
-            <section id="what-is-mt5" class="mb-32 pt-16 border-t border-slate-800/50">
-                <h2 class="text-4xl font-extrabold text-white mb-6 tracking-tight">What is MT5?</h2>
-                <p class="text-lg text-slate-300 mb-8 leading-relaxed">
-                    MetaTrader 5 (MT5) is a professional trading platform for executing trades and running automated systems. It is the industry standard for stability and high-performance execution.
-                </p>
-                <div class="grid md:grid-cols-2 gap-4 text-sm">
-                    <div class="p-4 bg-slate-900/50 border border-slate-800 rounded-xl"><strong>Fast Execution:</strong> Industry-leading trade processing.</div>
-                    <div class="p-4 bg-slate-900/50 border border-slate-800 rounded-xl"><strong>Automation:</strong> Native support for Expert Advisors.</div>
-                </div>
-            </section>
-
-            <section id="what-is-algo" class="mb-32 pt-16 border-t border-slate-800/50">
-                <h2 class="text-4xl font-extrabold text-white mb-6 tracking-tight">What is Algo Trading?</h2>
-                <p class="text-lg text-slate-300 mb-8 leading-relaxed">
-                    Algorithmic trading uses automated instructions to execute trades based on time, price, and volume. It removes the human fatigue and fear from the execution process.
-                </p>
-                <div class="p-8 bg-blue-600 rounded-3xl text-white shadow-2xl shadow-blue-900/40 font-medium">
-                    "A system that never gets tired, scared, or greedy. Binary logic for absolute consistency."
-                </div>
-            </section>
-
-            <section id="what-are-quants" class="mb-32 pt-16 border-t border-slate-800/50">
-                <h2 class="text-4xl font-extrabold text-white mb-6 tracking-tight">What are Quants?</h2>
-                <p class="text-lg text-slate-300 mb-8 leading-relaxed">
-                    Quantitative Analysts use mathematical and statistical methods to identify profitable patterns. They don't guess—they calculate probabilities.
-                </p>
-                <div class="p-8 bg-[#0f172a] border border-slate-700 rounded-3xl italic text-slate-400">
-                    PointAlgo brings the power of institutional Quant analysis to your personal trading desk.
-                </div>
-            </section>
-
-            <section id="tv-intro" class="mb-32 pt-16 border-t border-slate-800/50">
-                <h2 class="text-3xl font-bold text-white mb-4">Indicator Suite</h2>
-                <p class="text-slate-500 italic">Indicator details and images coming in the next turn...</p>
-            </section>
-
         </div>
     </main>
 
