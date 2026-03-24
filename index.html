@@ -40,13 +40,19 @@
                 <a href="#what-is-algo" class="sidebar-link block px-4 py-2 text-slate-400">What is Algo Trading?</a>
                 <a href="#what-are-quants" class="sidebar-link block px-4 py-2 text-slate-400">What are Quants?</a>
             </div>
-            <div>
-                <h4 class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Overlay Indicator</h4>
-                <a href="#gann-pi" class="sidebar-link block px-4 py-2 text-slate-400">Gann-Pi Matrix</a>
-                <a href="#auto-fib" class="sidebar-link block px-4 py-2 text-slate-400">Auto-Fib Matrix</a>
-                <a href="#heatmap-profile" class="sidebar-link block px-4 py-2 text-slate-400">Heatmap Profile & Sweep</a>
-                <a href="#sd-zone-cross" class="sidebar-link block px-4 py-2 text-slate-400">S/D Zone Cross Signals</a>
-                <a href="#vector-rail" class="sidebar-link block px-4 py-2 text-slate-400">Structural Vector Rail</a>
+         <div class="px-4">
+                <button onclick="toggleDropdown('overlay-menu', 'overlay-icon')" class="flex items-center justify-between w-full py-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-blue-400 transition outline-none">
+                    <span>Overlay Suite</span>
+                    <i id="overlay-icon" class="fa-solid fa-chevron-down transition-transform duration-300 text-[10px]"></i>
+                </button>
+                
+                <div id="overlay-menu" class="mt-2 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0px;">
+                    <a href="#gann-pi" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Gann-Pi Matrix</a>
+                    <a href="#auto-fib" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Auto-Fib Matrix</a>
+                    <a href="#heatmap-profile" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Heatmap Profile & Sweep</a>
+                    <a href="#sd-zone-cross" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">S/D Zone Cross Signals</a>
+                    <a href="#vector-rail" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Structural Vector Rail</a>
+                </div>
             </div>
         </nav>
     </aside>
@@ -778,29 +784,42 @@
             </section>
         </div>
     </main>
-              <script>
+        <script>
+        // 1. THE NEW DROPDOWN FUNCTION
+        function toggleDropdown(menuId, iconId) {
+            const menu = document.getElementById(menuId);
+            const icon = document.getElementById(iconId);
+            
+            if (menu.style.maxHeight === "0px" || !menu.style.maxHeight) {
+                menu.style.maxHeight = menu.scrollHeight + "px";
+                icon.style.transform = "rotate(180deg)";
+            } else {
+                menu.style.maxHeight = "0px";
+                icon.style.transform = "rotate(0deg)";
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.sidebar-link');
-            const headerOffset = 150; // Accounts for your sticky top header
+            const headerOffset = 150; 
 
+            // Optional: Automatically open the overlay menu when page loads
+            toggleDropdown('overlay-menu', 'overlay-icon');
+
+            // 2. YOUR EXISTING SCROLL TRACKER
             window.addEventListener('scroll', () => {
                 let current = '';
-
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    // If we have scrolled past the top of the section (minus header space)
                     if (window.scrollY >= (sectionTop - headerOffset)) {
                         current = section.getAttribute('id');
                     }
                 });
 
                 navLinks.forEach(link => {
-                    // Reset all links
                     link.classList.remove('active-link', 'text-slate-200');
                     link.classList.add('text-slate-400');
-                    
-                    // Highlight the current active link
                     if (link.getAttribute('href') === `#${current}`) {
                         link.classList.add('active-link', 'text-slate-200');
                         link.classList.remove('text-slate-400');
