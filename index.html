@@ -785,7 +785,6 @@
         </div>
     </main>
         <script>
-        // 1. THE NEW DROPDOWN FUNCTION
         function toggleDropdown(menuId, iconId) {
             const menu = document.getElementById(menuId);
             const icon = document.getElementById(iconId);
@@ -804,10 +803,9 @@
             const navLinks = document.querySelectorAll('.sidebar-link');
             const headerOffset = 150; 
 
-            // Optional: Automatically open the overlay menu when page loads
-            toggleDropdown('overlay-menu', 'overlay-icon');
+            // I REMOVED THE toggleDropdown LINE FROM HERE
+            // Now the menu will stay closed until the user clicks it.
 
-            // 2. YOUR EXISTING SCROLL TRACKER
             window.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(section => {
@@ -827,6 +825,6 @@
                 });
             });
         });
-    </script>
+    </script>    
 </body>
 </html>
