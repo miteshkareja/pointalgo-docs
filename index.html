@@ -54,7 +54,7 @@
                     <a href="#vector-rail" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Structural Vector Rail</a>
                 </div>
             </div>
-           <div class="px-4 mt-6">
+          <div class="px-4 mt-6">
                 <button onclick="toggleDropdown('oscillator-menu', 'oscillator-icon')" class="flex items-center justify-between w-full py-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-blue-400 transition outline-none">
                     <span>Oscillator Indicator</span>
                     <i id="oscillator-icon" class="fa-solid fa-chevron-down transition-transform duration-300 text-[10px]"></i>
@@ -64,6 +64,7 @@
                     <a href="#trend-aligned-engine" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Trend-Aligned Engine</a>
                     <a href="#microstructure-regime" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Microstructure Regime</a>
                     <a href="#principal-component-geometry" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Principal Component Geometry</a>
+                    <a href="#institutional-flow-matrix" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Institutional Flow Matrix</a>
                 </div>
             </div>
            
@@ -1176,7 +1177,138 @@
                 </div>
 
             </section>
-            
+            <section id="institutional-flow-matrix" class="border-t border-slate-800 pt-20">
+                
+                <div class="mb-16">
+                    <span class="text-blue-500 font-bold text-xs tracking-widest uppercase mb-4 block">Premium Oscillator Indicator</span>
+                    <h2 class="text-6xl font-black text-white mt-2 mb-6 tracking-tighter">Institutional Flow Matrix <span class="text-3xl text-slate-500 font-medium tracking-normal">(PA-Flow)</span></h2>
+                    <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mb-6">
+                        A definitive Order Flow and Market Structure engine that translates tick-approximated Volume Delta, Premium/Discount zones, and Liquidity Sweeps into a unified quantitative Confluence Score.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Smart Money Concepts (SMC) are often subjective and prone to human error. The Institutional Flow Matrix removes the guesswork by tracking True Volume Delta alongside structural anomalies like Fair Value Gaps (FVGs) and real-time liquidity traps. Instead of cluttering your chart with dozens of lines, it distills these complex institutional footprints into a single, highly readable lower-pane oscillator and scoring matrix.
+                    </p>
+                </div>
+
+                <div class="mb-20">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic">TradingView Interface</h3>
+                        <span class="bg-blue-600/20 text-blue-400 px-3 py-1 rounded text-[10px] font-bold uppercase border border-blue-500/30 tracking-widest">Live Setup</span>
+                    </div>
+                    <div class="space-y-10">
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">CHART_VIEW: PA_Flow_Matrix.png</div>
+                            <img src="PA_Flow_Matrix.png" alt="PointAlgo Institutional Flow Matrix TV Chart" class="w-full">
+                        </div>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">SETTINGS_VIEW: PA_Flow_Matrix_set.png</div>
+                            <img src="PA_Flow_Matrix_set.png" alt="PointAlgo Institutional Flow Matrix TV Settings" class="w-full max-h-[500px] object-contain p-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-20">
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800">
+                        <h3 class="text-blue-500 font-bold mb-6 uppercase text-xs tracking-widest flex items-center"><i class="fa-solid fa-crosshairs mr-3 text-lg"></i> Core Use Case</h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span><strong>Trade the Trap:</strong> Wait for price to enter deep Discount/Premium zones (background color change) and look for Institutional Footprint spikes indicating accumulation or distribution.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span><strong>Validate Breakouts:</strong> A structural breakout on the main chart should always be backed by a strong Volume Delta surge in the same direction.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span><strong>Zero-Cross Scalping:</strong> Utilize the synchronized Delta Zero-Cross arrows for precision entries when order flow officially shifts polarity.</span></li>
+                        </ul>
+                    </div>
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800">
+                        <h3 class="text-emerald-500 font-bold mb-6 uppercase text-xs tracking-widest flex items-center"><i class="fa-solid fa-shield-halved mr-3 text-lg"></i> Key Benefits</h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>Tick-Approximated CVD:</strong> Splits raw volume into buying and selling pressure based on high/low ranges, offering true visibility into aggressive market orders.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>5-Point Matrix Score:</strong> Automatically grades the market (-5 to +5) by scoring Premium/Discount location, FVG presence, Delta momentum, and Liquidity Sweeps simultaneously.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>Synchronized Alerts:</strong> Prevents fake-outs by allowing you to require Confluence Score alignment before triggering a Delta crossover alert.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-20">
+                    <h3 class="text-2xl font-bold text-white mb-6">Deconstructing the Matrix</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 text-sm">
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 border-l-4 border-l-[#00E676]">
+                            <strong class="text-white block mb-1">Confluence Histogram (The Score)</strong>
+                            The background bars represent the total Matrix Score. Tall green bars indicate massive bullish confluence; deep red bars indicate strong bearish control.
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 border-l-4 border-l-white">
+                            <strong class="text-white block mb-1">Volume Delta Wave (The Line)</strong>
+                            Tracks the normalized buying vs. selling pressure. Watch for divergences where price makes a new high but this Delta wave makes a lower high.
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 border-l-4 border-l-orange-500">
+                            <strong class="text-white block mb-1">Premium / Discount Backgrounds</strong>
+                            The oscillator background subtly shifts color when price enters the extreme top 20% (Premium) or bottom 20% (Discount) of the macro structure.
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 border-l-4 border-l-purple-500">
+                            <strong class="text-white block mb-1">Institutional Footprint (Small Triangles)</strong>
+                            Small markers on the top/bottom of the pane flag bars where volume exceeded the moving average multiplier, revealing "Big Money" footprints.
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-white mb-6">Signal Logic & Alerts</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-slate-900/30 border border-slate-800 rounded-2xl">
+                            <h4 class="text-blue-400 font-bold mb-4 uppercase tracking-widest text-xs"><i class="fa-solid fa-arrows-turn-to-dots mr-2"></i> Delta Zero Cross</h4>
+                            <p class="text-sm text-slate-300 mb-3">
+                                Large arrows appear precisely on the equilibrium (0) line when Order Flow officially flips from negative to positive, or vice versa. 
+                            </p>
+                            <p class="text-sm text-slate-400 italic">
+                                *Pro Tip: Use the "Require Confluence Sync" toggle in settings to ensure you only get notified of these crosses when the background Matrix Score agrees with the direction.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-slate-900/30 border border-slate-800 rounded-2xl">
+                            <h4 class="text-emerald-400 font-bold mb-4 uppercase tracking-widest text-xs"><i class="fa-solid fa-shield-cat mr-2"></i> Strong Buy / Sell Triggers</h4>
+                            <p class="text-sm text-slate-300">
+                                The ultimate Quantum Signal fires when the Matrix Score hits a +/- 3 threshold. This means at least 3 critical institutional factors (e.g., Deep Discount + Sweep + Bullish FVG) have aligned perfectly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-20 pt-16 border-t border-slate-800">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic uppercase">MT5 Platform View</h3>
+                        <span class="bg-slate-800 text-slate-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Terminal Mode</span>
+                    </div>
+                    <div class="space-y-10">
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">CHART_VIEW: PA_Flow_Matrix_MT5.png</div>
+                            <img src="PA_Flow_Matrix_MT5.png" alt="PointAlgo Institutional Flow Matrix MT5 Chart" class="w-full">
+                        </div>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">SETTINGS_VIEW: PA_Flow_Matrix_MT5_set.png</div>
+                            <img src="PA_Flow_Matrix_MT5_set.png" alt="PointAlgo Institutional Flow Matrix MT5 Settings" class="w-full max-h-[500px] object-contain p-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="p-6 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <h4 class="text-white font-bold mb-4">Best Practices</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li>• The <strong>Institutional HUD</strong> on the right side of your chart updates tick-by-tick. Glance at this before entering any trade to ensure you are not buying in Premium or selling in Discount.</li>
+                            <li>• Combine this with the <strong>S/D Zone Cross Signals</strong>. A Supply Zone test combined with a "Sell-Side Swept" HUD reading is an ultra-high probability short setup.</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <h4 class="text-white font-bold mb-4">Who is this for?</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li>• ICT and SMC traders who want to automate their structural mapping and validate their biases with actual volume data.</li>
+                            <li>• Order flow traders who need a clean, visual representation of buying/selling pressure without using complex footprint charts.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-blue-600 text-white rounded-3xl shadow-xl shadow-blue-900/20 text-center">
+                    <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Summary</h3>
+                    <p class="text-blue-100 leading-relaxed max-w-2xl mx-auto">
+                        The Institutional Flow Matrix turns the chaos of market structure and volume delta into clear, actionable data. By mathematically scoring confluences like sweeps and imbalances, it ensures you only trade when the smart money is decisively showing its hand.
+                    </p>
+                </div>
+
+            </section>
         </div>
     </main>
         <script>
