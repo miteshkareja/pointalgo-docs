@@ -68,6 +68,17 @@
                     <a href="#systematic-factor-engine" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Systematic Factor Engine</a>
                 </div>
             </div>
+         
+          <div class="px-4 mt-6">
+                <button onclick="toggleDropdown('predictive-menu', 'predictive-icon')" class="flex items-center justify-between w-full py-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-blue-400 transition outline-none">
+                    <span>Predictive Models</span>
+                    <i id="predictive-icon" class="fa-solid fa-chevron-down transition-transform duration-300 text-[10px]"></i>
+                </button>
+                
+                <div id="predictive-menu" class="mt-2 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0px;">
+                    <a href="#quant-ai-engine" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">Quant AI Engine</a>
+                </div>
+            </div>
            
         </nav>
     </aside>
@@ -1439,7 +1450,97 @@
                 </div>
 
             </section>
-            
+            <section id="quant-ai-engine" class="border-t border-slate-800 pt-20">
+                
+                <div class="mb-16">
+                    <span class="text-yellow-500 font-bold text-xs tracking-widest uppercase mb-4 block underline decoration-yellow-500/30 underline-offset-8">Elite Predictive Model</span>
+                    <h2 class="text-6xl font-black text-white mt-2 mb-6 tracking-tighter italic">Quant AI Engine <span class="text-3xl text-slate-500 font-medium tracking-normal">(PA-GTP)</span></h2>
+                    <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mb-6 font-light">
+                        A real-time "Deep Think" terminal that synthesizes Z-Score math, Institutional Order Flow, and Liquidity Sweeps into a readable AI verdict.
+                    </p>
+                </div>
+
+                <div class="mb-20">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic uppercase flex items-center">
+                            <i class="fa-solid fa-play-circle mr-3 text-yellow-500"></i> Logic Response Demo
+                        </h3>
+                        <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded text-[10px] font-bold uppercase border border-yellow-500/30 tracking-widest animate-pulse">Live Reasoning</span>
+                    </div>
+                    
+                    <div class="img-container overflow-hidden rounded-3xl border border-slate-800 bg-[#020617] shadow-2xl shadow-yellow-500/5">
+                        <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                            </div>
+                            <div class="text-[10px] text-slate-500 font-mono tracking-widest uppercase italic font-bold text-yellow-500">Video: QuantenginTV.mp4</div>
+                        </div>
+                        <video class="w-full h-auto" autoplay loop muted playsinline controls>
+                            <source src="QuantenginTV.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-20">
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800 hover:border-yellow-500/30 transition-all group">
+                        <div class="w-12 h-12 bg-yellow-500/20 rounded-2xl flex items-center justify-center mb-6 text-yellow-500 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-microchip text-2xl"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3 uppercase tracking-tight">Quant State</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Monitors TTM Squeezes and Z-Score dislocations. It knows when kinetic energy is storing and when a mean-reversion bounce is mathematically mandatory.</p>
+                    </div>
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800 hover:border-blue-500/30 transition-all group">
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 text-blue-500 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-waves-square text-2xl"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3 uppercase tracking-tight">Volume Anomaly</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Scans for RVOL (Relative Volume) spikes above 200%. It separates retail noise from institutional order flow injections instantly.</p>
+                    </div>
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800 hover:border-emerald-500/30 transition-all group">
+                        <div class="w-12 h-12 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-6 text-emerald-500 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-brain text-2xl"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3 uppercase tracking-tight">Deep Think PA</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">The logic core. It identifies BSL/SSL sweeps and classifies rejections versus legitimate institutional breakouts.</p>
+                    </div>
+                </div>
+
+                <div class="mb-20 pt-16 border-t border-slate-800">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic uppercase">MT5 Terminal View</h3>
+                        <span class="bg-slate-800 text-slate-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Static Analysis</span>
+                    </div>
+                    <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                        <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest uppercase">Image: Quantengin.png</div>
+                        <img src="Quantengin.png" alt="PointAlgo Quant AI MT5 View" class="w-full h-auto">
+                    </div>
+                </div>
+
+                <div class="p-10 glass-card rounded-[3rem] border border-slate-800 mb-20 relative overflow-hidden">
+                    <h3 class="text-3xl font-bold text-white mb-8">Interpreting the Verdict</h3>
+                    <div class="space-y-6 max-w-2xl">
+                        <div class="flex items-center p-4 bg-[#00E676]/5 rounded-2xl border border-[#00E676]/20">
+                            <div class="w-4 h-4 rounded-full bg-[#00E676] mr-4 shadow-[0_0_10px_#00E676]"></div>
+                            <div class="text-sm text-slate-300 font-mono tracking-tighter"><strong class="text-white">STRONGLY BULLISH:</strong> Confluence of Oversold Z-Score + Bullish Divergence + SSL Sweep.</div>
+                        </div>
+                        <div class="flex items-center p-4 bg-[#FF1744]/5 rounded-2xl border border-[#FF1744]/20">
+                            <div class="w-4 h-4 rounded-full bg-[#FF1744] mr-4 shadow-[0_0_10px_#FF1744]"></div>
+                            <div class="text-sm text-slate-300 font-mono tracking-tighter"><strong class="text-white">STRONGLY BEARISH:</strong> Confluence of Overbought Z-Score + Bearish Divergence + BSL Sweep.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-gradient-to-r from-yellow-600 to-yellow-800 text-white rounded-3xl shadow-xl shadow-yellow-900/20 text-center">
+                    <h3 class="text-2xl font-black mb-4 uppercase tracking-tighter">Algorithm Summary</h3>
+                    <p class="text-yellow-100 leading-relaxed max-w-2xl mx-auto italic font-light">
+                        The Quant AI Engine acts as your institutional co-pilot. It processes thousands of data points across volatility, volume, and structure every second to provide you with a human-readable summary of the current market state.
+                    </p>
+                </div>
+
+            </section>
         </div>
     </main>
         <script>
