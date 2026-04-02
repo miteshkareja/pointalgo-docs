@@ -63,6 +63,7 @@
                 <div id="oscillator-menu" class="mt-2 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0px;">
                     <a href="#trend-aligned-engine" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Trend-Aligned Engine</a>
                     <a href="#microstructure-regime" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Microstructure Regime</a>
+                    <a href="#principal-component-geometry" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md">Principal Component Geometry</a>
                 </div>
             </div>
            
@@ -1044,6 +1045,138 @@
                 </div>
 
             </section>
+
+            <section id="principal-component-geometry" class="border-t border-slate-800 pt-20">
+                
+                <div class="mb-16">
+                    <span class="text-blue-500 font-bold text-xs tracking-widest uppercase mb-4 block">Premium Oscillator Indicator</span>
+                    <h2 class="text-6xl font-black text-white mt-2 mb-6 tracking-tighter">Principal Component Geometry <span class="text-3xl text-slate-500 font-medium tracking-normal">(PCG)</span></h2>
+                    <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mb-6">
+                        An institutional-grade covariance matrix model that uses Eigenvalue Decomposition to extract the true underlying market direction, filtering out noise via Spectral Entropy and Variance Concentration.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Standard indicators calculate moving averages based on a single price source (like the Close). The PCG Oscillator compares two distinct series (e.g., Close vs. HL2) to build a 2x2 Correlation Matrix. By finding the Principal Component (PC1), it isolates the dominant trend vector. It then measures market disorder (Spectral Entropy) and structural breakdowns (Reconstruction Residual) to warn you of reversals long before price action reflects them.
+                    </p>
+                </div>
+
+                <div class="mb-20">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic">TradingView Interface</h3>
+                        <span class="bg-blue-600/20 text-blue-400 px-3 py-1 rounded text-[10px] font-bold uppercase border border-blue-500/30 tracking-widest">Live Setup</span>
+                    </div>
+                    <div class="space-y-10">
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">CHART_VIEW: PCG_Oscillator.png</div>
+                            <img src="PCG_Oscillator.png" alt="PointAlgo PCG Oscillator TV Chart" class="w-full">
+                        </div>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">SETTINGS_VIEW: PCG_Oscillatorset.png</div>
+                            <img src="PCG_Oscillatorset.png" alt="PointAlgo PCG Oscillator TV Settings" class="w-full max-h-[500px] object-contain p-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-20">
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800">
+                        <h3 class="text-blue-500 font-bold mb-6 uppercase text-xs tracking-widest flex items-center"><i class="fa-solid fa-crosshairs mr-3 text-lg"></i> Core Use Case</h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span><strong>Trade the True Vector:</strong> Follow the PC1 Score (z-score) as your master trend line. When it crosses zero, the fundamental geometry of the market has shifted.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span><strong>Detect Disorder:</strong> If Spectral Entropy (the area plot) starts rising rapidly, the trend is breaking down mathematically. Tighten stops or exit.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-blue-500 mt-1 mr-3"></i> <span><strong>Spot Hidden Divergence:</strong> If price makes a new high but the PC1 Score fails to push higher (and EVR drops), a severe reversal is imminent.</span></li>
+                        </ul>
+                    </div>
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800">
+                        <h3 class="text-emerald-500 font-bold mb-6 uppercase text-xs tracking-widest flex items-center"><i class="fa-solid fa-shield-halved mr-3 text-lg"></i> Key Benefits</h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>Eigenvalue Math:</strong> Automatically calculates lambda 1 and lambda 2 to find the exact percentage of variance driven by the main trend versus noise.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>Z-Score Normalized:</strong> Every complex metric (Entropy, Residuals, Condition Number) is converted into a standard Z-Score, making it easy to read visually without needing a math degree.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-3"></i> <span><strong>Real-Time Quant HUD:</strong> Displays all current matrix values, correlations, and entropy levels natively on your chart.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-20">
+                    <h3 class="text-2xl font-bold text-white mb-6">Deconstructing the PCG Sub-Chart</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 text-sm">
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 border-l-4 border-l-aqua-500">
+                            <strong class="text-white block mb-1">PC1 Score (Thick Line: Aqua/Red)</strong>
+                            The primary trend axis. Aqua means bullish structural momentum, Red means bearish. The most important line on the chart.
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 border-l-4 border-l-yellow-500">
+                            <strong class="text-white block mb-1">EVR Balance (Histogram)</strong>
+                            Explained Variance Ratio. When this is high (yellow), the market is heavily dominated by a single, strong directional trend.
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 border-l-4 border-l-red-500">
+                            <strong class="text-white block mb-1">Spectral Entropy (Area Plot)</strong>
+                            Measures market chaos. If this spikes into the red, the primary trend is losing control to random noise. Do not enter new trend trades here.
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 border-l-4 border-l-fuchsia-500">
+                            <strong class="text-white block mb-1">PC2 Score & Residuals (Thin Lines)</strong>
+                            The "error" or secondary variance. Spikes in these thin lines indicate sudden market shocks or structural dislocations.
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-white mb-6">Signal Logic & Interpretation</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-emerald-900/10 border border-emerald-500/20 rounded-2xl">
+                            <h4 class="text-emerald-400 font-bold mb-4 uppercase tracking-widest text-xs"><i class="fa-solid fa-arrow-trend-up mr-2"></i> Co-Movement Entries</h4>
+                            <ul class="space-y-3 text-sm text-slate-300">
+                                <li>• <strong>PC1 Zero Cross (<span class="text-lime-400">Long/Short Arrows</span>):</strong> Clean, simple momentum shifts. Trade these when EVR is rising.</li>
+                                <li>• <strong>PCG Buy (<span class="text-lime-400">PC Triangle</span>):</strong> A highly restrictive signal indicating a perfect quantitative environment: EVR is high, Entropy is low, and the PC1 score is accelerating upwards.</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 bg-red-900/10 border border-red-500/20 rounded-2xl">
+                            <h4 class="text-red-400 font-bold mb-4 uppercase tracking-widest text-xs"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Divergence Exits</h4>
+                            <ul class="space-y-3 text-sm text-slate-300">
+                                <li>• <strong>PCG Sell (<span class="text-red-500">PD Triangle</span>):</strong> Represents a structural breakdown. EVR is falling, Entropy is rising, and reconstruction residuals are spiking. Close long positions immediately.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-20 pt-16 border-t border-slate-800">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic uppercase">MT5 Platform View</h3>
+                        <span class="bg-slate-800 text-slate-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Terminal Mode</span>
+                    </div>
+                    <div class="space-y-10">
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">CHART_VIEW: PCG_Oscillator_MT5.png</div>
+                            <img src="PCG_Oscillator_MT5.png" alt="PointAlgo PCG Oscillator MT5 Chart" class="w-full">
+                        </div>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                            <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest">SETTINGS_VIEW: PCG_Oscillator_MT5set.png</div>
+                            <img src="PCG_Oscillator_MT5set.png" alt="PointAlgo PCG Oscillator MT5 Settings" class="w-full max-h-[500px] object-contain p-4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="p-6 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <h4 class="text-white font-bold mb-4">Best Practices</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li>• Use the **Spectral Entropy Area** as a filter. If the entropy background is green (low disorder), you can trust overlay breakouts. If it is red (high disorder), you will likely get chopped out.</li>
+                            <li>• Combine this with the **Auto-Fib Matrix**: Look for the PC1 score to cross zero exactly as price bounces off a major Fib level.</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <h4 class="text-white font-bold mb-4">Who is this for?</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li>• Advanced technical analysts looking to upgrade from traditional RSI or MACD.</li>
+                            <li>• Traders who want to measure the mathematical "quality" of a trend, not just its speed.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-blue-600 text-white rounded-3xl shadow-xl shadow-blue-900/20 text-center">
+                    <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Summary</h3>
+                    <p class="text-blue-100 leading-relaxed max-w-2xl mx-auto">
+                        The Principal Component Geometry oscillator proves that not all trends are created equal. By mapping the covariance between different price points, it allows you to trade the true underlying market vector while actively dodging chaotic, high-entropy chop.
+                    </p>
+                </div>
+
+            </section>
+            
         </div>
     </main>
         <script>
