@@ -80,8 +80,9 @@
                     <a href="#chaos-engine" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">Chaos Engine (Hurst)</a>
                     <a href="#dtw-predictive-plotter" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">DTW Predictive Plotter</a>
                     <a href="#five-factor-model" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">5-Factor Model Engine</a>
+                    <a href="#affine-factor-model" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">Affine Factor Model</a>
                 </div>
-            </div>      
+            </div>
         </nav>
     </aside>
 
@@ -1805,7 +1806,89 @@
                 </div>
 
             </section>
-            
+            <section id="affine-factor-model" class="border-t border-slate-800 pt-20">
+                
+                <div class="mb-16">
+                    <span class="text-orange-400 font-bold text-xs tracking-widest uppercase mb-4 block underline decoration-orange-500/30 underline-offset-8">Geometric Projection Model</span>
+                    <h2 class="text-6xl font-black text-white mt-2 mb-6 tracking-tighter italic">Affine Factor Model <span class="text-3xl text-slate-500 font-medium tracking-normal">(PA-AFM)</span></h2>
+                    <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mb-6 font-light">
+                        An elite geometric engine that treats market benchmarks as a "Factor Subspace," projecting asset returns onto an affine manifold to identify structural breakdowns and shifts.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        Traditional models look at price in a vacuum. The <strong>Affine Factor Model</strong> maps the relationship between an asset (Y) and an internal benchmark (X) using two geometric vectors: the <strong>Affine Shift (Alpha)</strong> and the <strong>Linear Mapping (Beta)</strong>. It predicts future price action by measuring how far an asset drifts from its expected geometric path—an event known as an Orthogonal Projection Error.
+                    </p>
+                </div>
+
+                <div class="mb-20">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic uppercase flex items-center">
+                            <i class="fa-solid fa-draw-polygon mr-3 text-orange-400"></i> Manifold Projection
+                        </h3>
+                        <span class="bg-orange-600/20 text-orange-400 px-3 py-1 rounded text-[10px] font-bold uppercase border border-orange-500/30 tracking-widest">Idiosyncratic Scan On</span>
+                    </div>
+                    <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                        <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest uppercase italic font-bold">Image: PA_Affine_Geometry.png</div>
+                        <img src="PA_Affine_Geometry.png" alt="PointAlgo Affine Factor Model TV Chart" class="w-full h-auto">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-20">
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800">
+                        <h3 class="text-orange-500 font-bold mb-4 uppercase text-xs tracking-widest flex items-center"><i class="fa-solid fa-arrows-up-down-left-right mr-3 text-lg"></i> Affine Shift (Alpha)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            In geometry, an affine transformation $F(x) = \alpha + \beta x$ involves a "translation" vector ($\alpha$). This represents the asset's ability to move independently of the benchmark.
+                        </p>
+                        <div class="p-4 bg-orange-500/5 rounded-xl border border-orange-500/20 text-[11px] text-orange-200">
+                            <strong>Predictive Value:</strong> A rising Alpha Shift indicates the asset is detaching from market gravity and entering a high-performance "Structural Alpha" phase.
+                        </div>
+                    </div>
+                    <div class="p-8 glass-card rounded-3xl border border-slate-800">
+                        <h3 class="text-yellow-500 font-bold mb-4 uppercase text-xs tracking-widest flex items-center"><i class="fa-solid fa-expand mr-3 text-lg"></i> Linear Mapping (Beta)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            The Beta vector measures the "scaling" or rotation of the asset relative to the factor. It tells the engine how sensitive the asset is to broader market volatility.
+                        </p>
+                        <div class="p-4 bg-yellow-500/5 rounded-xl border border-yellow-500/20 text-[11px] text-yellow-200">
+                            <strong>Predictive Value:</strong> A collapse in Beta signifies a structural breakdown, predicting that the asset will no longer follow historical price correlations.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-20 glass-card p-10 rounded-[3rem] border border-slate-800 relative overflow-hidden">
+                    <h3 class="text-2xl font-bold text-white mb-6 uppercase tracking-tight">The Orthogonal Error (ε)</h3>
+                    <p class="text-slate-400 text-sm mb-8 leading-relaxed max-w-2xl">
+                        When an asset moves, it is either following the "Factor Manifold" or drifting away from it. The **Orthogonal Error** measures the literal geometric distance from the actual return to the predicted hyperplane.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="p-6 bg-red-900/10 border border-red-500/20 rounded-2xl">
+                            <h4 class="text-red-400 font-bold mb-2 text-sm uppercase">Subspace Breakdown (SB)</h4>
+                            <p class="text-slate-300 text-xs">Fires when the Orthogonal Error (IdioVol) spikes. This predicts a total loss of trend structure—expect high-volatility liquidations.</p>
+                        </div>
+                        <div class="p-6 bg-emerald-900/10 border border-emerald-500/20 rounded-2xl">
+                            <h4 class="text-emerald-400 font-bold mb-2 text-sm uppercase">Structural Alpha (AB)</h4>
+                            <p class="text-slate-300 text-xs">Fires when Alpha is high and the Information Ratio is rising. Predicts a clean, efficient trend move with low mathematical noise.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-20 pt-16 border-t border-slate-800">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-3xl font-bold text-white tracking-tight italic uppercase">MT5 Platform View</h3>
+                        <span class="bg-slate-800 text-slate-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Geometry Terminal</span>
+                    </div>
+                    <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617]">
+                        <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-[10px] text-slate-500 font-mono tracking-widest uppercase italic font-bold">Image: PA_Affine_GeometryMT5.png</div>
+                        <img src="PA_Affine_GeometryMT5.png" alt="PointAlgo Affine Factor Model MT5 View" class="w-full h-auto">
+                    </div>
+                </div>
+
+                <div class="p-10 bg-gradient-to-br from-orange-900/30 to-slate-900 text-center rounded-[3rem] border border-orange-500/20">
+                    <h3 class="text-2xl font-black text-white mb-4 uppercase tracking-tighter">Predictive Summary</h3>
+                    <p class="text-orange-100/70 leading-relaxed max-w-2xl mx-auto italic font-light text-sm">
+                        The Affine Factor Model brings the precision of subspace geometry to technical analysis. By quantifying how cleanly an asset "translates" and "scales" across its market manifold, it offers a predictive lens into structural trend stability that standard oscillators cannot see.
+                    </p>
+                </div>
+
+            </section>
         </div>
     </main>
         <script>
