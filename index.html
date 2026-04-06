@@ -85,20 +85,21 @@
             </div>
 
            <div class="px-4 mt-6">
-                <button onclick="toggleDropdown('support-menu', 'support-icon')" class="flex items-center justify-between w-full py-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-blue-400 transition outline-none">
+                <button onclick="toggleDropdown('help-menu', 'help-icon')" class="flex items-center justify-between w-full py-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest hover:text-blue-400 transition outline-none">
                     <span>Support & Setup</span>
-                    <i id="support-icon" class="fa-solid fa-chevron-down transition-transform duration-300 text-[10px]"></i>
+                    <i id="help-icon" class="fa-solid fa-chevron-down transition-transform duration-300 text-[10px]"></i>
                 </button>
                 
-                <div id="support-menu" class="mt-2 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0px;">
+                <div id="help-menu" class="mt-2 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0px;">
                     <a href="#access-guide" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">Accessing Indicators</a>
-                    <a href="#alert-configuration" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">Alert Configuration</a>
+                    <a href="#alert-setup" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">Setting Alerts</a>
                     <a href="#webhook-automation" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">Webhook Automation</a>
                     <a href="#mt5-install" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">MT5 Installation</a>
-                    <a href="#indicator-glossary" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">Indicator Glossary</a>
                     <a href="#faqs" class="sidebar-link block px-4 py-2 text-slate-400 rounded-md text-sm">FAQs</a>
                 </div>
             </div>
+
+           
         </nav>
     </aside>
 
@@ -1912,116 +1913,111 @@
                     <p class="text-slate-400 max-w-2xl">Follow these steps to activate your PointAlgo license, configure smart alerts, and automate your quantitative trading.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-12 mb-24">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Finding Your Indicators</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Once your PointAlgo subscription is active, the scripts are added to your TradingView account manually. You will not find them in the public library.
-                        </p>
-                        <ul class="space-y-4">
-                            <li class="flex items-center text-sm text-slate-300 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-                                <span class="w-6 h-6 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mr-3 text-[10px] font-bold">1</span>
-                                Open any chart on TradingView.
-                            </li>
-                            <li class="flex items-center text-sm text-slate-300 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-                                <span class="w-6 h-6 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mr-3 text-[10px] font-bold">2</span>
-                                Click on the <strong class="mx-1 text-white">"Indicators"</strong> button at the top.
-                            </li>
-                            <li class="flex items-center text-sm text-slate-300 bg-blue-500/10 p-3 rounded-xl border border-blue-500/30">
-                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center mr-3 text-[10px] font-bold">3</span>
-                                Go to the <strong class="mx-1 text-white">"Invite-Only Scripts"</strong> folder.
-                            </li>
-                        </ul>
+                <div class="mb-24">
+                    <h3 class="text-2xl font-bold text-white mb-4">Finding Your Indicators</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Once your PointAlgo subscription is active, the scripts are added to your TradingView account manually. You will not find them in the public library.
+                    </p>
+                    <div class="bg-slate-900/40 rounded-3xl border border-slate-800 p-4 mb-8">
+                        <img src="invite_only_preview.png" alt="Invite Only Guide" class="rounded-2xl w-full h-auto">
                     </div>
-                    <div class="bg-slate-900/40 rounded-3xl border border-slate-800 p-4">
-                        <img src="invite_only_preview.png" alt="Invite Only Guide" class="rounded-2xl opacity-80 hover:opacity-100 transition-opacity w-full h-auto">
-                    </div>
+                    <ul class="grid md:grid-cols-3 gap-4">
+                        <li class="flex items-center text-sm text-slate-300 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                            <span class="w-6 h-6 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mr-3 text-[10px] font-bold">1</span>
+                            Open any chart.
+                        </li>
+                        <li class="flex items-center text-sm text-slate-300 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                            <span class="w-6 h-6 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mr-3 text-[10px] font-bold">2</span>
+                            Click <strong class="mx-1 text-white">"Indicators"</strong>.
+                        </li>
+                        <li class="flex items-center text-sm text-slate-300 bg-blue-500/10 p-4 rounded-xl border border-blue-500/30">
+                            <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center mr-3 text-[10px] font-bold">3</span>
+                            Go to <strong class="mx-1 text-white">"Invite-Only"</strong>.
+                        </li>
+                    </ul>
                 </div>
 
                 <div id="alert-setup" class="mb-24 pt-12 border-t border-slate-900">
-                    <h3 class="text-3xl font-bold text-white mb-8 italic">Configuring Smart Alerts</h3>
-                    <p class="text-slate-400 mb-10 max-w-3xl">Setting up alerts correctly ensures you never miss a systematic edge. Follow this step-by-step visual guide to configure your PointAlgo notifications.</p>
+                    <h3 class="text-4xl font-black text-white mb-6 italic tracking-tight">Configuring Smart Alerts</h3>
+                    <p class="text-slate-400 mb-12 max-w-3xl">Setting up alerts correctly ensures you never miss a systematic edge. Follow this step-by-step visual guide.</p>
                     
-                    <div class="grid md:grid-cols-2 gap-8">
-                        
-                        <div class="p-6 glass-card rounded-3xl border border-slate-800 flex flex-col">
-                            <div class="mb-4">
-                                <span class="bg-blue-600/20 text-blue-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Step 1</span>
-                                <h4 class="text-white font-bold mt-3 text-lg">Open Indicator Menu</h4>
-                                <p class="text-slate-500 text-xs mt-2">Hover over the PointAlgo indicator name on your chart, click the <strong>3 dots (More)</strong>.</p>
-                            </div>
-                            <div class="mt-auto overflow-hidden rounded-xl border border-slate-700">
-                                <img src="Alert (1).png" alt="Click 3 dots" class="w-full h-auto">
-                            </div>
+                    <div class="mb-16">
+                        <h4 class="text-2xl font-bold text-white mb-3 flex items-center">
+                            <span class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-black shadow-[0_0_15px_rgba(37,99,235,0.5)]">1</span> 
+                            Open Indicator Menu
+                        </h4>
+                        <p class="text-slate-400 text-sm mb-6 ml-12">Hover over the PointAlgo indicator name on your chart, and click the <strong>3 dots (More)</strong>.</p>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617] ml-12 shadow-2xl">
+                            <img src="Alert (1).png" alt="Click 3 dots" class="w-full h-auto">
                         </div>
+                    </div>
 
-                        <div class="p-6 glass-card rounded-3xl border border-slate-800 flex flex-col">
-                            <div class="mb-4">
-                                <span class="bg-blue-600/20 text-blue-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Step 2</span>
-                                <h4 class="text-white font-bold mt-3 text-lg">Initialize Alert</h4>
-                                <p class="text-slate-500 text-xs mt-2">Select <strong>"Add alert on [Indicator Name]"</strong> from the dropdown menu.</p>
-                            </div>
-                            <div class="mt-auto overflow-hidden rounded-xl border border-slate-700">
-                                <img src="Alert (2).png" alt="Add alert" class="w-full h-auto">
-                            </div>
+                    <div class="mb-16">
+                        <h4 class="text-2xl font-bold text-white mb-3 flex items-center">
+                            <span class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-black shadow-[0_0_15px_rgba(37,99,235,0.5)]">2</span> 
+                            Initialize Alert
+                        </h4>
+                        <p class="text-slate-400 text-sm mb-6 ml-12">Select <strong>"Add alert on [Indicator Name]"</strong> from the dropdown menu.</p>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617] ml-12 shadow-2xl">
+                            <img src="Alert (2).png" alt="Add alert" class="w-full h-auto">
                         </div>
+                    </div>
 
-                        <div class="p-6 glass-card rounded-3xl border border-slate-800 flex flex-col">
-                            <div class="mb-4">
-                                <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Step 3</span>
-                                <h4 class="text-white font-bold mt-3 text-lg">Configure the Trigger</h4>
-                                <p class="text-slate-500 text-xs mt-2">Click the Trigger dropdown. For most PointAlgo indicators, select <strong>"Once per bar close"</strong> to prevent repainting issues during high volatility.</p>
-                            </div>
-                            <div class="mt-auto overflow-hidden rounded-xl border border-slate-700">
-                                <img src="Alert (3).png" alt="Set Trigger" class="w-full h-auto">
-                            </div>
+                    <div class="mb-16">
+                        <h4 class="text-2xl font-bold text-white mb-3 flex items-center">
+                            <span class="w-8 h-8 bg-yellow-500 text-black rounded-full flex items-center justify-center mr-4 text-sm font-black shadow-[0_0_15px_rgba(234,179,8,0.4)]">3</span> 
+                            Configure the Trigger
+                        </h4>
+                        <p class="text-slate-400 text-sm mb-6 ml-12">Click the Trigger dropdown. For most PointAlgo indicators, select <strong>"Once per bar close"</strong> to prevent repainting issues during high volatility.</p>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617] ml-12 shadow-2xl">
+                            <img src="Alert (3).png" alt="Set Trigger" class="w-full h-auto">
                         </div>
+                    </div>
 
-                        <div class="p-6 glass-card rounded-3xl border border-slate-800 flex flex-col">
-                            <div class="mb-4">
-                                <span class="bg-yellow-600/20 text-yellow-400 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Step 4</span>
-                                <h4 class="text-white font-bold mt-3 text-lg">Set Expiration</h4>
-                                <p class="text-slate-500 text-xs mt-2">Click the Expiration dropdown and select your desired timeframe (e.g., <strong>Open-ended</strong> or a custom date) to keep the alert active.</p>
-                            </div>
-                            <div class="mt-auto overflow-hidden rounded-xl border border-slate-700">
-                                <img src="Alert (4).png" alt="Set Expiration" class="w-full h-auto">
-                            </div>
+                    <div class="mb-16">
+                        <h4 class="text-2xl font-bold text-white mb-3 flex items-center">
+                            <span class="w-8 h-8 bg-yellow-500 text-black rounded-full flex items-center justify-center mr-4 text-sm font-black shadow-[0_0_15px_rgba(234,179,8,0.4)]">4</span> 
+                            Set Expiration
+                        </h4>
+                        <p class="text-slate-400 text-sm mb-6 ml-12">Click the Expiration dropdown and select your desired timeframe (e.g., <strong>Open-ended</strong> or a custom date) to keep the alert active.</p>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617] ml-12 shadow-2xl">
+                            <img src="Alert (4).png" alt="Set Expiration" class="w-full h-auto">
                         </div>
-
                     </div>
                 </div>
 
-                <div id="webhook-automation" class="mb-24 p-10 bg-gradient-to-br from-slate-900 to-[#020617] rounded-[3rem] border border-emerald-500/20">
-                    <div class="flex flex-col items-center mb-10 text-center">
-                        <span class="text-emerald-400 font-bold text-[10px] uppercase tracking-[0.3em] mb-4 block">Algo-Trading Bridge</span>
-                        <h3 class="text-4xl font-black text-white mb-4">Message & Webhook Automation</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed max-w-2xl">
-                            Connect PointAlgo to 3Commas, Wunderbit, or custom Python scripts. Configure the alert message with your specific exchange syntax and send it directly via Webhook.
-                        </p>
+                <div id="webhook-automation" class="mb-24 pt-12 border-t border-slate-900">
+                    <span class="text-emerald-400 font-bold text-[10px] uppercase tracking-[0.3em] mb-2 block">Algo-Trading Bridge</span>
+                    <h3 class="text-4xl font-black text-white mb-6 italic tracking-tight">Message & Webhook Automation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-3xl mb-12">
+                        Connect PointAlgo to 3Commas, Wunderbit, or custom Python scripts. Configure the alert message with your specific exchange syntax and send it directly via Webhook.
+                    </p>
+
+                    <div class="mb-16">
+                        <h4 class="text-2xl font-bold text-white mb-3 flex items-center">
+                            <span class="w-8 h-8 bg-emerald-500 text-white rounded-full flex items-center justify-center mr-4 text-sm font-black shadow-[0_0_15px_rgba(16,185,129,0.4)]">5</span> 
+                            Format JSON Message
+                        </h4>
+                        <p class="text-slate-400 text-sm mb-6 ml-12">Click the arrow next to <strong>Message</strong> to edit the text. Paste your required JSON syntax or bot command here.</p>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617] ml-12 shadow-2xl">
+                            <img src="Alert (5).png" alt="Edit Message" class="w-full h-auto">
+                        </div>
                     </div>
 
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="flex flex-col">
-                            <h4 class="text-white font-bold mb-3 flex items-center"><span class="w-6 h-6 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mr-3 text-[10px] font-bold">5</span> Format JSON Message</h4>
-                            <p class="text-slate-500 text-xs mb-4">Click the arrow next to <strong>Message</strong> to edit the text. Paste your required JSON syntax or bot command here.</p>
-                            <div class="overflow-hidden rounded-xl border border-slate-700">
-                                <img src="Alert (5).png" alt="Edit Message" class="w-full h-auto">
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col">
-                            <h4 class="text-white font-bold mb-3 flex items-center"><span class="w-6 h-6 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mr-3 text-[10px] font-bold">6</span> Activate Webhook URL</h4>
-                            <p class="text-slate-500 text-xs mb-4">Go to the <strong>Notifications</strong> tab. Check "Webhook URL" and paste your automated bridge link.</p>
-                            <div class="overflow-hidden rounded-xl border border-slate-700">
-                                <img src="Alert (6).png" alt="Set Webhook URL" class="w-full h-auto">
-                            </div>
+                    <div class="mb-16">
+                        <h4 class="text-2xl font-bold text-white mb-3 flex items-center">
+                            <span class="w-8 h-8 bg-emerald-500 text-white rounded-full flex items-center justify-center mr-4 text-sm font-black shadow-[0_0_15px_rgba(16,185,129,0.4)]">6</span> 
+                            Activate Webhook URL
+                        </h4>
+                        <p class="text-slate-400 text-sm mb-6 ml-12">Go to the <strong>Notifications</strong> tab. Check "Webhook URL" and paste your automated bridge link.</p>
+                        <div class="img-container overflow-hidden rounded-2xl border border-slate-800 bg-[#020617] ml-12 shadow-2xl">
+                            <img src="Alert (6).png" alt="Set Webhook URL" class="w-full h-auto">
                         </div>
                     </div>
                     
-                    <div class="mt-8 text-center">
-                        <blockquote class="inline-block border-l-2 border-emerald-500 pl-6 my-6 italic text-slate-300 text-xs text-left">
-                            "Note: Webhook functionality requires a TradingView Essential, Plus, or Premium subscription."
-                        </blockquote>
+                    <div class="bg-emerald-900/10 border border-emerald-500/20 p-6 rounded-2xl ml-12">
+                        <p class="text-emerald-400 text-sm font-bold"><i class="fa-solid fa-circle-info mr-2"></i> TradingView Requirement</p>
+                        <p class="text-slate-400 text-xs mt-2">Webhook functionality requires a TradingView Essential, Plus, or Premium subscription to actively send POST requests to your exchange.</p>
                     </div>
                 </div>
 
