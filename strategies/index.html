@@ -6,7 +6,6 @@
     
     <title>Trading Strategies & Frameworks | PointAlgo</title>
     <meta name="description" content="Explore professional quantitative trading strategies for TradingView. PointAlgo offers structured frameworks for Nifty, Gold, Crypto, and Forex.">
-    <meta name="keywords" content="Algorithmic Trading, TradingView Indicators, Quant Trading, Nifty Strategy, Buy Sell Signals">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,6 +19,24 @@
         }
         .glass-nav { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        /* Custom Scrollbar for the Slider */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+        }
+        .slider-card {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            transition: transform 0.3s ease;
+        }
+        .slider-card:hover { transform: translateY(-5px); }
     </style>
 </head>
 <body class="antialiased">
@@ -73,13 +90,8 @@
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8 order-2 md:order-1">
-                    <p class="text-lg text-slate-200 leading-relaxed">
-                        Most traders rely on isolated indicators that generate conflicting signals. 
-                    </p>
-                    <p class="text-lg text-slate-200 leading-relaxed">
-                        PointAlgo systems are designed as <span class="text-white font-bold underline decoration-blue-500">structured trading frameworks</span> where multiple signals work together within defined market logic.
-                    </p>
-                    
+                    <p class="text-lg text-slate-200 leading-relaxed">Most traders rely on isolated indicators that generate conflicting signals.</p>
+                    <p class="text-lg text-slate-200 leading-relaxed">PointAlgo systems are designed as <span class="text-white font-bold underline decoration-blue-500">structured trading frameworks</span> where multiple signals work together within defined market logic.</p>
                     <div>
                         <h4 class="text-yellow-400 font-bold text-xl mb-6">Our indicator packs provide:</h4>
                         <ul class="space-y-4 text-white text-lg">
@@ -90,15 +102,85 @@
                             <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-blue-500"></i> Alert-enabled execution systems</li>
                         </ul>
                     </div>
-
                     <div class="pt-6">
                         <a href="#pricing" class="bg-black hover:bg-slate-900 text-white border border-slate-700 font-bold py-4 px-10 rounded-lg shadow-lg transition-all inline-block">Get Access Now</a>
                     </div>
                 </div>
-
                 <div class="glass-card rounded-2xl p-2 shadow-2xl order-1 md:order-2">
                     <img src="why_pointalgo.gif" alt="Multi-layer signal confirmation framework" class="rounded-xl w-full h-auto">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-black/20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white italic">Institutional Toolkit</h2>
+                <div class="flex gap-4">
+                    <i class="fa-solid fa-chevron-left text-slate-500 hover:text-white cursor-pointer transition-colors p-2"></i>
+                    <i class="fa-solid fa-chevron-right text-slate-500 hover:text-white cursor-pointer transition-colors p-2"></i>
+                </div>
+            </div>
+
+            <div class="slider-container no-scrollbar">
+                
+                <div class="slider-card glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <img src="slider_1.gif" alt="Indicator 1" class="w-full aspect-video object-cover">
+                    <div class="p-6 bg-gradient-to-t from-purple-900/40 to-transparent flex-grow">
+                        <h4 class="text-white font-bold mb-2">Order Flow Tensor</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed italic">Analyzes cumulative delta, liquidity vacuums, and structural pivots to detect market manipulation.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <img src="slider_2.gif" alt="Indicator 2" class="w-full aspect-video object-cover">
+                    <div class="p-6 bg-gradient-to-t from-purple-900/40 to-transparent flex-grow">
+                        <h4 class="text-white font-bold mb-2">HFT Market Maker</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed italic">Models how professional market makers price their bid/ask using the Avellaneda-Stoikov framework.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <img src="slider_3.gif" alt="Indicator 3" class="w-full aspect-video object-cover">
+                    <div class="p-6 bg-gradient-to-t from-purple-900/40 to-transparent flex-grow">
+                        <h4 class="text-white font-bold mb-2">Gann-Pi Matrix</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed italic">Combines Pi-based cycles with price geometry to detect high-probability expansion zones.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <img src="slider_4.gif" alt="Indicator 4" class="w-full aspect-video object-cover">
+                    <div class="p-6 bg-gradient-to-t from-purple-900/40 to-transparent flex-grow">
+                        <h4 class="text-white font-bold mb-2">Chaos Hurst Engine</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed italic">Measures the long-term memory of price series to classify trending vs. mean-reverting regimes.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <img src="slider_5.gif" alt="Indicator 5" class="w-full aspect-video object-cover">
+                    <div class="p-6 bg-gradient-to-t from-purple-900/40 to-transparent flex-grow">
+                        <h4 class="text-white font-bold mb-2">Quant AI Regression</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed italic">Uses matrix-based linear regressions to project future price targets based on volatility clusters.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <img src="slider_6.gif" alt="Indicator 6" class="w-full aspect-video object-cover">
+                    <div class="p-6 bg-gradient-to-t from-purple-900/40 to-transparent flex-grow">
+                        <h4 class="text-white font-bold mb-2">Vector Structural Rail</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed italic">Maps institutional order blocks and liquidity sweeps directly onto the market structure.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <img src="slider_7.gif" alt="Indicator 7" class="w-full aspect-video object-cover">
+                    <div class="p-6 bg-gradient-to-t from-purple-900/40 to-transparent flex-grow">
+                        <h4 class="text-white font-bold mb-2">Systematic Factor Model</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed italic">Cross-references multi-asset correlations to identify the primary driver of current price action.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
