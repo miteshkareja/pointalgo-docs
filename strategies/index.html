@@ -112,69 +112,138 @@
             </div>
         </div>
     </section>
-<section class="py-24">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between mb-12">
+
+    
+<style>
+        /* INFINITE LOOP ANIMATION */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-350px * 7 - 1.5rem * 7)); }
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(350px * 14 + 1.5rem * 14); /* 7 cards duplicated for seamless loop */
+            animation: scroll 40s linear infinite;
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused; /* Stops on hover so users can read */
+        }
+
+        .tool-card {
+            width: 350px;
+            flex-shrink: 0;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #0d0118; /* Dark bottom band color */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .purple-band {
+            background: linear-gradient(to right, #2d0a42, #4a044e);
+            padding: 20px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+
+    <section class="py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12 flex justify-between items-end">
+            <div>
                 <h2 class="text-4xl md:text-5xl font-black text-white italic tracking-tight">Institutional Toolkit</h2>
-                <div class="flex gap-2">
-                    <button onclick="document.getElementById('toolkit-slider').scrollBy({left: -400, behavior: 'smooth'})" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-all">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </button>
-                    <button onclick="document.getElementById('toolkit-slider').scrollBy({left: 400, behavior: 'smooth'})" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-all">
-                        <i class="fa-solid fa-chevron-right text-sm"></i>
-                    </button>
-                </div>
             </div>
-
-            <div id="toolkit-slider" class="flex overflow-x-auto gap-6 no-scrollbar snap-x snap-mandatory pb-8">
-                
-                <div class="flex-none w-[320px] md:w-[380px] snap-start glass-card rounded-3xl overflow-hidden shadow-2xl">
-                    <img src="slider_1.gif" alt="Order Flow" class="w-full aspect-[4/3] object-cover">
-                    <div class="bg-[#2d0a42]/90 p-5 min-h-[110px] flex items-center">
-                        <p class="text-xs text-slate-200 leading-relaxed font-medium">Order Flow Tensor Matrix analyzes cumulative delta, liquidity vacuums, and structural pivots to detect hidden market manipulation.</p>
-                    </div>
-                    <div class="p-6 bg-black/40">
-                        <h4 class="text-white font-bold text-lg mb-1">Order Flow Tensor</h4>
-                        <p class="text-slate-400 text-[11px] leading-relaxed">Analyzes cumulative delta, liquidity vacuums, and structural pivots to detect market manipulation.</p>
-                    </div>
-                </div>
-
-                <div class="flex-none w-[320px] md:w-[380px] snap-start glass-card rounded-3xl overflow-hidden shadow-2xl">
-                    <img src="slider_2.gif" alt="HFT Market Maker" class="w-full aspect-[4/3] object-cover">
-                    <div class="bg-[#2d0a42]/90 p-5 min-h-[110px] flex items-center">
-                        <p class="text-xs text-slate-200 leading-relaxed font-medium">Adaptive Smart Quants analyzes market behavior by comparing discretionary and algorithmic order flow.</p>
-                    </div>
-                    <div class="p-6 bg-black/40">
-                        <h4 class="text-white font-bold text-lg mb-1">HFT Market Maker</h4>
-                        <p class="text-slate-400 text-[11px] leading-relaxed">Models how professional market makers price their bid/ask using the Avellaneda-Stoikov framework.</p>
-                    </div>
-                </div>
-
-                <div class="flex-none w-[320px] md:w-[380px] snap-start glass-card rounded-3xl overflow-hidden shadow-2xl">
-                    <img src="slider_3.gif" alt="Gann-Pi Matrix" class="w-full aspect-[4/3] object-cover">
-                    <div class="bg-[#2d0a42]/90 p-5 min-h-[110px] flex items-center">
-                        <p class="text-xs text-slate-200 leading-relaxed font-medium">Gann-Pi Matrix Strategy combines Gann price geometry with Pi-based market cycles to detect structural turning points.</p>
-                    </div>
-                    <div class="p-6 bg-black/40">
-                        <h4 class="text-white font-bold text-lg mb-1">Gann-Pi Matrix</h4>
-                        <p class="text-slate-400 text-[11px] leading-relaxed">Combines Pi-based cycles with price geometry to detect high-probability expansion zones.</p>
-                    </div>
-                </div>
-
-                <div class="flex-none w-[320px] md:w-[380px] snap-start glass-card rounded-3xl overflow-hidden shadow-2xl">
-                    <img src="slider_4.gif" alt="Quant AI" class="w-full aspect-[4/3] object-cover">
-                    <div class="bg-[#2d0a42]/90 p-5 min-h-[110px] flex items-center">
-                        <p class="text-xs text-slate-200 leading-relaxed font-medium">Quant AI Engine analyzes liquidity, institutional volume, and statistical Z-Score to detect hidden market intent.</p>
-                    </div>
-                    <div class="p-6 bg-black/40">
-                        <h4 class="text-white font-bold text-lg mb-1">Quant AI Engine</h4>
-                        <p class="text-slate-400 text-[11px] leading-relaxed">Uses statistical Z-Score and volatility clustering to project high-probability buy/sell zones.</p>
-                    </div>
-                </div>
-
+            <div class="flex gap-2">
+                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40"><i class="fa-solid fa-chevron-left"></i></div>
+                <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40"><i class="fa-solid fa-chevron-right"></i></div>
             </div>
         </div>
-    </section>
 
+        <div class="slider-track-wrapper relative">
+            <div class="slider-track gap-6">
+                
+                <div class="tool-card shadow-2xl">
+                    <img src="slider_1.gif" class="w-full aspect-video object-cover">
+                    <div class="purple-band">
+                        <p class="text-[13px] text-white font-medium leading-snug">Order Flow Tensor Matrix analyzes cumulative delta, liquidity vacuums, and structural pivots to detect market manipulation.</p>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-white font-bold text-xl mb-2">Order Flow Tensor</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Analyzes cumulative delta, liquidity vacuums, and structural pivots to detect market manipulation.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card shadow-2xl">
+                    <img src="slider_2.gif" class="w-full aspect-video object-cover">
+                    <div class="purple-band">
+                        <p class="text-[13px] text-white font-medium leading-snug">Adaptive Smart Quants analyzes market behavior by comparing discretionary and algorithmic order flow.</p>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-white font-bold text-xl mb-2">HFT Market Maker</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Models how professional market makers price their bid/ask using the Avellaneda-Stoikov framework.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card shadow-2xl">
+                    <img src="slider_3.gif" class="w-full aspect-video object-cover">
+                    <div class="purple-band">
+                        <p class="text-[13px] text-white font-medium leading-snug">Gann-Pi Matrix Strategy combines Gann price geometry with Pi-based market cycles to detect structural turning points.</p>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-white font-bold text-xl mb-2">Gann-Pi Matrix</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Combines Pi-based cycles with price geometry to detect high-probability expansion zones.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card shadow-2xl">
+                    <img src="slider_4.gif" class="w-full aspect-video object-cover">
+                    <div class="purple-band">
+                        <p class="text-[13px] text-white font-medium leading-snug">Chaos Hurst Engine measures the long-term memory of price series to classify trending vs. mean-reverting regimes.</p>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-white font-bold text-xl mb-2">Chaos Hurst Engine</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Classifies market efficiency and trend persistence using the Hurst Exponent.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card shadow-2xl">
+                    <img src="slider_5.gif" class="w-full aspect-video object-cover">
+                    <div class="purple-band">
+                        <p class="text-[13px] text-white font-medium leading-snug">Quant AI Engine uses statistical Z-Score and volatility clustering to project high-probability buy/sell zones.</p>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-white font-bold text-xl mb-2">Quant AI Engine</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Predictive modeling based on matrix regression and volatility clusters.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card shadow-2xl">
+                    <img src="slider_6.gif" class="w-full aspect-video object-cover">
+                    <div class="purple-band">
+                        <p class="text-[13px] text-white font-medium leading-snug">Vector Structural Rail maps institutional order blocks and liquidity sweeps directly onto the market structure.</p>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-white font-bold text-xl mb-2">Vector Structural Rail</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Identifies key institutional levels and mitigation zones.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card shadow-2xl">
+                    <img src="slider_7.gif" class="w-full aspect-video object-cover">
+                    <div class="purple-band">
+                        <p class="text-[13px] text-white font-medium leading-snug">Systematic Factor Model cross-references multi-asset correlations to identify the primary market driver.</p>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-white font-bold text-xl mb-2">Systematic Factor</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">Quantitative multi-factor analysis for regime identification.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card shadow-2xl opacity-50"><img src="slider_1.gif" class="w-full aspect-video object-cover"><div class="purple-band"></div></div>
+                <div class="tool-card shadow-2xl opacity-50"><img src="slider_2.gif" class="w-full aspect-video object-cover"><div class="purple-band"></div></div>
+                </div>
+        </div>
+    </section>
 </body>
 </html>
