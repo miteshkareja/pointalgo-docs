@@ -124,14 +124,14 @@
         /* The Animation Loop */
         @keyframes infiniteScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-420px * 7 - 2rem * 7)); } /* Matches card width + gap */
+            100% { transform: translateX(calc(-400px * 7 - 2rem * 7)); } 
         }
 
         .toolkit-track {
             display: flex;
-            gap: 2rem; /* The space between cards */
+            gap: 2rem; 
             width: max-content;
-            animation: infiniteScroll 45s linear infinite;
+            animation: infiniteScroll 50s linear infinite;
         }
 
         .toolkit-track:hover {
@@ -139,37 +139,30 @@
         }
 
         .toolkit-card {
-            width: 420px; /* Increased width to prevent squeezing */
+            width: 400px; /* Standardized width */
             flex: 0 0 auto;
-            background: #0d0118;
-            border-radius: 28px;
+            background: transparent;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Border on the GIF as requested */
+        /* Fix: Prevents stretching/blurring */
         .toolkit-card img {
             width: 100%;
-            height: auto;
-            border: 3px solid rgba(255, 255, 255, 0.08); 
-            border-radius: 24px 24px 0 0;
+            height: auto; /* Let the GIF define its own height */
             display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .purple-content-band {
-            background: linear-gradient(to right, #2d0a42, #4e0a5e);
+            /* Matching your Wix purple/maroon gradient */
+            background: linear-gradient(180deg, #420a5e 0%, #2d0a42 100%);
             padding: 24px;
-            min-height: 130px;
             display: flex;
-            align-items: center;
-        }
-
-        .bottom-title-band {
-            padding: 24px;
-            background: #0d0118;
+            flex-direction: column;
+            gap: 12px;
         }
     </style>
 
@@ -184,87 +177,80 @@
                 <div class="toolkit-card">
                     <img src="slider_1.gif" alt="Order Flow Tensor">
                     <div class="purple-content-band">
-                        <p class="text-[14px] text-white font-medium leading-relaxed">Order Flow Tensor Matrix analyzes cumulative delta, liquidity vacuums, and structural pivots to detect hidden market manipulation.</p>
-                    </div>
-                    <div class="bottom-title-band">
-                        <h4 class="text-white font-bold text-2xl mb-1">Order Flow Tensor</h4>
-                        <p class="text-slate-500 text-xs tracking-wide uppercase">Institutional Data Analysis</p>
+                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Order Flow Tensor</h4>
+                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
+                            Order Flow Tensor Matrix analyzes cumulative delta, liquidity vacuums, and structural pivots to detect hidden market manipulation.
+                        </p>
                     </div>
                 </div>
 
                 <div class="toolkit-card">
                     <img src="slider_2.gif" alt="HFT Market Maker">
                     <div class="purple-content-band">
-                        <p class="text-[14px] text-white font-medium leading-relaxed">Adaptive Smart Quants analyzes market behavior by comparing discretionary and algorithmic order flow.</p>
-                    </div>
-                    <div class="bottom-title-band">
-                        <h4 class="text-white font-bold text-2xl mb-1">HFT Market Maker</h4>
-                        <p class="text-slate-500 text-xs tracking-wide uppercase">Liquidity Provision Model</p>
+                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">HFT Market Maker</h4>
+                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
+                            Adaptive Smart Quants analyzes market behavior by comparing discretionary and algorithmic order flow to identify smart money intent.
+                        </p>
                     </div>
                 </div>
 
                 <div class="toolkit-card">
                     <img src="slider_3.gif" alt="Gann-Pi Matrix">
                     <div class="purple-content-band">
-                        <p class="text-[14px] text-white font-medium leading-relaxed">Gann-Pi Matrix Strategy combines Gann price geometry with Pi-based market cycles to detect structural turning points.</p>
-                    </div>
-                    <div class="bottom-title-band">
-                        <h4 class="text-white font-bold text-2xl mb-1">Gann-Pi Matrix</h4>
-                        <p class="text-slate-500 text-xs tracking-wide uppercase">Geometric Cycle Analysis</p>
+                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Gann-Pi Matrix</h4>
+                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
+                            Strategy combines Gann price geometry with Pi-based market cycles to detect structural turning points and expansion zones.
+                        </p>
                     </div>
                 </div>
 
                 <div class="toolkit-card">
                     <img src="slider_4.gif" alt="Chaos Engine">
                     <div class="purple-content-band">
-                        <p class="text-[14px] text-white font-medium leading-relaxed">Chaos Hurst Engine measures long-term memory to classify trending vs. mean-reverting market regimes.</p>
-                    </div>
-                    <div class="bottom-title-band">
-                        <h4 class="text-white font-bold text-2xl mb-1">Chaos Hurst Engine</h4>
-                        <p class="text-slate-500 text-xs tracking-wide uppercase">Regime Classification</p>
+                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Chaos Hurst Engine</h4>
+                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
+                            Measures the long-term memory of price series to classify trending vs. mean-reverting regimes for precise entry.
+                        </p>
                     </div>
                 </div>
 
                 <div class="toolkit-card">
                     <img src="slider_5.gif" alt="Quant AI">
                     <div class="purple-content-band">
-                        <p class="text-[14px] text-white font-medium leading-relaxed">Quant AI Engine uses statistical Z-Score and volatility clustering to project high-probability buy/sell zones.</p>
-                    </div>
-                    <div class="bottom-title-band">
-                        <h4 class="text-white font-bold text-2xl mb-1">Quant AI Engine</h4>
-                        <p class="text-slate-500 text-xs tracking-wide uppercase">Predictive Modeling</p>
+                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Quant AI Engine</h4>
+                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
+                            Analyzes liquidity, institutional volume, and statistical Z-Score to project high-probability disciplined breakout opportunities.
+                        </p>
                     </div>
                 </div>
 
                 <div class="toolkit-card">
                     <img src="slider_6.gif" alt="Structural Rail">
                     <div class="purple-content-band">
-                        <p class="text-[14px] text-white font-medium leading-relaxed">Vector Structural Rail maps institutional order blocks and liquidity sweeps directly onto the market structure.</p>
-                    </div>
-                    <div class="bottom-title-band">
-                        <h4 class="text-white font-bold text-2xl mb-1">Structural Rail</h4>
-                        <p class="text-slate-500 text-xs tracking-wide uppercase">Order Block Mapping</p>
+                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Structural Rail</h4>
+                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
+                            Vector Structural Rail maps institutional order blocks and liquidity sweeps directly onto the market structure for clarity.
+                        </p>
                     </div>
                 </div>
 
                 <div class="toolkit-card">
                     <img src="slider_7.gif" alt="Systematic Factor">
                     <div class="purple-content-band">
-                        <p class="text-[14px] text-white font-medium leading-relaxed">Systematic Factor Model cross-references multi-asset correlations to identify the primary market driver.</p>
-                    </div>
-                    <div class="bottom-title-band">
-                        <h4 class="text-white font-bold text-2xl mb-1">Systematic Factor</h4>
-                        <p class="text-slate-500 text-xs tracking-wide uppercase">Multi-Factor Analysis</p>
+                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Systematic Factor</h4>
+                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
+                            Cross-references multi-asset correlations to identify the primary market driver and capture continuation moves.
+                        </p>
                     </div>
                 </div>
 
-                <div class="toolkit-card"><img src="slider_1.gif"><div class="purple-content-band"></div><div class="bottom-title-band"></div></div>
-                <div class="toolkit-card"><img src="slider_2.gif"><div class="purple-content-band"></div><div class="bottom-title-band"></div></div>
-                <div class="toolkit-card"><img src="slider_3.gif"><div class="purple-content-band"></div><div class="bottom-title-band"></div></div>
-                <div class="toolkit-card"><img src="slider_4.gif"><div class="purple-content-band"></div><div class="bottom-title-band"></div></div>
-                <div class="toolkit-card"><img src="slider_5.gif"><div class="purple-content-band"></div><div class="bottom-title-band"></div></div>
-                <div class="toolkit-card"><img src="slider_6.gif"><div class="purple-content-band"></div><div class="bottom-title-band"></div></div>
-                <div class="toolkit-card"><img src="slider_7.gif"><div class="purple-content-band"></div><div class="bottom-title-band"></div></div>
+                <div class="toolkit-card"><img src="slider_1.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Order Flow Tensor</h4></div></div>
+                <div class="toolkit-card"><img src="slider_2.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">HFT Market Maker</h4></div></div>
+                <div class="toolkit-card"><img src="slider_3.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Gann-Pi Matrix</h4></div></div>
+                <div class="toolkit-card"><img src="slider_4.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Chaos Hurst Engine</h4></div></div>
+                <div class="toolkit-card"><img src="slider_5.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Quant AI Engine</h4></div></div>
+                <div class="toolkit-card"><img src="slider_6.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Structural Rail</h4></div></div>
+                <div class="toolkit-card"><img src="slider_7.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Systematic Factor</h4></div></div>
 
             </div>
         </div>
