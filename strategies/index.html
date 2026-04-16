@@ -113,25 +113,25 @@
         </div>
     </section>
 <style>
-        /* --- INSTITUTIONAL TOOLKIT STYLES --- */
+        /* --- INSTITUTIONAL TOOLKIT (CLEAN VERSION) --- */
         .toolkit-wrapper {
             width: 100%;
             overflow: hidden;
-            padding: 40px 0;
+            padding: 20px 0;
             position: relative;
         }
 
-        /* The Animation Loop */
+        /* The Animation Loop - Adjusted for 320px width */
         @keyframes infiniteScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-400px * 7 - 2rem * 7)); } 
+            100% { transform: translateX(calc(-320px * 7 - 1.5rem * 7)); } 
         }
 
         .toolkit-track {
             display: flex;
-            gap: 2rem; 
+            gap: 1.5rem; 
             width: max-content;
-            animation: infiniteScroll 50s linear infinite;
+            animation: infiniteScroll 35s linear infinite;
         }
 
         .toolkit-track:hover {
@@ -139,122 +139,55 @@
         }
 
         .toolkit-card {
-            width: 400px; /* Standardized width */
+            width: 320px; /* Reduced size to prevent blurring/stretching */
             flex: 0 0 auto;
             background: transparent;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Border on the card itself to frame the GIF */
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
         }
 
-        /* Fix: Prevents stretching/blurring */
+        .toolkit-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
         .toolkit-card img {
             width: 100%;
-            height: auto; /* Let the GIF define its own height */
+            height: auto; 
             display: block;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .purple-content-band {
-            /* Matching your Wix purple/maroon gradient */
-            background: linear-gradient(180deg, #420a5e 0%, #2d0a42 100%);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
         }
     </style>
 
     <section class="py-24 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-16">
-            <h2 class="text-5xl font-black text-white italic tracking-tighter">Institutional Toolkit</h2>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
+            <h2 class="text-4xl font-black text-white italic tracking-tighter">Institutional Toolkit</h2>
         </div>
 
         <div class="toolkit-wrapper">
             <div class="toolkit-track">
                 
-                <div class="toolkit-card">
-                    <img src="slider_1.gif" alt="Order Flow Tensor">
-                    <div class="purple-content-band">
-                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Order Flow Tensor</h4>
-                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
-                            Order Flow Tensor Matrix analyzes cumulative delta, liquidity vacuums, and structural pivots to detect hidden market manipulation.
-                        </p>
-                    </div>
-                </div>
+                <div class="toolkit-card"><img src="slider_1.gif" alt="Indicator 1"></div>
+                <div class="toolkit-card"><img src="slider_2.gif" alt="Indicator 2"></div>
+                <div class="toolkit-card"><img src="slider_3.gif" alt="Indicator 3"></div>
+                <div class="toolkit-card"><img src="slider_4.gif" alt="Indicator 4"></div>
+                <div class="toolkit-card"><img src="slider_5.gif" alt="Indicator 5"></div>
+                <div class="toolkit-card"><img src="slider_6.gif" alt="Indicator 6"></div>
+                <div class="toolkit-card"><img src="slider_7.gif" alt="Indicator 7"></div>
 
-                <div class="toolkit-card">
-                    <img src="slider_2.gif" alt="HFT Market Maker">
-                    <div class="purple-content-band">
-                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">HFT Market Maker</h4>
-                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
-                            Adaptive Smart Quants analyzes market behavior by comparing discretionary and algorithmic order flow to identify smart money intent.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="toolkit-card">
-                    <img src="slider_3.gif" alt="Gann-Pi Matrix">
-                    <div class="purple-content-band">
-                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Gann-Pi Matrix</h4>
-                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
-                            Strategy combines Gann price geometry with Pi-based market cycles to detect structural turning points and expansion zones.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="toolkit-card">
-                    <img src="slider_4.gif" alt="Chaos Engine">
-                    <div class="purple-content-band">
-                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Chaos Hurst Engine</h4>
-                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
-                            Measures the long-term memory of price series to classify trending vs. mean-reverting regimes for precise entry.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="toolkit-card">
-                    <img src="slider_5.gif" alt="Quant AI">
-                    <div class="purple-content-band">
-                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Quant AI Engine</h4>
-                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
-                            Analyzes liquidity, institutional volume, and statistical Z-Score to project high-probability disciplined breakout opportunities.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="toolkit-card">
-                    <img src="slider_6.gif" alt="Structural Rail">
-                    <div class="purple-content-band">
-                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Structural Rail</h4>
-                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
-                            Vector Structural Rail maps institutional order blocks and liquidity sweeps directly onto the market structure for clarity.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="toolkit-card">
-                    <img src="slider_7.gif" alt="Systematic Factor">
-                    <div class="purple-content-band">
-                        <h4 class="text-white font-bold text-xl uppercase tracking-tight">Systematic Factor</h4>
-                        <p class="text-[14px] text-slate-200 leading-relaxed font-light">
-                            Cross-references multi-asset correlations to identify the primary market driver and capture continuation moves.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="toolkit-card"><img src="slider_1.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Order Flow Tensor</h4></div></div>
-                <div class="toolkit-card"><img src="slider_2.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">HFT Market Maker</h4></div></div>
-                <div class="toolkit-card"><img src="slider_3.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Gann-Pi Matrix</h4></div></div>
-                <div class="toolkit-card"><img src="slider_4.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Chaos Hurst Engine</h4></div></div>
-                <div class="toolkit-card"><img src="slider_5.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Quant AI Engine</h4></div></div>
-                <div class="toolkit-card"><img src="slider_6.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Structural Rail</h4></div></div>
-                <div class="toolkit-card"><img src="slider_7.gif"><div class="purple-content-band"><h4 class="text-white font-bold text-xl uppercase">Systematic Factor</h4></div></div>
+                <div class="toolkit-card"><img src="slider_1.gif"></div>
+                <div class="toolkit-card"><img src="slider_2.gif"></div>
+                <div class="toolkit-card"><img src="slider_3.gif"></div>
+                <div class="toolkit-card"><img src="slider_4.gif"></div>
+                <div class="toolkit-card"><img src="slider_5.gif"></div>
+                <div class="toolkit-card"><img src="slider_6.gif"></div>
+                <div class="toolkit-card"><img src="slider_7.gif"></div>
 
             </div>
         </div>
-    </section>
-    
+    </section>    
 </body>
 </html>
