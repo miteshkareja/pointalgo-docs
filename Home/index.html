@@ -42,41 +42,62 @@
         </div>
     </nav>
 
-    <main class="pt-48 pb-20 px-6 lg:px-8 max-w-5xl mx-auto text-center">
-        <div class="space-y-10">
+    <main class="pt-48 pb-32 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16 space-y-6">
             <h1 class="text-5xl md:text-8xl font-black text-white leading-tight tracking-tighter">
                 Trade with Structure.<br>
                 Execute with <span class="text-[#e2ff6e]">Precision</span>
             </h1>
-
-            <div class="max-w-3xl mx-auto">
-                <p class="text-xl md:text-2xl text-slate-200 leading-relaxed font-light">
-                    A complete quant trading infrastructure to build, deploy, and automate disciplined strategies across global markets.
-                </p>
-            </div>
-
+            <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto font-light">
+                A complete quant trading infrastructure to build, deploy, and automate disciplined strategies.
+            </p>
             <div class="pt-4">
                 <a href="#features" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/20 px-12 py-4 rounded-xl font-bold text-lg transition-all shadow-2xl">
                     Learn More
                 </a>
             </div>
-
-            <div class="pt-16">
-                <div class="glass-card rounded-[2.5rem] p-3 shadow-[0_0_100px_rgba(0,0,0,0.8)] border-white/5 overflow-hidden">
-                    <img src="strategy_herosection.gif" alt="PointAlgo Terminal Interface" class="rounded-[2rem] w-full h-auto opacity-90">
-                </div>
-            </div>
         </div>
-    </main>
+
+        <div class="relative max-w-5xl mx-auto">
             
-            <div class="glass-card rounded-[2.5rem] p-4 shadow-2xl border-white/5 relative">
-                <div class="absolute -top-4 -right-4 bg-emerald-500 w-12 h-12 rounded-full flex items-center justify-center animate-pulse shadow-[0_0_20px_rgba(16,185,129,0.4)]">
-                    <i class="fa-solid fa-bolt text-white"></i>
-                </div>
-                <img src="strategies/strategy_herosection.gif" alt="PointAlgo Intelligence" class="rounded-[2rem] w-full h-auto">
+            <div class="glass-card rounded-[2.5rem] p-2 shadow-[0_0_100px_rgba(0,0,0,0.8)] border-white/5 overflow-hidden z-10 relative">
+                <img src="strategy_herosection.gif" alt="Main Dashboard" class="rounded-[2rem] w-full h-auto opacity-90">
             </div>
+
+            <div class="absolute -bottom-10 -left-6 md:-left-20 w-48 md:w-72 z-30 animate-float-slow">
+                <div class="glass-card p-1 rounded-2xl shadow-2xl border-emerald-500/30">
+                    <img src="alert_popup.png" alt="Trade Alert" class="rounded-xl w-full h-auto">
+                </div>
+            </div>
+
+            <div class="absolute top-10 -left-4 md:-left-32 w-40 md:w-64 z-20 animate-slide-loop">
+                <div class="glass-card p-1 rounded-2xl shadow-2xl border-purple-500/20">
+                    <img src="left_stats.png" alt="Market Stats" class="rounded-xl w-full h-auto">
+                </div>
+            </div>
+
         </div>
     </main>
 
+    <style>
+        /* Floating Animation for the Alert */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .animate-float-slow {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Sliding Loop Animation for the second element */
+        @keyframes slideLoop {
+            0% { transform: translateX(-20px) scale(0.95); opacity: 0.8; }
+            50% { transform: translateX(20px) scale(1); opacity: 1; }
+            100% { transform: translateX(-20px) scale(0.95); opacity: 0.8; }
+        }
+        .animate-slide-loop {
+            animation: slideLoop 8s ease-in-out infinite;
+        }
+    </style>
 </body>
 </html>
