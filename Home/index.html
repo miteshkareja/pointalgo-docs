@@ -93,6 +93,85 @@
         }
         .animate-slide-loop { animation: slideLoop 9s ease-in-out infinite; }
     </style>
-    
+    <section class="py-24 border-t border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-black text-white italic tracking-tighter">
+                    Benefits of <span class="text-[#e2ff6e]">Point Algo</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                
+                <div class="relative order-2 md:order-1">
+                    <div class="glass-card rounded-3xl p-1 shadow-2xl border-white/5 relative z-10 overflow-hidden">
+                        <img src="benefits1.gif" alt="PointAlgo Dashboard" class="rounded-2xl w-full h-auto">
+                    </div>
+
+                    <div class="absolute -top-12 -left-8 md:-left-16 w-48 md:w-72 z-20 animate-float-benefits">
+                        <div class="glass-card p-1 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-white/10">
+                            <img src="benefits2.png" alt="Overlay Detail" class="rounded-xl w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-10 order-1 md:order-2">
+                    
+                    <div class="space-y-2">
+                        <h3 class="text-[#e2ff6e] font-bold text-xl uppercase tracking-wider">Precision over Volume:</h3>
+                        <p class="text-slate-300 leading-relaxed font-light">
+                            Stop chasing every candle. Our algorithms use advanced signal-to-noise filtering to focus on high-probability setups, ensuring you only engage when the mathematical edge is in your favor.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="text-[#e2ff6e] font-bold text-xl uppercase tracking-wider">Quantitative Logic:</h3>
+                        <p class="text-slate-300 leading-relaxed font-light">
+                            Move beyond lagging retail indicators. PointAlgo systems are built on Statistical Price Action and mathematical distributions, providing a professional alternative to subjective "market structure" guesses.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="text-[#e2ff6e] font-bold text-xl uppercase tracking-wider">Risk-First Architecture:</h3>
+                        <p class="text-slate-300 leading-relaxed font-light">
+                            Protecting capital is our priority. We integrate hardcoded stop-loss logic and dynamic position-sizing parameters directly into every EA and Script, ensuring your risk-to-reward ratio is always optimized.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="text-[#e2ff6e] font-bold text-xl uppercase tracking-wider">Data-Validated Decisions:</h3>
+                        <p class="text-slate-300 leading-relaxed font-light">
+                            Trade with the confidence of a hedge fund. Access rigorous strategy backtesting and real-time quantitative signals to make informed entries based on historical probability, not intuition.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="text-[#e2ff6e] font-bold text-xl uppercase tracking-wider">SaaS Cloud Convenience:</h3>
+                        <p class="text-slate-300 leading-relaxed font-light">
+                            Stay ahead of the curve with seamless cloud updates. As market regimes change or platforms like TradingView (Pine Script v6) evolve, your tools update automatically—no manual file swaps required.
+                        </p>
+                    </div>
+
+                    <div class="pt-6">
+                        <a href="../strategies/index.html" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/20 px-10 py-3 rounded-xl font-bold transition-all shadow-xl">
+                            Get Access
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes floatBenefits {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-30px) scale(1.02); }
+        }
+        .animate-float-benefits {
+            animation: floatBenefits 5s ease-in-out infinite;
+        }
+    </style>
 </body>
 </html>
