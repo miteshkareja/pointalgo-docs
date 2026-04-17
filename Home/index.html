@@ -60,19 +60,20 @@
 
         <div class="relative max-w-5xl mx-auto">
             
-            <div class="glass-card rounded-[2.5rem] p-2 shadow-[0_0_100px_rgba(0,0,0,0.8)] border-white/5 overflow-hidden z-10 relative">
-                <img src="strategy_herosection.gif" alt="Main Dashboard" class="rounded-[2rem] w-full h-auto opacity-90">
+            <div class="glass-card rounded-[2.5rem] p-2 shadow-[0_0_100px_rgba(0,0,0,0.8)] border-white/5 overflow-hidden z-10 relative bg-slate-900/50 min-h-[300px] md:min-h-[500px] flex items-center justify-center">
+                <img src="strategy_herosection1.gif" alt="Main Dashboard" class="rounded-[2rem] w-full h-auto opacity-90 block">
+                <p class="absolute text-slate-700 text-xs pointer-events-none">Main Chart GIF Placeholder</p>
             </div>
 
-            <div class="absolute -bottom-10 -left-6 md:-left-20 w-48 md:w-72 z-30 animate-float-slow">
-                <div class="glass-card p-1 rounded-2xl shadow-2xl border-emerald-500/30">
-                    <img src="alert_popup.png" alt="Trade Alert" class="rounded-xl w-full h-auto">
+            <div class="absolute -top-10 -left-6 md:-left-20 w-48 md:w-80 z-30 animate-float-slow">
+                <div class="glass-card p-1 rounded-2xl shadow-2xl border-emerald-500/30 overflow-hidden">
+                    <img src="alert_popup.png" alt="Trade Alert" class="rounded-xl w-full h-auto block">
                 </div>
             </div>
 
-            <div class="absolute top-10 -left-4 md:-left-32 w-40 md:w-64 z-20 animate-slide-loop">
-                <div class="glass-card p-1 rounded-2xl shadow-2xl border-purple-500/20">
-                    <img src="left_stats.png" alt="Market Stats" class="rounded-xl w-full h-auto">
+            <div class="absolute -bottom-16 -left-4 md:-left-32 w-48 md:w-80 z-20 animate-slide-loop">
+                <div class="glass-card p-1 rounded-2xl shadow-2xl border-purple-500/20 overflow-hidden">
+                    <img src="left_stats.png" alt="Market Stats" class="rounded-xl w-full h-auto block">
                 </div>
             </div>
 
@@ -80,24 +81,19 @@
     </main>
 
     <style>
-        /* Floating Animation for the Alert */
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
         }
-        .animate-float-slow {
-            animation: float 6s ease-in-out infinite;
-        }
+        .animate-float-slow { animation: float 6s ease-in-out infinite; }
 
-        /* Sliding Loop Animation for the second element */
         @keyframes slideLoop {
-            0% { transform: translateX(-20px) scale(0.95); opacity: 0.8; }
-            50% { transform: translateX(20px) scale(1); opacity: 1; }
-            100% { transform: translateX(-20px) scale(0.95); opacity: 0.8; }
+            0% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(-10px); }
         }
-        .animate-slide-loop {
-            animation: slideLoop 8s ease-in-out infinite;
-        }
+        .animate-slide-loop { animation: slideLoop 8s ease-in-out infinite; }
     </style>
+    
 </body>
 </html>
