@@ -27,13 +27,13 @@
     <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
-                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../index.html'">
-    <img src="strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
-</div>
+                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='index.html'">
+                    <img src="strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
+                </div>
                 <div class="hidden md:flex items-center space-x-10">
                     <a href="index.html" class="text-base font-bold text-blue-400 border-b-2 border-blue-400 pb-1">Home</a>
                     <a href="strategies/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Indicator & Strategy</a>
-                    <a href="docs/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Documents</a>
+                    <a href="doc/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Documents</a>
                     <a href="#" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Free Toolkit</a>
                     <a href="#" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Discord</a>
                 </div>
@@ -60,18 +60,18 @@
         <div class="relative max-w-5xl mx-auto">
             
             <div class="glass-card rounded-[2.5rem] p-2 shadow-[0_0_100px_rgba(0,0,0,0.8)] border-white/5 overflow-hidden z-10 relative bg-slate-900/50 min-h-[300px] md:min-h-[500px] flex items-center justify-center">
-                <img src="strategy_herosection1.gif" alt="Main Dashboard" class="rounded-[2rem] w-full h-auto opacity-90 block">
+                <img src="Home/strategy_herosection1.gif" alt="Main Dashboard" class="rounded-[2rem] w-full h-auto opacity-90 block">
             </div>
 
             <div class="absolute -top-12 -right-4 md:-right-24 w-48 md:w-80 z-30 animate-float-slow">
                 <div class="glass-card p-1 rounded-2xl shadow-2xl border-emerald-500/30 overflow-hidden">
-                    <img src="alert_popup.png" alt="Trade Alert" class="rounded-xl w-full h-auto block">
+                    <img src="Home/alert_popup.png" alt="Trade Alert" class="rounded-xl w-full h-auto block">
                 </div>
             </div>
 
             <div class="absolute -bottom-12 -left-4 md:-left-24 w-48 md:w-80 z-20 animate-slide-loop">
                 <div class="glass-card p-1 rounded-2xl shadow-2xl border-purple-500/20 overflow-hidden">
-                    <img src="left_stats.png" alt="Market Stats" class="rounded-xl w-full h-auto block">
+                    <img src="Home/left_stats.png" alt="Market Stats" class="rounded-xl w-full h-auto block">
                 </div>
             </div>
 
@@ -79,14 +79,12 @@
     </main>
 
     <style>
-        /* Floating Animation for Top-Right */
         @keyframes float {
             0%, 100% { transform: translateY(0px) translateX(0px); }
             50% { transform: translateY(-15px) translateX(10px); }
         }
         .animate-float-slow { animation: float 7s ease-in-out infinite; }
 
-        /* Sliding Loop for Bottom-Left */
         @keyframes slideLoop {
             0%, 100% { transform: translateX(0px) translateY(0px); }
             50% { transform: translateX(-15px) translateY(10px); }
@@ -101,12 +99,12 @@
                 
                 <div class="relative">
                     <div class="glass-card rounded-3xl p-1 shadow-2xl border-white/5 relative z-10 overflow-hidden">
-                        <img src="benefits1.gif" alt="PointAlgo Dashboard" class="rounded-2xl w-full h-auto">
+                        <img src="Home/benefits1.gif" alt="PointAlgo Dashboard" class="rounded-2xl w-full h-auto">
                     </div>
 
                     <div class="absolute -top-10 -left-6 md:-left-12 w-48 md:w-64 z-20 animate-float-benefits">
                         <div class="glass-card p-1 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-white/10">
-                            <img src="benefits2.png" alt="Overlay Detail" class="rounded-xl w-full h-auto">
+                            <img src="Home/benefits2.png" alt="Overlay Detail" class="rounded-xl w-full h-auto">
                         </div>
                     </div>
                 </div>
@@ -151,7 +149,7 @@
                     </div>
 
                     <div class="pt-4">
-                        <a href="../strategies/index.html" class="inline-block bg-[#e2ff6e] text-black px-8 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-all shadow-xl">
+                        <a href="strategies/index.html" class="inline-block bg-[#e2ff6e] text-black px-8 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-all shadow-xl">
                             Get Full Access
                         </a>
                     </div>
@@ -186,7 +184,7 @@
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 
                 <div class="glass-card rounded-[2.5rem] p-2 shadow-2xl border-white/5 overflow-hidden">
-                    <img src="home_section3ez.gif" alt="PointAlgo Infrastructure" class="rounded-[2rem] w-full h-auto opacity-80">
+                    <img src="Home/home_section3ez.gif" alt="PointAlgo Infrastructure" class="rounded-[2rem] w-full h-auto opacity-80">
                 </div>
 
                 <div class="space-y-12">
@@ -253,7 +251,7 @@
                 
                 <div class="relative group">
                     <div class="glass-card rounded-[2.5rem] p-2 shadow-[0_0_80px_rgba(0,0,0,0.5)] border-white/5 overflow-hidden transition-transform duration-500 hover:scale-[1.01]">
-                        <img src="section4.gif" alt="TradingView Indicator Suite" class="rounded-[2rem] w-full h-auto opacity-90 block">
+                        <img src="Home/section4.gif" alt="TradingView Indicator Suite" class="rounded-[2rem] w-full h-auto opacity-90 block">
                     </div>
                     <div class="absolute -inset-4 bg-[#e2ff6e]/5 blur-3xl -z-10 rounded-full"></div>
                 </div>
@@ -298,7 +296,7 @@
                     </div>
 
                     <div class="pt-6">
-                        <a href="../strategies/index.html" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/20 px-10 py-3 rounded-xl font-bold transition-all shadow-xl">
+                        <a href="strategies/index.html" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/20 px-10 py-3 rounded-xl font-bold transition-all shadow-xl">
                             Get Access
                         </a>
                     </div>
@@ -324,7 +322,7 @@
                 
                 <div class="relative group">
                     <div class="glass-card rounded-[2.5rem] p-2 shadow-[0_0_80px_rgba(0,0,0,0.6)] border-white/5 overflow-hidden transition-all duration-500 hover:scale-[1.01]">
-                        <img src="MT5section.gif" alt="MT5 Algorithmic Terminal" class="rounded-[2rem] w-full h-auto opacity-90 block">
+                        <img src="Home/MT5section.gif" alt="MT5 Algorithmic Terminal" class="rounded-[2rem] w-full h-auto opacity-90 block">
                     </div>
                     <div class="absolute -inset-4 bg-emerald-500/5 blur-3xl -z-10 rounded-full"></div>
                 </div>
@@ -369,7 +367,7 @@
                     </div>
 
                     <div class="pt-6">
-                        <a href="../strategies/index.html" class="inline-block bg-white text-black px-10 py-3 rounded-xl font-bold transition-all shadow-xl hover:bg-slate-200">
+                        <a href="strategies/index.html" class="inline-block bg-white text-black px-10 py-3 rounded-xl font-bold transition-all shadow-xl hover:bg-slate-200">
                             Get Access
                         </a>
                     </div>
@@ -411,14 +409,14 @@
                     </ul>
 
                     <div class="pt-4">
-                        <a href="../strategies/index.html" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/20 px-10 py-3 rounded-xl font-bold transition-all shadow-xl">
+                        <a href="strategies/index.html" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/20 px-10 py-3 rounded-xl font-bold transition-all shadow-xl">
                             Get Access
                         </a>
                     </div>
                 </div>
 
                 <div class="glass-card rounded-[2.5rem] p-2 shadow-2xl border-white/5 overflow-hidden">
-                    <img src="screeners_section.gif" alt="PointAlgo Screeners" class="rounded-[2rem] w-full h-auto">
+                    <img src="Home/screeners_section.gif" alt="PointAlgo Screeners" class="rounded-[2rem] w-full h-auto">
                 </div>
             </div>
         </div>
@@ -462,7 +460,7 @@
                 </div>
                 <div class="space-y-3">
                     <a href="#" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
-                    <a href="#" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
+                    <a href="about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
                 </div>
             </div>
 
