@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quant Insights Blog | PointAlgo</title>
+    <title>Understanding GARCH Volatility in Nifty | PointAlgo Blog</title>
     <link rel="icon" type="image/png" href="../favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%); background-attachment: fixed; color: #f8fafc; font-family: sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: #e2ff6e; transform: translateY(-5px); }
-        .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        body { 
+            background: #0b0f1a; 
+            color: #f8fafc; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            line-height: 1.8;
+        }
+        .glass-nav { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .article-content h2 { color: #e2ff6e; font-weight: 800; font-style: italic; text-transform: uppercase; margin-top: 3rem; margin-bottom: 1rem; font-size: 1.75rem; letter-spacing: -0.025em; }
+        .article-content p { color: #cbd5e1; margin-bottom: 1.5rem; font-size: 1.125rem; text-align: justify; }
+        .math-box { background: rgba(226, 255, 110, 0.05); border: 1px solid rgba(226, 255, 110, 0.2); padding: 2rem; border-radius: 1.5rem; margin: 2rem 0; text-align: center; font-family: serif; font-size: 1.5rem; color: #e2ff6e; }
     </style>
 </head>
 <body class="antialiased">
@@ -20,60 +26,123 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 <div class="flex-shrink-0 cursor-pointer" onclick="window.location.href='../index.html'">
-                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="max-h-16 md:max-h-20 w-auto">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
                 </div>
                 <div class="hidden md:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
                     <a href="../index.html" class="hover:text-white transition-colors">Home</a>
-                    <a href="../strategies/index.html" class="hover:text-white transition-colors">Strategies</a>
+                    <a href="../strategies/index.html" class="hover:text-white transition-colors">Indicator & Strategy</a>
                     <a href="../free-tools/index.html" class="hover:text-white transition-colors">Free Toolkit</a>
+                    <a href="../doc/index.html" class="hover:text-white transition-colors">Documents</a>
                     <a href="index.html" class="text-[#e2ff6e]">Blog</a>
+                    <a href="https://discord.gg/72wFfgmW" target="_blank" class="hover:text-white transition-colors">Discord</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main class="pt-48 pb-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-            <h4 class="text-[#e2ff6e] font-bold text-xs uppercase tracking-[0.4em] mb-4">Market Microstructure</h4>
-            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight mb-6 italic uppercase">Quant <span class="text-blue-500">Insights.</span></h1>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto italic">Weekly deep-dives into algorithmic trading, volatility, and market logic.</p>
+    <main class="pt-48 pb-24 px-6 max-w-4xl mx-auto">
+        
+        <header class="mb-16">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="bg-[#e2ff6e] text-black text-[10px] font-black px-3 py-1 uppercase tracking-widest rounded">Market Insight</span>
+                <span class="text-slate-500 text-xs font-bold uppercase tracking-widest">April 19, 2026</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black text-white italic leading-[1.1] uppercase tracking-tighter mb-8">
+                Understanding GARCH <br><span class="text-blue-500 text-4xl md:text-6xl italic">Volatility in Nifty.</span>
+            </h1>
+            <p class="text-xl text-slate-400 italic leading-relaxed">
+                GARCH models offer quantitative traders a powerful statistical edge for predicting the dynamic, time-varying volatility of the Nifty 50 index.
+            </p>
+        </header>
+
+        <div class="w-full h-64 md:h-96 rounded-[3rem] bg-gradient-to-br from-slate-900 to-black border border-white/10 flex items-center justify-center mb-16 overflow-hidden">
+             <i class="fa-solid fa-chart-line text-8xl text-white/5 italic font-black absolute scale-150"></i>
+             <div class="relative z-10 text-center">
+                <div class="text-[#e2ff6e] text-6xl mb-4"><i class="fa-solid fa-microchip"></i></div>
+                <p class="text-xs font-bold uppercase tracking-[0.5em] text-slate-500">Quantitative Framework</p>
+             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="article-content">
+            <p>By leveraging this advanced mathematical approach, traders can build more adaptive intraday strategies, dynamic stop-losses, and highly accurate options pricing models for the Indian equity markets.</p>
+
+            <h2>The Flaw In Standard Volatility</h2>
+            <p>Most retail traders rely on traditional volatility indicators like the Average True Range (ATR) or standard Bollinger Bands. These tools assume that market volatility remains constant over time or simply average out past price ranges. However, financial markets behave non-linearly, meaning yesterday's sudden market crash will heavily influence today's price swings. Relying on simple historical averages often leads to premature stop-loss hits or missed targets in fast-moving intraday environments.</p>
+
+            <h2>Understanding GARCH Mechanics</h2>
+            <p>The GARCH model resolves the limitations of standard indicators by treating volatility as a dynamic, mean-reverting process. It calculates current volatility based on a combination of long-term variance, previous day's volatility, and recent market shocks (price returns).</p>
             
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col">
-                <div class="h-48 bg-slate-900 overflow-hidden">
-                    <img src="blog-image-1.jpg" alt="Post Title" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all">
-                </div>
-                <div class="p-8 flex-grow">
-                    <p class="text-[#e2ff6e] text-[10px] font-bold uppercase tracking-widest mb-3">April 19, 2026</p>
-                    <h3 class="text-white font-bold text-xl mb-4 italic uppercase leading-tight">Understanding GARCH Volatility in Nifty</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">How we use GARCH filters to identify high-probability reversal zones...</p>
-                    <a href="nifty-volatility-analysis.html" class="text-white font-bold text-xs uppercase tracking-widest hover:text-[#e2ff6e] transition-colors">Read Post <i class="fa-solid fa-arrow-right ml-2"></i></a>
-                </div>
-            </article>
+            <div class="math-box">
+                σ<sub>t</sub>² = ω + αϵ<sub>t-1</sub>² + βσ<sub>t-1</sub>²
+            </div>
 
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col opacity-60">
-                <div class="h-48 bg-slate-900 flex items-center justify-center text-slate-700 italic">Next Week Post</div>
-                <div class="p-8">
-                    <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-3">Coming Soon</p>
-                    <h3 class="text-slate-500 font-bold text-xl mb-4 italic uppercase">Liquidity Gaps & FVG Logic</h3>
-                    <p class="text-slate-600 text-sm">Stay tuned for our next quantitative breakdown.</p>
-                </div>
-            </article>
+            <p>This ensures that recent, massive spikes in the Nifty index heavily weight the forecast for the upcoming trading session.</p>
 
+            <h2>Spotting Volatility Clustering</h2>
+            <p>A core phenomenon that GARCH captures perfectly in the Nifty 50 is volatility clustering. This refers to the market tendency where large price changes are frequently followed by large price changes, and small changes are followed by small changes. When Nifty experiences a gap-down or massive sell-off, GARCH instantly recalculates a higher volatility regime for the next few periods. This allows algorithmic systems to widen their target ratios and avoid mean-reversion trades during euphoric or panic states.</p>
+
+            <h2>The Asymmetric Leverage Effect</h2>
+            <p>Indian equity markets frequently exhibit an asymmetric response to news, meaning negative shocks increase volatility much more aggressively than positive shocks of the same magnitude. Advanced variations like EGARCH (Exponential GARCH) are specifically designed to capture this leverage effect. When a bearish catalyst hits the Nifty, these models adjust the expected variance curve higher than they would for a bullish breakout, preventing algorithmic systems from taking long positions too early.</p>
+
+            <h2>PointAlgo Strategy Implementation</h2>
+            <p>Integrating GARCH-based proxies into TradingView or AmiBroker provides a massive advantage for 5-minute Nifty intraday trading:</p>
+            <ul class="space-y-4 mb-10 mt-6">
+                <li class="flex items-start gap-4 text-slate-300">
+                    <i class="fa-solid fa-check text-[#e2ff6e] mt-1"></i>
+                    <span><strong>Dynamic Targets:</strong> Adjust your reward-to-risk (RR) ratios based on the projected daily variance.</span>
+                </li>
+                <li class="flex items-start gap-4 text-slate-300">
+                    <i class="fa-solid fa-check text-[#e2ff6e] mt-1"></i>
+                    <span><strong>Noise Filtering:</strong> Stop losses can be placed safely outside the GARCH-predicted noise band.</span>
+                </li>
+                <li class="flex items-start gap-4 text-slate-300">
+                    <i class="fa-solid fa-check text-[#e2ff6e] mt-1"></i>
+                    <span><strong>Regime Switching:</strong> Detect when to switch from mean-reversion logic to trend-following systems.</span>
+                </li>
+            </ul>
+
+            <div class="mt-16 p-10 bg-[#e2ff6e] rounded-[2rem] text-black">
+                <h3 class="text-2xl font-black italic uppercase mb-2">Institutional Tools</h3>
+                <p class="text-black/80 font-medium mb-6">For complex custom indicators and institutional-grade trading algorithms for Nifty and other Indian indices, explore the proprietary tools developed at PointAlgo.</p>
+                <a href="../strategies/index.html" class="inline-block bg-black text-white px-8 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-105 transition-all">View Pro Strategies</a>
+            </div>
         </div>
     </main>
 
-    <footer class="py-20 border-t border-white/5 bg-black/40 text-center">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-8 mb-10 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <a href="../index.html" class="hover:text-white">Home</a>
-                <a href="../strategies/index.html" class="hover:text-white">Strategies</a>
-                <a href="index.html" class="text-[#e2ff6e]">Blog</a>
-                <a href="../contact/index.html" class="hover:text-white">Contact</a>
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                <div class="space-y-6">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto">
+                    <div class="flex gap-5 text-xl">
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-all"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-all"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="space-y-4 text-sm">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-6">Platform</h4>
+                    <a href="../index.html" class="block text-slate-400 hover:text-white">Home</a>
+                    <a href="../strategies/index.html" class="block text-slate-400 hover:text-white">Strategies</a>
+                    <a href="../free-tools/index.html" class="block text-slate-400 hover:text-white">Free Toolkit</a>
+                    <a href="index.html" class="block text-[#e2ff6e] font-bold">Blog</a>
+                </div>
+                <div class="space-y-4 text-sm">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-6">Legal</h4>
+                    <a href="../legal/terms.html" class="block text-slate-400 hover:text-white">Terms</a>
+                    <a href="../legal/refund.html" class="block text-slate-400 hover:text-white">Refunds</a>
+                    <a href="../about.html" class="block text-slate-400 hover:text-white">About Us</a>
+                </div>
+                <div class="space-y-4 text-sm">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-6">Support</h4>
+                    <p class="text-slate-300">hello@pointalgo.com</p>
+                    <p class="text-slate-400">+91-8452035834</p>
+                </div>
             </div>
-            <p class="text-slate-600 text-[10px] tracking-widest uppercase">© 2026 PointAlgo. All Rights Reserved.</p>
+            <div class="pt-12 border-t border-white/5 text-center">
+                <p class="text-slate-600 text-[9px] uppercase tracking-tighter max-w-4xl mx-auto">Trading involves significant risk. PointAlgo provides technology tools for educational purposes. We are not SEBI registered advisors.</p>
+                <p class="mt-8 text-slate-500 text-[10px] tracking-widest uppercase">© 2026 PointAlgo. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
