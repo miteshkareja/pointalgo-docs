@@ -403,5 +403,52 @@
             });
         });
     </script>
+
+<script>
+        // 1. Mobile Menu Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // 2. Google Sheets Form Logic (The "Brain" of your Inquiry Form)
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxxNia8VfHiHEvCpwP3CX9QMjEhA8nJqVEw1Gb0q2gvj2U3lMZiYfWasdypKdVUJhsQ/exec';
+            const form = document.getElementById('leadForm');
+            const btn = document.getElementById('submitBtn');
+            const success = document.getElementById('formSuccess');
+
+            if (form) {
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    
+                    // Show the user it's working
+                    btn.innerHTML = "SENDING...";
+                    btn.disabled = true;
+
+                    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                        .then(response => {
+                            form.reset();
+                            btn.innerHTML = "SUBMIT LEAD";
+                            btn.disabled = false;
+                            success.classList.remove('hidden'); // Show the success message
+                            console.log('Success!', response);
+                        })
+                        .catch(error => {
+                            btn.innerHTML = "ERROR. TRY AGAIN.";
+                            btn.disabled = false;
+                            console.error('Error!', error.message);
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+    
 </body>
 </html>
