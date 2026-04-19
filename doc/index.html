@@ -2147,5 +2147,30 @@
             });
         });
     </script>   
+    <script>
+        // Ensure the script runs after the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+
+            if (btn && menu) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent any default jumping
+                    menu.classList.toggle('hidden');
+                    
+                    // Switch icons
+                    const icon = btn.querySelector('i');
+                    if (icon.classList.contains('fa-bars-staggered')) {
+                        icon.classList.remove('fa-bars-staggered');
+                        icon.classList.add('fa-xmark');
+                    } else {
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars-staggered');
+                    }
+                });
+            }
+        });
+    </script>
+    
 </body>
 </html>
