@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
             background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%);
             background-attachment: fixed;
             color: #f8fafc; 
-            font-family: -apple-system, sans-serif; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
         }
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
         .glass-card:hover { border-color: #e2ff6e; transform: translateY(-5px); }
@@ -42,6 +42,15 @@
                 </div>
             </div>
         </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0">
+            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
+                <a href="../index.html" class="text-xl font-bold text-slate-300">Home</a>
+                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300">Strategies</a>
+                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300">Free Toolkit</a>
+                <a href="../doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
+                <a href="index.html" class="text-lg font-medium text-[#e2ff6e]">Blog</a>
+            </div>
+        </div>
     </nav>
 
     <main class="pt-48 pb-24 px-6 max-w-7xl mx-auto">
@@ -57,23 +66,23 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col group">
+            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col group cursor-pointer" onclick="window.location.href='Understanding GARCH Volatility in Nifty.html'">
                 <div class="h-56 bg-slate-900 overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                    <div class="flex items-center justify-center h-full">
-                        <i class="fa-solid fa-chart-area text-5xl text-slate-700 group-hover:text-[#e2ff6e] transition-colors"></i>
-                    </div>
+                    <img src="understanding_garch.png" alt="GARCH Volatility in Nifty" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f1a] via-transparent to-transparent z-10"></div>
                 </div>
-                <div class="p-10 flex-grow">
-                    <p class="text-[#e2ff6e] text-[10px] font-bold uppercase tracking-[0.3em] mb-4">April 19, 2026</p>
-                    <h3 class="text-white font-bold text-2xl mb-4 italic uppercase leading-tight">Understanding GARCH Volatility in Nifty</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8">How we use GARCH filters to identify high-probability reversal zones and filter noise...</p>
-                    <a href="nifty-volatility-analysis.html" class="inline-block text-white font-black text-[10px] uppercase tracking-[0.2em] border-b-2 border-[#e2ff6e] pb-1 hover:text-[#e2ff6e] transition-all">Read Analysis</a>
+                <div class="p-10 flex-grow relative z-20 -mt-6">
+                    <p class="text-[#e2ff6e] text-[10px] font-bold uppercase tracking-[0.3em] mb-4 drop-shadow-md">April 19, 2026</p>
+                    <h3 class="text-white font-bold text-2xl mb-4 italic uppercase leading-tight group-hover:text-blue-400 transition-colors">Understanding GARCH Volatility in Nifty</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8">How we use GARCH models to predict time-varying volatility, dynamic targets, and regime switching in the Indian markets...</p>
+                    <a href="Understanding GARCH Volatility in Nifty.html" class="inline-block text-white font-black text-[10px] uppercase tracking-[0.2em] border-b-2 border-[#e2ff6e] pb-1 hover:text-[#e2ff6e] transition-all">Read Analysis</a>
                 </div>
             </article>
 
             <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col opacity-50">
-                <div class="h-56 bg-black/40 flex items-center justify-center italic text-slate-700">Next Week</div>
+                <div class="h-56 bg-black/40 flex items-center justify-center italic text-slate-700">
+                    <i class="fa-solid fa-hourglass-half text-4xl"></i>
+                </div>
                 <div class="p-10">
                     <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-4">Coming Soon</p>
                     <h3 class="text-slate-500 font-bold text-2xl mb-4 italic uppercase">Liquidity Gaps & FVG Logic</h3>
@@ -82,11 +91,13 @@
             </article>
 
             <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col opacity-50">
-                <div class="h-56 bg-black/40 flex items-center justify-center italic text-slate-700">In Queue</div>
+                <div class="h-56 bg-black/40 flex items-center justify-center italic text-slate-700">
+                    <i class="fa-solid fa-lock text-4xl"></i>
+                </div>
                 <div class="p-10">
                     <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-4">In Queue</p>
-                    <h3 class="text-slate-500 font-bold text-2xl mb-4 italic uppercase">Black-Scholes & Mean Reversion</h3>
-                    <p class="text-slate-600 text-sm italic">Deep dive into option-Greek based spot signals.</p>
+                    <h3 class="text-slate-500 font-bold text-2xl mb-4 italic uppercase">Options Greeks & Mean Reversion</h3>
+                    <p class="text-slate-600 text-sm italic">Deep dive into Greek-based spot signals.</p>
                 </div>
             </article>
 
@@ -130,6 +141,7 @@
                     <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
                     <div class="space-y-4">
                         <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm block">hello@pointalgo.com</a>
+                        <p class="text-slate-400">+91-8452035834</p>
                         <a href="../contact/index.html" class="inline-block bg-white/5 border border-white/10 text-white px-6 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-[#e2ff6e] hover:text-black transition-all">Support Desk</a>
                     </div>
                 </div>
