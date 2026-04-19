@@ -8,7 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%); background-attachment: fixed; color: #f8fafc; font-family: sans-serif; }
+        body { 
+            background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%);
+            background-attachment: fixed;
+            color: #f8fafc; 
+            font-family: -apple-system, sans-serif; 
+        }
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
         .glass-card:hover { border-color: #e2ff6e; transform: translateY(-5px); }
         .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
@@ -20,62 +25,134 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 <div class="flex-shrink-0 cursor-pointer" onclick="window.location.href='../index.html'">
-                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="max-h-16 md:max-h-20 w-auto">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
                 </div>
                 <div class="hidden md:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
                     <a href="../index.html" class="hover:text-white transition-colors">Home</a>
-                    <a href="../strategies/index.html" class="hover:text-white transition-colors">Strategies</a>
+                    <a href="../strategies/index.html" class="hover:text-white transition-colors">Indicator & Strategy</a>
                     <a href="../free-tools/index.html" class="hover:text-white transition-colors">Free Toolkit</a>
+                    <a href="../doc/index.html" class="hover:text-white transition-colors">Documents</a>
                     <a href="index.html" class="text-[#e2ff6e]">Blog</a>
+                    <a href="https://discord.gg/72wFfgmW" target="_blank" class="hover:text-white transition-colors">Discord</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white text-2xl focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <main class="pt-48 pb-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-20">
+        <div class="text-center mb-24">
             <h4 class="text-[#e2ff6e] font-bold text-xs uppercase tracking-[0.4em] mb-4">Market Microstructure</h4>
-            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight mb-6 italic uppercase">Quant <span class="text-blue-500">Insights.</span></h1>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto italic">Weekly deep-dives into algorithmic trading, volatility, and market logic.</p>
+            <h1 class="text-5xl md:text-8xl font-black text-white leading-tight mb-8 italic uppercase tracking-tighter">
+                Quant <span class="text-blue-500">Insights.</span>
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto italic">
+                Weekly deep-dives into algorithmic trading, volatility, and market logic.
+            </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col">
-                <div class="h-48 bg-slate-900 overflow-hidden">
-                    <img src="blog-image-1.jpg" alt="Post Title" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all">
+            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col group">
+                <div class="h-56 bg-slate-900 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                    <div class="flex items-center justify-center h-full">
+                        <i class="fa-solid fa-chart-area text-5xl text-slate-700 group-hover:text-[#e2ff6e] transition-colors"></i>
+                    </div>
                 </div>
-                <div class="p-8 flex-grow">
-                    <p class="text-[#e2ff6e] text-[10px] font-bold uppercase tracking-widest mb-3">April 19, 2026</p>
-                    <h3 class="text-white font-bold text-xl mb-4 italic uppercase leading-tight">Understanding GARCH Volatility in Nifty</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">How we use GARCH filters to identify high-probability reversal zones...</p>
-                    <a href="nifty-volatility-analysis.html" class="text-white font-bold text-xs uppercase tracking-widest hover:text-[#e2ff6e] transition-colors">Read Post <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                <div class="p-10 flex-grow">
+                    <p class="text-[#e2ff6e] text-[10px] font-bold uppercase tracking-[0.3em] mb-4">April 19, 2026</p>
+                    <h3 class="text-white font-bold text-2xl mb-4 italic uppercase leading-tight">Understanding GARCH Volatility in Nifty</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8">How we use GARCH filters to identify high-probability reversal zones and filter noise...</p>
+                    <a href="nifty-volatility-analysis.html" class="inline-block text-white font-black text-[10px] uppercase tracking-[0.2em] border-b-2 border-[#e2ff6e] pb-1 hover:text-[#e2ff6e] transition-all">Read Analysis</a>
                 </div>
             </article>
 
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col opacity-60">
-                <div class="h-48 bg-slate-900 flex items-center justify-center text-slate-700 italic">Next Week Post</div>
-                <div class="p-8">
-                    <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-3">Coming Soon</p>
-                    <h3 class="text-slate-500 font-bold text-xl mb-4 italic uppercase">Liquidity Gaps & FVG Logic</h3>
-                    <p class="text-slate-600 text-sm">Stay tuned for our next quantitative breakdown.</p>
+            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col opacity-50">
+                <div class="h-56 bg-black/40 flex items-center justify-center italic text-slate-700">Next Week</div>
+                <div class="p-10">
+                    <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-4">Coming Soon</p>
+                    <h3 class="text-slate-500 font-bold text-2xl mb-4 italic uppercase">Liquidity Gaps & FVG Logic</h3>
+                    <p class="text-slate-600 text-sm italic">Stay tuned for our next quantitative breakdown.</p>
+                </div>
+            </article>
+
+            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col opacity-50">
+                <div class="h-56 bg-black/40 flex items-center justify-center italic text-slate-700">In Queue</div>
+                <div class="p-10">
+                    <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-4">In Queue</p>
+                    <h3 class="text-slate-500 font-bold text-2xl mb-4 italic uppercase">Black-Scholes & Mean Reversion</h3>
+                    <p class="text-slate-600 text-sm italic">Deep dive into option-Greek based spot signals.</p>
                 </div>
             </article>
 
         </div>
     </main>
 
-    <footer class="py-20 border-t border-white/5 bg-black/40 text-center">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-8 mb-10 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <a href="../index.html" class="hover:text-white">Home</a>
-                <a href="../strategies/index.html" class="hover:text-white">Strategies</a>
-                <a href="index.html" class="text-[#e2ff6e]">Blog</a>
-                <a href="../contact/index.html" class="hover:text-white">Contact</a>
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                
+                <div class="space-y-6">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto">
+                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">Advanced Quantitative <br> Intelligence Systems.</p>
+                    <div class="flex gap-5 text-xl">
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-all"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-all"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
+                    <div class="space-y-3">
+                        <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
+                        <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Strategies</a>
+                        <a href="../free-tools/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Free Toolkit</a>
+                        <a href="index.html" class="block text-[#e2ff6e] font-bold text-sm">Blog</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal</h4>
+                    <div class="space-y-3">
+                        <a href="../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms</a>
+                        <a href="../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refunds</a>
+                        <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
+                    <div class="space-y-4">
+                        <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm block">hello@pointalgo.com</a>
+                        <a href="../contact/index.html" class="inline-block bg-white/5 border border-white/10 text-white px-6 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-[#e2ff6e] hover:text-black transition-all">Support Desk</a>
+                    </div>
+                </div>
+
             </div>
-            <p class="text-slate-600 text-[10px] tracking-widest uppercase">© 2026 PointAlgo. All Rights Reserved.</p>
+
+            <div class="pt-12 border-t border-white/5 text-center">
+                <p class="text-slate-600 text-[9px] leading-relaxed uppercase tracking-tighter max-w-4xl mx-auto">Trading involves significant risk. PointAlgo provides technology tools for educational purposes. We are not SEBI registered advisors.</p>
+                <p class="mt-8 text-slate-500 text-[10px] tracking-widest uppercase">© 2026 PointAlgo. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
