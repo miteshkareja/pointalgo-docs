@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Strategies & Frameworks | PointAlgo</title>
     <link rel="icon" type="image/png" href="../favicon.png">
+    <title>Trading Strategies & Frameworks | PointAlgo</title>
+    <meta name="description" content="Explore professional quantitative trading strategies for TradingView. PointAlgo offers structured frameworks for Nifty, Gold, Crypto, and Forex.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -15,16 +17,46 @@
             color: #f8fafc; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
         }
-        .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-nav { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
         
+        /* Custom Scrollbar for the Slider */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+        }
+        .slider-card {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            transition: transform 0.3s ease;
+        }
+        .slider-card:hover { transform: translateY(-5px); }
+
         /* Toolkit Animation */
         @keyframes infiniteScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(calc(-320px * 7 - 1.5rem * 7)); } 
         }
-        .toolkit-track { display: flex; gap: 1.5rem; width: max-content; animation: infiniteScroll 35s linear infinite; }
+        .toolkit-track {
+            display: flex;
+            gap: 1.5rem; 
+            width: max-content;
+            animation: infiniteScroll 35s linear infinite;
+        }
         .toolkit-track:hover { animation-play-state: paused; }
+        .toolkit-card {
+            width: 320px;
+            flex: 0 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -33,14 +65,17 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../index.html'">
-                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 w-auto h-auto block">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
                 </div>
+
                 <div class="hidden md:flex items-center space-x-10">
                     <a href="../index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Home</a>
                     <a href="index.html" class="text-base font-bold text-blue-400 border-b-2 border-blue-400 pb-1">Indicator & Strategy</a>
                     <a href="../doc/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Documents</a>
+                    <a href="#" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Free Toolkit</a>
                     <a href="#" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Discord</a>
                 </div>
+
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none">
                         <i class="fa-solid fa-bars-staggered"></i>
@@ -48,123 +83,220 @@
                 </div>
             </div>
         </div>
+
         <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0">
             <div class="px-6 py-10 space-y-6 flex flex-col text-center">
                 <a href="../index.html" class="text-xl font-bold text-slate-300">Home</a>
+                <hr class="border-white/5 w-12 mx-auto">
                 <a href="index.html" class="text-lg font-medium text-blue-400">Indicator & Strategy</a>
                 <a href="../doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
+                <a href="#" class="text-lg font-medium text-slate-300">Free Toolkit</a>
+                <a href="#" class="text-lg font-medium text-slate-300">Discord</a>
             </div>
         </div>
     </nav>
     
-    <main class="pt-48 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <h1 class="text-5xl md:text-7xl font-black text-white leading-tight">Quant Trading <span class="text-[#e2ff6e]">Frameworks</span></h1>
-                <p class="text-slate-300 text-xl font-light italic">Professional signal systems — built as complete frameworks, not standalone indicators.</p>
-                <div class="pt-6">
-                    <a href="#pricing" class="bg-[#e2ff6e] text-black font-black py-4 px-10 rounded-xl shadow-xl hover:scale-105 transition-all inline-block uppercase tracking-widest">View Pricing</a>
+    <main class="pt-40 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mt-12 mb-20">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">PointAlgo Quant Trading Framework</h1>
+            <p class="text-xl md:text-2xl text-emerald-400 font-light mb-16 italic">Professional Quant Trading Systems for TradingView</p>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center text-left">
+                <div class="space-y-6">
+                    <p class="text-xl text-white font-medium leading-relaxed">
+                        Professional quant-based trading systems designed for Equity, Options, Futures, Forex, Commodity & Crypto markets.
+                    </p>
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        Access professional signal systems through private TradingView invite-only scripts designed for disciplined and structured trading.
+                    </p>
+                    <p class="text-yellow-400 font-medium text-lg italic">Built as complete frameworks — not standalone indicators.</p>
+                    <div class="pt-6">
+                        <a href="#pricing" class="bg-black hover:bg-slate-900 text-white border border-slate-700 font-bold py-4 px-10 rounded-lg shadow-lg transition-all inline-block">Get Access Now</a>
+                    </div>
                 </div>
-            </div>
-            <div class="glass-card rounded-3xl p-2 shadow-2xl">
-                <img src="../Home/strategy_herosection1.gif" alt="Framework Preview" class="rounded-2xl w-full h-auto">
+                <div class="glass-card rounded-2xl p-2 shadow-2xl">
+                    <img src="../Home/strategy_herosection1.gif" alt="PointAlgo Quant Trading Framework GIF" class="rounded-xl w-full h-auto">
+                </div>
             </div>
         </div>
     </main>
 
-    <section id="pricing" class="py-24 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-6xl font-black text-white text-center italic mb-12 uppercase">Choose Your Edge</h2>
+    <section class="py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-20">Why PointAlgo Systems?</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 order-2 md:order-1">
+                    <p class="text-lg text-slate-200 leading-relaxed">Most traders rely on isolated indicators that generate conflicting signals.</p>
+                    <p class="text-lg text-slate-200 leading-relaxed">PointAlgo systems are designed as <span class="text-white font-bold underline decoration-blue-500">structured trading frameworks</span> where multiple signals work together within defined market logic.</p>
+                    <div>
+                        <h4 class="text-yellow-400 font-bold text-xl mb-6">Our indicator packs provide:</h4>
+                        <ul class="space-y-4 text-white text-lg">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-blue-500"></i> Multi-layer signal confirmation</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-blue-500"></i> Strategy-based trading setups</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-blue-500"></i> Cross-market adaptability</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-blue-500"></i> Structured decision frameworks</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-blue-500"></i> Alert-enabled execution systems</li>
+                        </ul>
+                    </div>
+                    <div class="pt-6">
+                        <a href="#pricing" class="bg-black hover:bg-slate-900 text-white border border-slate-700 font-bold py-4 px-10 rounded-lg shadow-lg transition-all inline-block">Get Access Now</a>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-2 shadow-2xl order-1 md:order-2">
+                    <img src="../Home/benefits1.gif" alt="Multi-layer signal confirmation framework" class="rounded-xl w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="flex justify-center items-center gap-4 mb-20">
-                <span class="text-sm font-bold text-slate-400">INR (₹)</span>
+    <section class="py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-20">Institutional Toolkit</h2>    
+        </div>
+        <div class="toolkit-wrapper overflow-hidden w-full relative py-5">
+            <div class="toolkit-track flex gap-6">
+                <div class="toolkit-card"><img src="../Home/slider_1.gif"></div>
+                <div class="toolkit-card"><img src="../Home/slider_2.gif"></div>
+                <div class="toolkit-card"><img src="../Home/slider_3.gif"></div>
+                <div class="toolkit-card"><img src="../Home/slider_4.gif"></div>
+                <div class="toolkit-card"><img src="../Home/slider_5.gif"></div>
+                <div class="toolkit-card"><img src="../Home/slider_6.gif"></div>
+                <div class="toolkit-card"><img src="../Home/slider_7.gif"></div>
+                <div class="toolkit-card"><img src="../Home/slider_1.gif"></div>
+                <div class="toolkit-card"><img src="../Home/slider_2.gif"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-black text-white text-center italic tracking-tighter mb-12 uppercase">Choose Your Trading Framework</h2>
+
+            <div class="flex justify-center items-center gap-4 mb-16">
+                <span class="text-sm font-bold text-slate-400 uppercase tracking-widest">INR (₹)</span>
                 <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="currency-toggle" class="sr-only peer" onchange="toggleCurrency()">
-                    <div class="w-14 h-7 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600"></div>
+                    <div class="w-14 h-7 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-indigo-600"></div>
                 </label>
-                <span class="text-sm font-bold text-slate-400">USD ($)</span>
+                <span class="text-sm font-bold text-slate-400 uppercase tracking-widest">USD ($)</span>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 items-stretch">
                 
-                <div class="flex flex-col rounded-[2.5rem] overflow-hidden glass-card border border-white/10 p-8">
-                    <div class="mb-8">
-                        <h3 class="text-[#e2ff6e] font-bold uppercase tracking-widest text-sm mb-4">Starter Pack</h3>
-                        <div class="inr-price block"><span class="text-white font-black text-5xl">₹999</span><span class="text-slate-500 text-sm">/mo</span></div>
-                        <div class="usd-price hidden"><span class="text-white font-black text-5xl">$10</span><span class="text-slate-500 text-sm">/mo</span></div>
+                <div class="flex flex-col rounded-3xl overflow-hidden glass-card border border-white/10 shadow-2xl">
+                    <div class="bg-indigo-950/60 py-4 text-center border-b border-white/5">
+                        <h3 class="text-white font-bold text-lg tracking-tight">Quant Starter Pack</h3>
                     </div>
-                    <div class="space-y-6 flex-grow">
-                        <div>
-                            <h4 class="text-white font-bold text-xs uppercase mb-3 underline decoration-[#e2ff6e]/30">4 Systems Included:</h4>
-                            <ul class="text-slate-400 text-xs space-y-2 list-disc pl-4">
-                                <li>Equity Trading Indicator</li>
-                                <li>Options Scalping System</li>
-                                <li>Options Buying System</li>
-                                <li>Commodity / Crypto Indicator</li>
-                            </ul>
+                    <div class="p-8 flex flex-col flex-grow bg-gradient-to-b from-purple-900/10 to-transparent">
+                        <div class="bg-black/40 rounded-2xl p-6 mb-8 border border-white/5 text-center">
+                            <div class="inr-price block"><span class="text-white font-bold text-3xl">₹ 999</span></div>
+                            <div class="usd-price hidden"><span class="text-white font-bold text-3xl">$ 10</span></div>
                         </div>
-                        <div>
-                            <h4 class="text-white font-bold text-xs uppercase mb-3 underline decoration-[#e2ff6e]/30">Access Includes:</h4>
-                            <ul class="text-slate-400 text-xs space-y-2 list-disc pl-4">
-                                <li>Invite-only scripts</li>
-                                <li>Alert-enabled signals</li>
-                                <li>Usage guidance & Updates</li>
-                            </ul>
+                        <div class="space-y-8 mb-12 flex-grow">
+                            <p class="text-slate-300 text-sm leading-relaxed italic">Built for traders who want structured, disciplined market signals.</p>
+                            <div>
+                                <h4 class="text-white font-bold text-[13px] uppercase tracking-wider mb-4 underline decoration-white/20">Includes 4 trading systems:</h4>
+                                <ul class="text-slate-400 text-xs space-y-3 list-disc pl-5">
+                                    <li>Equity Trading Indicator</li>
+                                    <li>Options Scalping System</li>
+                                    <li>Options Buying System</li>
+                                    <li>Commodity / Crypto Indicator</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-[13px] uppercase tracking-wider mb-4 underline decoration-white/20">Access Includes:</h4>
+                                <ul class="text-slate-400 text-xs space-y-3 list-disc pl-5">
+                                    <li>TradingView invite-only indicators</li>
+                                    <li>Alert-enabled signals</li>
+                                    <li>Strategy usage guidance</li>
+                                    <li>Regular updates</li>
+                                    <li>Webinars</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mt-10 pt-6 border-t border-white/5">
-                        <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Starter_Pack_Indicator" target="_blank" class="inr-price block w-full py-4 bg-[#e2ff6e] text-black text-center font-black rounded-2xl hover:scale-105 transition-all">GET ACCESS (₹999)</a>
-                        <a href="#contact-section" class="usd-price hidden w-full py-4 border border-white/20 text-white text-center font-black rounded-2xl hover:bg-white/5 transition-all uppercase">Inquire Now ($)</a>
+                        <div class="text-center pt-6 border-t border-white/5">
+                            <p class="inr-price block text-white font-bold text-sm mb-6 tracking-tight">Get Now ₹ 999/- Per Month</p>
+                            <p class="usd-price hidden text-white font-bold text-sm mb-6 tracking-tight">Get Now $ 10 USD Per Month</p>
+                            
+                            <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Starter_Pack_Indicator" target="_blank" class="inr-price block w-full py-4 border border-white/10 rounded-2xl bg-[#e2ff6e] text-black font-bold hover:scale-105 transition-all shadow-xl">Get Access (₹999)</a>
+                            <a href="#contact-section" class="usd-price hidden w-full py-4 border border-white/10 rounded-2xl bg-black/60 hover:bg-black text-white font-bold transition-all shadow-xl">Inquire Now ($)</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col rounded-[2.5rem] overflow-hidden glass-card border-2 border-blue-500/50 p-8 transform md:-translate-y-4 relative bg-blue-900/10">
-                    <div class="absolute top-4 right-8 text-[10px] font-black bg-blue-500 text-white px-3 py-1 rounded-full uppercase">Most Popular</div>
-                    <div class="mb-8">
-                        <h3 class="text-blue-400 font-bold uppercase tracking-widest text-sm mb-4">Professional Pack</h3>
-                        <div class="inr-price block"><span class="text-white font-black text-5xl">₹1,999</span><span class="text-slate-500 text-sm">/mo</span></div>
-                        <div class="usd-price hidden"><span class="text-white font-black text-5xl">$20</span><span class="text-slate-500 text-sm">/mo</span></div>
+                <div class="flex flex-col rounded-3xl overflow-hidden glass-card border border-white/20 shadow-[0_0_50px_rgba(139,92,246,0.15)] transform md:-translate-y-2">
+                    <div class="bg-indigo-800/80 py-4 text-center border-b border-white/10">
+                        <h3 class="text-white font-bold text-lg tracking-tight">Quant Pro Pack</h3>
                     </div>
-                    <div class="space-y-6 flex-grow">
-                        <div>
-                            <h4 class="text-white font-bold text-xs uppercase mb-3 underline decoration-blue-500/30">10+ Systems Included:</h4>
-                            <ul class="text-slate-200 text-xs space-y-2 list-disc pl-4">
-                                <li>Everything in Starter</li>
-                                <li>Equity Intraday System</li>
-                                <li>All-Segment Multi-System</li>
-                                <li>Forex Trading Framework</li>
-                            </ul>
+                    <div class="p-8 flex flex-col flex-grow bg-gradient-to-b from-purple-800/20 to-transparent">
+                        <div class="bg-black/60 rounded-2xl p-6 mb-8 border border-white/10 text-center">
+                            <div class="inr-price block"><span class="text-white font-bold text-3xl">₹ 1,999</span></div>
+                            <div class="usd-price hidden"><span class="text-white font-bold text-3xl">$ 20</span></div>
                         </div>
-                        <div>
-                            <h4 class="text-white font-bold text-xs uppercase mb-3 underline decoration-blue-500/30">Access Includes:</h4>
-                            <ul class="text-slate-200 text-xs space-y-2 list-disc pl-4">
-                                <li>Priority Strategy Support</li>
-                                <li>Multi-market frameworks</li>
-                                <li>High-frequency alerts</li>
-                            </ul>
+                        <div class="space-y-8 mb-12 flex-grow">
+                            <p class="text-slate-200 text-sm leading-relaxed font-medium italic">Built for serious traders who operate across multiple markets.</p>
+                            <div>
+                                <h4 class="text-white font-bold text-[13px] uppercase tracking-wider mb-4 underline decoration-white/20">Includes 10 trading systems:</h4>
+                                <ul class="text-slate-300 text-xs space-y-3 list-disc pl-5">
+                                    <li>Equity Intraday Trading System</li>
+                                    <li>Options Buying System</li>
+                                    <li>All Segment System</li>
+                                    <li>Forex Trading System</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-[13px] uppercase tracking-wider mb-4 underline decoration-white/20">Access Includes:</h4>
+                                <ul class="text-slate-300 text-xs space-y-3 list-disc pl-5">
+                                    <li>TradingView invite-only indicators</li>
+                                    <li>Alert-enabled signals</li>
+                                    <li>Multi-market trading frameworks</li>
+                                    <li>Priority indicator updates</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mt-10 pt-6 border-t border-white/10">
-                        <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Professional_Pack" target="_blank" class="inr-price block w-full py-4 bg-blue-500 text-white text-center font-black rounded-2xl hover:scale-105 transition-all shadow-[0_0_30px_rgba(59,130,246,0.4)]">GET ACCESS (₹1999)</a>
-                        <a href="#contact-section" class="usd-price hidden w-full py-4 border border-white/20 text-white text-center font-black rounded-2xl hover:bg-white/5 transition-all uppercase">Inquire Now ($)</a>
+                        <div class="text-center pt-6 border-t border-white/5">
+                            <p class="inr-price block text-white font-bold text-sm mb-6 tracking-tight">Get Now ₹ 1,999/- Per Month</p>
+                            <p class="usd-price hidden text-white font-bold text-sm mb-6 tracking-tight">Get Now $ 20 USD Per Month</p>
+                            
+                            <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Professional_Pack" target="_blank" class="inr-price block w-full py-4 border border-white/10 rounded-2xl bg-[#e2ff6e] text-black font-bold hover:scale-105 transition-all shadow-xl">Get Access (₹1999)</a>
+                            <a href="#contact-section" class="usd-price hidden w-full py-4 border border-white/10 rounded-2xl bg-black/60 hover:bg-black text-white font-bold transition-all shadow-xl">Inquire Now ($)</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col rounded-[2.5rem] overflow-hidden glass-card border border-white/10 p-8">
-                    <div class="mb-8 text-center">
-                        <h3 class="text-slate-400 font-bold uppercase tracking-widest text-sm mb-4">Enterprise</h3>
-                        <div class="text-white font-black text-3xl uppercase tracking-tighter">Institutional</div>
+                <div class="flex flex-col rounded-3xl overflow-hidden glass-card border border-white/10 shadow-2xl">
+                    <div class="bg-slate-900/80 py-4 text-center border-b border-white/5">
+                        <h3 class="text-white font-bold text-lg tracking-tight">Enterprise Quant Suite</h3>
                     </div>
-                    <div class="space-y-6 flex-grow">
-                        <ul class="text-slate-400 text-xs space-y-4">
-                            <li class="flex items-start gap-3"><i class="fa-solid fa-crown text-yellow-500 mt-1"></i> Custom AFL/MT5 Deployment</li>
-                            <li class="flex items-start gap-3"><i class="fa-solid fa-crown text-yellow-500 mt-1"></i> Dedicated Account Manager</li>
-                            <li class="flex items-start gap-3"><i class="fa-solid fa-crown text-yellow-500 mt-1"></i> Prop-Firm Ready Logic</li>
-                            <li class="flex items-start gap-3"><i class="fa-solid fa-crown text-yellow-500 mt-1"></i> White-label potential</li>
-                        </ul>
-                    </div>
-                    <div class="mt-10 pt-6 border-t border-white/5">
-                        <a href="#contact-section" class="block w-full py-4 bg-white text-black text-center font-black rounded-2xl hover:bg-[#e2ff6e] transition-all uppercase tracking-widest">Contact Sales</a>
+                    <div class="p-8 flex flex-col flex-grow bg-gradient-to-b from-slate-900/40 to-transparent">
+                        <div class="bg-black/40 rounded-2xl p-6 mb-8 border border-white/5 text-center">
+                            <span class="text-white font-bold text-xl tracking-widest uppercase">Institutional</span>
+                        </div>
+                        <div class="space-y-8 mb-12 flex-grow">
+                            <p class="text-slate-400 text-sm leading-relaxed italic">Designed for professional traders, brokers, and institutions.</p>
+                            <div>
+                                <h4 class="text-white font-bold text-[13px] uppercase tracking-wider mb-4 underline decoration-white/20">Includes:</h4>
+                                <ul class="text-slate-400 text-xs space-y-3 list-disc pl-5">
+                                    <li>Full indicator library access</li>
+                                    <li>Custom strategy development</li>
+                                    <li>Institutional-grade trading systems</li>
+                                    <li>Multi-market trading frameworks</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-[13px] uppercase tracking-wider mb-4 underline decoration-white/20">Access Includes:</h4>
+                                <ul class="text-slate-400 text-xs space-y-3 list-disc pl-5">
+                                    <li>TradingView invite-only indicators</li>
+                                    <li>Custom deployment (AFL / MT5)</li>
+                                    <li>Dedicated setup assistance</li>
+                                    <li>Priority support and updates</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="text-center pt-6 border-t border-white/5">
+                            <a href="#contact-section" class="block w-full py-4 border border-white/10 rounded-2xl bg-white text-black font-bold hover:bg-slate-200 transition-all shadow-xl">Contact Sales</a>
+                        </div>
                     </div>
                 </div>
 
@@ -174,7 +306,7 @@
 
     <section id="contact-section" class="py-24 border-t border-white/5 bg-black/20">
         <div class="max-w-2xl mx-auto px-6">
-            <div class="glass-card p-10 rounded-[3rem] border-white/10 text-center shadow-2xl">
+            <div class="glass-card p-10 rounded-[3rem] border-white/10 text-center">
                 <h2 class="text-3xl font-black text-white mb-2 italic">QUANT INQUIRY</h2>
                 <p class="text-slate-400 text-sm mb-8">Enterprise, Global ($) or Custom Quant Dev</p>
                 <form id="leadForm" class="space-y-4 text-left">
@@ -188,44 +320,81 @@
                     <textarea name="message" placeholder="Trading requirements..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white h-32"></textarea>
                     <button type="submit" class="w-full bg-white text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-[#e2ff6e] transition-all">Submit Lead</button>
                 </form>
-                <div id="formSuccess" class="hidden mt-6 text-emerald-400 font-bold italic">Message sent! We will contact you shortly.</div>
+                <div id="formSuccess" class="hidden mt-6 text-emerald-400 font-bold italic text-center">Request received! We will contact you shortly.</div>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 border-t border-white/5 bg-black/40 text-center">
-        <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-2xl font-bold text-white mb-8">Pointalgo.com</h3>
-            <div class="flex justify-center gap-6 text-slate-400 text-xs mb-10">
-                <a href="../legal/terms.html">Terms</a>
-                <a href="../legal/privacy.html">Privacy</a>
-                <a href="../about.html">About Us</a>
+    <footer class="py-20 border-t border-white/5 bg-black/40">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-16 items-start">
+                <div class="space-y-8">
+                    <h3 class="text-3xl font-bold text-white tracking-tighter">Pointalgo.com</h3>
+                    <a href="#contact-section" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/10 px-10 py-3 rounded-xl font-bold transition-all shadow-lg text-sm">
+                        Book a Demo
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                    <a href="../legal/terms.html" class="text-slate-300 hover:text-white text-sm transition-colors">Terms and conditions</a>
+                    <a href="../legal/payment.html" class="text-slate-300 hover:text-white text-sm transition-colors">Payment Terms</a>
+                    <a href="../legal/refund.html" class="text-slate-300 hover:text-white text-sm transition-colors">Refund & Cancellation Policy</a>
+                    <a href="../legal/privacy.html" class="text-slate-300 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                    <a href="../about.html" class="text-slate-300 hover:text-white text-sm transition-colors">About Us</a>
+                </div>
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <p class="text-white font-medium text-sm">Contact us :</p>
+                        <a href="mailto:hello@pointalgo.com" class="block text-slate-300 hover:text-white text-sm underline underline-offset-4 decoration-white/20">mail us : hello@pointalgo.com</a>
+                        <p class="text-slate-300 text-sm">Address : Mumbai , Maharashtra, India</p>
+                    </div>
+                    <div class="flex gap-4 text-xl">
+                        <a href="#" class="text-red-500 hover:opacity-80 transition-opacity"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-slate-300 hover:text-white transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="text-pink-500 hover:opacity-80 transition-opacity"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-blue-500 hover:opacity-80 transition-opacity"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-indigo-400 hover:opacity-80 transition-opacity"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
             </div>
-            <p class="text-[10px] text-slate-500 uppercase tracking-tighter leading-relaxed max-w-4xl mx-auto">
-                Disclaimer: Trading involves significant risk. PointAlgo provides technology tools for educational and informational purposes only.
-            </p>
+            <div class="pt-12 border-t border-white/5">
+                <h4 class="text-white font-bold text-[11px] mb-4 uppercase tracking-wider">Disclaimer from pointalgo.com</h4>
+                <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light">
+                    Trading in securities, commodities, and other markets involves significant risk... (Full Disclaimer Kept)
+                </p>
+            </div>
         </div>
     </footer>
 
     <script>
         function toggleCurrency() {
             const isChecked = document.getElementById('currency-toggle').checked;
-            document.querySelectorAll('.inr-price').forEach(el => isChecked ? el.classList.add('hidden') : el.classList.remove('hidden'));
-            document.querySelectorAll('.usd-price').forEach(el => isChecked ? el.classList.remove('hidden') : el.classList.add('hidden'));
+            const inrElements = document.querySelectorAll('.inr-price');
+            const usdElements = document.querySelectorAll('.usd-price');
+            if (isChecked) {
+                inrElements.forEach(el => { el.classList.add('hidden'); el.classList.remove('block'); });
+                usdElements.forEach(el => { el.classList.remove('hidden'); el.classList.add('block'); });
+            } else {
+                usdElements.forEach(el => { el.classList.add('hidden'); el.classList.remove('block'); });
+                inrElements.forEach(el => { el.classList.remove('hidden'); el.classList.add('block'); });
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('mobile-menu-button')?.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.toggle('hidden');
-            });
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
 
             const form = document.getElementById('leadForm');
-            const scriptURL = 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE';
+            const scriptURL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
             form.addEventListener('submit', e => {
                 e.preventDefault();
                 fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                    .then(() => { form.reset(); document.getElementById('formSuccess').classList.remove('hidden'); })
-                    .catch(() => alert("Error submitting inquiry."));
+                    .then(res => { form.reset(); document.getElementById('formSuccess').classList.remove('hidden'); })
+                    .catch(err => console.error('Error!', err.message));
             });
         });
     </script>
