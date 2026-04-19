@@ -371,10 +371,12 @@
     </footer>
 
     <script>
+        // 1. Currency Toggle (Must be outside the loader to work with onchange="")
         function toggleCurrency() {
             const isChecked = document.getElementById('currency-toggle').checked;
             const inrElements = document.querySelectorAll('.inr-price');
             const usdElements = document.querySelectorAll('.usd-price');
+            
             if (isChecked) {
                 inrElements.forEach(el => { el.classList.add('hidden'); el.classList.remove('block'); });
                 usdElements.forEach(el => { el.classList.remove('hidden'); el.classList.add('block'); });
@@ -385,39 +387,17 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('mobile-menu-button');
-            const menu = document.getElementById('mobile-menu');
-            if (btn && menu) {
-                btn.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                });
-            }
-
-            const form = document.getElementById('leadForm');
-            const scriptURL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                    .then(res => { form.reset(); document.getElementById('formSuccess').classList.remove('hidden'); })
-                    .catch(err => console.error('Error!', err.message));
-            });
-        });
-    </script>
-
-<script>
-        // 1. Mobile Menu Logic
-        document.addEventListener('DOMContentLoaded', () => {
+            // 2. Mobile Menu Logic
             const menuBtn = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', () => {
                     mobileMenu.classList.toggle('hidden');
                 });
             }
 
-            // 2. Google Sheets Form Logic (The "Brain" of your Inquiry Form)
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbxxNia8VfHiHEvCpwP3CX9QMjEhA8nJqVEw1Gb0q2gvj2U3lMZiYfWasdypKdVUJhsQ/exec';
+            // 3. Google Sheets Lead Form Logic
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzRLsUT-_s_wrb4M8iNS05rz5vzGPc0XS9o-ayDgk6zu1cqNOAXyo-XpdoRu_I8D_9T/exec';
             const form = document.getElementById('leadForm');
             const btn = document.getElementById('submitBtn');
             const success = document.getElementById('formSuccess');
@@ -426,29 +406,41 @@
                 form.addEventListener('submit', e => {
                     e.preventDefault();
                     
-                    // Show the user it's working
-                    btn.innerHTML = "SENDING...";
-                    btn.disabled = true;
+                    // Visual feedback for the user
+                    if (btn) {
+                        btn.innerHTML = "SENDING...";
+                        btn.disabled = true;
+                    }
 
-                    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                        .then(response => {
-                            form.reset();
+                    // Sending data to Google Sheets
+                    fetch(scriptURL, { 
+                        method: 'POST', 
+                        mode: 'no-cors', // Critical for Google Apps Script security
+                        body: new FormData(form)
+                    })
+                    .then(() => {
+                        // Success Logic
+                        form.reset();
+                        if (btn) {
                             btn.innerHTML = "SUBMIT LEAD";
                             btn.disabled = false;
-                            success.classList.remove('hidden'); // Show the success message
-                            console.log('Success!', response);
-                        })
-                        .catch(error => {
+                        }
+                        if (success) {
+                            success.classList.remove('hidden');
+                        }
+                        console.log('Lead sent successfully to Google Sheets!');
+                    })
+                    .catch(error => {
+                        // Error Logic
+                        if (btn) {
                             btn.innerHTML = "ERROR. TRY AGAIN.";
                             btn.disabled = false;
-                            console.error('Error!', error.message);
-                        });
+                        }
+                        console.error('Submission Error:', error);
+                    });
                 });
             }
         });
     </script>
-</body>
-</html>
-    
 </body>
 </html>
