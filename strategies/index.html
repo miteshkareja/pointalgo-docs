@@ -322,7 +322,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input type="text" name="name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
                         
-                        <input type="tel" name="phone" placeholder="Mobile Number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                        <input type="tel" name="phone" placeholder="Mobile Number" required minlength="10" maxlength="15" title="Please enter a valid phone number (at least 10 digits)" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
                     </div>
                     
                     <input type="email" name="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
