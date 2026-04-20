@@ -320,21 +320,22 @@
                 
                 <form id="leadForm" class="space-y-4 text-left relative z-10">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="Name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
-                        <input type="tel" name="Phone" placeholder="Mobile Number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                        <input type="text" name="name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                        
+                        <input type="tel" name="phone" placeholder="Mobile Number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
                     </div>
                     
-                    <input type="email" name="Email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                    <input type="email" name="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
                     
                     <input type="text" name="tv_username" placeholder="TradingView Username (Optional)" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-blue-500 outline-none transition-colors">
                     
-                    <select name="Plan" class="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-slate-400 focus:border-[#e2ff6e] outline-none transition-colors">
+                    <select name="plan" class="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-slate-400 focus:border-[#e2ff6e] outline-none transition-colors">
                         <option value="Enterprise">Enterprise License</option>
                         <option value="Global_USD">International Subscription ($)</option>
                         <option value="Custom_Dev">Custom Quantitative Development</option>
                     </select>
                     
-                    <textarea name="Message" placeholder="Describe your trading requirements..." required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white h-32 resize-none focus:border-[#e2ff6e] outline-none transition-colors"></textarea>
+                    <textarea name="message" placeholder="Describe your trading requirements..." required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white h-32 resize-none focus:border-[#e2ff6e] outline-none transition-colors"></textarea>
                     
                     <button type="submit" id="submitBtn" class="w-full bg-white text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-[#e2ff6e] hover:scale-[1.02] transition-all">Submit Lead</button>
                 </form>
@@ -343,7 +344,7 @@
             </div>
         </div>
     </section>
-
+    
     <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
