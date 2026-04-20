@@ -233,7 +233,8 @@
     </footer>
 
     <script>
-            // 2. Mobile Menu Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Mobile Menu Logic
             const menuBtn = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuBtn && mobileMenu) {
@@ -242,7 +243,7 @@
                 });
             }
 
-            // 3. Google Sheets Lead Form Logic
+            // 2. Google Sheets Lead Form Logic
             const scriptURL = 'https://script.google.com/macros/s/AKfycbxwDlLf9qvyZe24NMGMnnL8dh85OJWtub8znSOK7xv34F58NMpva85Qvn8Rjb6kju8j/exec';
             const form = document.getElementById('leadForm');
             const btn = document.getElementById('submitBtn');
@@ -259,13 +260,13 @@
                     if (phoneInput && phoneInput.value.length < 10) {
                         alert("Error: Please enter a valid mobile number (at least 10 digits).");
                         phoneInput.focus();
-                        return; // COMPLETELY STOPS THE SCRIPT FROM SENDING!
+                        return; // COMPLETELY STOPS THE SCRIPT FROM SENDING
                     }
                     // ==========================================
                     
                     // Visual feedback for the user
                     if (btn) {
-                        btn.innerHTML = "SENDING...";
+                        btn.innerHTML = 'SENDING... <i class="fa-solid fa-spinner fa-spin ml-2"></i>';
                         btn.disabled = true;
                     }
 
@@ -279,18 +280,18 @@
                         // Success Logic
                         form.reset();
                         if (btn) {
-                            btn.innerHTML = "SUBMIT LEAD";
+                            btn.innerHTML = 'SUBMIT REQUEST <i class="fa-solid fa-arrow-right ml-2"></i>';
                             btn.disabled = false;
                         }
                         if (success) {
                             success.classList.remove('hidden');
                         }
-                        console.log('Lead sent successfully to Google Sheets!');
+                        console.log('Contact form lead sent successfully to Google Sheets!');
                     })
                     .catch(error => {
                         // Error Logic
                         if (btn) {
-                            btn.innerHTML = "ERROR. TRY AGAIN.";
+                            btn.innerHTML = 'ERROR. TRY AGAIN.';
                             btn.disabled = false;
                         }
                         console.error('Submission Error:', error);
@@ -299,5 +300,5 @@
             }
         });
     </script>
-    </body>
+</body>
 </html>
