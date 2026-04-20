@@ -101,7 +101,7 @@
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-4">
-                        <input type="tel" name="phone" placeholder="Contact Number *" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white outline-none focus:border-[#e2ff6e] transition-all">
+                        <input type="tel" name="phone" placeholder="Mobile Number" required minlength="10" maxlength="15" title="Please enter a valid phone number (at least 10 digits)" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
                         <select name="country" required class="w-full bg-black/80 border border-white/10 rounded-xl px-4 py-4 text-slate-400 outline-none focus:border-[#e2ff6e] transition-all cursor-pointer">
                             <option value="" disabled selected>Select Country *</option>
                             <option value="India">India</option>
@@ -218,13 +218,16 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu
+            // 2. Mobile Menu Logic
             const menuBtn = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
 
-            // Lead Form
+            // 3. Google Sheets Lead Form Logic
             const scriptURL = 'https://script.google.com/macros/s/AKfycbxwDlLf9qvyZe24NMGMnnL8dh85OJWtub8znSOK7xv34F58NMpva85Qvn8Rjb6kju8j/exec';
             const form = document.getElementById('leadForm');
             const btn = document.getElementById('submitBtn');
@@ -233,28 +236,53 @@
             if (form) {
                 form.addEventListener('submit', e => {
                     e.preventDefault();
-                    btn.innerHTML = "SENDING...";
-                    btn.disabled = true;
+                    
+                    // ==========================================
+                    // 🛡️ STRICT PHONE NUMBER VALIDATION
+                    // ==========================================
+                    const phoneInput = form.querySelector('input[name="phone"]');
+                    if (phoneInput && phoneInput.value.length < 10) {
+                        alert("Error: Please enter a valid mobile number (at least 10 digits).");
+                        phoneInput.focus();
+                        return; // COMPLETELY STOPS THE SCRIPT FROM SENDING!
+                    }
+                    // ==========================================
+                    
+                    // Visual feedback for the user
+                    if (btn) {
+                        btn.innerHTML = "SENDING...";
+                        btn.disabled = true;
+                    }
 
+                    // Sending data to Google Sheets
                     fetch(scriptURL, { 
                         method: 'POST', 
                         mode: 'no-cors', 
                         body: new FormData(form)
                     })
                     .then(() => {
+                        // Success Logic
                         form.reset();
-                        btn.innerHTML = "SUBMIT LEAD";
-                        btn.disabled = false;
-                        success.classList.remove('hidden');
+                        if (btn) {
+                            btn.innerHTML = "SUBMIT LEAD";
+                            btn.disabled = false;
+                        }
+                        if (success) {
+                            success.classList.remove('hidden');
+                        }
+                        console.log('Lead sent successfully to Google Sheets!');
                     })
-                    .catch(err => {
-                        btn.innerHTML = "ERROR. TRY AGAIN.";
-                        btn.disabled = false;
-                        console.error('Submission Error:', err);
+                    .catch(error => {
+                        // Error Logic
+                        if (btn) {
+                            btn.innerHTML = "ERROR. TRY AGAIN.";
+                            btn.disabled = false;
+                        }
+                        console.error('Submission Error:', error);
                     });
                 });
             }
         });
     </script>
-</body>
+    </body>
 </html>
