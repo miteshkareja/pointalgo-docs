@@ -420,7 +420,10 @@
     <script>
         // 1. Currency Toggle
         function toggleCurrency() {
-            const isChecked = document.getElementById('currency-toggle').checked;
+            const toggleElement = document.getElementById('currency-toggle');
+            if (!toggleElement) return; // Safety check in case this is the Contact page
+            
+            const isChecked = toggleElement.checked;
             const inrElements = document.querySelectorAll('.inr-price');
             const usdElements = document.querySelectorAll('.usd-price');
             
@@ -453,6 +456,17 @@
                 form.addEventListener('submit', e => {
                     e.preventDefault();
                     
+                    // ==========================================
+                    // 🛡️ STRICT PHONE NUMBER VALIDATION
+                    // ==========================================
+                    const phoneInput = form.querySelector('input[name="phone"]');
+                    if (phoneInput && phoneInput.value.length < 10) {
+                        alert("Error: Please enter a valid mobile number (at least 10 digits).");
+                        phoneInput.focus();
+                        return; // COMPLETELY STOPS THE SCRIPT FROM SENDING!
+                    }
+                    // ==========================================
+                    
                     // Visual feedback for the user
                     if (btn) {
                         btn.innerHTML = "SENDING...";
@@ -462,7 +476,7 @@
                     // Sending data to Google Sheets
                     fetch(scriptURL, { 
                         method: 'POST', 
-                        mode: 'no-cors', // Critical for Google Apps Script security
+                        mode: 'no-cors', 
                         body: new FormData(form)
                     })
                     .then(() => {
@@ -489,5 +503,6 @@
             }
         });
     </script>
+    
 </body>
 </html>
