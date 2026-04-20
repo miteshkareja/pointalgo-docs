@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund & Cancellation Policy | PointAlgo</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%);
+            background-attachment: fixed;
+            color: #f8fafc; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+        }
+        .glass-nav { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .legal-content h2 { color: #e2ff6e; font-weight: 800; text-transform: uppercase; margin-top: 3rem; margin-bottom: 1rem; font-size: 1.25rem; letter-spacing: 0.05em; }
+        .legal-content p, .legal-content li { color: #94a3b8; margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.8; text-align: justify; }
+        .legal-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="antialiased">
 
+    <nav class="glass-nav fixed w-full z-50 top-0 transition-all">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                <div class="flex-shrink-0 cursor-pointer" onclick="window.location.href='../index.html'">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
+                </div>
+                <div class="hidden md:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+                    <a href="../index.html" class="hover:text-white transition-colors">Home</a>
+                    <a href="../strategies/index.html" class="hover:text-white transition-colors">Indicator & Strategy</a>
+                    <a href="../free-tools/index.html" class="hover:text-white transition-colors">Free Toolkit</a>
+                    <a href="../doc/index.html" class="hover:text-white transition-colors">Documents</a>
+                    <a href="../blog/index.html" class="hover:text-white transition-colors">Blog</a>
+                    <a href="https://discord.gg/72wFfgmW" target="_blank" class="hover:text-white transition-colors">Discord</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white text-2xl focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0">
+            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
+                <a href="../index.html" class="text-xl font-bold text-slate-300">Home</a>
+                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300">Strategies</a>
+                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300">Free Toolkit</a>
+                <a href="../doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
+                <a href="../blog/index.html" class="text-lg font-medium text-slate-300">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-48 pb-24 px-6 max-w-4xl mx-auto">
+        <header class="mb-16 border-b border-white/10 pb-8">
+            <p class="text-[#e2ff6e] font-bold text-xs uppercase tracking-[0.3em] mb-4">Legal Compliance</p>
+            <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4 italic">Refund & Cancellation</h1>
+            <p class="text-slate-500 text-sm uppercase tracking-widest">Last Updated: April 2026</p>
+        </header>
+
+        <div class="legal-content glass-card p-8 md:p-12 rounded-[2.5rem]">
+            <p class="text-white font-bold text-lg mb-6 border-l-4 border-red-500 pl-4 bg-red-500/10 p-4 rounded-r-lg">Due to the digital nature of our intellectual property and trading tools, please read our strict policy regarding cancellations and refunds before making a purchase.</p>
+
+            <h2>1. Cancellation Policy</h2>
+            <p>You have full control over your subscription. <strong>You may cancel your subscription at any time.</strong></p>
+            <ul>
+                <li>If you cancel your subscription, you will not be billed for any future billing cycles.</li>
+                <li>Your access to the premium indicators on TradingView will remain active until the end of your currently paid billing period.</li>
+                <li>Cancellations can be processed through your account dashboard or by contacting our support team directly.</li>
+            </ul>
+
+            <h2>2. No Refund Policy on Indicators & Scripts</h2>
+            <p>Because our products are digital, intangible goods (TradingView scripts, quantitative logic, and proprietary code algorithms), they cannot be "returned" once accessed. Therefore, <strong>we do not offer refunds once an indicator or subscription is sold and access is granted.</strong></p>
+            <p>We highly encourage all users to thoroughly review our free documentation, strategy logic, and open-source toolkit before committing to a premium purchase. By completing a transaction on PointAlgo, you explicitly agree to waive any right to a refund for digital access.</p>
+
+            <h2>3. Custom Solutions & Algo Development</h2>
+            <p>PointAlgo occasionally provides bespoke algorithmic development, custom indicator logic, and specific automation systems for institutional clients or independent traders.</p>
+            <p><strong>For custom solutions, the refund and cancellation policy is strictly dictated by the terms provided at the time of sale.</strong> These specific terms will be outlined in the formal proposal or invoice sent to you via our official email address (<a href="mailto:hello@pointalgo.com" class="text-[#e2ff6e] hover:underline">hello@pointalgo.com</a>) prior to the commencement of the project.</p>
+
+            <h2>4. Dispute Resolution</h2>
+            <p>If you believe there has been a billing error (e.g., duplicate charge), please contact our support desk immediately. Fraudulent chargebacks filed against valid digital goods deliveries will result in a permanent ban from PointAlgo and the immediate revocation of all indicator access.</p>
+
+            <div class="mt-12 p-6 border border-[#e2ff6e]/20 bg-[#e2ff6e]/5 rounded-2xl text-center">
+                <p class="text-white font-bold mb-2 uppercase tracking-widest text-xs">Need to manage your subscription?</p>
+                <p class="text-sm text-slate-400">Contact our support desk at <a href="mailto:hello@pointalgo.com" class="text-[#e2ff6e] hover:underline font-bold">hello@pointalgo.com</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                <div class="col-span-1 md:col-span-1 space-y-6">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
+                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">Advanced Quantitative <br> Intelligence Systems.</p>
+                    <div class="flex gap-5 text-xl">
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
+                    <div class="space-y-3">
+                        <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
+                        <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
+                        <a href="../blog/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Blog</a>
+                        <a href="../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
+                        <a href="../contact/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Contact Us</a>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
+                    <div class="space-y-3">
+                        <a href="terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                        <a href="privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="refund.html" class="block text-[#e2ff6e] font-bold text-sm transition-colors">Refund & Cancellation</a>
+                        <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
+                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#e2ff6e]">hello@pointalgo.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
+                            <p class="text-white font-medium text-sm">+91-8452035834</p>
+                        </div>
+                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-white/5">
+                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
+                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
+                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI)...
+                    </p>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
+                <div class="flex gap-6">
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
