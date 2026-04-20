@@ -94,38 +94,53 @@
                 <div class="absolute top-0 right-0 p-8 opacity-5 text-9xl text-white italic font-black">@</div>
                 <h3 class="text-2xl font-black text-white mb-8 italic uppercase tracking-tighter">Direct Inquiry</h3>
                 
-                <form id="leadForm" class="space-y-4">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <input type="text" name="name" placeholder="Full Name *" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white outline-none focus:border-[#e2ff6e] transition-all">
-                        <input type="email" name="email" placeholder="Email Address *" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white outline-none focus:border-[#e2ff6e] transition-all">
-                    </div>
+                <form id="leadForm" class="relative z-10 space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+            <label class="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-2">Full Name</label>
+            <input type="text" name="name" placeholder="John Doe" required class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-[#e2ff6e] focus:ring-1 focus:ring-[#e2ff6e] transition-all">
+        </div>
+        <div class="space-y-2">
+            <label class="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-2">Mobile Number</label>
+            <input type="tel" name="phone" placeholder="+91 00000 00000" required minlength="10" maxlength="15" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-[#e2ff6e] focus:ring-1 focus:ring-[#e2ff6e] transition-all">
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+            <label class="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-2">Email Address</label>
+            <input type="email" name="email" placeholder="john@example.com" required class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-[#e2ff6e] focus:ring-1 focus:ring-[#e2ff6e] transition-all">
+        </div>
+        
+        <div class="space-y-2">
+            <label class="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-2">Country</label>
+            <input type="text" name="country" placeholder="India" required class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-[#e2ff6e] focus:ring-1 focus:ring-[#e2ff6e] transition-all">
+        </div>
+    </div>
 
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <input type="tel" name="phone" placeholder="Mobile Number" required minlength="10" maxlength="15" title="Please enter a valid phone number (at least 10 digits)" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
-                        <select name="country" required class="w-full bg-black/80 border border-white/10 rounded-xl px-4 py-4 text-slate-400 outline-none focus:border-[#e2ff6e] transition-all cursor-pointer">
-                            <option value="" disabled selected>Select Country *</option>
-                            <option value="India">India</option>
-                            <option value="USA">United States</option>
-                            <option value="UK">United Kingdom</option>
-                            <option value="UAE">UAE</option>
-                            <option value="Singapore">Singapore</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
+    <div class="space-y-2">
+        <label class="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-2">Inquiry Type / Plan</label>
+        <select name="plan" required class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#e2ff6e] focus:ring-1 focus:ring-[#e2ff6e] transition-all appearance-none">
+            <option value="Enterprise">Enterprise License</option>
+            <option value="Global_USD">International Subscription ($)</option>
+            <option value="Custom_Dev">Custom Quantitative Development</option>
+            <option value="General">General Support / Other</option>
+        </select>
+    </div>
 
-                    <select name="plan" class="w-full bg-black/80 border border-white/10 rounded-xl px-4 py-4 text-slate-400 outline-none cursor-pointer">
-                        <option value="Support">General Support</option>
-                        <option value="Enterprise">Enterprise License</option>
-                        <option value="International">International Subscription ($)</option>
-                        <option value="Custom">Custom Strategy Dev</option>
-                    </select>
+    <div class="space-y-2">
+        <label class="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-2">Inquiry / Goals</label>
+        <textarea name="message" rows="4" placeholder="How can our quantitative tools help your trading?" required class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-[#e2ff6e] focus:ring-1 focus:ring-[#e2ff6e] transition-all resize-none"></textarea>
+    </div>
 
-                    <textarea name="message" placeholder="How can we assist you today?" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white h-32 outline-none focus:border-[#e2ff6e] transition-all"></textarea>
-                    
-                    <button type="submit" id="submitBtn" class="w-full bg-white text-black py-5 rounded-xl font-black uppercase tracking-[0.2em] hover:bg-[#e2ff6e] transition-all shadow-xl">Submit Lead</button>
-                </form>
-                <div id="formSuccess" class="hidden mt-6 text-emerald-400 font-bold text-center italic">Lead received! Our team will reach out via email.</div>
-            </div>
+    <button type="submit" id="submitBtn" class="w-full bg-[#e2ff6e] text-black font-black uppercase tracking-[0.2em] py-5 rounded-xl hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(226,255,110,0.3)] transition-all text-xs">
+        Submit Request <i class="fa-solid fa-arrow-right ml-2"></i>
+    </button>
+</form>
+
+<div id="formSuccess" class="hidden mt-6 p-4 rounded-xl bg-[#e2ff6e]/10 border border-[#e2ff6e]/20 text-[#e2ff6e] font-bold text-center text-sm tracking-widest uppercase">
+    Request received. Our team will reach out shortly.
+</div>
 
         </div>
     </main>
