@@ -310,22 +310,36 @@
         </div>
     </section>
 
-    <section id="contact-section" class="py-24 border-t border-white/5 bg-black/20">
+<section id="contact-section" class="py-24 border-t border-white/5 bg-black/20">
     <div class="max-w-2xl mx-auto px-6">
-        <div class="glass-card p-10 rounded-[3rem] border-white/10 text-center">
-            <h2 class="text-3xl font-black text-white mb-2 italic">QUANT INQUIRY</h2>
-            <form id="leadForm" class="space-y-4 text-left">
-                <input type="text" name="name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white">
-                <input type="email" name="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white">
-                <select name="plan" class="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-slate-400">
+        <div class="glass-card p-10 rounded-[3rem] border-white/10 text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#e2ff6e]/5 blur-[50px] rounded-full"></div>
+            
+            <h2 class="text-3xl font-black text-white mb-2 italic uppercase">Quant Inquiry</h2>
+            <p class="text-slate-400 text-sm mb-8">Request enterprise access or custom algorithmic development.</p>
+            
+            <form id="leadForm" class="space-y-4 text-left relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                    <input type="tel" name="mobile" placeholder="Mobile Number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                </div>
+                
+                <input type="email" name="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                
+                <input type="text" name="tv_username" placeholder="TradingView Username (Optional)" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-blue-500 outline-none transition-colors">
+                
+                <select name="plan" class="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-slate-400 focus:border-[#e2ff6e] outline-none transition-colors">
                     <option value="Enterprise">Enterprise License</option>
                     <option value="Global_USD">International Subscription ($)</option>
                     <option value="Custom_Dev">Custom Quantitative Development</option>
                 </select>
-                <textarea name="message" placeholder="Describe your trading requirements..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white h-32"></textarea>
-                <button type="submit" id="submitBtn" class="w-full bg-white text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-[#e2ff6e] transition-all">Submit Lead</button>
+                
+                <textarea name="message" placeholder="Describe your trading requirements..." required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white h-32 resize-none focus:border-[#e2ff6e] outline-none transition-colors"></textarea>
+                
+                <button type="submit" id="submitBtn" class="w-full bg-white text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-[#e2ff6e] hover:scale-[1.02] transition-all">Submit Lead</button>
             </form>
-            <div id="formSuccess" class="hidden mt-6 text-emerald-400 font-bold">Request received. Our quant team will reach out via email.</div>
+            
+            <div id="formSuccess" class="hidden mt-6 text-[#e2ff6e] font-bold text-sm tracking-widest uppercase">Request received. Our quant team will reach out shortly.</div>
         </div>
     </div>
 </section>
