@@ -68,12 +68,13 @@
                     <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
                 </div>
 
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="../index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Home</a>
-                    <a href="index.html" class="text-base font-bold text-blue-400 border-b-2 border-blue-400 pb-1">Indicator & Strategy</a>
-                    <a href="../doc/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Documents</a>
-                    <a href="../free-tools/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Free Toolkit</a>
-                    <a href="https://discord.gg/72wFfgmW" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Discord</a>
+                <div class="hidden md:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+                    <a href="../index.html" class="hover:text-white transition-colors">Home</a>
+                    <a href="index.html" class="text-[#e2ff6e]">Indicator & Strategy</a>
+                    <a href="../free-tools/index.html" class="hover:text-white transition-colors">Free Toolkit</a>
+                    <a href="../doc/index.html" class="hover:text-white transition-colors">Documents</a>
+                    <a href="../blog/index.html" class="hover:text-white transition-colors">Blog</a>
+                    <a href="https://discord.gg/72wFfgmW" target="_blank" class="hover:text-white transition-colors">Discord</a>
                 </div>
 
                 <div class="md:hidden">
@@ -87,11 +88,10 @@
         <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0">
             <div class="px-6 py-10 space-y-6 flex flex-col text-center">
                 <a href="../index.html" class="text-xl font-bold text-slate-300">Home</a>
-                <hr class="border-white/5 w-12 mx-auto">
-                <a href="index.html" class="text-lg font-medium text-blue-400">Indicator & Strategy</a>
+                <a href="index.html" class="text-lg font-medium text-[#e2ff6e]">Indicator & Strategy</a>
+                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300">Free Toolkit</a>
                 <a href="../doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
-                <a href="#" class="text-lg font-medium text-slate-300">Free Toolkit</a>
-                <a href="#" class="text-lg font-medium text-slate-300">Discord</a>
+                <a href="../blog/index.html" class="text-lg font-medium text-slate-300">Blog</a>
             </div>
         </div>
     </nav>
@@ -152,7 +152,7 @@
 
     <section class="py-24 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-20">Institutional Toolkit</h2>    
+            <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-20">Institutional Toolkit</h2>   
         </div>
         <div class="toolkit-wrapper overflow-hidden w-full relative py-5">
             <div class="toolkit-track flex gap-6">
@@ -310,66 +310,53 @@
         </div>
     </section>
 
-<section id="contact-section" class="py-24 border-t border-white/5 bg-black/20">
-    <div class="max-w-2xl mx-auto px-6">
-        <div class="glass-card p-10 rounded-[3rem] border-white/10 text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-[#e2ff6e]/5 blur-[50px] rounded-full"></div>
-            
-            <h2 class="text-3xl font-black text-white mb-2 italic uppercase">Quant Inquiry</h2>
-            <p class="text-slate-400 text-sm mb-8">Request enterprise access or custom algorithmic development.</p>
-            
-            <form id="leadForm" class="space-y-4 text-left relative z-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" name="name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
-                    <input type="tel" name="mobile" placeholder="Mobile Number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
-                </div>
+    <section id="contact-section" class="py-24 border-t border-white/5 bg-black/20">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="glass-card p-10 rounded-[3rem] border-white/10 text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-[#e2ff6e]/5 blur-[50px] rounded-full"></div>
                 
-                <input type="email" name="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                <h2 class="text-3xl font-black text-white mb-2 italic uppercase">Quant Inquiry</h2>
+                <p class="text-slate-400 text-sm mb-8">Request enterprise access or custom algorithmic development.</p>
                 
-                <input type="text" name="tv_username" placeholder="TradingView Username (Optional)" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-blue-500 outline-none transition-colors">
+                <form id="leadForm" class="space-y-4 text-left relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" name="Name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                        <input type="tel" name="Phone" placeholder="Mobile Number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                    </div>
+                    
+                    <input type="email" name="Email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
+                    
+                    <input type="text" name="tv_username" placeholder="TradingView Username (Optional)" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-blue-500 outline-none transition-colors">
+                    
+                    <select name="Plan" class="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-slate-400 focus:border-[#e2ff6e] outline-none transition-colors">
+                        <option value="Enterprise">Enterprise License</option>
+                        <option value="Global_USD">International Subscription ($)</option>
+                        <option value="Custom_Dev">Custom Quantitative Development</option>
+                    </select>
+                    
+                    <textarea name="Message" placeholder="Describe your trading requirements..." required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white h-32 resize-none focus:border-[#e2ff6e] outline-none transition-colors"></textarea>
+                    
+                    <button type="submit" id="submitBtn" class="w-full bg-white text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-[#e2ff6e] hover:scale-[1.02] transition-all">Submit Lead</button>
+                </form>
                 
-                <select name="plan" class="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-slate-400 focus:border-[#e2ff6e] outline-none transition-colors">
-                    <option value="Enterprise">Enterprise License</option>
-                    <option value="Global_USD">International Subscription ($)</option>
-                    <option value="Custom_Dev">Custom Quantitative Development</option>
-                </select>
-                
-                <textarea name="message" placeholder="Describe your trading requirements..." required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white h-32 resize-none focus:border-[#e2ff6e] outline-none transition-colors"></textarea>
-                
-                <button type="submit" id="submitBtn" class="w-full bg-white text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-[#e2ff6e] hover:scale-[1.02] transition-all">Submit Lead</button>
-            </form>
-            
-            <div id="formSuccess" class="hidden mt-6 text-[#e2ff6e] font-bold text-sm tracking-widest uppercase">Request received. Our quant team will reach out shortly.</div>
+                <div id="formSuccess" class="hidden mt-6 text-[#e2ff6e] font-bold text-sm tracking-widest uppercase">Request received. Our quant team will reach out shortly.</div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            
             <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
-                
                 <div class="col-span-1 md:col-span-1 space-y-6">
                     <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
-                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
-                        Advanced Quantitative <br> Intelligence Systems.
-                    </p>
+                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">Advanced Quantitative <br> Intelligence Systems.</p>
 
                     <div class="flex gap-5 text-xl">
-    <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-youtube"></i>
-    </a>
-    <a href="#" class="text-slate-400 hover:text-white transition-all">
-        <i class="fa-brands fa-x-twitter"></i>
-    </a>
-    <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-discord"></i>
-    </a>
-    <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-</div>
-                    
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
                 </div>
 
                 <div class="space-y-4">
@@ -407,7 +394,6 @@
                         <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
                     </div>
                 </div>
-
             </div>
 
             <div class="pt-12 border-t border-white/5">
@@ -427,12 +413,11 @@
                     <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
                 </div>
             </div>
-
         </div>
     </footer>
 
     <script>
-        // 1. Currency Toggle (Must be outside the loader to work with onchange="")
+        // 1. Currency Toggle
         function toggleCurrency() {
             const isChecked = document.getElementById('currency-toggle').checked;
             const inrElements = document.querySelectorAll('.inr-price');
