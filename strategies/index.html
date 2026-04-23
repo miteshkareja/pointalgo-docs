@@ -272,7 +272,14 @@
                             <p class="usd-price hidden text-white font-bold text-sm mb-6 tracking-tight">Get Now $ 20 USD Per Month</p>
                             
                             <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Professional_Pack" target="_blank" class="inr-price block w-full py-4 border border-white/10 rounded-2xl bg-[#e2ff6e] text-black font-bold hover:scale-105 transition-all shadow-xl">Get Access (₹1999)</a>
-                            <a href="#contact-section" class="usd-price hidden w-full py-4 border border-white/10 rounded-2xl bg-black/60 hover:bg-black text-white font-bold transition-all shadow-xl text-center">Inquire Now ($20)</a>
+                            
+                            <div class="usd-price hidden w-full relative z-20 flex flex-col items-center mt-2">
+                                <div class="inline-block bg-[#e2ff6e]/10 border border-[#e2ff6e]/30 rounded-full px-4 py-1.5 mb-4">
+                                    <span class="text-[#e2ff6e] font-bold text-[10px] uppercase tracking-[0.2em]"><i class="fa-solid fa-unlock-keyhole mr-1"></i> 7 Days Free Trial</span>
+                                </div>
+                                <div id="paypal-button-container-P-3HW05869D3509905PNHVCV5Q" class="w-full"></div>
+                                <p class="text-slate-500 text-[10px] uppercase tracking-widest mt-2 font-medium">Cancel anytime</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -312,7 +319,8 @@
                     </div>
                 </div>
 
-            </div> </div>
+            </div> 
+        </div>
     </section>
 
     <section id="contact-section" class="py-24 border-t border-white/5 bg-black/20">
@@ -470,6 +478,7 @@
 
     <script src="https://www.paypal.com/sdk/js?client-id=AZnkvUEjcwRJFv3GDymp4GeHX3IRa1go6XYMkOekn92V7BD3O3Spd1YTpG0T-R2E-hKfPusc67jWPjRo&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
     <script>
+      // RENDER STARTER PACK BUTTON ($10)
       paypal.Buttons({
           style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
           createSubscription: function(data, actions) {
@@ -479,6 +488,17 @@
             alert('Payment Successful! Subscription ID: ' + data.subscriptionID); 
           }
       }).render('#paypal-button-container-P-9EB43853E7794440GNHVB6DY'); 
+
+      // RENDER PRO PACK BUTTON ($20)
+      paypal.Buttons({
+          style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+          createSubscription: function(data, actions) {
+            return actions.subscription.create({ plan_id: 'P-3HW05869D3509905PNHVCV5Q' });
+          },
+          onApprove: function(data, actions) {
+            alert('Payment Successful! Subscription ID: ' + data.subscriptionID); 
+          }
+      }).render('#paypal-button-container-P-3HW05869D3509905PNHVCV5Q'); 
     </script>
 </body>
 </html>
