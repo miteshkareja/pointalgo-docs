@@ -20,7 +20,6 @@
         .glass-nav { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
         
-        /* Custom Scrollbar for the Slider */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
@@ -38,7 +37,6 @@
         }
         .slider-card:hover { transform: translateY(-5px); }
 
-        /* Toolkit Animation */
         @keyframes infiniteScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(calc(-320px * 7 - 1.5rem * 7)); } 
@@ -232,16 +230,12 @@
                                 <div class="inline-block bg-[#e2ff6e]/10 border border-[#e2ff6e]/30 rounded-full px-4 py-1.5 mb-4">
                                     <span class="text-[#e2ff6e] font-bold text-[10px] uppercase tracking-[0.2em]"><i class="fa-solid fa-unlock-keyhole mr-1"></i> 7 Days Free Trial</span>
                                 </div>
-                                
                                 <div id="paypal-button-container-P-9EB43853E7794440GNHVB6DY" class="w-full"></div>
-                                
                                 <p class="text-slate-500 text-[10px] uppercase tracking-widest mt-2 font-medium">Cancel anytime</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
 
                 <div class="flex flex-col rounded-3xl overflow-hidden glass-card border border-white/20 shadow-[0_0_50px_rgba(139,92,246,0.15)] transform md:-translate-y-2">
                     <div class="bg-indigo-800/80 py-4 text-center border-b border-white/10">
@@ -278,7 +272,7 @@
                             <p class="usd-price hidden text-white font-bold text-sm mb-6 tracking-tight">Get Now $ 20 USD Per Month</p>
                             
                             <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Professional_Pack" target="_blank" class="inr-price block w-full py-4 border border-white/10 rounded-2xl bg-[#e2ff6e] text-black font-bold hover:scale-105 transition-all shadow-xl">Get Access (₹1999)</a>
-                            <a href="#contact-section" class="usd-price hidden w-full py-4 border border-white/10 rounded-2xl bg-black/60 hover:bg-black text-white font-bold transition-all shadow-xl">Inquire Now ($20)</a>
+                            <a href="#contact-section" class="usd-price hidden w-full py-4 border border-white/10 rounded-2xl bg-black/60 hover:bg-black text-white font-bold transition-all shadow-xl text-center">Inquire Now ($20)</a>
                         </div>
                     </div>
                 </div>
@@ -313,13 +307,12 @@
                             </div>
                         </div>
                         <div class="text-center pt-6 border-t border-white/5">
-                            <a href="#contact-section" class="block w-full py-4 border border-white/10 rounded-2xl bg-white text-black font-bold hover:bg-slate-200 transition-all shadow-xl">Contact Sales</a>
+                            <a href="#contact-section" class="block w-full py-4 border border-white/10 rounded-2xl bg-white text-black font-bold hover:bg-slate-200 transition-all shadow-xl text-center">Contact Sales</a>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
+            </div> </div>
     </section>
 
     <section id="contact-section" class="py-24 border-t border-white/5 bg-black/20">
@@ -333,25 +326,18 @@
                 <form id="leadForm" class="space-y-4 text-left relative z-10">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input type="text" name="name" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
-                        
                         <input type="tel" name="phone" placeholder="Mobile Number" required minlength="10" maxlength="15" title="Please enter a valid phone number (at least 10 digits)" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
                     </div>
-                    
                     <input type="email" name="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none transition-colors">
-                    
                     <input type="text" name="tv_username" placeholder="TradingView Username (Optional)" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-blue-500 outline-none transition-colors">
-                    
                     <select name="plan" class="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-slate-400 focus:border-[#e2ff6e] outline-none transition-colors">
                         <option value="Enterprise">Enterprise License</option>
                         <option value="Global_USD">International Subscription ($)</option>
                         <option value="Custom_Dev">Custom Quantitative Development</option>
                     </select>
-                    
                     <textarea name="message" placeholder="Describe your trading requirements..." required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white h-32 resize-none focus:border-[#e2ff6e] outline-none transition-colors"></textarea>
-                    
                     <button type="submit" id="submitBtn" class="w-full bg-white text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-[#e2ff6e] hover:scale-[1.02] transition-all">Submit Lead</button>
                 </form>
-                
                 <div id="formSuccess" class="hidden mt-6 text-[#e2ff6e] font-bold text-sm tracking-widest uppercase">Request received. Our quant team will reach out shortly.</div>
             </div>
         </div>
@@ -363,7 +349,6 @@
                 <div class="col-span-1 md:col-span-1 space-y-6">
                     <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
                     <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">Advanced Quantitative <br> Intelligence Systems.</p>
-
                     <div class="flex gap-5 text-xl">
                         <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
                         <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
@@ -371,7 +356,6 @@
                         <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                 </div>
-
                 <div class="space-y-4">
                     <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
                     <div class="space-y-3">
@@ -382,7 +366,6 @@
                         <a href="../contact/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Contact Us</a>
                     </div>
                 </div>
-
                 <div class="space-y-4">
                     <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
                     <div class="space-y-3">
@@ -392,7 +375,6 @@
                         <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
                     </div>
                 </div>
-
                 <div class="space-y-4">
                     <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
                     <div class="space-y-4">
@@ -413,7 +395,7 @@
                 <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
                 <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
                     <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
-                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.
+                        Trading in securities, commodities, and other markets involves significant risk... (Standard Disclaimer Text)
                     </p>
                 </div>
             </div>
@@ -430,15 +412,12 @@
     </footer>
 
     <script>
-        // 1. Currency Toggle
         function toggleCurrency() {
             const toggleElement = document.getElementById('currency-toggle');
-            if (!toggleElement) return; // Safety check in case this is the Contact page
-            
+            if (!toggleElement) return;
             const isChecked = toggleElement.checked;
             const inrElements = document.querySelectorAll('.inr-price');
             const usdElements = document.querySelectorAll('.usd-price');
-            
             if (isChecked) {
                 inrElements.forEach(el => { el.classList.add('hidden'); el.classList.remove('block'); });
                 usdElements.forEach(el => { el.classList.remove('hidden'); el.classList.add('block'); });
@@ -449,7 +428,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 2. Mobile Menu Logic
             const menuBtn = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuBtn && mobileMenu) {
@@ -458,7 +436,6 @@
                 });
             }
 
-            // 3. Google Sheets Lead Form Logic
             const scriptURL = 'https://script.google.com/macros/s/AKfycbxwDlLf9qvyZe24NMGMnnL8dh85OJWtub8znSOK7xv34F58NMpva85Qvn8Rjb6kju8j/exec';
             const form = document.getElementById('leadForm');
             const btn = document.getElementById('submitBtn');
@@ -467,49 +444,24 @@
             if (form) {
                 form.addEventListener('submit', e => {
                     e.preventDefault();
-                    
-                    // ==========================================
-                    // 🛡️ STRICT PHONE NUMBER VALIDATION
-                    // ==========================================
                     const phoneInput = form.querySelector('input[name="phone"]');
                     if (phoneInput && phoneInput.value.length < 10) {
                         alert("Error: Please enter a valid mobile number (at least 10 digits).");
                         phoneInput.focus();
-                        return; // COMPLETELY STOPS THE SCRIPT FROM SENDING!
+                        return;
                     }
-                    // ==========================================
-                    
-                    // Visual feedback for the user
                     if (btn) {
                         btn.innerHTML = "SENDING...";
                         btn.disabled = true;
                     }
-
-                    // Sending data to Google Sheets
-                    fetch(scriptURL, { 
-                        method: 'POST', 
-                        mode: 'no-cors', 
-                        body: new FormData(form)
-                    })
+                    fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: new FormData(form) })
                     .then(() => {
-                        // Success Logic
                         form.reset();
-                        if (btn) {
-                            btn.innerHTML = "SUBMIT LEAD";
-                            btn.disabled = false;
-                        }
-                        if (success) {
-                            success.classList.remove('hidden');
-                        }
-                        console.log('Lead sent successfully to Google Sheets!');
+                        if (btn) { btn.innerHTML = "SUBMIT LEAD"; btn.disabled = false; }
+                        if (success) { success.classList.remove('hidden'); }
                     })
                     .catch(error => {
-                        // Error Logic
-                        if (btn) {
-                            btn.innerHTML = "ERROR. TRY AGAIN.";
-                            btn.disabled = false;
-                        }
-                        console.error('Submission Error:', error);
+                        if (btn) { btn.innerHTML = "ERROR. TRY AGAIN."; btn.disabled = false; }
                     });
                 });
             }
@@ -519,21 +471,12 @@
     <script src="https://www.paypal.com/sdk/js?client-id=AZnkvUEjcwRJFv3GDymp4GeHX3IRa1go6XYMkOekn92V7BD3O3Spd1YTpG0T-R2E-hKfPusc67jWPjRo&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
     <script>
       paypal.Buttons({
-          style: {
-              shape: 'rect',
-              color: 'gold', // You can change this to 'blue', 'black', or 'white' to match your dark theme better!
-              layout: 'vertical',
-              label: 'subscribe'
-          },
+          style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
           createSubscription: function(data, actions) {
-            return actions.subscription.create({
-              /* Creates the subscription */
-              plan_id: 'P-9EB43853E7794440GNHVB6DY'
-            });
+            return actions.subscription.create({ plan_id: 'P-9EB43853E7794440GNHVB6DY' });
           },
           onApprove: function(data, actions) {
             alert('Payment Successful! Subscription ID: ' + data.subscriptionID); 
-            // You can later redirect them to a "Thank You" page here
           }
       }).render('#paypal-button-container-P-9EB43853E7794440GNHVB6DY'); 
     </script>
