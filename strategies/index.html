@@ -226,7 +226,7 @@
                             <p class="usd-price hidden text-white font-bold text-sm mb-6 tracking-tight">Get Now $ 10 USD Per Month</p>
                             
                             <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Starter_Pack_Indicator" target="_blank" class="inr-price block w-full py-4 border border-white/10 rounded-2xl bg-[#e2ff6e] text-black font-bold hover:scale-105 transition-all shadow-xl">Get Access (₹999)</a>
-                            <a href="#contact-section" class="usd-price hidden w-full py-4 border border-white/10 rounded-2xl bg-black/60 hover:bg-black text-white font-bold transition-all shadow-xl">Inquire Now ($10)</a>
+                            <div id="paypal-button-container-P-9EB43853E7794440GNHVB6DY" class="usd-price hidden w-full mt-2 relative z-20"></div>
                         </div>
                     </div>
                 </div>
@@ -503,6 +503,27 @@
             }
         });
     </script>
-    
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AZnkvUEjcwRJFv3GDymp4GeHX3IRa1go6XYMkOekn92V7BD3O3Spd1YTpG0T-R2E-hKfPusc67jWPjRo&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+    <script>
+      paypal.Buttons({
+          style: {
+              shape: 'rect',
+              color: 'gold', // You can change this to 'blue', 'black', or 'white' to match your dark theme better!
+              layout: 'vertical',
+              label: 'subscribe'
+          },
+          createSubscription: function(data, actions) {
+            return actions.subscription.create({
+              /* Creates the subscription */
+              plan_id: 'P-9EB43853E7794440GNHVB6DY'
+            });
+          },
+          onApprove: function(data, actions) {
+            alert('Payment Successful! Subscription ID: ' + data.subscriptionID); 
+            // You can later redirect them to a "Thank You" page here
+          }
+      }).render('#paypal-button-container-P-9EB43853E7794440GNHVB6DY'); 
+    </script>
 </body>
 </html>
