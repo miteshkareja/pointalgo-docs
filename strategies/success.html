@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | Activate PointAlgo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #0b0f1a; color: white; font-family: sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
 
+    <div class="max-w-md w-full glass-card rounded-[2.5rem] p-10 text-center relative overflow-hidden">
+        <div class="w-20 h-20 bg-[#e2ff6e] rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_40px_rgba(226,255,110,0.4)]">
+            <i class="fa-solid fa-check text-black text-3xl"></i>
+        </div>
+
+        <h1 class="text-3xl font-black italic uppercase tracking-tighter mb-2 text-white">Payment Received!</h1>
+        <p class="text-slate-400 text-sm mb-8 italic">Please provide your details below to activate your TradingView access.</p>
+
+        <form id="activationForm" class="space-y-4 text-left">
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">Full Name</label>
+                <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">Email (Used for Payment)</label>
+                <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-[#e2ff6e] ml-2">TradingView Username</label>
+                <input type="text" name="tv_username" placeholder="e.g. TradingProphet88" required class="w-full bg-[#e2ff6e]/5 border border-[#e2ff6e]/30 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">WhatsApp Number</label>
+                <input type="tel" name="phone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#e2ff6e] outline-none">
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full bg-[#e2ff6e] text-black font-black py-4 rounded-xl uppercase tracking-widest hover:scale-[1.02] transition-all mt-4">
+                Activate My Access
+            </button>
+        </form>
+
+        <div id="formSuccess" class="hidden mt-6 p-4 rounded-xl bg-[#e2ff6e]/10 border border-[#e2ff6e]/20 text-[#e2ff6e] font-bold text-xs uppercase tracking-widest leading-relaxed">
+            Details submitted. Access is usually granted within 2-4 hours. You will receive a WhatsApp/TradingView notification.
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx_cJ1XEGIVv4aivynCpxO60pS8mBeu2nYLx8WFvzIIqnryKwUXd7Y_D-gNVM4odto/exec';
+        const form = document.getElementById('activationForm');
+        const btn = document.getElementById('submitBtn');
+        const success = document.getElementById('formSuccess');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.innerHTML = "ACTIVATING...";
+            btn.disabled = true;
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+            })
+            .catch(error => {
+                btn.innerHTML = "ERROR. TRY AGAIN.";
+                btn.disabled = false;
+                console.error('Error!', error.message);
+            });
+        });
+    </script>
+</body>
+</html>
