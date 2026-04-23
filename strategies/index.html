@@ -478,6 +478,11 @@
 
     <script src="https://www.paypal.com/sdk/js?client-id=AZnkvUEjcwRJFv3GDymp4GeHX3IRa1go6XYMkOekn92V7BD3O3Spd1YTpG0T-R2E-hKfPusc67jWPjRo&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
     <script>
+      // SUCCESS REDIRECT FUNCTION
+      function handleSuccess() {
+          window.location.href = "https://pointalgo.com/strategies/success.html";
+      }
+
       // RENDER STARTER PACK BUTTON ($10)
       paypal.Buttons({
           style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
@@ -485,7 +490,7 @@
             return actions.subscription.create({ plan_id: 'P-9EB43853E7794440GNHVB6DY' });
           },
           onApprove: function(data, actions) {
-            alert('Payment Successful! Subscription ID: ' + data.subscriptionID); 
+            handleSuccess();
           }
       }).render('#paypal-button-container-P-9EB43853E7794440GNHVB6DY'); 
 
@@ -496,7 +501,7 @@
             return actions.subscription.create({ plan_id: 'P-3HW05869D3509905PNHVCV5Q' });
           },
           onApprove: function(data, actions) {
-            alert('Payment Successful! Subscription ID: ' + data.subscriptionID); 
+            handleSuccess();
           }
       }).render('#paypal-button-container-P-3HW05869D3509905PNHVCV5Q'); 
     </script>
