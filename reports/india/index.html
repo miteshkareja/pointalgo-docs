@@ -10,69 +10,150 @@
       gtag('config', 'G-GJZXB11LLJ');
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PointAlgo | Advanced Quant Trading</title>
+    <title>India Reports | PointAlgo</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .glass-card { background: #1e293b; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.2s; }
+        .glass-card:hover { transform: translateY(-5px); border-color: #10b98133; }
         .text-emerald { color: #10b981; }
-        .hero-gradient {
-            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent);
-        }
-        .btn-primary { background: #10b981; color: #0f172a; padding: 0.75rem 1.5rem; border-radius: 10px; font-weight: 700; transition: all 0.3s; }
-        .btn-primary:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 10px 20px -10px #10b981; }
     </style>
 </head>
-<body class="flex flex-col min-h-screen hero-gradient">
+<body class="flex flex-col min-h-screen">
 
     <nav class="border-b border-white/5 bg-[#0f172a]/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-emerald-500 rounded-lg"></div>
+                <div class="w-8 h-8 bg-emerald-500 rounded-lg"></div> 
                 <span class="text-2xl font-bold tracking-tighter italic">PointAlgo<span class="text-emerald">.</span></span>
             </div>
             <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400 uppercase tracking-widest">
-                <a href="/" class="text-emerald">Home</a>
-                <a href="/reports/india" class="hover:text-white transition">India Reports</a>
-                <a href="/reports/global" class="hover:text-white transition">Global</a>
+                <a href="/" class="hover:text-white transition">Home</a>
+                <a href="/reports/india/" class="text-emerald">India Reports</a>
+                <a href="/reports/global/" class="hover:text-white transition">Global</a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col items-center justify-center text-center px-6 py-20">
-        <div class="max-w-3xl">
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-                Trading Built on <span class="text-emerald">Mathematics.</span>
-            </h1>
-            <p class="text-lg text-slate-400 mb-10 leading-relaxed">
-                We bridge the gap between complex algorithms and the Indian stock market. 
-                Transparent, institutional-grade performance tracking for Nifty and BankNifty.
-            </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="/reports/india" class="btn-primary">View Live Indian Audit</a>
-                <a href="/reports/global" class="border border-white/10 px-6 py-3 rounded-xl hover:bg-white/5 transition font-semibold">Explore Global Bots</a>
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full">
+        <header class="mb-12">
+            <h1 class="text-3xl font-bold mb-2 text-white">Institutional Strategy Audit</h1>
+            <p class="text-slate-400">Live performance tracking for Indian Indices</p>
+        </header>
+
+        <div id="strategy-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
             </div>
-        </div>
     </main>
 
-    <footer class="bg-[#020617] border-t border-white/5 py-12">
+    <footer class="bg-[#020617] border-t border-white/5 py-12 mt-20">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
                 <span class="text-xl font-bold italic">PointAlgo<span class="text-emerald">.</span></span>
-                <p class="mt-4 text-sm text-slate-500 max-w-sm">
-                    Advanced algorithmic trading solutions for retail and institutional traders in the Indian market.
-                </p>
+                <p class="mt-4 text-sm text-slate-500 max-w-sm">Advanced algorithmic trading solutions for retail and institutional traders in the Indian market.</p>
             </div>
             <div class="text-sm text-slate-500 space-y-4">
-                <p class="font-bold text-slate-400 uppercase tracking-widest text-xs">Regulatory Disclaimer</p>
-                <p>
-                    Investment in securities market are subject to market risks. Read all the related documents carefully before investing. 
-                    Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.
-                </p>
+                <p class="font-bold text-slate-400 uppercase tracking-widest">Regulatory Disclaimer</p>
+                <p>Investment in securities market are subject to market risks. Read all the related documents carefully before investing. Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</p>
                 <p>© 2026 PointAlgo India. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyJq9QOlnT1khcsspVsaqf7edo57m-ecKqEMrH4txKKidPbHRf3SweZjvFzGki6VIcESA/exec';
+        
+        // ADD YOUR 3 STRATEGIES HERE
+        const DISPLAY_STRATEGIES = ['FIB_STRATEGY', 'GANNPI', 'POP'];
+
+        async function initDashboard() {
+            try {
+                const response = await fetch(API_URL);
+                const allData = await response.json();
+                const grid = document.getElementById('strategy-grid');
+
+                DISPLAY_STRATEGIES.forEach(id => {
+                    const trades = allData.filter(t => t.Strategy_ID === id);
+                    if (trades.length > 0) {
+                        renderCard(grid, trades, id);
+                    }
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        function renderCard(container, trades, id) {
+            let cumulative = 0, wins = 0, maxDD = 0;
+            const profits = trades.map(t => {
+                cumulative += parseFloat(t['Profit Amount'] || 0);
+                if (parseFloat(t.PnL_Points || 0) > 0) wins++;
+                if (Math.abs(t.Max_Drawdown || 0) > maxDD) maxDD = Math.abs(t.Max_Drawdown);
+                return cumulative;
+            });
+
+            const cardHtml = `
+                <div class="glass-card flex flex-col overflow-hidden">
+                    <div class="p-6 pb-0 flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-xl text-white">${trades[0].Symbol}</h3>
+                            <p class="text-xs text-slate-500 uppercase tracking-widest">${trades[0].Time_frame}</p>
+                        </div>
+                        <p class="text-xl font-bold text-emerald">₹${Math.round(cumulative).toLocaleString('en-IN')}</p>
+                    </div>
+                    
+                    <div class="h-48 px-2 mt-4">
+                        <canvas id="chart-${id}"></canvas>
+                    </div>
+
+                    <div class="p-6 grid grid-cols-2 gap-4 bg-white/5 border-t border-white/5">
+                        <div class="text-center">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold">Return</p>
+                            <p class="text-lg font-bold text-emerald">+${Math.round((cumulative/50000)*100)}%</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold">DD</p>
+                            <p class="text-lg font-bold text-red-400">-${maxDD.toFixed(1)}%</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold">Win Rate</p>
+                            <p class="text-lg font-bold text-white">${((wins/trades.length)*100).toFixed(0)}%</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold">Trades</p>
+                            <p class="text-lg font-bold text-white">${trades.length}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += cardHtml;
+
+            setTimeout(() => {
+                const ctx = document.getElementById('chart-'+id).getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: trades.map(t => t.Exit_Time),
+                        datasets: [{
+                            data: profits,
+                            borderColor: '#10b981',
+                            borderWidth: 2,
+                            fill: true,
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { x: { display: false }, y: { display: false } }
+                    }
+                });
+            }, 100);
+        }
+
+        initDashboard();
+    </script>
 </body>
 </html>
