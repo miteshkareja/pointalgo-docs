@@ -10,26 +10,33 @@
       gtag('config', 'G-GJZXB11LLJ');
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIB_STRATEGY Audit | PointAlgo</title>
+    <title>India Performance Reports | PointAlgo</title>
+    <link rel="icon" href="../../favicon.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-        body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
-        .metric-card { background: #1e293b; border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.05); }
-        .chart-container { background: #1e293b; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); position: relative; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+        
+        /* Grid Card Styles */
+        .glass-card { background: #1e293b; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.2s; }
+        .glass-card:hover { transform: translateY(-5px); border-color: #10b98133; box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.1); }
         .text-emerald { color: #10b981; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <nav class="border-b border-white/5 bg-[#0f172a]/80 backdrop-blur-md sticky top-0 z-50">
+    <nav class="border-b border-white/5 bg-[#0f172a]/90 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-emerald-500 rounded-lg"></div> 
                 <span class="text-2xl font-bold tracking-tighter italic">PointAlgo<span class="text-emerald">.</span></span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400 uppercase tracking-widest">
+            <div class="hidden md:flex gap-8 text-xs font-bold text-slate-400 uppercase tracking-widest">
                 <a href="/" class="hover:text-white transition">Home</a>
                 <a href="/reports/india/" class="text-emerald">India Reports</a>
                 <a href="/reports/global/" class="hover:text-white transition">Global</a>
@@ -37,121 +44,173 @@
         </div>
     </nav>
 
-    <main class="flex-grow max-w-2xl mx-auto px-6 py-12 w-full space-y-8">
-        
-        <div class="chart-container shadow-2xl">
-            <div class="absolute top-6 right-8 z-10 text-right">
-                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Total Profit</p>
-                <p id="currentEquity" class="text-3xl font-bold text-emerald">₹0</p>
-            </div>
-            <div style="height: 400px;">
-                <canvas id="mainChart"></canvas>
-            </div>
-        </div>
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full">
+        <header class="mb-10">
+            <h1 class="text-3xl font-bold mb-2 text-white">Live Indian Strategies</h1>
+            <p class="text-slate-400">Verified performance metrics for Nifty and BankNifty options.</p>
+        </header>
 
-        <div class="px-2">
-            <h1 id="stratName" class="text-4xl font-bold italic tracking-tight mb-1 text-white">Loading...</h1>
-            <p id="timeFrame" class="text-xl text-slate-400 font-medium">Please wait...</p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-5">
-            <div class="metric-card shadow-xl border border-transparent hover:border-emerald/20 transition">
-                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Return</p>
-                <p id="statReturn" class="text-2xl font-bold text-emerald">+0%</p>
+        <div id="strategy-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             </div>
-            <div class="metric-card shadow-xl border border-transparent hover:border-red-400/20 transition">
-                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Max Drawdown</p>
-                <p id="statDD" class="text-2xl font-bold text-red-400">-0%</p>
-            </div>
-            <div class="metric-card shadow-xl border border-transparent hover:border-white/10 transition">
-                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Win Rate</p>
-                <p id="statWin" class="text-2xl font-bold text-white">0%</p>
-            </div>
-            <div class="metric-card shadow-xl border border-transparent hover:border-white/10 transition">
-                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Total Trades</p>
-                <p id="statTrades" class="text-2xl font-bold text-white">0</p>
-            </div>
-        </div>
     </main>
 
-    <footer class="bg-[#020617] border-t border-white/5 py-12 mt-12">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-                <span class="text-xl font-bold italic">PointAlgo<span class="text-emerald">.</span></span>
-                <p class="mt-4 text-sm text-slate-500 max-w-sm">Advanced algorithmic trading solutions for retail and institutional traders in the Indian market.</p>
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                <div class="col-span-1 md:col-span-1 space-y-6">
+                    <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
+                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
+                        Advanced Quantitative <br> Intelligence Systems.
+                    </p>
+                    <div class="flex gap-5 text-xl">
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
+                    <div class="space-y-3">
+                        <a href="../../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
+                        <a href="../../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
+                        <a href="../../blog/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Blog</a>
+                        <a href="../../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
+                        <a href="../../contact/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
+                    <div class="space-y-3">
+                        <a href="../../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                        <a href="../../legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="../../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
+                        <a href="../../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
+                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#e2ff6e]">hello@pointalgo.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
+                            <p class="text-white font-medium text-sm">+91-8452035834</p>
+                        </div>
+                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
+                    </div>
+                </div>
             </div>
-            <div class="text-sm text-slate-500 space-y-4">
-                <p class="font-bold text-slate-400 uppercase tracking-widest">Regulatory Disclaimer</p>
-                <p>Investment in securities market are subject to market risks. Read all the related documents carefully before investing. Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors.</p>
-                <p>© 2026 PointAlgo India. All rights reserved.</p>
+
+            <div class="pt-12 border-t border-white/5">
+                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
+                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
+                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
+                <div class="flex gap-6">
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // YOUR LIVE API URL
         const API_URL = 'https://script.google.com/macros/s/AKfycbyJq9QOlnT1khcsspVsaqf7edo57m-ecKqEMrH4txKKidPbHRf3SweZjvFzGki6VIcESA/exec';
-        const STARTING_CAPITAL = 50000; 
+        
+        // ADD NEW STRATEGIES HERE. The Grid will automatically flow to the next line.
+        const DISPLAY_STRATEGIES = ['FIB_STRATEGY', 'GANNPI', 'POP'];
 
-        async function loadDashboard() {
+        async function initDashboard() {
             try {
                 const response = await fetch(API_URL);
-                const data = await response.json();
+                const allData = await response.json();
+                const grid = document.getElementById('strategy-grid');
 
-                // 1. Filter specifically for FIB_STRATEGY
-                const trades = data.filter(t => t.Strategy_ID === 'FIB_STRATEGY');
-
-                if (trades.length === 0) {
-                    document.getElementById('stratName').innerText = "Strategy ID Missing";
-                    return;
-                }
-
-                // 2. Set Labels
-                document.getElementById('stratName').innerText = trades[0].Symbol;
-                document.getElementById('timeFrame').innerText = trades[0].Time_frame;
-
-                // 3. Stats Engine
-                let cumulativeProfit = 0;
-                let wins = 0;
-                let maxDD = 0;
-                const labels = [];
-                const profits = [];
-
-                trades.forEach(t => {
-                    cumulativeProfit += parseFloat(t['Profit Amount'] || 0);
-                    if (parseFloat(t.PnL_Points || 0) > 0) wins++;
-                    
-                    const dd = Math.abs(parseFloat(t.Max_Drawdown || 0));
-                    if (dd > maxDD) maxDD = dd;
-
-                    labels.push(t.Exit_Time);
-                    profits.push(cumulativeProfit);
+                DISPLAY_STRATEGIES.forEach(id => {
+                    const trades = allData.filter(t => t.Strategy_ID === id);
+                    if (trades.length > 0) {
+                        renderCard(grid, trades, id);
+                    }
                 });
+            } catch (e) { console.error("Grid failed to load:", e); }
+        }
 
-                // 4. Update UI
-                document.getElementById('currentEquity').innerText = "₹" + Math.round(cumulativeProfit).toLocaleString('en-IN');
-                document.getElementById('statReturn').innerText = "+" + Math.round((cumulativeProfit / STARTING_CAPITAL) * 100) + "%";
-                document.getElementById('statDD').innerText = "-" + maxDD.toFixed(1) + "%";
-                document.getElementById('statWin').innerText = ((wins / trades.length) * 100).toFixed(0) + "%";
-                document.getElementById('statTrades').innerText = trades.length;
+        function renderCard(container, trades, id) {
+            let cumulative = 0, wins = 0, maxDD = 0;
+            const profits = trades.map(t => {
+                cumulative += parseFloat(t['Profit Amount'] || 0);
+                if (parseFloat(t.PnL_Points || 0) > 0) wins++;
+                if (Math.abs(t.Max_Drawdown || 0) > maxDD) maxDD = Math.abs(t.Max_Drawdown);
+                return cumulative;
+            });
 
-                // 5. Build Chart
-                const ctx = document.getElementById('mainChart').getContext('2d');
-                const grad = ctx.createLinearGradient(0, 0, 0, 400);
-                grad.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
-                grad.addColorStop(1, 'rgba(16, 185, 129, 0)');
+            // The Card HTML
+            const cardHtml = `
+                <div class="glass-card flex flex-col overflow-hidden">
+                    <div class="p-6 pb-2 flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-xl text-white tracking-tight">${trades[0].Symbol}</h3>
+                            <p class="text-xs text-slate-500 uppercase tracking-widest">${trades[0].Time_frame}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Total PnL</p>
+                            <p class="text-xl font-bold text-emerald">₹${Math.round(cumulative).toLocaleString('en-IN')}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="h-40 px-2 mt-2">
+                        <canvas id="chart-${id}"></canvas>
+                    </div>
 
+                    <div class="p-4 grid grid-cols-2 gap-px bg-white/5 mt-4">
+                        <div class="text-center p-2 bg-[#1e293b]">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Return</p>
+                            <p class="text-lg font-bold text-emerald">+${Math.round((cumulative/50000)*100)}%</p>
+                        </div>
+                        <div class="text-center p-2 bg-[#1e293b]">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Max DD</p>
+                            <p class="text-lg font-bold text-red-400">-${maxDD.toFixed(1)}%</p>
+                        </div>
+                        <div class="text-center p-2 bg-[#1e293b]">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Win Rate</p>
+                            <p class="text-lg font-bold text-white">${((wins/trades.length)*100).toFixed(0)}%</p>
+                        </div>
+                        <div class="text-center p-2 bg-[#1e293b]">
+                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Trades</p>
+                            <p class="text-lg font-bold text-white">${trades.length}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += cardHtml;
+
+            // Render Chart after a tiny delay so the HTML exists
+            setTimeout(() => {
+                const ctx = document.getElementById('chart-'+id).getContext('2d');
                 new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: labels,
+                        labels: trades.map(t => t.Exit_Time),
                         datasets: [{
                             data: profits,
                             borderColor: '#10b981',
-                            borderWidth: 3,
-                            backgroundColor: grad,
+                            borderWidth: 2,
                             fill: true,
-                            tension: 0.4,
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.3,
                             pointRadius: 0
                         }]
                     },
@@ -162,13 +221,10 @@
                         scales: { x: { display: false }, y: { display: false } }
                     }
                 });
-
-            } catch (err) {
-                console.error("Dashboard failed to load:", err);
-            }
+            }, 100);
         }
 
-        loadDashboard();
+        initDashboard();
     </script>
 </body>
 </html>
