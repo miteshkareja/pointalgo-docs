@@ -149,7 +149,7 @@
                 <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
                 <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
                     <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
-                        Trading in securities, commodities, and other markets involves significant risk... (Full disclaimer logic intact). All content provided on pointalgo.com is for informational and educational purposes only...
+                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.
                     </p>
                 </div>
             </div>
@@ -211,10 +211,13 @@
                 <div class="glass-card flex flex-col overflow-hidden rounded-[2rem]">
                     <div class="p-6 pb-2 flex justify-between items-start">
                         <div>
-                            <h3 class="font-bold text-xl text-white tracking-tight">${trades[0].Symbol}</h3>
-                            <p class="text-xs text-slate-400 uppercase tracking-widest">${trades[0].Time_frame}</p>
+                            <span class="inline-block bg-[#e2ff6e]/10 text-[#e2ff6e] text-[9px] font-bold px-2 py-1 rounded mb-2 uppercase tracking-widest border border-[#e2ff6e]/20">
+                                ID: ${id}
+                            </span>
+                            <h3 class="font-bold text-xl text-white tracking-tight leading-none">${trades[0].Symbol}</h3>
+                            <p class="text-xs text-slate-400 uppercase tracking-widest mt-2">${trades[0].Time_frame}</p>
                         </div>
-                        <div class="text-right">
+                        <div class="text-right mt-1">
                             <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Total PnL</p>
                             <p class="text-xl font-bold text-[#e2ff6e]">₹${Math.round(cumulative).toLocaleString('en-IN')}</p>
                         </div>
@@ -255,7 +258,7 @@
                         labels: trades.map(t => t.Exit_Time),
                         datasets: [{
                             data: profits,
-                            borderColor: '#e2ff6e', /* Matched the yellow-green accent from your home page */
+                            borderColor: '#e2ff6e', 
                             borderWidth: 2,
                             fill: true,
                             backgroundColor: 'rgba(226, 255, 110, 0.1)',
