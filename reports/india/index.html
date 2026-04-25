@@ -25,13 +25,13 @@
         .text-emerald { color: #10b981; }
     </style>
 </head>
-<body class="p-4 md:p-8 lg:p-12">
+<body class="p-4 md:p-8">
 
     <div class="max-w-xl mx-auto space-y-8">
         
         <div class="chart-container shadow-2xl">
             <div class="absolute top-6 right-8 z-10 text-right">
-                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Live Profit</p>
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Total Profit</p>
                 <p id="currentEquity" class="text-3xl font-bold text-emerald">₹0</p>
             </div>
             <div style="height: 380px;">
@@ -40,98 +40,96 @@
         </div>
 
         <div class="px-2">
-            <h1 id="stratName" class="text-4xl font-bold italic tracking-tight mb-1 text-white">Nifty Options</h1>
-            <p id="timeFrame" class="text-xl text-slate-400 font-medium">3 Min Time Frame</p>
+            <h1 id="stratName" class="text-4xl font-bold italic tracking-tight mb-1 text-white">FIB_STRATEGY</h1>
+            <p id="timeFrame" class="text-xl text-slate-400 font-medium">Loading details...</p>
         </div>
 
         <div class="grid grid-cols-2 gap-5">
-            <div class="metric-card shadow-xl transition hover:border-emerald/30 border border-transparent">
+            <div class="metric-card shadow-xl border border-transparent hover:border-emerald/20 transition">
                 <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Return</p>
                 <p id="statReturn" class="text-2xl font-bold text-emerald">+0%</p>
             </div>
-            <div class="metric-card shadow-xl transition hover:border-red-400/30 border border-transparent">
+            <div class="metric-card shadow-xl border border-transparent hover:border-red-400/20 transition">
                 <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Max Drawdown</p>
                 <p id="statDD" class="text-2xl font-bold text-red-400">-0%</p>
             </div>
-            <div class="metric-card shadow-xl transition hover:border-white/20 border border-transparent">
+            <div class="metric-card shadow-xl border border-transparent hover:border-white/10 transition">
                 <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Win Rate</p>
                 <p id="statWin" class="text-2xl font-bold text-white">0%</p>
             </div>
-            <div class="metric-card shadow-xl transition hover:border-white/20 border border-transparent">
+            <div class="metric-card shadow-xl border border-transparent hover:border-white/10 transition">
                 <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Total Trades</p>
                 <p id="statTrades" class="text-2xl font-bold text-white">0</p>
             </div>
         </div>
 
-        <div class="pt-6 border-t border-white/5">
-            <p class="text-center text-[10px] text-slate-600 uppercase tracking-[0.3em]">
-                Institutional Grade Performance Audit • Powered by PointAlgo Engine
-            </p>
-        </div>
+        <p class="text-center text-[10px] text-slate-600 uppercase tracking-[0.3em] pt-4">
+            Institutional Audit • Verified by PointAlgo
+        </p>
     </div>
 
     <script>
-        const API_URL = 'https://script.google.com/macros/s/AKfycbx81G3YEcnIs0EFwxwqPq4SMfyNNC7iaCenufn5Y35NXvKLH8QXy9whEzRP2U-ibI1MNw/exec';
-        const STARTING_CAPITAL = 100000; // Adjust this to your specific margin
+        // YOUR LIVE API URL
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyJq9QOlnT1khcsspVsaqf7edo57m-ecKqEMrH4txKKidPbHRf3SweZjvFzGki6VIcESA/exec';
+        const STARTING_CAPITAL = 50000; // Change this as per your Nifty margin
 
-        async function fetchDashboardData() {
+        async function loadDashboard() {
             try {
                 const response = await fetch(API_URL);
                 const data = await response.json();
 
-                // 1. FILTER: Isolate the FIB_STRATEGY data
+                // 1. Filter for FIB_STRATEGY
                 const trades = data.filter(t => t.Strategy_ID === 'FIB_STRATEGY');
-                
-                if(trades.length === 0) {
-                    document.getElementById('stratName').innerText = "Data Not Found";
+
+                if (trades.length === 0) {
+                    document.getElementById('stratName').innerText = "Strategy ID Missing";
                     return;
                 }
 
-                // 2. HEADER UPDATES
+                // 2. Set Labels
                 document.getElementById('stratName').innerText = trades[0].Symbol;
                 document.getElementById('timeFrame').innerText = trades[0].Time_frame;
 
-                // 3. STATISTICAL ENGINE
+                // 3. Stats Engine
                 let cumulativeProfit = 0;
                 let wins = 0;
                 let maxDD = 0;
-                const chartLabels = [];
-                const chartData = [];
+                const labels = [];
+                const profits = [];
 
-                trades.forEach(trade => {
-                    cumulativeProfit += parseFloat(trade['Profit Amount']);
-                    if (parseFloat(trade.PnL_Points) > 0) wins++;
+                trades.forEach(t => {
+                    cumulativeProfit += parseFloat(t['Profit Amount']);
+                    if (parseFloat(t.PnL_Points) > 0) wins++;
                     
-                    const dd = Math.abs(parseFloat(trade.Max_Drawdown));
+                    const dd = Math.abs(parseFloat(t.Max_Drawdown));
                     if (dd > maxDD) maxDD = dd;
 
-                    chartLabels.push(trade.Exit_Time);
-                    chartData.push(cumulativeProfit);
+                    labels.push(t.Exit_Time);
+                    profits.push(cumulativeProfit);
                 });
 
-                // 4. UI METRIC UPDATES
+                // 4. Update UI
                 document.getElementById('currentEquity').innerText = "₹" + Math.round(cumulativeProfit).toLocaleString('en-IN');
                 document.getElementById('statReturn').innerText = "+" + Math.round((cumulativeProfit / STARTING_CAPITAL) * 100) + "%";
                 document.getElementById('statDD').innerText = "-" + maxDD.toFixed(1) + "%";
                 document.getElementById('statWin').innerText = ((wins / trades.length) * 100).toFixed(1) + "%";
                 document.getElementById('statTrades').innerText = trades.length;
 
-                // 5. CHART.JS RENDERING
+                // 5. Build Chart
                 const ctx = document.getElementById('mainChart').getContext('2d');
-                
-                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
-                gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+                const grad = ctx.createLinearGradient(0, 0, 0, 400);
+                grad.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+                grad.addColorStop(1, 'rgba(16, 185, 129, 0)');
 
                 new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: chartLabels,
+                        labels: labels,
                         datasets: [{
-                            data: chartData,
+                            data: profits,
                             borderColor: '#10b981',
                             borderWidth: 3,
-                            backgroundColor: gradient,
+                            backgroundColor: grad,
                             fill: true,
                             tension: 0.4,
                             pointRadius: 0
@@ -141,22 +139,16 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: { legend: { display: false } },
-                        scales: {
-                            x: { display: false },
-                            y: { 
-                                display: false,
-                                suggestedMin: Math.min(...chartData) - 500
-                            }
-                        }
+                        scales: { x: { display: false }, y: { display: false } }
                     }
                 });
 
             } catch (err) {
-                console.error("Dashboard Engine Failed:", err);
+                console.error("Dashboard failed to load:", err);
             }
         }
 
-        fetchDashboardData();
+        loadDashboard();
     </script>
 </body>
 </html>
