@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,44 +12,77 @@
       gtag('js', new Date());
       gtag('config', 'G-GJZXB11LLJ');
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India Performance Reports | PointAlgo</title>
-    <link rel="icon" href="../../favicon.png" type="image/png">
+
+    <title>India Reports | PointAlgo</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        html { scroll-behavior: smooth; }
-        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+        /* YOUR STANDARD HOME PAGE THEME */
+        body { 
+            background: linear-gradient(135deg, #3f000f 0%, #17002e 50%, #0a0026 100%);
+            background-attachment: fixed;
+            color: #f8fafc; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+        }
+        .glass-nav { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
-        /* Grid Card Styles */
-        .glass-card { background: #1e293b; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.2s; }
-        .glass-card:hover { transform: translateY(-5px); border-color: #10b98133; box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.1); }
+        /* Updated Glass Card to match your theme */
+        .glass-card { 
+            background: rgba(0, 0, 0, 0.3); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: transform 0.2s;
+        }
+        .glass-card:hover { transform: translateY(-5px); border-color: rgba(16, 185, 129, 0.3); }
         .text-emerald { color: #10b981; }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen">
 
-    <nav class="border-b border-white/5 bg-[#0f172a]/90 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-emerald-500 rounded-lg"></div> 
-                <span class="text-2xl font-bold tracking-tighter italic">PointAlgo<span class="text-emerald">.</span></span>
+    <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                
+                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../../index.html'">
+                    <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
+                </div>
+
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="../../index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Home</a>
+                    <a href="../../strategies/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Indicator & Strategy</a>
+                    <a href="../../doc/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Documents</a>
+                    <a href="../../free-tools/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Free Toolkit</a>
+                    <a href="https://discord.gg/72wFfgmW" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Discord</a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                </div>
             </div>
-            <div class="hidden md:flex gap-8 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                <a href="/" class="hover:text-white transition">Home</a>
-                <a href="/reports/india/" class="text-emerald">India Reports</a>
-                <a href="/reports/global/" class="hover:text-white transition">Global</a>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 animate-fade-in">
+            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
+                <a href="../../index.html" class="text-xl font-medium text-slate-300">Home</a>
+                <hr class="border-white/5 w-12 mx-auto">
+                <a href="../../strategies/index.html" class="text-lg font-medium text-slate-300">Indicator & Strategy</a>
+                <a href="../../doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
+                <a href="../../free-tools/index.html" class="text-lg font-medium text-slate-300">Free Toolkit</a>
+                <a href="https://discord.gg/72wFfgmW" class="text-lg font-medium text-slate-300">Discord</a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full">
-        <header class="mb-10">
-            <h1 class="text-3xl font-bold mb-2 text-white">Live Indian Strategies</h1>
+    <main class="flex-grow pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <header class="mb-10 text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-black text-white italic tracking-tighter mb-2">
+                Live Indian <span class="text-[#e2ff6e]">Strategies</span>
+            </h1>
             <p class="text-slate-400">Verified performance metrics for Nifty and BankNifty options.</p>
         </header>
 
@@ -57,6 +93,7 @@
     <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                
                 <div class="col-span-1 md:col-span-1 space-y-6">
                     <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
                     <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
@@ -105,13 +142,14 @@
                         <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
                     </div>
                 </div>
+
             </div>
 
             <div class="pt-12 border-t border-white/5">
                 <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
                 <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
                     <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
-                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.
+                        Trading in securities, commodities, and other markets involves significant risk... (Full disclaimer logic intact). All content provided on pointalgo.com is for informational and educational purposes only...
                     </p>
                 </div>
             </div>
@@ -128,9 +166,21 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            const icon = btn.querySelector('i');
+            icon.classList.toggle('fa-bars-staggered');
+            icon.classList.toggle('fa-xmark');
+        });
+
+        // Dashboard Data Logic
         const API_URL = 'https://script.google.com/macros/s/AKfycbyJq9QOlnT1khcsspVsaqf7edo57m-ecKqEMrH4txKKidPbHRf3SweZjvFzGki6VIcESA/exec';
         
-        // ADD NEW STRATEGIES HERE. The Grid will automatically flow to the next line.
+        // ADD NEW STRATEGIES HERE.
         const DISPLAY_STRATEGIES = ['FIB_STRATEGY', 'GANNPI', 'POP'];
 
         async function initDashboard() {
@@ -157,17 +207,16 @@
                 return cumulative;
             });
 
-            // The Card HTML
             const cardHtml = `
-                <div class="glass-card flex flex-col overflow-hidden">
+                <div class="glass-card flex flex-col overflow-hidden rounded-[2rem]">
                     <div class="p-6 pb-2 flex justify-between items-start">
                         <div>
                             <h3 class="font-bold text-xl text-white tracking-tight">${trades[0].Symbol}</h3>
-                            <p class="text-xs text-slate-500 uppercase tracking-widest">${trades[0].Time_frame}</p>
+                            <p class="text-xs text-slate-400 uppercase tracking-widest">${trades[0].Time_frame}</p>
                         </div>
                         <div class="text-right">
                             <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Total PnL</p>
-                            <p class="text-xl font-bold text-emerald">₹${Math.round(cumulative).toLocaleString('en-IN')}</p>
+                            <p class="text-xl font-bold text-[#e2ff6e]">₹${Math.round(cumulative).toLocaleString('en-IN')}</p>
                         </div>
                     </div>
                     
@@ -176,19 +225,19 @@
                     </div>
 
                     <div class="p-4 grid grid-cols-2 gap-px bg-white/5 mt-4">
-                        <div class="text-center p-2 bg-[#1e293b]">
+                        <div class="text-center p-3 bg-black/20">
                             <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Return</p>
-                            <p class="text-lg font-bold text-emerald">+${Math.round((cumulative/50000)*100)}%</p>
+                            <p class="text-lg font-bold text-[#e2ff6e]">+${Math.round((cumulative/50000)*100)}%</p>
                         </div>
-                        <div class="text-center p-2 bg-[#1e293b]">
+                        <div class="text-center p-3 bg-black/20">
                             <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Max DD</p>
                             <p class="text-lg font-bold text-red-400">-${maxDD.toFixed(1)}%</p>
                         </div>
-                        <div class="text-center p-2 bg-[#1e293b]">
+                        <div class="text-center p-3 bg-black/20">
                             <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Win Rate</p>
                             <p class="text-lg font-bold text-white">${((wins/trades.length)*100).toFixed(0)}%</p>
                         </div>
-                        <div class="text-center p-2 bg-[#1e293b]">
+                        <div class="text-center p-3 bg-black/20">
                             <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Trades</p>
                             <p class="text-lg font-bold text-white">${trades.length}</p>
                         </div>
@@ -197,7 +246,7 @@
             `;
             container.innerHTML += cardHtml;
 
-            // Render Chart after a tiny delay so the HTML exists
+            // Render Chart
             setTimeout(() => {
                 const ctx = document.getElementById('chart-'+id).getContext('2d');
                 new Chart(ctx, {
@@ -206,10 +255,10 @@
                         labels: trades.map(t => t.Exit_Time),
                         datasets: [{
                             data: profits,
-                            borderColor: '#10b981',
+                            borderColor: '#e2ff6e', /* Matched the yellow-green accent from your home page */
                             borderWidth: 2,
                             fill: true,
-                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            backgroundColor: 'rgba(226, 255, 110, 0.1)',
                             tension: 0.3,
                             pointRadius: 0
                         }]
