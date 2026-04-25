@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GJZXB11LLJ');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PointAlgo | India Performance Audit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { 
+            background-color: #1a1f2c; 
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+        }
+        .metric-card { background: #252b39; border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.05); }
+        .chart-container { background: #252b39; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .text-emerald { color: #10b981; }
+    </style>
+</head>
+<body class="p-4 md:p-8 lg:p-12">
+
+    <div class="max-w-xl mx-auto space-y-8">
+        
+        <div class="chart-container relative">
+            <div class="absolute top-6 right-8 z-10 text-right">
+                <p class="text-xs text-slate-500 font-bold uppercase tracking-widest">Total Profit</p>
+                <p id="currentEquity" class="text-3xl font-bold text-emerald">₹0</p>
+            </div>
+            <div style="height: 380px;">
+                <canvas id="mainChart"></canvas>
+            </div>
+        </div>
+
+        <div class="px-2">
+            <h1 id="stratName" class="text-4xl font-bold italic tracking-tight mb-1">Loading...</h1>
+            <p id="timeFrame" class="text-xl text-slate-400 font-medium">Please wait...</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-5">
+            <div class="metric-card shadow-xl">
+                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Return</p>
+                <p id="statReturn" class="text-2xl font-bold text-emerald">+0%</p>
+            </div>
+            <div class="metric-card shadow-xl">
+                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Max Drawdown</p>
+                <p id="statDD" class="text-2xl font-bold text-red-400">-0%</p>
+            </div>
+            <div class="metric-card shadow-xl">
+                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Win Rate</p>
+                <p id="statWin" class="text-2xl font-bold text-white">0%</p>
+            </div>
+            <div class="metric-card shadow-xl">
+                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">Total Trades</p>
+                <p id="statTrades" class="text-2xl font-bold text-white">0</p>
+            </div>
+        </div>
+
+        <p class="text-center text-[10px] text-slate-600 uppercase tracking-[0.2em] pt-4">
+            Institutional Grade Audit • Verified by PointAlgo Engine
+        </p>
+    </div>
+
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbXsd6GghaI4oMpyiEfzS5GN77hahpZEow8t6aJyOFkIb78hCJH-787Z7D3EXvhH_SlcA/exec';
+
+        async function fetchDashboardData() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+
+                // 1. FILTERING (Set to FIB_STRATEGY by default)
+                const trades = data.filter(t => t.Strategy_ID === 'FIB_STRATEGY');
+                
+                if(trades.length === 0) return;
+
+                // 2. UI HEADER UPDATES
+                document.getElementById('stratName').innerText = trades[0].Symbol;
+                document.getElementById('timeFrame').innerText = trades[0].Time_frame;
+
+                // 3. STATISTICAL CALCULATIONS
+                let cumulativeProfit = 0;
+                let wins = 0;
+                let maxDD = 0;
+                const chartLabels = [];
+                const chartData = [];
+
+                trades.forEach(trade => {
+                    cumulativeProfit += parseFloat(trade['Profit Amount']);
+                    if (parseFloat(trade.PnL_Points) > 0) wins++;
+                    
+                    // Track the most extreme drawdown
+                    const dd = Math.abs(parseFloat(trade.Max_Drawdown));
+                    if (dd > maxDD) maxDD = dd;
+
+                    chartLabels.push(trade.Exit_Time);
+                    chartData.push(cumulativeProfit);
+                });
+
+                // 4. UPDATE METRIC CARDS
+                document.getElementById('currentEquity').innerText = "₹" + Math.round(cumulativeProfit).toLocaleString('en-IN');
+                document.getElementById('statReturn').innerText = "+" + Math.round((cumulativeProfit / 100000) * 100) + "%"; // Assuming 1L margin
+                document.getElementById('statDD').innerText = "-" + maxDD.toFixed(1) + "%";
+                document.getElementById('statWin').innerText = ((wins / trades.length) * 100).toFixed(1) + "%";
+                document.getElementById('statTrades').innerText = trades.length;
+
+                // 5. RENDER THE AREA CHART
+                const ctx = document.getElementById('mainChart').getContext('2d');
+                
+                // Create Gradient for the fill
+                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+                gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: chartLabels,
+                        datasets: [{
+                            data: chartData,
+                            borderColor: '#10b981',
+                            borderWidth: 3,
+                            backgroundColor: gradient,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            pointHitRadius: 10
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+
+            } catch (err) {
+                console.error("Audit Engine Error:", err);
+            }
+        }
+
+        fetchDashboardData();
+    </script>
+</body>
+</html>
