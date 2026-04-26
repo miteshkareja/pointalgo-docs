@@ -40,12 +40,46 @@
                     <img src="strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
                 </div>
 
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="index.html" class="text-base font-bold text-blue-400 border-b-2 border-blue-400 pb-1">Home</a>
-                    <a href="strategies/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Indicator & Strategy</a>
-                    <a href="doc/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Documents</a>
-                    <a href="../free-tools/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Free Toolkit</a>
-                    <a href="https://discord.gg/72wFfgmW" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Discord</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-bold text-blue-400 border-b-2 border-blue-400 pb-1">HOME</a>
+                    
+                    <a href="strategies/index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            PERFORMANCE <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="reports/global/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">GLOBAL MARKET</a>
+                                <a href="reports/india/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">INDIAN MARKET</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            RESOURCES <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="doc/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DOCUMENTATION</a>
+                                <a href="blog/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">BLOGS</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            COMMUNITY <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="https://discord.gg/72wFfgmW" target="_blank" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DISCORD</a>
+                                <a href="free-tools/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">FREE TOOLKIT</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="md:hidden">
@@ -53,17 +87,6 @@
                         <i class="fa-solid fa-bars-staggered"></i>
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 animate-fade-in">
-            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
-                <a href="index.html" class="text-xl font-bold text-blue-400">Home</a>
-                <hr class="border-white/5 w-12 mx-auto">
-                <a href="strategies/index.html" class="text-lg font-medium text-slate-300">Indicator & Strategy</a>
-                <a href="doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
-                <a href="#" class="text-lg font-medium text-slate-300">Free Toolkit</a>
-                <a href="#" class="text-lg font-medium text-slate-300">Discord</a>
             </div>
         </div>
     </nav>
