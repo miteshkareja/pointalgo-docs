@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -11,6 +12,7 @@
       gtag('js', new Date());
       gtag('config', 'G-GJZXB11LLJ');
     </script>
+
     <title>PointAlgo | High-Frequency Quant Trading Intelligence</title>
     <meta name="description" content="Institutional-grade quantitative trading tools and automated strategy frameworks for professional traders.">
     
@@ -26,6 +28,24 @@
         }
         .glass-nav { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-15px) translateX(10px); }
+        }
+        .animate-float-slow { animation: float 7s ease-in-out infinite; }
+
+        @keyframes slideLoop {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            50% { transform: translateX(-15px) translateY(10px); }
+        }
+        .animate-slide-loop { animation: slideLoop 9s ease-in-out infinite; }
+
+        @keyframes floatBenefits {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-30px) scale(1.02); }
+        }
+        .animate-float-benefits { animation: floatBenefits 5s ease-in-out infinite; }
     </style>
 </head>
 <body class="antialiased">
@@ -92,27 +112,20 @@
             <div class="px-6 py-10 space-y-6 flex flex-col text-center">
                 <a href="index.html" class="text-xl font-bold text-blue-400">HOME</a>
                 <hr class="border-white/5 w-12 mx-auto">
-                <a href="strategies/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">STRATEGIES</a>
-                
+                <a href="strategies/index.html" class="text-lg font-medium text-slate-300">INDICATORS</a>
                 <div class="py-2 border-y border-white/5">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Live Performance</p>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-4">Live Performance</p>
                     <a href="reports/india/index.html" class="block text-lg font-medium text-slate-300 mb-4">INDIAN MARKET</a>
                     <a href="reports/global/index.html" class="block text-lg font-medium text-slate-300">GLOBAL MARKET</a>
                 </div>
-
-                <div class="py-2 border-b border-white/5">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Resources</p>
-                    <a href="doc/index.html" class="block text-lg font-medium text-slate-300 mb-4">DOCUMENTS</a>
-                    <a href="blog/index.html" class="block text-lg font-medium text-slate-300">BLOGS</a>
-                </div>
-
-                <a href="free-tools/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">FREE TOOLKIT</a>
-                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300 uppercase tracking-widest">DISCORD</a>
+                <a href="doc/index.html" class="text-lg font-medium text-slate-300">DOCUMENTS</a>
+                <a href="free-tools/index.html" class="text-lg font-medium text-slate-300">FREE TOOLKIT</a>
+                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300">DISCORD</a>
             </div>
         </div>
     </nav>
 
-   <main class="pt-48 pb-32 px-6 lg:px-8 max-w-7xl mx-auto">
+    <main class="pt-48 pb-32 px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center mb-20 space-y-6">
             <h1 class="text-5xl md:text-8xl font-black text-white leading-tight tracking-tighter">
                 Trade with Structure.<br>
@@ -145,75 +158,212 @@
         </div>
     </main>
 
-    <section class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
+    <section class="py-20 border-t border-white/5 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
-                <div class="col-span-1 md:col-span-1 space-y-6">
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="relative">
+                    <div class="glass-card rounded-3xl p-1 shadow-2xl border-white/5 relative z-10 overflow-hidden">
+                        <img src="Home/benefits1.gif" alt="PointAlgo Dashboard" class="rounded-2xl w-full h-auto">
+                    </div>
+                    <div class="absolute -top-10 -left-6 md:-left-12 w-48 md:w-64 z-20 animate-float-benefits">
+                        <div class="glass-card p-1 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-white/10">
+                            <img src="Home/benefits2.png" alt="Overlay Detail" class="rounded-xl w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <h2 class="text-4xl font-black text-white italic tracking-tighter mb-4">
+                        The <span class="text-[#e2ff6e]">Quant</span> Edge
+                    </h2>
+                    <div class="grid gap-6">
+                        <div class="flex gap-4">
+                            <div class="text-[#e2ff6e] text-xl mt-1"><i class="fa-solid fa-bullseye"></i></div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg uppercase tracking-tight">Precision Filtering</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">Kill market noise. Trade only when signal-to-noise ratios favor your edge.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-[#e2ff6e] text-xl mt-1"><i class="fa-solid fa-microchip"></i></div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg uppercase tracking-tight">Statistical Logic</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">No "guesses." Systems built on mathematical distributions and price probability.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="text-[#e2ff6e] text-xl mt-1"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg uppercase tracking-tight">Hardcoded Risk</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">Integrated stop-loss and dynamic position-sizing in every script.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5 bg-black/20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black text-white italic tracking-tighter">
+                    High-Performance <span class="text-blue-400">Infrastructure</span>
+                </h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base font-light">
+                    We provide the mathematical frameworks and technical files required to run a disciplined, quantitative trading business.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="glass-card rounded-[2.5rem] p-2 shadow-2xl border-white/5 overflow-hidden">
+                    <img src="Home/home_section3ez.gif" alt="PointAlgo Infrastructure" class="rounded-[2rem] w-full h-auto opacity-80">
+                </div>
+                <div class="space-y-12">
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                            <i class="fa-solid fa-code text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg uppercase tracking-tight mb-2">Invite-Only Indicators (TV)</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Suite of Pine Script v6 tools built on statistical models for non-repainting execution zones.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-file-code text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg uppercase tracking-tight mb-2">Systematic Files (MT5)</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Execution-ready .ex5 files. Deploy hardcoded quantitative logic directly to your MT5 environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5 bg-gradient-to-b from-transparent to-black/30">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black text-white italic tracking-tighter">
+                    Quant-Driven <span class="text-[#e2ff6e]">TradingView</span> Indicators
+                </h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base font-light italic">
+                    Statistical Edge. Mathematically Validated.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div class="relative group">
+                    <div class="glass-card rounded-[2.5rem] p-2 shadow-[0_0_80px_rgba(0,0,0,0.5)] border-white/5 overflow-hidden transition-transform duration-500 hover:scale-[1.01]">
+                        <img src="Home/section4.gif" alt="TradingView Suite" class="rounded-[2rem] w-full h-auto opacity-90 block">
+                    </div>
+                    <div class="absolute -inset-4 bg-[#e2ff6e]/5 blur-3xl -z-10 rounded-full"></div>
+                </div>
+                <div class="space-y-10">
+                    <p class="text-slate-200 text-lg leading-relaxed font-light">
+                        Move beyond subjective chart patterns. Our Pine Script v6 indicators are engineered to prioritize <span class="text-white font-bold">statistical probability</span> over retail guesswork.
+                    </p>
+                    <div class="pt-6">
+                        <a href="strategies/index.html" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/20 px-10 py-3 rounded-xl font-bold transition-all shadow-xl">
+                            Get Access
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5 bg-black/40">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black text-white italic tracking-tighter">
+                    Algorithmic <span class="text-emerald-400">MT5</span> Expert Advisors
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div class="relative group">
+                    <div class="glass-card rounded-[2.5rem] p-2 shadow-[0_0_80px_rgba(0,0,0,0.6)] border-white/5 overflow-hidden transition-all duration-500 hover:scale-[1.01]">
+                        <img src="Home/MT5section.gif" alt="MT5 Terminal" class="rounded-[2rem] w-full h-auto opacity-90 block">
+                    </div>
+                </div>
+                <div class="space-y-10">
+                    <p class="text-slate-200 text-lg leading-relaxed font-light">
+                        Turn your quantitative edge into a 24/7 automated machine. Millisecond precision execution.
+                    </p>
+                    <div class="pt-6">
+                        <a href="strategies/index.html" class="inline-block bg-white text-black px-10 py-3 rounded-xl font-bold transition-all shadow-xl hover:bg-slate-200">
+                            Get Access
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <h2 class="text-4xl md:text-5xl font-black text-white italic tracking-tighter">
+                        Strategies & <span class="text-blue-400">Screeners</span>
+                    </h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-slate-400 text-sm"><i class="fa-solid fa-check text-blue-400"></i> Pre-built backtested strategies.</li>
+                        <li class="flex items-center gap-3 text-slate-400 text-sm"><i class="fa-solid fa-check text-blue-400"></i> Custom price action screeners.</li>
+                    </ul>
+                    <div class="pt-4">
+                        <a href="strategies/index.html" class="inline-block bg-black hover:bg-slate-900 text-white border border-white/20 px-10 py-3 rounded-xl font-bold shadow-xl">Get Access</a>
+                    </div>
+                </div>
+                <div class="glass-card rounded-[2.5rem] p-2 border-white/5 overflow-hidden">
+                    <img src="Home/screeners_section.gif" alt="Screeners" class="rounded-[2rem] w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5 bg-gradient-to-r from-red-900/10 via-transparent to-blue-900/10">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+            <h2 class="text-3xl font-bold text-white">Join for the latest</h2>
+            <form class="flex flex-col md:flex-row gap-4 justify-center">
+                <input type="email" placeholder="Enter your email here *" class="bg-white text-black px-6 py-4 rounded-xl w-full md:w-96">
+                <button type="submit" class="bg-black text-white border border-white/20 px-10 py-4 rounded-xl font-bold">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20">
+                <div class="space-y-6">
                     <img src="strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
-                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
-                        Advanced Quantitative <br> Intelligence Systems.
-                    </p>
-                    <div class="flex gap-5 text-xl">
-                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
-                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    <p class="text-slate-500 text-[11px] uppercase tracking-widest">Advanced Quantitative Intelligence.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-[10px] uppercase mb-6 tracking-widest">Platform</h4>
+                    <div class="space-y-3 text-sm text-slate-400">
+                        <a href="index.html" class="block hover:text-white">Home</a>
+                        <a href="strategies/index.html" class="block hover:text-white">Strategies</a>
+                        <a href="doc/index.html" class="block hover:text-white">Docs</a>
                     </div>
                 </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
-                    <div class="space-y-3">
-                        <a href="index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
-                        <a href="strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
-                        <a href="blog/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Blog</a>
-                        <a href="doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
-                        <a href="contact/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Contact Us</a>
+                <div>
+                    <h4 class="text-white font-bold text-[10px] uppercase mb-6 tracking-widest">Legal</h4>
+                    <div class="space-y-3 text-sm text-slate-400">
+                        <a href="legal/terms.html" class="block hover:text-white">Terms</a>
+                        <a href="legal/privacy.html" class="block hover:text-white">Privacy</a>
                     </div>
                 </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal</h4>
-                    <div class="space-y-3">
-                        <a href="legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
-                        <a href="legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
-                        <a href="legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
-                        <a href="about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
-                    <div class="space-y-4">
-                        <div class="space-y-1">
-                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
-                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#e2ff6e]">hello@pointalgo.com</a>
-                        </div>
-                        <div class="space-y-1">
-                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
-                            <p class="text-white font-medium text-sm">+91-8452035834</p>
-                        </div>
-                        <p class="text-slate-400 text-xs italic">Mumbai, India</p>
+                <div>
+                    <h4 class="text-white font-bold text-[10px] uppercase mb-6 tracking-widest">Connect</h4>
+                    <div class="space-y-1 text-sm text-white">
+                        <a href="mailto:hello@pointalgo.com" class="hover:text-[#e2ff6e]">hello@pointalgo.com</a>
+                        <p class="text-slate-400 text-xs">Mumbai, India</p>
                     </div>
                 </div>
             </div>
-
-            <div class="pt-12 border-t border-white/5">
-                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer</h4>
-                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
-                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
-                        Trading in securities involves significant risk. PointAlgo.com provides quantitative tools and educational content and is not a SEBI registered investment advisor...
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
-                <div class="flex gap-6">
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
-                </div>
+            <div class="pt-12 border-t border-white/5 text-[10px] text-slate-500 uppercase tracking-widest flex justify-between">
+                <p>© 2026 PointAlgo Quantitative Intelligence</p>
+                <p>Built for Logic</p>
             </div>
         </div>
     </footer>
@@ -225,7 +375,7 @@
 
             if (btn && menu) {
                 btn.addEventListener('click', (e) => {
-                    e.stopPropagation(); 
+                    e.stopPropagation();
                     menu.classList.toggle('hidden');
                     const icon = btn.querySelector('i');
                     if (icon) {
