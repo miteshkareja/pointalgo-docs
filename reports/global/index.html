@@ -2,6 +2,9 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,10 +12,8 @@
       gtag('js', new Date());
       gtag('config', 'G-GJZXB11LLJ');
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../../favicon.png">
+
     <title>Global Reports | PointAlgo</title>
-    <meta name="description" content="Explore professional quantitative trading strategies for TradingView. PointAlgo offers structured frameworks for Nifty, Gold, Crypto, and Forex.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -240,10 +241,10 @@
             initDashboard();
         });
 
-        // YOUR NEW GLOBAL APPS SCRIPT URL
+        // YOUR GLOBAL APPS SCRIPT URL
         const API_URL = 'https://script.google.com/macros/s/AKfycbw3vhmWE9JmAjz4MDsh4InKEdZ6tGNtLdmwgoOGGoHcubz7h2FL-C-dNz0cBdnRET7M9w/exec';
         
-        // ADD YOUR GLOBAL STRATEGY IDs HERE (Must match Google Sheet Column B exactly)
+        // YOUR GLOBAL STRATEGY IDs
         const DISPLAY_STRATEGIES = [
             'PA_SUPPLY_DEMAND', 
             'POP', 
@@ -349,10 +350,10 @@
                         labels: trades.map(t => t.Exit_Time),
                         datasets: [{
                             data: profits,
-                            borderColor: '#e2ff6e', 
+                            borderColor: '#00e676', 
                             borderWidth: 2,
                             fill: true,
-                            backgroundColor: 'rgba(226, 255, 110, 0.1)',
+                            backgroundColor: 'rgba(0, 230, 118, 0.1)',
                             tension: 0.3,
                             pointRadius: 0
                         }]
