@@ -20,7 +20,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
-        /* YOUR STANDARD HOME PAGE THEME */
         body { 
             background: linear-gradient(135deg, #3f000f 0%, #17002e 50%, #0a0026 100%);
             background-attachment: fixed;
@@ -28,8 +27,6 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
         }
         .glass-nav { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        
-        /* Updated Glass Card to match your theme */
         .glass-card { 
             background: rgba(0, 0, 0, 0.3); 
             backdrop-filter: blur(10px); 
@@ -50,30 +47,76 @@
                     <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
                 </div>
 
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="../../index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Home</a>
-                    <a href="../../strategies/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Indicator & Strategy</a>
-                    <a href="../../doc/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Documents</a>
-                    <a href="../../free-tools/index.html" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Free Toolkit</a>
-                    <a href="https://discord.gg/72wFfgmW" class="text-base font-semibold text-slate-300 hover:text-white transition-colors">Discord</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../../index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">HOME</a>
+                    
+                    <a href="../../strategies/index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-blue-400 border-b-2 border-blue-400 pb-1 uppercase tracking-widest cursor-pointer py-2">
+                            PERFORMANCE <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../global/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">GLOBAL MARKET</a>
+                                <a href="index.html" class="block px-5 py-3 text-xs font-bold text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">INDIAN MARKET</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            RESOURCES <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../../doc/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DOCUMENTATION</a>
+                                <a href="../../blog/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">BLOGS</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            COMMUNITY <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="https://discord.gg/72wFfgmW" target="_blank" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DISCORD</a>
+                                <a href="../../free-tools/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">FREE TOOLKIT</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none">
+                <div class="md:hidden relative z-[70]">
+                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none hover:text-[#e2ff6e] transition-colors">
                         <i class="fa-solid fa-bars-staggered"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 animate-fade-in">
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 z-[60] animate-fade-in">
             <div class="px-6 py-10 space-y-6 flex flex-col text-center">
-                <a href="../../index.html" class="text-xl font-medium text-slate-300">Home</a>
+                <a href="../../index.html" class="text-xl font-bold text-slate-300">HOME</a>
                 <hr class="border-white/5 w-12 mx-auto">
-                <a href="../../strategies/index.html" class="text-lg font-medium text-slate-300">Indicator & Strategy</a>
-                <a href="../../doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
-                <a href="../../free-tools/index.html" class="text-lg font-medium text-slate-300">Free Toolkit</a>
-                <a href="https://discord.gg/72wFfgmW" class="text-lg font-medium text-slate-300">Discord</a>
+                <a href="../../strategies/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                
+                <div class="py-2 border-y border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Performance</p>
+                    <a href="../global/index.html" class="block text-lg font-medium text-slate-300 mb-4">GLOBAL MARKET</a>
+                    <a href="index.html" class="block text-lg font-medium text-blue-400">INDIAN MARKET</a>
+                </div>
+
+                <div class="py-2 border-b border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Resources</p>
+                    <a href="../../doc/index.html" class="block text-lg font-medium text-slate-300 mb-4">DOCUMENTATION</a>
+                    <a href="../../blog/index.html" class="block text-lg font-medium text-slate-300">BLOGS</a>
+                </div>
+
+                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300 uppercase tracking-widest">DISCORD</a>
+                <a href="../../free-tools/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">FREE TOOLKIT</a>
             </div>
         </div>
     </nav>
@@ -162,48 +205,57 @@
                     <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
                 </div>
             </div>
-
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle Logic
-        const btn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Logic
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            const icon = btn.querySelector('i');
-            icon.classList.toggle('fa-bars-staggered');
-            icon.classList.toggle('fa-xmark');
-        });
-        
-        // Close menu when clicking a link
-        const navLinks = menu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                const icon = btn.querySelector('i');
-                icon.classList.add('fa-bars-staggered');
-                icon.classList.remove('fa-xmark');
-            });
+            if (btn && menu) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    menu.classList.toggle('hidden');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars-staggered');
+                        icon.classList.toggle('fa-xmark');
+                    }
+                });
+
+                document.addEventListener('click', (event) => {
+                    if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                        menu.classList.add('hidden');
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.add('fa-bars-staggered');
+                            icon.classList.remove('fa-xmark');
+                        }
+                    }
+                });
+            }
+
+            // Start Dashboard Engine
+            initDashboard();
         });
 
-        // Dashboard Data Logic
+        // YOUR INDIAN APPS SCRIPT URL
         const API_URL = 'https://script.google.com/macros/s/AKfycbyJq9QOlnT1khcsspVsaqf7edo57m-ecKqEMrH4txKKidPbHRf3SweZjvFzGki6VIcESA/exec';
         
-        // ADD NEW STRATEGIES HERE.
+        // YOUR INDIAN STRATEGY IDs
         const DISPLAY_STRATEGIES = [
-    'FIB_STRATEGY', 
-    'GANNPI', 
-    'POP', 
-    'SMART_MONEY_FLOW', 
-    'MOMENTUM_X', 
-    'VOLATILITY_BOT', 
-    'ORB_MASTER', 
-    'TREND_RIDER', 
-    'MEAN_REVERSION'
-];
+            'FIB_STRATEGY', 
+            'GANNPI', 
+            'POP', 
+            'SMART_MONEY_FLOW', 
+            'MOMENTUM_X', 
+            'VOLATILITY_BOT', 
+            'ORB_MASTER', 
+            'TREND_RIDER', 
+            'MEAN_REVERSION'
+        ];
 
         async function initDashboard() {
             try {
@@ -229,14 +281,13 @@
                 return cumulative;
             });
 
-            // Date formatting logic (finds oldest trade and extracts date)
+            // Date formatting logic
             let date1 = new Date(trades[0].Entry_Time);
             let date2 = new Date(trades[trades.length - 1].Entry_Time);
             let oldestTrade = (date1 < date2) ? trades[0] : trades[trades.length - 1];
             let oldestRawDate = oldestTrade.Entry_Time || oldestTrade.Exit_Time || "";
-            let startDate = oldestRawDate.split(' ')[0]; // usually extracts YYYY-MM-DD
+            let startDate = oldestRawDate.split(' ')[0]; 
             
-            // Reformat to DD-MM-YYYY
             if (startDate.includes('-')) {
                 let parts = startDate.split('-');
                 if (parts[0].length === 4) {
@@ -321,8 +372,6 @@
                 });
             }, 100);
         }
-
-        initDashboard();
     </script>
 </body>
 </html>
