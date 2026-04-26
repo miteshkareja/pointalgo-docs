@@ -26,41 +26,91 @@
         .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen">
 
-    <nav class="glass-nav fixed w-full z-50 top-0 transition-all">
+    <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
-                <div class="flex-shrink-0 cursor-pointer" onclick="window.location.href='../index.html'">
+                
+                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../index.html'">
                     <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
                 </div>
-                <div class="hidden md:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-                    <a href="../index.html" class="hover:text-white transition-colors">Home</a>
-                    <a href="../strategies/index.html" class="hover:text-white transition-colors">Indicator & Strategy</a>
-                    <a href="../free-tools/index.html" class="hover:text-white transition-colors">Free Toolkit</a>
-                    <a href="../doc/index.html" class="hover:text-white transition-colors">Documents</a>
-                    <a href="index.html" class="text-[#e2ff6e]">Blog</a>
-                    <a href="https://discord.gg/72wFfgmW" target="_blank" class="hover:text-white transition-colors">Discord</a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">HOME</a>
+                    
+                    <a href="../strategies/index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            PERFORMANCE <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../reports/global/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">GLOBAL MARKET</a>
+                                <a href="../reports/india/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">INDIAN MARKET</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-blue-400 border-b-2 border-blue-400 pb-1 uppercase tracking-widest cursor-pointer py-2">
+                            RESOURCES <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../doc/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DOCUMENTATION</a>
+                                <a href="index.html" class="block px-5 py-3 text-xs font-bold text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">BLOGS</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            COMMUNITY <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="https://discord.gg/72wFfgmW" target="_blank" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DISCORD</a>
+                                <a href="../free-tools/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">FREE TOOLKIT</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white text-2xl focus:outline-none">
+
+                <div class="md:hidden relative z-[70]">
+                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none hover:text-[#e2ff6e] transition-colors">
                         <i class="fa-solid fa-bars-staggered"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0">
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 z-[60] animate-fade-in">
             <div class="px-6 py-10 space-y-6 flex flex-col text-center">
-                <a href="../index.html" class="text-xl font-bold text-slate-300">Home</a>
-                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300">Strategies</a>
-                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300">Free Toolkit</a>
-                <a href="../doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
-                <a href="index.html" class="text-lg font-medium text-[#e2ff6e]">Blog</a>
+                <a href="../index.html" class="text-xl font-bold text-slate-300">HOME</a>
+                <hr class="border-white/5 w-12 mx-auto">
+                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                
+                <div class="py-2 border-y border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Performance</p>
+                    <a href="../reports/global/index.html" class="block text-lg font-medium text-slate-300 mb-4">GLOBAL MARKET</a>
+                    <a href="../reports/india/index.html" class="block text-lg font-medium text-slate-300">INDIAN MARKET</a>
+                </div>
+
+                <div class="py-2 border-b border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Resources</p>
+                    <a href="../doc/index.html" class="block text-lg font-medium text-slate-300 mb-4">DOCUMENTATION</a>
+                    <a href="index.html" class="block text-lg font-medium text-blue-400">BLOGS</a>
+                </div>
+
+                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300 uppercase tracking-widest">DISCORD</a>
+                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">FREE TOOLKIT</a>
             </div>
         </div>
     </nav>
 
-    <main class="pt-48 pb-24 px-6 max-w-7xl mx-auto">
+    <main class="flex-grow pt-48 pb-24 px-6 max-w-7xl mx-auto w-full">
         <div class="text-center mb-24">
             <h4 class="text-[#e2ff6e] font-bold text-xs uppercase tracking-[0.4em] mb-4">Market Microstructure</h4>
             <h1 class="text-5xl md:text-8xl font-black text-white leading-tight mb-8 italic uppercase tracking-tighter">
@@ -86,14 +136,16 @@
                 </div>
             </article>
 
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col opacity-50">
-                <div class="h-56 bg-black/40 flex items-center justify-center italic text-slate-700">
-                    <i class="fa-solid fa-hourglass-half text-4xl"></i>
+            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col group cursor-pointer" onclick="window.location.href='how-to-build-algo.html'">
+                <div class="h-56 bg-slate-900 overflow-hidden relative">
+                    <img src="how_to_build_algo.png" alt="Build Algo Trading Strategy" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f1a] via-transparent to-transparent z-10"></div>
                 </div>
-                <div class="p-10">
-                    <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-4">Coming Soon</p>
-                    <h3 class="text-slate-500 font-bold text-2xl mb-4 italic uppercase">Liquidity Gaps & FVG Logic</h3>
-                    <p class="text-slate-600 text-sm italic">Stay tuned for our next quantitative breakdown.</p>
+                <div class="p-10 flex-grow relative z-20 -mt-6">
+                    <p class="text-[#e2ff6e] text-[10px] font-bold uppercase tracking-[0.3em] mb-4 drop-shadow-md">April 26, 2026</p>
+                    <h3 class="text-white font-bold text-2xl mb-4 italic uppercase leading-tight group-hover:text-blue-400 transition-colors">How to Build an Algo Strategy</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8">Learn the step-by-step framework to define, backtest, and code algorithmic trading strategies using TradingView Pine Script...</p>
+                    <a href="how-to-build-algo.html" class="inline-block text-white font-black text-[10px] uppercase tracking-[0.2em] border-b-2 border-[#e2ff6e] pb-1 hover:text-[#e2ff6e] transition-all">Read Tutorial</a>
                 </div>
             </article>
 
@@ -111,7 +163,7 @@
         </div>
     </main>
 
-    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             
             <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
@@ -123,19 +175,19 @@
                     </p>
 
                     <div class="flex gap-5 text-xl">
-    <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-youtube"></i>
-    </a>
-    <a href="#" class="text-slate-400 hover:text-white transition-all">
-        <i class="fa-brands fa-x-twitter"></i>
-    </a>
-    <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-discord"></i>
-    </a>
-    <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-</div>
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-all">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-discord"></i>
+                        </a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
                     
                 </div>
 
@@ -144,9 +196,9 @@
                     <div class="space-y-3">
                         <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
                         <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
-                        <a href="../blog/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Blog</a>
+                        <a href="../blog/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Blog</a>
                         <a href="../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
-                        <a href="../contact/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Contact Us</a>
+                        <a href="../contact/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Contact Us</a>
                     </div>
                 </div>
 
@@ -203,8 +255,24 @@
             const btn = document.getElementById('mobile-menu-button');
             const menu = document.getElementById('mobile-menu');
             if (btn && menu) {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
                     menu.classList.toggle('hidden');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars-staggered');
+                        icon.classList.toggle('fa-xmark');
+                    }
+                });
+                document.addEventListener('click', (event) => {
+                    if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                        menu.classList.add('hidden');
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.add('fa-bars-staggered');
+                            icon.classList.remove('fa-xmark');
+                        }
+                    }
                 });
             }
         });
