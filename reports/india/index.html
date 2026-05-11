@@ -1,378 +1,805 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../../favicon.png">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-GJZXB11LLJ');
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../../favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GJZXB11LLJ');
+</script>
+<title>India Reports | PointAlgo</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <title>India Reports | PointAlgo</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <style>
-        body { 
-            background: linear-gradient(135deg, #3f000f 0%, #17002e 50%, #0a0026 100%);
-            background-attachment: fixed;
-            color: #f8fafc; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-        }
-        .glass-nav { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .glass-card { 
-            background: rgba(0, 0, 0, 0.3); 
-            backdrop-filter: blur(10px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            transition: transform 0.2s;
-        }
-        .glass-card:hover { transform: translateY(-5px); border-color: rgba(16, 185, 129, 0.3); }
-        .text-emerald { color: #10b981; }
-    </style>
+<style>
+/* ═══════════════════════════════════
+   DESIGN TOKENS — exact home page
+═══════════════════════════════════ */
+:root{
+  --bg:#05080f;--s1:#090e1a;--s2:#0d1424;--s3:#111b30;
+  --bdr:rgba(255,255,255,.07);--bdr-m:rgba(255,255,255,.12);--bdr-h:rgba(255,255,255,.20);
+  --div:rgba(255,255,255,.04);
+  --txt:#dde6f0;--muted:#8a9bb5;--faint:#2c3d52;
+  --lime:#c9f135;--lime-g:rgba(201,241,53,.28);--lime-d:rgba(201,241,53,.09);
+  --teal:#00d4c8;--teal-g:rgba(0,212,200,.22);--teal-d:rgba(0,212,200,.09);
+  --cobalt:#3b8ff5;--cobalt-d:rgba(59,143,245,.09);
+  --emerald:#10e88e;--emerald-d:rgba(16,232,142,.09);
+  --amber:#f59e0b;--amber-d:rgba(245,158,11,.09);
+  --saffron:#ff9933;--saffron-d:rgba(255,153,51,.09);
+  --fd:'Inter',system-ui,sans-serif;
+  --fh:'Space Grotesk','Inter',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--fd);font-size:16px;color:var(--txt);background:var(--bg);line-height:1.65;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--s1)}
+::-webkit-scrollbar-thumb{background:var(--faint);border-radius:10px}
+
+/* ═══ BG ═══ */
+.bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+.bg-orb-1{width:680px;height:680px;top:-180px;left:-120px;background:radial-gradient(circle,rgba(0,212,200,.16) 0%,transparent 70%);animation:od1 20s ease-in-out infinite alternate}
+.bg-orb-2{width:560px;height:560px;top:8%;right:-80px;background:radial-gradient(circle,rgba(201,241,53,.10) 0%,transparent 70%);animation:od2 24s ease-in-out infinite alternate}
+.bg-orb-3{width:480px;height:480px;bottom:12%;left:22%;background:radial-gradient(circle,rgba(59,143,245,.09) 0%,transparent 70%);animation:od3 28s ease-in-out infinite alternate}
+.bg-orb-4{width:380px;height:380px;bottom:-80px;right:12%;background:radial-gradient(circle,rgba(16,232,142,.07) 0%,transparent 70%);animation:od4 22s ease-in-out infinite alternate}
+@keyframes od1{to{transform:translate(70px,110px)}}
+@keyframes od2{to{transform:translate(-55px,85px)}}
+@keyframes od3{to{transform:translate(95px,-75px)}}
+@keyframes od4{to{transform:translate(-75px,-55px)}}
+.bg-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:60px 60px
+}
+.bg-vig{position:absolute;inset:0;background:radial-gradient(ellipse 130% 110% at 50% 50%,transparent 28%,rgba(5,8,15,.82) 100%)}
+.wrap{position:relative;z-index:1}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:76px;background:rgba(5,8,15,.80);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--bdr);transition:border-color .3s}
+.nav.scrolled{border-bottom-color:var(--bdr-m)}
+.nav-in{max-width:1280px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo img{height:56px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nl{font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;letter-spacing:.01em}
+.nl:hover{color:var(--txt);background:rgba(255,255,255,.06)}
+.nl.on{color:var(--lime)}
+.dd{position:relative}
+.dd-btn{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;cursor:pointer;letter-spacing:.01em}
+.dd-btn.on{color:var(--cobalt)}
+.dd-btn:hover,.dd:hover .dd-btn{color:var(--txt);background:rgba(255,255,255,.06)}
+.dd-btn svg{width:10px;height:10px;opacity:.5;transition:transform .2s}
+.dd:hover .dd-btn svg{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 10px);left:0;min-width:190px;background:var(--s2);border:1px solid var(--bdr-m);border-radius:12px;overflow:hidden;box-shadow:0 18px 52px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04) inset;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s var(--ease),visibility .18s,transform .18s var(--ease)}
+.dd:hover .dd-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.di{display:block;padding:11px 18px;font-size:14px;font-weight:500;color:var(--muted);transition:color .15s,background .15s}
+.di:hover{color:var(--lime);background:rgba(255,255,255,.04)}
+.di.on{color:var(--lime);font-weight:700}
+.di+.di{border-top:1px solid var(--div)}
+.nav-cta{font-size:14px;font-weight:700;color:#050810;background:var(--lime);padding:10px 24px;border-radius:9px;white-space:nowrap;transition:opacity .18s,box-shadow .25s,transform .18s}
+.nav-cta:hover{opacity:.88;box-shadow:0 0 32px var(--lime-g);transform:translateY(-1px)}
+.hbg{display:none;flex-direction:column;gap:5px;padding:6px;border-radius:6px}
+.hbg span{width:24px;height:2px;background:var(--txt);border-radius:2px;display:block;transition:transform .25s,opacity .25s}
+.hbg.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.on span:nth-child(2){opacity:0}
+.hbg.on span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob{display:none;position:fixed;top:76px;left:0;right:0;background:rgba(5,8,15,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr-m);z-index:99;padding:18px 18px 30px;flex-direction:column;gap:2px}
+.mob.on{display:flex}
+.ma{font-size:16px;font-weight:500;color:var(--muted);padding:11px 14px;border-radius:8px;transition:color .15s,background .15s}
+.ma:hover{color:var(--txt);background:rgba(255,255,255,.05)}
+.mlbl{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--faint);padding:14px 14px 4px;text-transform:uppercase}
+.m-cta{margin-top:14px;padding:14px 20px;text-align:center;background:var(--lime);color:#050810;font-weight:700;font-size:15px;border-radius:8px;transition:opacity .18s}
+.m-cta:hover{opacity:.88}
+
+/* ═══ TICKER ═══ */
+.ticker-wrap{border-top:1px solid var(--div);border-bottom:1px solid var(--div);overflow:hidden;padding:11px 0;background:rgba(255,255,255,.01)}
+.ticker-track{display:flex;animation:tk 30s linear infinite;white-space:nowrap}
+.ticker-track:hover{animation-play-state:paused}
+.ti{display:inline-flex;align-items:center;gap:10px;padding:0 34px;font-size:11.5px;font-weight:600;color:var(--faint);letter-spacing:.09em;text-transform:uppercase}
+.td{width:4px;height:4px;background:var(--saffron);border-radius:50%;opacity:.7}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══ PAGE LAYOUT ═══ */
+.page-pad{padding-top:76px}
+.sec{padding:clamp(60px,7vw,96px) clamp(18px,3vw,32px)}
+.si{max-width:1280px;margin:0 auto}
+hr.div{border:none;border-top:1px solid var(--div)}
+
+/* ═══ HERO ═══ */
+.hero-sec{padding:clamp(56px,7vw,88px) clamp(18px,3vw,32px) clamp(40px,5vw,60px)}
+.hero-inner{max-width:1280px;margin:0 auto}
+
+/* India-specific badge uses saffron */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--saffron);
+  background:rgba(255,153,51,.07);border:1px solid rgba(255,153,51,.22);border-radius:99px;
+  padding:7px 18px 7px 10px;margin-bottom:28px
+}
+.pulse{width:7px;height:7px;background:var(--saffron);border-radius:50%;box-shadow:0 0 7px var(--saffron);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.5}}
+
+.hero-title{
+  font-family:var(--fh);
+  font-size:clamp(2.4rem,4.5vw,4rem);
+  font-weight:800;letter-spacing:-.035em;line-height:1.06;
+  color:#fff;margin-bottom:16px
+}
+/* India gradient: saffron → lime → white */
+.hero-title .grad{
+  background:linear-gradient(90deg,var(--saffron) 0%,var(--lime) 52%,#fff 100%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:gs 5s linear infinite
+}
+@keyframes gs{0%{background-position:0% center}100%{background-position:200% center}}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.65;max-width:520px;margin-bottom:36px}
+
+/* India flag stripe accent */
+.india-stripe{
+  display:flex;align-items:center;gap:6px;margin-bottom:32px
+}
+.stripe-sf{width:40px;height:4px;background:var(--saffron);border-radius:99px}
+.stripe-wh{width:24px;height:4px;background:rgba(255,255,255,.6);border-radius:99px}
+.stripe-gr{width:40px;height:4px;background:#138808;border-radius:99px}
+
+/* Stats pills */
+.stats-row{display:flex;gap:14px;flex-wrap:wrap}
+.stat-pill{
+  display:flex;align-items:center;gap:14px;
+  background:var(--s1);border:1px solid var(--bdr-m);border-radius:14px;padding:14px 22px;
+  transition:border-color .2s,transform .2s
+}
+.stat-pill:hover{border-color:var(--bdr-h);transform:translateY(-2px)}
+.stat-icon{font-size:20px}
+.si-sf{color:var(--saffron)}.si-lime{color:var(--lime)}.si-cobalt{color:var(--cobalt)}.si-em{color:var(--emerald)}
+.stat-val{font-family:var(--fh);font-size:22px;font-weight:800;color:#fff;line-height:1}
+.stat-lbl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* NSE/BSE pill badges */
+.exchange-badges{display:flex;gap:10px;margin-bottom:32px;flex-wrap:wrap}
+.ex-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 14px;border-radius:99px
+}
+.ex-nse{background:rgba(255,153,51,.08);color:var(--saffron);border:1px solid rgba(255,153,51,.22)}
+.ex-bse{background:rgba(59,143,245,.08);color:var(--cobalt);border:1px solid rgba(59,143,245,.22)}
+.ex-nifty{background:rgba(201,241,53,.08);color:var(--lime);border:1px solid rgba(201,241,53,.22)}
+
+/* Notice */
+.notice{
+  background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.16);
+  border-radius:16px;padding:16px 22px;
+  display:flex;align-items:flex-start;gap:14px;margin-bottom:44px
+}
+.notice i{color:var(--amber);font-size:15px;flex-shrink:0;margin-top:2px}
+.notice p{font-size:13px;color:var(--muted);line-height:1.6}
+.notice strong{color:var(--txt)}
+
+/* Section label */
+.slbl{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.slbl::before{content:'';display:block;width:18px;height:1.5px;background:linear-gradient(90deg,var(--saffron),var(--lime));border-radius:2px}
+
+/* ═══ STRATEGY GRID ═══ */
+.strategy-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px
+}
+
+/* ═══ CARD ═══ */
+.strat-card{
+  background:var(--s1);border:1px solid var(--bdr);border-radius:24px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .22s,transform .28s var(--ease),box-shadow .28s
+}
+.strat-card:hover{
+  border-color:rgba(255,153,51,.28);transform:translateY(-6px);
+  box-shadow:0 24px 64px rgba(0,0,0,.48),0 0 0 1px rgba(255,153,51,.07)
+}
+.card-top{padding:22px 22px 8px;display:flex;justify-content:space-between;align-items:flex-start}
+.card-id{
+  display:inline-block;background:rgba(201,241,53,.07);color:var(--lime);
+  font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  padding:4px 10px;border-radius:99px;border:1px solid rgba(201,241,53,.18);margin-bottom:8px
+}
+.card-symbol{font-family:var(--fh);font-size:22px;font-weight:800;color:#fff;line-height:1}
+.card-tf{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.card-date{font-size:10px;color:var(--faint);margin-top:4px}
+.card-date i{opacity:.4;margin-right:4px}
+.pnl-lbl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:right}
+.pnl-val{font-family:var(--fh);font-size:22px;font-weight:800;color:var(--lime);text-align:right}
+.pnl-val.neg{color:#f87171}
+
+.card-rule{height:1px;background:var(--div);margin:0 16px}
+.card-chart{height:130px;padding:4px 8px;margin-top:4px}
+
+.card-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--div);margin-top:12px}
+.metric{background:rgba(0,0,0,.28);padding:13px;text-align:center}
+.metric-lbl{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+.metric-val{font-family:var(--fh);font-size:18px;font-weight:800}
+.mv-lime{color:var(--lime)}.mv-red{color:#f87171}.mv-white{color:#fff}.mv-teal{color:var(--teal)}
+
+.card-cta-wrap{padding:14px 16px 16px}
+.card-cta{
+  display:block;width:100%;padding:12px;text-align:center;
+  border:1px solid rgba(201,241,53,.25);border-radius:12px;
+  background:rgba(201,241,53,.06);color:var(--lime);
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  transition:background .18s,color .18s,border-color .18s,transform .15s
+}
+.card-cta:hover{background:var(--lime);color:#050810;border-color:var(--lime);transform:translateY(-1px)}
+
+/* ═══ SKELETON ═══ */
+.skeleton{
+  background:linear-gradient(90deg,var(--s1) 25%,var(--s2) 50%,var(--s1) 75%);
+  background-size:200% 100%;animation:shimmer 1.6s infinite;
+  border-radius:24px;height:370px;border:1px solid var(--bdr)
+}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ═══ EMPTY / ERROR STATE ═══ */
+.state-box{
+  grid-column:1/-1;text-align:center;padding:80px 24px;
+  background:var(--s1);border:1px solid var(--bdr);border-radius:24px
+}
+.state-box i{font-size:44px;margin-bottom:20px;display:block;opacity:.35}
+.state-box h3{font-size:20px;font-weight:700;color:var(--muted);margin-bottom:8px}
+.state-box p{font-size:14px;color:var(--faint);margin-bottom:22px}
+.retry-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--s2);border:1px solid var(--bdr-m);
+  padding:10px 24px;border-radius:10px;
+  font-size:13px;font-weight:600;color:var(--muted);
+  cursor:pointer;transition:color .18s,border-color .18s
+}
+.retry-btn:hover{color:var(--lime);border-color:rgba(201,241,53,.3)}
+
+/* ═══ FOOTER ═══ */
+.footer{border-top:1px solid var(--div);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);padding:80px 28px 36px}
+.fi{max-width:1280px;margin:0 auto}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:60px;border-bottom:1px solid var(--div)}
+.flog img{height:48px;width:auto;margin-bottom:16px}
+.ftag{font-size:10.5px;color:var(--faint);letter-spacing:.13em;text-transform:uppercase;line-height:1.75;margin-bottom:22px}
+.fsoc{display:flex;gap:16px;font-size:18px}
+.fsoc a{transition:transform .18s,opacity .18s}
+.fsoc a:hover{transform:scale(1.15);opacity:.85}
+.fct{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:20px}
+.fli{display:block;font-size:13.5px;color:var(--muted);margin-bottom:11px;transition:color .15s}
+.fli:hover{color:var(--txt)}
+.fli.cta{color:var(--lime);font-weight:600}
+.fcl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+.fcv{font-size:13.5px;color:#fff;font-weight:500;margin-bottom:14px;transition:color .15s}
+.fcv:hover{color:var(--lime)}
+.fci{font-size:12px;color:var(--muted);font-style:italic}
+.fdis-wrap{margin-top:44px;padding-top:40px;border-top:1px solid var(--div)}
+.fdis-t{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}
+.fdis-box{background:rgba(0,0,0,.4);padding:28px 32px;border-radius:18px;border:1px solid var(--div)}
+.fdis-p{font-size:10px;color:var(--faint);line-height:1.82;text-align:justify;text-transform:uppercase;letter-spacing:.01em;font-weight:300}
+.fbar{margin-top:40px;padding-top:26px;border-top:1px solid var(--div);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.fcp{font-size:10px;color:var(--faint);letter-spacing:.36em;text-transform:uppercase}
+.ftags{display:flex;gap:18px}
+.ftg{font-size:9px;color:rgba(100,115,132,.5);letter-spacing:.14em;text-transform:uppercase}
+
+/* ═══ SCROLL REVEAL ═══ */
+.rv{opacity:0;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.on{opacity:1;transform:none !important}
+.ru{transform:translateY(30px)}.rl{transform:translateX(-26px)}.rr{transform:translateX(26px)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){.strategy-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:860px){.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+  .strategy-grid{grid-template-columns:1fr}
+  .stats-row{flex-direction:column}
+  .nav-in{padding:0 18px}
+  .nav-links,.nav-cta{display:none}
+  .hbg{display:flex}
+  .fg{grid-template-columns:1fr;gap:28px}
+  .footer{padding:52px 18px 28px}
+  .sec{padding:60px 18px}
+}
+</style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body>
 
-    <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between h-24">
-                
-                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../../index.html'">
-                    <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
-                </div>
+<!-- ═══ BG ═══ -->
+<div class="bg-canvas" aria-hidden="true">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+  <div class="bg-orb bg-orb-4"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-vig"></div>
+</div>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="../../index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">HOME</a>
-                    
-                    <a href="../../strategies/index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">INDICATOR AND STRATEGY</a>
-                    
-                    <div class="relative group">
-                        <button class="flex items-center gap-1.5 text-sm font-bold text-blue-400 border-b-2 border-blue-400 pb-1 uppercase tracking-widest cursor-pointer py-2">
-                            PERFORMANCE <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
-                        </button>
-                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
-                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-                                <a href="../global/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">GLOBAL MARKET</a>
-                                <a href="index.html" class="block px-5 py-3 text-xs font-bold text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">INDIAN MARKET</a>
-                            </div>
-                        </div>
-                    </div>
+<div class="wrap">
 
-                    <div class="relative group">
-                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
-                            RESOURCES <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
-                        </button>
-                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
-                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-                                <a href="../../doc/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DOCUMENTATION</a>
-                                <a href="../../blog/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">BLOGS</a>
-                            </div>
-                        </div>
-                    </div>
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="../../index.html" class="logo">
+      <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" width="180" height="56">
+    </a>
+    <div class="nav-links">
+      <a href="../../index.html" class="nl">Home</a>
+      <a href="../../strategies/index.html" class="nl">Indicator and Strategy</a>
 
-                    <div class="relative group">
-                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
-                            COMMUNITY <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
-                        </button>
-                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
-                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-                                <a href="https://discord.gg/72wFfgmW" target="_blank" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DISCORD</a>
-                                <a href="../../free-tools/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">FREE TOOLKIT</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:hidden relative z-[70]">
-                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none hover:text-[#e2ff6e] transition-colors">
-                        <i class="fa-solid fa-bars-staggered"></i>
-                    </button>
-                </div>
-            </div>
+      <!-- Performance (active — Indian Market) -->
+      <div class="dd">
+        <button class="dd-btn on">
+          Performance
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="dd-menu">
+          <a href="../global/index.html" class="di">Global Market</a>
+          <a href="index.html"           class="di on">Indian Market</a>
         </div>
+      </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 z-[60] animate-fade-in">
-            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
-                <a href="../../index.html" class="text-xl font-bold text-slate-300">HOME</a>
-                <hr class="border-white/5 w-12 mx-auto">
-                <a href="../../strategies/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">INDICATOR AND STRATEGY</a>
-                
-                <div class="py-2 border-y border-white/5">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Performance</p>
-                    <a href="../global/index.html" class="block text-lg font-medium text-slate-300 mb-4">GLOBAL MARKET</a>
-                    <a href="index.html" class="block text-lg font-medium text-blue-400">INDIAN MARKET</a>
-                </div>
-
-                <div class="py-2 border-b border-white/5">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Resources</p>
-                    <a href="../../doc/index.html" class="block text-lg font-medium text-slate-300 mb-4">DOCUMENTATION</a>
-                    <a href="../../blog/index.html" class="block text-lg font-medium text-slate-300">BLOGS</a>
-                </div>
-
-                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300 uppercase tracking-widest">DISCORD</a>
-                <a href="../../free-tools/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">FREE TOOLKIT</a>
-            </div>
+      <div class="dd">
+        <button class="dd-btn">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="dd-menu">
+          <a href="../../doc/index.html"  class="di">Documentation</a>
+          <a href="../../blog/index.html" class="di">Blogs</a>
         </div>
-    </nav>
+      </div>
 
-    <main class="flex-grow pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <header class="mb-10 text-center md:text-left">
-            <h1 class="text-4xl md:text-5xl font-black text-white italic tracking-tighter mb-2">
-                Live Indian <span class="text-[#e2ff6e]">Strategies</span>
-            </h1>
-            <p class="text-slate-400">Verified performance metrics for Nifty and BankNifty options.</p>
-        </header>
-
-        <div id="strategy-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
-    </main>
-
-    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
-                
-                <div class="col-span-1 md:col-span-1 space-y-6">
-                    <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
-                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
-                        Advanced Quantitative <br> Intelligence Systems.
-                    </p>
-                    <div class="flex gap-5 text-xl">
-                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
-                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
-                    <div class="space-y-3">
-                        <a href="../../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
-                        <a href="../../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
-                        <a href="../../blog/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Blog</a>
-                        <a href="../../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
-                        <a href="../../contact/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Contact Us</a>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
-                    <div class="space-y-3">
-                        <a href="../../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
-                        <a href="../../legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
-                        <a href="../../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
-                        <a href="../../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
-                    <div class="space-y-4">
-                        <div class="space-y-1">
-                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
-                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#e2ff6e]">hello@pointalgo.com</a>
-                        </div>
-                        <div class="space-y-1">
-                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
-                            <p class="text-white font-medium text-sm">+91-8452035834</p>
-                        </div>
-                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="pt-12 border-t border-white/5">
-                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
-                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
-                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
-                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
-                <div class="flex gap-6">
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
-                </div>
-            </div>
+      <div class="dd">
+        <button class="dd-btn">
+          Community
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="dd-menu">
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
+          <a href="../../free-tools/index.html" class="di">Free Toolkit</a>
         </div>
-    </footer>
+      </div>
+    </div>
+    <a href="../../strategies/index.html#pricing" class="nav-cta">Get Access</a>
+    <button class="hbg" id="hbg" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Logic
-            const btn = document.getElementById('mobile-menu-button');
-            const menu = document.getElementById('mobile-menu');
+<!-- Mobile Menu -->
+<div class="mob" id="mob">
+  <a href="../../index.html"             class="ma">Home</a>
+  <a href="../../strategies/index.html"  class="ma">Indicator and Strategy</a>
+  <div class="mlbl">Performance</div>
+  <a href="../global/index.html"         class="ma">Global Market</a>
+  <a href="index.html"                   class="ma" style="color:var(--lime)">Indian Market</a>
+  <div class="mlbl">Resources</div>
+  <a href="../../doc/index.html"         class="ma">Documentation</a>
+  <a href="../../blog/index.html"        class="ma">Blogs</a>
+  <div class="mlbl">Community</div>
+  <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
+  <a href="../../free-tools/index.html"  class="ma">Free Toolkit</a>
+  <a href="../../strategies/index.html#pricing" class="m-cta">Get Access →</a>
+</div>
 
-            if (btn && menu) {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation(); 
-                    menu.classList.toggle('hidden');
-                    const icon = btn.querySelector('i');
-                    if (icon) {
-                        icon.classList.toggle('fa-bars-staggered');
-                        icon.classList.toggle('fa-xmark');
-                    }
-                });
+<!-- ═══ TICKER ═══ -->
+<div class="page-pad">
+  <div class="ticker-wrap">
+    <div class="ticker-track" aria-hidden="true">
+      <span class="ti"><span class="td"></span>Nifty 50</span>
+      <span class="ti"><span class="td"></span>BankNifty</span>
+      <span class="ti"><span class="td"></span>NSE Options</span>
+      <span class="ti"><span class="td"></span>Indian Equities</span>
+      <span class="ti"><span class="td"></span>Live Performance</span>
+      <span class="ti"><span class="td"></span>Real Trade Data</span>
+      <span class="ti"><span class="td"></span>Non-Repaint Signals</span>
+      <span class="ti"><span class="td"></span>Quant-Grade Execution</span>
+      <span class="ti"><span class="td"></span>Nifty 50</span>
+      <span class="ti"><span class="td"></span>BankNifty</span>
+      <span class="ti"><span class="td"></span>NSE Options</span>
+      <span class="ti"><span class="td"></span>Indian Equities</span>
+      <span class="ti"><span class="td"></span>Live Performance</span>
+      <span class="ti"><span class="td"></span>Real Trade Data</span>
+      <span class="ti"><span class="td"></span>Non-Repaint Signals</span>
+      <span class="ti"><span class="td"></span>Quant-Grade Execution</span>
+    </div>
+  </div>
+</div>
 
-                document.addEventListener('click', (event) => {
-                    if (!menu.contains(event.target) && !btn.contains(event.target)) {
-                        menu.classList.add('hidden');
-                        const icon = btn.querySelector('i');
-                        if (icon) {
-                            icon.classList.add('fa-bars-staggered');
-                            icon.classList.remove('fa-xmark');
-                        }
-                    }
-                });
-            }
+<!-- ═══ HERO ═══ -->
+<section class="hero-sec">
+  <div class="hero-inner">
+    <div class="hero-badge rv ru"><span class="pulse"></span>Live NSE / BSE Performance</div>
 
-            // Start Dashboard Engine
-            initDashboard();
-        });
+    <!-- India flag stripe -->
+    <div class="india-stripe rv ru" style="transition-delay:.05s">
+      <div class="stripe-sf"></div>
+      <div class="stripe-wh"></div>
+      <div class="stripe-gr"></div>
+    </div>
 
-        // YOUR INDIAN APPS SCRIPT URL
-        const API_URL = 'https://script.google.com/macros/s/AKfycbyJq9QOlnT1khcsspVsaqf7edo57m-ecKqEMrH4txKKidPbHRf3SweZjvFzGki6VIcESA/exec';
-        
-        // YOUR INDIAN STRATEGY IDs
-        const DISPLAY_STRATEGIES = [
-            'FIB_STRATEGY', 
-            'GANNPI', 
-            'POP', 
-            'SMART_MONEY_FLOW', 
-            'INSTITUTIONS_EQUITY_P', 
-            'HYBRID_BAND',
-            'ORB_MASTER',
-            'TREND_RIDER',
-            'MEAN_REVERSION',
-            'TREND_FIND',
-        ];
+    <h1 class="hero-title rv ru" style="transition-delay:.08s">
+      Live Indian <span class="grad">Strategies</span>
+    </h1>
+    <p class="hero-sub rv ru" style="transition-delay:.13s">
+      Verified performance metrics for Nifty and BankNifty options — updated in real time from live trade logs.
+    </p>
 
-        async function initDashboard() {
-            try {
-                const response = await fetch(API_URL);
-                const allData = await response.json();
-                const grid = document.getElementById('strategy-grid');
+    <!-- Exchange badges -->
+    <div class="exchange-badges rv ru" style="transition-delay:.17s">
+      <span class="ex-badge ex-nse"><i class="fa-solid fa-building-columns"></i> NSE</span>
+      <span class="ex-badge ex-bse"><i class="fa-solid fa-building-columns"></i> BSE</span>
+      <span class="ex-badge ex-nifty"><i class="fa-solid fa-chart-line"></i> Nifty Options</span>
+      <span class="ex-badge ex-nifty" style="color:var(--cobalt);background:rgba(59,143,245,.08);border-color:rgba(59,143,245,.22)"><i class="fa-solid fa-chart-bar"></i> BankNifty</span>
+    </div>
 
-                DISPLAY_STRATEGIES.forEach(id => {
-                    const trades = allData.filter(t => t.Strategy_ID === id);
-                    if (trades.length > 0) {
-                        renderCard(grid, trades, id);
-                    }
-                });
-            } catch (e) { console.error("Grid failed to load:", e); }
-        }
+    <!-- Stats pills -->
+    <div class="stats-row rv ru" style="transition-delay:.21s">
+      <div class="stat-pill">
+        <span class="stat-icon si-sf"><i class="fa-solid fa-flag"></i></span>
+        <div>
+          <div class="stat-val" id="stat-strategies">—</div>
+          <div class="stat-lbl">Active Strategies</div>
+        </div>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-icon si-lime"><i class="fa-solid fa-bolt-lightning"></i></span>
+        <div>
+          <div class="stat-val" id="stat-trades">—</div>
+          <div class="stat-lbl">Total Trades</div>
+        </div>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-icon si-cobalt"><i class="fa-solid fa-chart-line"></i></span>
+        <div>
+          <div class="stat-val" id="stat-winrate">—</div>
+          <div class="stat-lbl">Avg. Win Rate</div>
+        </div>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-icon si-em"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+        <div>
+          <div class="stat-val" id="stat-pnl">—</div>
+          <div class="stat-lbl">Total PnL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function renderCard(container, trades, id) {
-            let cumulative = 0, wins = 0, maxDD = 0;
-            const profits = trades.map(t => {
-                cumulative += parseFloat(t['Profit Amount'] || 0);
-                if (parseFloat(t.PnL_Points || 0) > 0) wins++;
-                if (Math.abs(t.Max_Drawdown || 0) > maxDD) maxDD = Math.abs(t.Max_Drawdown);
-                return cumulative;
-            });
+<hr class="div">
 
-            // Date formatting logic
-            let date1 = new Date(trades[0].Entry_Time);
-            let date2 = new Date(trades[trades.length - 1].Entry_Time);
-            let oldestTrade = (date1 < date2) ? trades[0] : trades[trades.length - 1];
-            let oldestRawDate = oldestTrade.Entry_Time || oldestTrade.Exit_Time || "";
-            let startDate = oldestRawDate.split(' ')[0]; 
-            
-            if (startDate.includes('-')) {
-                let parts = startDate.split('-');
-                if (parts[0].length === 4) {
-                    startDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-                }
-            }
+<!-- ═══ MAIN CONTENT ═══ -->
+<section class="sec" style="padding-top:clamp(48px,5vw,72px)">
+  <div class="si">
 
-            const cardHtml = `
-                <div class="glass-card flex flex-col overflow-hidden rounded-[2rem]">
-                    <div class="p-6 pb-2 flex justify-between items-start">
-                        <div>
-                            <span class="inline-block bg-[#e2ff6e]/10 text-[#e2ff6e] text-[9px] font-bold px-2 py-1 rounded mb-2 uppercase tracking-widest border border-[#e2ff6e]/20">
-                                ID: ${id}
-                            </span>
-                            <h3 class="font-bold text-xl text-white tracking-tight leading-none">${trades[0].Symbol}</h3>
-                            <div class="mt-2 space-y-1">
-                                <p class="text-xs text-slate-400 uppercase tracking-widest">${trades[0].Time_frame}</p>
-                                <p class="text-[10px] text-slate-500 tracking-wider"><i class="fa-regular fa-calendar-days mr-1"></i> Data from: ${startDate} - Present</p>
-                            </div>
-                        </div>
-                        <div class="text-right mt-1">
-                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Total PnL</p>
-                            <p class="text-xl font-bold text-[#e2ff6e]">₹${Math.round(cumulative).toLocaleString('en-IN')}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="h-40 px-2 mt-2">
-                        <canvas id="chart-${id}"></canvas>
-                    </div>
+    <!-- Notice -->
+    <div class="notice rv ru">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <p><strong>Performance Transparency:</strong> All metrics are pulled live from verified Google Sheets trade logs. Past performance does not guarantee future results. All figures reflect real executed trades on NSE/BSE, not backtests or simulations. PointAlgo is not SEBI registered.</p>
+    </div>
 
-                    <div class="p-4 grid grid-cols-2 gap-px bg-white/5 mt-4">
-                        <div class="text-center p-3 bg-black/20">
-                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Return</p>
-                            <p class="text-lg font-bold text-[#e2ff6e]">+${Math.round((cumulative/50000)*100)}%</p>
-                        </div>
-                        <div class="text-center p-3 bg-black/20">
-                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Max DD</p>
-                            <p class="text-lg font-bold text-red-400">-${maxDD.toFixed(1)}%</p>
-                        </div>
-                        <div class="text-center p-3 bg-black/20">
-                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Win Rate</p>
-                            <p class="text-lg font-bold text-white">${((wins/trades.length)*100).toFixed(0)}%</p>
-                        </div>
-                        <div class="text-center p-3 bg-black/20">
-                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Trades</p>
-                            <p class="text-lg font-bold text-white">${trades.length}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="px-4 pb-4">
-                        <a href="../../strategies/index.html#pricing" class="block w-full py-3 text-center border border-[#e2ff6e]/30 rounded-xl bg-[#e2ff6e]/10 hover:bg-[#e2ff6e] text-[#e2ff6e] hover:text-black font-bold uppercase tracking-widest transition-all text-xs">
-                            Get Access Now
-                        </a>
-                    </div>
-                </div>
-            `;
-            container.innerHTML += cardHtml;
+    <!-- Section label -->
+    <div class="slbl rv ru" style="transition-delay:.08s">Indian Strategy Performance Cards</div>
 
-            // Render Chart
-            setTimeout(() => {
-                const ctx = document.getElementById('chart-'+id).getContext('2d');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: trades.map(t => t.Exit_Time),
-                        datasets: [{
-                            data: profits,
-                            borderColor: '#00e676', 
-                            borderWidth: 2,
-                            fill: true,
-                            backgroundColor: 'rgba(0, 230, 118, 0.1)',
-                            tension: 0.3,
-                            pointRadius: 0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: { x: { display: false }, y: { display: false } }
-                    }
-                });
-            }, 100);
-        }
-    </script>
+    <!-- Strategy Grid -->
+    <div class="strategy-grid" id="strategy-grid">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="fi">
+    <div class="fg">
+      <div>
+        <div class="flog"><img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo" width="160" height="48" loading="lazy"></div>
+        <p class="ftag">Advanced Quantitative<br>Intelligence Systems.</p>
+        <div class="fsoc">
+          <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" style="color:var(--muted)" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Platform</div>
+        <a href="../../index.html"            class="fli">Home</a>
+        <a href="../../strategies/index.html" class="fli">Indicator &amp; Strategy</a>
+        <a href="../../blog/index.html"       class="fli">Blog</a>
+        <a href="../../doc/index.html"        class="fli">Documentation</a>
+        <a href="../../contact/index.html"    class="fli cta">Contact Us ↗</a>
+      </div>
+      <div>
+        <div class="fct">Legal &amp; Compliance</div>
+        <a href="../../legal/terms.html"  class="fli">Terms &amp; Conditions</a>
+        <a href="../../legal/privacy.html" class="fli">Privacy Policy</a>
+        <a href="../../legal/refund.html"  class="fli">Refund &amp; Cancellation</a>
+        <a href="../../about.html"         class="fli">About Us</a>
+      </div>
+      <div>
+        <div class="fct">Connect</div>
+        <div class="fcl">Inquiries</div>
+        <a href="mailto:hello@pointalgo.com" class="fcv" style="display:block">hello@pointalgo.com</a>
+        <div class="fcl">Support</div>
+        <div class="fcv">+91-8452035834</div>
+        <p class="fci">Ghatkopar, Mumbai, India</p>
+      </div>
+    </div>
+    <div class="fdis-wrap">
+      <h4 class="fdis-t">Disclaimer from PointAlgo.com</h4>
+      <div class="fdis-box">
+        <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
+      </div>
+    </div>
+    <div class="fbar">
+      <span class="fcp">© 2026 PointAlgo Quantitative Intelligence</span>
+      <div class="ftags">
+        <span class="ftg">Built for Speed</span>
+        <span class="ftg">Built for Accuracy</span>
+        <span class="ftg">Built for Logic</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.wrap -->
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+/* ─── NAV SCROLL ─── */
+(function(){
+  var n = document.getElementById('nav');
+  window.addEventListener('scroll', function(){ n.classList.toggle('scrolled', window.scrollY > 24); }, {passive:true});
+})();
+
+/* ─── MOBILE MENU ─── */
+document.addEventListener('DOMContentLoaded', function(){
+  var btn  = document.getElementById('hbg');
+  var menu = document.getElementById('mob');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = menu.classList.toggle('on');
+    btn.classList.toggle('on', open);
+  });
+  document.addEventListener('click', function(e){
+    if (!menu.contains(e.target) && !btn.contains(e.target)){
+      menu.classList.remove('on'); btn.classList.remove('on');
+    }
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ menu.classList.remove('on'); btn.classList.remove('on'); });
+  });
+});
+
+/* ─── SCROLL REVEAL ─── */
+(function(){
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('on'); }); return; }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('on'); obs.unobserve(en.target); }
+    });
+  }, {threshold:0.1});
+  els.forEach(function(el){ obs.observe(el); });
+})();
+
+/* ─────────────────────────────────────────
+   GOOGLE SHEETS CONFIG — INDIA
+   API_URL            : Indian Apps Script Web App URL
+   DISPLAY_STRATEGIES : Strategy_ID values (must match sheet column exactly)
+   BASE_CAPITAL       : ₹ capital base for % Return calc
+   MAX_RETRIES        : Auto-retry on network failure
+   RETRY_DELAY        : ms between retries
+───────────────────────────────────────── */
+const API_URL = 'https://script.google.com/macros/s/AKfycbyJq9QOlnT1khcsspVsaqf7edo57m-ecKqEMrH4txKKidPbHRf3SweZjvFzGki6VIcESA/exec';
+
+const DISPLAY_STRATEGIES = [
+  'FIB_STRATEGY',
+  'GANNPI',
+  'POP',
+  'SMART_MONEY_FLOW',
+  'INSTITUTIONS_EQUITY_P',
+  'HYBRID_BAND',
+  'ORB_MASTER',
+  'TREND_RIDER',
+  'MEAN_REVERSION',
+  'TREND_FIND'
+];
+
+const BASE_CAPITAL = 50000;
+const MAX_RETRIES  = 3;
+const RETRY_DELAY  = 2000;
+
+/* ─── Helpers ─── */
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+function fmtINR(val){
+  var abs = Math.abs(Math.round(val));
+  return (val < 0 ? '-₹' : '₹') + abs.toLocaleString('en-IN');
+}
+
+function formatStartDate(raw){
+  if (!raw) return 'N/A';
+  var d = raw.split(' ')[0];
+  if (d.includes('-')){
+    var p = d.split('-');
+    if (p[0].length === 4) d = p[2] + '-' + p[1] + '-' + p[0];
+  }
+  return d;
+}
+
+/* ─── Fetch with retry ─── */
+async function fetchWithRetry(url, retries){
+  retries = retries || MAX_RETRIES;
+  for (var i = 1; i <= retries; i++){
+    try {
+      var res  = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      if (!Array.isArray(data)) throw new Error('Not an array');
+      return data;
+    } catch(err){
+      console.warn('[PointAlgo India] Attempt ' + i + ' failed:', err.message);
+      if (i < retries) await sleep(RETRY_DELAY);
+    }
+  }
+  return null;
+}
+
+/* ─── Render chart ─── */
+function renderChart(canvasId, trades, profits, isProfit){
+  var ctx = document.getElementById(canvasId);
+  if (!ctx) return;
+  new Chart(ctx.getContext('2d'), {
+    type: 'line',
+    data: {
+      labels: trades.map(function(t){ return t.Exit_Time || ''; }),
+      datasets: [{
+        data: profits,
+        borderColor:     isProfit ? '#c9f135' : '#f87171',
+        borderWidth:     2,
+        fill:            true,
+        backgroundColor: isProfit ? 'rgba(201,241,53,0.07)' : 'rgba(248,113,113,0.07)',
+        tension:         0.35,
+        pointRadius:     0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      scales: { x: { display: false }, y: { display: false } },
+      animation: { duration: 900, easing: 'easeInOutQuart' }
+    }
+  });
+}
+
+/* ─── Render one card ─── */
+function renderCard(container, trades, id){
+  var cumulative = 0, wins = 0, maxDD = 0;
+  var profits = trades.map(function(t){
+    cumulative += parseFloat(t['Profit Amount'] || 0);
+    if (parseFloat(t.PnL_Points || 0) > 0) wins++;
+    var dd = Math.abs(parseFloat(t.Max_Drawdown || 0));
+    if (dd > maxDD) maxDD = dd;
+    return cumulative;
+  });
+
+  var date1 = new Date(trades[0].Entry_Time);
+  var date2 = new Date(trades[trades.length - 1].Entry_Time);
+  var oldest = (date1 < date2) ? trades[0] : trades[trades.length - 1];
+  var startDate = formatStartDate(oldest.Entry_Time || oldest.Exit_Time || '');
+
+  var isProfit = cumulative >= 0;
+  var retPct   = ((cumulative / BASE_CAPITAL) * 100).toFixed(1);
+  var winRate  = ((wins / trades.length) * 100).toFixed(0);
+  var ddStr    = maxDD > 0 ? '-' + maxDD.toFixed(1) + '%' : '0.0%';
+
+  var card = document.createElement('div');
+  card.className = 'strat-card';
+  card.innerHTML =
+    '<div class="card-top">' +
+      '<div>' +
+        '<span class="card-id">ID: ' + id + '</span>' +
+        '<div class="card-symbol">' + (trades[0].Symbol || '—') + '</div>' +
+        '<div class="card-tf">' + (trades[0].Time_frame || '—') + '</div>' +
+        '<div class="card-date"><i class="fa-regular fa-calendar-days"></i>Data from: ' + startDate + ' – Present</div>' +
+      '</div>' +
+      '<div>' +
+        '<div class="pnl-lbl">Total PnL</div>' +
+        '<div class="pnl-val' + (isProfit ? '' : ' neg') + '">' + fmtINR(cumulative) + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="card-chart"><canvas id="chart-' + id + '"></canvas></div>' +
+    '<div class="card-rule"></div>' +
+    '<div class="card-metrics">' +
+      '<div class="metric"><div class="metric-lbl">Return</div><div class="metric-val ' + (isProfit ? 'mv-lime' : 'mv-red') + '">' + (isProfit ? '+' : '') + retPct + '%</div></div>' +
+      '<div class="metric"><div class="metric-lbl">Max DD</div><div class="metric-val mv-red">' + ddStr + '</div></div>' +
+      '<div class="metric"><div class="metric-lbl">Win Rate</div><div class="metric-val mv-white">' + winRate + '%</div></div>' +
+      '<div class="metric"><div class="metric-lbl">Trades</div><div class="metric-val mv-teal">' + trades.length + '</div></div>' +
+    '</div>' +
+    '<div class="card-cta-wrap">' +
+      '<a href="../../strategies/index.html#pricing" class="card-cta">Get Access Now</a>' +
+    '</div>';
+
+  container.appendChild(card);
+  requestAnimationFrame(function(){ renderChart('chart-' + id, trades, profits, isProfit); });
+
+  return { trades: trades.length, wins: wins, pnl: cumulative };
+}
+
+/* ─── Update stats pills ─── */
+function updateStats(count, trades, wins, pnl){
+  document.getElementById('stat-strategies').textContent = count;
+  document.getElementById('stat-trades').textContent     = trades.toLocaleString('en-IN');
+  document.getElementById('stat-winrate').textContent    = trades > 0 ? ((wins / trades) * 100).toFixed(0) + '%' : '—';
+  document.getElementById('stat-pnl').textContent        = fmtINR(pnl);
+}
+
+/* ─── Dashboard init ─── */
+async function initDashboard(){
+  var grid = document.getElementById('strategy-grid');
+  grid.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>';
+
+  var allData = await fetchWithRetry(API_URL);
+
+  if (!allData){
+    grid.innerHTML =
+      '<div class="state-box">' +
+        '<i class="fa-solid fa-circle-exclamation" style="color:#f87171"></i>' +
+        '<h3>Connection Error</h3>' +
+        '<p>Could not reach the live data feed after ' + MAX_RETRIES + ' attempts.<br>Check your Apps Script deployment or network.</p>' +
+        '<button class="retry-btn" onclick="initDashboard()"><i class="fa-solid fa-rotate-right"></i> Retry</button>' +
+      '</div>';
+    return;
+  }
+
+  grid.innerHTML = '';
+  var totalTrades = 0, totalWins = 0, totalPnl = 0, activeCount = 0;
+
+  DISPLAY_STRATEGIES.forEach(function(id){
+    var trades = allData.filter(function(t){ return t.Strategy_ID === id; });
+    if (trades.length > 0){
+      activeCount++;
+      var s = renderCard(grid, trades, id);
+      totalTrades += s.trades;
+      totalWins   += s.wins;
+      totalPnl    += s.pnl;
+    }
+  });
+
+  if (grid.children.length === 0){
+    grid.innerHTML =
+      '<div class="state-box">' +
+        '<i class="fa-solid fa-satellite-dish" style="color:var(--cobalt)"></i>' +
+        '<h3>No Strategy Data Found</h3>' +
+        '<p>No trades matched the configured Strategy IDs.<br>Expected: <span style="color:var(--lime)">' + DISPLAY_STRATEGIES.join(', ') + '</span></p>' +
+      '</div>';
+    return;
+  }
+
+  updateStats(activeCount, totalTrades, totalWins, totalPnl);
+}
+
+document.addEventListener('DOMContentLoaded', initDashboard);
+</script>
+
 </body>
 </html>
