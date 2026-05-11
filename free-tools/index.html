@@ -1,306 +1,553 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-GJZXB11LLJ');
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Quant Toolkit | PointAlgo Library</title>
-    <link rel="icon" type="image/png" href="../favicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { 
-            background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%);
-            background-attachment: fixed;
-            color: #f8fafc; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-        }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: #e2ff6e; transform: translateY(-5px); }
-        .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .indicator-iframe { border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); background: #000; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'G-GJZXB11LLJ');
+</script>
+<title>Free Quant Toolkit | PointAlgo Library</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════
+   DESIGN TOKENS — exact home page
+═══════════════════════════════════ */
+:root{{
+  --bg:#05080f;--s1:#090e1a;--s2:#0d1424;--s3:#111b30;
+  --bdr:rgba(255,255,255,.07);--bdr-m:rgba(255,255,255,.12);--bdr-h:rgba(255,255,255,.20);
+  --div:rgba(255,255,255,.04);
+  --txt:#dde6f0;--muted:#8a9bb5;--faint:#2c3d52;
+  --lime:#c9f135;--lime-g:rgba(201,241,53,.28);--lime-d:rgba(201,241,53,.09);
+  --teal:#00d4c8;--teal-g:rgba(0,212,200,.22);--teal-d:rgba(0,212,200,.09);
+  --cobalt:#3b8ff5;--cobalt-d:rgba(59,143,245,.09);
+  --emerald:#10e88e;--emerald-d:rgba(16,232,142,.09);
+  --violet:#a855f7;--violet-d:rgba(168,85,247,.09);
+  --amber:#f59e0b;--amber-d:rgba(245,158,11,.09);
+  --fd:'Inter',system-ui,sans-serif;
+  --fh:'Space Grotesk','Inter',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}}
+*,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
+html{{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}}
+body{{font-family:var(--fd);font-size:16px;color:var(--txt);background:var(--bg);line-height:1.65;overflow-x:hidden}}
+img{{display:block;max-width:100%;height:auto}}
+a{{text-decoration:none;color:inherit}}
+button{{cursor:pointer;background:none;border:none;font:inherit;color:inherit}}
+::-webkit-scrollbar{{width:5px}}
+::-webkit-scrollbar-track{{background:var(--s1)}}
+::-webkit-scrollbar-thumb{{background:var(--faint);border-radius:10px}}
+
+/* ═══ BG ═══ */
+.bg-canvas{{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}}
+.bg-orb{{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}}
+.bg-orb-1{{width:680px;height:680px;top:-180px;left:-120px;background:radial-gradient(circle,rgba(0,212,200,.16) 0%,transparent 70%);animation:od1 20s ease-in-out infinite alternate}}
+.bg-orb-2{{width:560px;height:560px;top:8%;right:-80px;background:radial-gradient(circle,rgba(201,241,53,.10) 0%,transparent 70%);animation:od2 24s ease-in-out infinite alternate}}
+.bg-orb-3{{width:480px;height:480px;bottom:12%;left:22%;background:radial-gradient(circle,rgba(59,143,245,.09) 0%,transparent 70%);animation:od3 28s ease-in-out infinite alternate}}
+.bg-orb-4{{width:380px;height:380px;bottom:-80px;right:12%;background:radial-gradient(circle,rgba(168,85,247,.07) 0%,transparent 70%);animation:od4 22s ease-in-out infinite alternate}}
+@keyframes od1{{to{{transform:translate(70px,110px)}}}}
+@keyframes od2{{to{{transform:translate(-55px,85px)}}}}
+@keyframes od3{{to{{transform:translate(95px,-75px)}}}}
+@keyframes od4{{to{{transform:translate(-75px,-55px)}}}}
+.bg-grid{{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:60px 60px
+}}
+.bg-vig{{position:absolute;inset:0;background:radial-gradient(ellipse 130% 110% at 50% 50%,transparent 28%,rgba(5,8,15,.82) 100%)}}
+.wrap{{position:relative;z-index:1}}
+
+/* ═══ NAV ═══ */
+.nav{{position:fixed;top:0;left:0;right:0;z-index:100;height:76px;background:rgba(5,8,15,.80);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--bdr);transition:border-color .3s}}
+.nav.scrolled{{border-bottom-color:var(--bdr-m)}}
+.nav-in{{max-width:1280px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}}
+.logo img{{height:56px;width:auto;display:block}}
+.nav-links{{display:flex;align-items:center;gap:4px}}
+.nl{{font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;letter-spacing:.01em}}
+.nl:hover{{color:var(--txt);background:rgba(255,255,255,.06)}}
+.nl.on{{color:var(--lime)}}
+.dd{{position:relative}}
+.dd-btn{{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;cursor:pointer;letter-spacing:.01em}}
+.dd-btn:hover,.dd:hover .dd-btn{{color:var(--txt);background:rgba(255,255,255,.06)}}
+.dd-btn svg{{width:10px;height:10px;opacity:.5;transition:transform .2s}}
+.dd:hover .dd-btn svg{{transform:rotate(180deg)}}
+.dd-menu{{position:absolute;top:calc(100% + 10px);left:0;min-width:190px;background:var(--s2);border:1px solid var(--bdr-m);border-radius:12px;overflow:hidden;box-shadow:0 18px 52px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04) inset;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s var(--ease),visibility .18s,transform .18s var(--ease)}}
+.dd:hover .dd-menu{{opacity:1;visibility:visible;transform:translateY(0)}}
+.di{{display:block;padding:11px 18px;font-size:14px;font-weight:500;color:var(--muted);transition:color .15s,background .15s}}
+.di:hover{{color:var(--lime);background:rgba(255,255,255,.04)}}
+.di+.di{{border-top:1px solid var(--div)}}
+.nav-cta{{font-size:14px;font-weight:700;color:#050810;background:var(--lime);padding:10px 24px;border-radius:9px;white-space:nowrap;transition:opacity .18s,box-shadow .25s,transform .18s}}
+.nav-cta:hover{{opacity:.88;box-shadow:0 0 32px var(--lime-g);transform:translateY(-1px)}}
+.hbg{{display:none;flex-direction:column;gap:5px;padding:6px;border-radius:6px}}
+.hbg span{{width:24px;height:2px;background:var(--txt);border-radius:2px;display:block;transition:transform .25s,opacity .25s}}
+.hbg.on span:nth-child(1){{transform:translateY(7px) rotate(45deg)}}
+.hbg.on span:nth-child(2){{opacity:0}}
+.hbg.on span:nth-child(3){{transform:translateY(-7px) rotate(-45deg)}}
+.mob{{display:none;position:fixed;top:76px;left:0;right:0;background:rgba(5,8,15,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr-m);z-index:99;padding:18px 18px 30px;flex-direction:column;gap:2px}}
+.mob.on{{display:flex}}
+.ma{{font-size:16px;font-weight:500;color:var(--muted);padding:11px 14px;border-radius:8px;transition:color .15s,background .15s}}
+.ma:hover{{color:var(--txt);background:rgba(255,255,255,.05)}}
+.mlbl{{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--faint);padding:14px 14px 4px;text-transform:uppercase}}
+.m-cta{{margin-top:14px;padding:14px 20px;text-align:center;background:var(--lime);color:#050810;font-weight:700;font-size:15px;border-radius:8px;transition:opacity .18s}}
+.m-cta:hover{{opacity:.88}}
+
+/* ═══ TICKER ═══ */
+.ticker-wrap{{border-top:1px solid var(--div);border-bottom:1px solid var(--div);overflow:hidden;padding:11px 0;background:rgba(255,255,255,.01)}}
+.ticker-track{{display:flex;animation:tk 32s linear infinite;white-space:nowrap}}
+.ticker-track:hover{{animation-play-state:paused}}
+.ti{{display:inline-flex;align-items:center;gap:10px;padding:0 34px;font-size:11.5px;font-weight:600;color:var(--faint);letter-spacing:.09em;text-transform:uppercase}}
+.td{{width:4px;height:4px;background:var(--violet);border-radius:50%;opacity:.7}}
+@keyframes tk{{0%{{transform:translateX(0)}}100%{{transform:translateX(-50%)}}}}
+
+/* ═══ LAYOUT ═══ */
+.page-pad{{padding-top:76px}}
+.sec{{padding:clamp(60px,7vw,96px) clamp(18px,3vw,32px)}}
+.si{{max-width:1280px;margin:0 auto}}
+hr.div{{border:none;border-top:1px solid var(--div)}}
+
+/* ═══ HERO ═══ */
+.hero-sec{{padding:clamp(56px,7vw,88px) clamp(18px,3vw,32px) clamp(40px,5vw,60px)}}
+.hero-inner{{max-width:1280px;margin:0 auto;text-align:center}}
+
+.hero-badge{{
+  display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--violet);
+  background:rgba(168,85,247,.07);border:1px solid rgba(168,85,247,.22);border-radius:99px;
+  padding:7px 18px 7px 10px;margin-bottom:28px
+}}
+.pulse{{width:7px;height:7px;background:var(--violet);border-radius:50%;box-shadow:0 0 7px var(--violet);animation:pulse 2.2s ease-in-out infinite}}
+@keyframes pulse{{0%,100%{{transform:scale(1);opacity:1}}50%{{transform:scale(.6);opacity:.5}}}}
+
+.hero-eyebrow{{
+  font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:18px;display:block
+}}
+.hero-title{{
+  font-family:var(--fh);
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:800;letter-spacing:-.04em;line-height:1.04;
+  color:#fff;margin-bottom:18px;text-transform:uppercase;font-style:italic
+}}
+.hero-title .grad{{
+  background:linear-gradient(90deg,var(--cobalt) 0%,var(--violet) 52%,var(--lime) 100%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:gs 5s linear infinite
+}}
+@keyframes gs{{0%{{background-position:0% center}}100%{{background-position:200% center}}}}
+.hero-sub{{font-size:18px;color:var(--muted);line-height:1.65;max-width:580px;margin:0 auto 36px;font-style:italic}}
+
+/* Count pills */
+.count-row{{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:0}}
+.count-pill{{
+  display:flex;align-items:center;gap:12px;
+  background:var(--s1);border:1px solid var(--bdr-m);border-radius:14px;padding:12px 20px;
+  transition:border-color .2s,transform .2s
+}}
+.count-pill:hover{{border-color:var(--bdr-h);transform:translateY(-2px)}}
+.cp-icon{{font-size:18px}}
+.cp-icon.vi{{color:var(--violet)}}.cp-icon.li{{color:var(--lime)}}.cp-icon.te{{color:var(--teal)}}.cp-icon.co{{color:var(--cobalt)}}
+.cp-val{{font-family:var(--fh);font-size:20px;font-weight:800;color:#fff;line-height:1}}
+.cp-lbl{{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}}
+
+/* Section label */
+.slbl{{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:22px}}
+.slbl::before{{content:'';display:block;width:18px;height:1.5px;background:linear-gradient(90deg,var(--violet),var(--lime));border-radius:2px}}
+
+/* ═══ TOOLKIT GRID ═══ */
+.tk-grid{{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px
+}}
+
+/* ═══ TOOLKIT CARD ═══ */
+.tk-card{{
+  background:var(--s1);border:1px solid var(--bdr);border-radius:24px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .22s,transform .28s var(--ease),box-shadow .28s
+}}
+.tk-card:hover{{
+  border-color:rgba(201,241,53,.28);transform:translateY(-6px);
+  box-shadow:0 24px 64px rgba(0,0,0,.52),0 0 0 1px rgba(201,241,53,.07)
+}}
+.tk-card-top{{padding:18px 20px 12px}}
+.tk-badge{{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(168,85,247,.07);color:var(--violet);
+  font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  padding:4px 10px;border-radius:99px;border:1px solid rgba(168,85,247,.18);margin-bottom:10px
+}}
+.tk-name{{
+  font-family:var(--fh);font-size:17px;font-weight:800;color:#fff;
+  letter-spacing:-.01em;font-style:italic;text-transform:uppercase;line-height:1.2
+}}
+.tk-iframe-wrap{{
+  position:relative;width:100%;flex:1;
+  border-top:1px solid var(--div);border-bottom:1px solid var(--div);
+  background:#000;min-height:220px
+}}
+.tk-iframe{{
+  width:100%;height:220px;display:block;border:none;
+  border-radius:0;background:#000
+}}
+.tk-card-foot{{padding:14px 16px}}
+.tk-cta{{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:12px;text-align:center;
+  border:1px solid rgba(201,241,53,.25);border-radius:12px;
+  background:rgba(201,241,53,.06);color:var(--lime);
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  transition:background .18s,color .18s,border-color .18s,transform .15s
+}}
+.tk-cta:hover{{background:var(--lime);color:#050810;border-color:var(--lime);transform:translateY(-1px)}}
+.tk-cta i{{font-size:13px}}
+
+/* ═══ CTA BANNER ═══ */
+.cta-banner{{
+  position:relative;overflow:hidden;
+  background:var(--s1);border:1px solid rgba(201,241,53,.15);
+  border-radius:32px;padding:clamp(40px,5vw,72px) clamp(28px,5vw,72px);
+  text-align:center;margin-top:clamp(48px,6vw,80px)
+}}
+.cta-bg-word{{
+  position:absolute;top:50%;right:5%;transform:translateY(-50%);
+  font-family:var(--fh);font-size:clamp(80px,10vw,140px);font-weight:800;
+  color:#fff;opacity:.025;letter-spacing:-.04em;font-style:italic;
+  text-transform:uppercase;pointer-events:none;user-select:none;white-space:nowrap
+}}
+.cta-eyebrow{{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--lime);margin-bottom:16px;display:block}}
+.cta-title{{
+  font-family:var(--fh);font-size:clamp(1.8rem,3.5vw,3rem);
+  font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;
+  font-style:italic;text-transform:uppercase;margin-bottom:16px
+}}
+.cta-sub{{font-size:16px;color:var(--muted);max-width:500px;margin:0 auto 36px;line-height:1.65}}
+.cta-btn{{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--lime);color:#050810;
+  font-family:var(--fh);font-size:15px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:18px 48px;border-radius:14px;
+  transition:opacity .18s,transform .22s,box-shadow .28s;
+  box-shadow:0 0 48px rgba(201,241,53,.18)
+}}
+.cta-btn:hover{{opacity:.88;transform:translateY(-2px);box-shadow:0 0 64px rgba(201,241,53,.32)}}
+
+/* ═══ FOOTER ═══ */
+.footer{{border-top:1px solid var(--div);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);padding:80px 28px 36px}}
+.fi{{max-width:1280px;margin:0 auto}}
+.fg{{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:60px;border-bottom:1px solid var(--div)}}
+.flog img{{height:48px;width:auto;margin-bottom:16px}}
+.ftag{{font-size:10.5px;color:var(--faint);letter-spacing:.13em;text-transform:uppercase;line-height:1.75;margin-bottom:22px}}
+.fsoc{{display:flex;gap:16px;font-size:18px}}
+.fsoc a{{transition:transform .18s,opacity .18s}}
+.fsoc a:hover{{transform:scale(1.15);opacity:.85}}
+.fct{{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:20px}}
+.fli{{display:block;font-size:13.5px;color:var(--muted);margin-bottom:11px;transition:color .15s}}
+.fli:hover{{color:var(--txt)}}
+.fli.cta{{color:var(--lime);font-weight:600}}
+.fcl{{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}}
+.fcv{{font-size:13.5px;color:#fff;font-weight:500;margin-bottom:14px;transition:color .15s}}
+.fcv:hover{{color:var(--lime)}}
+.fci{{font-size:12px;color:var(--muted);font-style:italic}}
+.fdis-wrap{{margin-top:44px;padding-top:40px;border-top:1px solid var(--div)}}
+.fdis-t{{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}}
+.fdis-box{{background:rgba(0,0,0,.4);padding:28px 32px;border-radius:18px;border:1px solid var(--div)}}
+.fdis-p{{font-size:10px;color:var(--faint);line-height:1.82;text-align:justify;text-transform:uppercase;letter-spacing:.01em;font-weight:300}}
+.fbar{{margin-top:40px;padding-top:26px;border-top:1px solid var(--div);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}}
+.fcp{{font-size:10px;color:var(--faint);letter-spacing:.36em;text-transform:uppercase}}
+.ftags{{display:flex;gap:18px}}
+.ftg{{font-size:9px;color:rgba(100,115,132,.5);letter-spacing:.14em;text-transform:uppercase}}
+
+/* ═══ SCROLL REVEAL ═══ */
+.rv{{opacity:0;transition:opacity .7s var(--ease),transform .7s var(--ease)}}
+.rv.on{{opacity:1;transform:none !important}}
+.ru{{transform:translateY(30px)}}.rl{{transform:translateX(-26px)}}.rr{{transform:translateX(26px)}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){{.tk-grid{{grid-template-columns:repeat(2,1fr)}}}}
+@media(max-width:860px){{.fg{{grid-template-columns:1fr 1fr}}}}
+@media(max-width:640px){{
+  .tk-grid{{grid-template-columns:1fr}}
+  .count-row{{flex-direction:column;align-items:center}}
+  .nav-in{{padding:0 18px}}
+  .nav-links,.nav-cta{{display:none}}
+  .hbg{{display:flex}}
+  .fg{{grid-template-columns:1fr;gap:28px}}
+  .footer{{padding:52px 18px 28px}}
+  .sec{{padding:60px 18px}}
+  .cta-banner{{border-radius:20px}}
+}}
+</style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav class="glass-nav fixed w-full z-50 top-0 transition-all">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between h-24">
-                <div class="flex-shrink-0 cursor-pointer" onclick="window.location.href='../index.html'">
-                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
-                </div>
-                <div class="hidden md:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-                    <a href="../index.html" class="hover:text-white transition-colors">Home</a>
-                    <a href="../strategies/index.html" class="hover:text-white transition-colors">Indicator & Strategy</a>
-                    <a href="index.html" class="text-[#e2ff6e]">Free Toolkit</a>
-                    <a href="../doc/index.html" class="hover:text-white transition-colors">Documents</a>
-                    <a href="../blog/index.html" class="hover:text-white transition-colors">Blog</a>
-                    <a href="https://discord.gg/72wFfgmW" target="_blank" class="hover:text-white transition-colors">Discord</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white text-2xl focus:outline-none">
-                        <i class="fa-solid fa-bars-staggered"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0">
-            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
-                <a href="../index.html" class="text-xl font-bold text-slate-300">Home</a>
-                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300">Strategies</a>
-                <a href="index.html" class="text-lg font-medium text-[#e2ff6e]">Free Toolkit</a>
-                <a href="../doc/index.html" class="text-lg font-medium text-slate-300">Documents</a>
-                <a href="../blog/index.html" class="text-lg font-medium text-slate-300">Blog</a>
-            </div>
-        </div>
-    </nav>
-
-    <main class="pt-48 pb-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-24">
-            <h4 class="text-[#e2ff6e] font-bold text-xs uppercase tracking-[0.4em] mb-4">Quantitative Resource</h4>
-            <h1 class="text-5xl md:text-8xl font-black text-white leading-tight mb-8 italic uppercase tracking-tighter">
-                Free Quant <span class="text-blue-500">Toolkit.</span>
-            </h1>
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto italic">
-                A curated library of experimental and community-focused scripts developed by PointAlgo.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">3D Orderflow</h3>
-                <iframe src="https://www.tradingview.com/embed/7asLGwVf/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/7asLGwVf-3D-Order-Flow-Point-Algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">3D Wave field</h3>
-                <iframe src="https://www.tradingview.com/embed/uBA9FAwS/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/uBA9FAwS-Wave-Field-3D-Point-Algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Liquidity Trap Reversal</h3>
-                <iframe src="https://www.tradingview.com/embed/LK9dLUUE/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/LK9dLUUE-Liquidity-Trap-Reversal-bot-Point-algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-            
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Institutional Order Flow</h3>
-                <iframe src="https://www.tradingview.com/embed/JzIfbxng/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/JzIfbxng-Ultimate-Institutional-Order-Flow-Pro-Pointalgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Quant Trading Engine</h3>
-                <iframe src="https://www.tradingview.com/embed/oIpSWdnG/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/oIpSWdnG-QUANT-TRADING-ENGINE-PointAlgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Deep Trades Whales</h3>
-                <iframe src="https://www.tradingview.com/embed/GJQFEELb/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/GJQFEELb-Deep-Trades-Whales-PointAlgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Anchored Pitchfork PRO</h3>
-                <iframe src="https://www.tradingview.com/embed/aYw9ZMRL/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/aYw9ZMRL-Auto-Anchored-Pitchfork-PRO-Point-algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Kalman LinReg Channel</h3>
-                <iframe src="https://www.tradingview.com/embed/agAaAFjt/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/agAaAFjt-HMA-Kalman-LinReg-Channel-Pointalgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Session Dominance</h3>
-                <iframe src="https://www.tradingview.com/embed/ykBg0Tc2/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/ykBg0Tc2-Session-Dominance-Profile-Pointalgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Vortex Pro MA</h3>
-                <iframe src="https://www.tradingview.com/embed/N1BbbmsY/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/N1BbbmsY-Vortex-Pro-with-Moving-average-point-algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Linear Regression Pro</h3>
-                <iframe src="https://www.tradingview.com/embed/VSj4YADY/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/VSj4YADY-Advanced-Linear-Regression-Pro-PointAlgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Regime Switching</h3>
-                <iframe src="https://www.tradingview.com/embed/GLcZTzId/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/GLcZTzId-Regime-Switching-Pointalgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Black Scholes Quantum</h3>
-                <iframe src="https://www.tradingview.com/embed/Hia6PYnp/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/Hia6PYnp-Black-Scholes-Quantum-Gap-Pointalgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">VW MACD GARCH</h3>
-                <iframe src="https://www.tradingview.com/embed/hCYLgdlK/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/hCYLgdlK-VW-MACD-GARCH-Filter-Pointalgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Ito's Lemma Dots</h3>
-                <iframe src="https://www.tradingview.com/embed/ew0GQ8IC/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/ew0GQ8IC-Ito-s-Lemma-Cone-Projection-Dots-Pointalgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Kinetic Swing Profile</h3>
-                <iframe src="https://www.tradingview.com/embed/EokMYZcO/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/EokMYZcO-Kinetic-Swing-Profile-Point-algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Quant AI Engine</h3>
-                <iframe src="https://www.tradingview.com/embed/sGXnKvE9/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/sGXnKvE9-Quant-AI-Engine-point-algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Quantum Equalizer</h3>
-                <iframe src="https://www.tradingview.com/embed/JDS62pzI/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/JDS62pzI-Quantum-Scanner-Equalizer-Point-algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">Shadow Rejection Rail</h3>
-                <iframe src="https://www.tradingview.com/embed/h2ma9XaG/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/h2ma9XaG-Shadow-Rejection-Rail-Pure-State-PointAlgo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-            <div class="glass-card rounded-[2.5rem] p-6 flex flex-col border-white/5 hover:border-[#e2ff6e]/20 transition-all">
-                <h3 class="text-white font-bold text-lg mb-4 italic uppercase">FVG Average Analyzer</h3>
-                <iframe src="https://www.tradingview.com/embed/SoiByHSw/" class="w-full h-64 mb-6 indicator-iframe" loading="lazy"></iframe>
-                <a href="https://www.tradingview.com/script/SoiByHSw-FVG-Average-Analyzer-point-algo/" target="_blank" class="mt-auto block w-full text-center py-3 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">Get Script</a>
-            </div>
-
-        </div>
-
-        <div class="mt-24 p-12 glass-card rounded-[3rem] border-[#e2ff6e]/20 text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-10 opacity-5 text-9xl text-white italic font-black">QUANT</div>
-            <h2 class="text-[#e2ff6e] font-black text-3xl md:text-4xl italic mb-6 uppercase tracking-tighter">Ready for Institutional Precision?</h2>
-            <p class="text-slate-400 text-lg mb-10 max-w-xl mx-auto">Access our specialized multi-market frameworks with invite-only scripts and alert-ready automation.</p>
-            <a href="../strategies/index.html" class="inline-block bg-[#e2ff6e] text-black font-black py-5 px-16 rounded-2xl hover:scale-105 transition-all uppercase tracking-[0.2em] shadow-[0_0_50px_rgba(226,255,110,0.2)]">Explore Pro Packs</a>
-        </div>
-    </main>
-
-    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            
-            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
-                
-                <div class="col-span-1 md:col-span-1 space-y-6">
-                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
-                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
-                        Advanced Quantitative <br> Intelligence Systems.
-                    </p>
-
-                    <div class="flex gap-5 text-xl">
-    <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-youtube"></i>
-    </a>
-    <a href="#" class="text-slate-400 hover:text-white transition-all">
-        <i class="fa-brands fa-x-twitter"></i>
-    </a>
-    <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-discord"></i>
-    </a>
-    <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
+<!-- ═══ BG ═══ -->
+<div class="bg-canvas" aria-hidden="true">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+  <div class="bg-orb bg-orb-4"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-vig"></div>
 </div>
-                    
-                </div>
 
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
-                    <div class="space-y-3">
-                        <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
-                        <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
-                        <a href="../blog/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Blog</a>
-                        <a href="../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
-                        <a href="../contact/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Contact Us</a>
-                    </div>
-                </div>
+<div class="wrap">
 
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
-                    <div class="space-y-3">
-                        <a href="../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
-                        <a href="../legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
-                        <a href="../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
-                        <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
-                    </div>
-                </div>
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="../index.html" class="logo">
+      <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" width="180" height="56">
+    </a>
+    <div class="nav-links">
+      <a href="../index.html"            class="nl">Home</a>
+      <a href="../strategies/index.html" class="nl">Indicator and Strategy</a>
 
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
-                    <div class="space-y-4">
-                        <div class="space-y-1">
-                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
-                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#e2ff6e]">hello@pointalgo.com</a>
-                        </div>
-                        <div class="space-y-1">
-                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
-                            <p class="text-white font-medium text-sm">+91-8452035834</p>
-                        </div>
-                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="pt-12 border-t border-white/5">
-                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
-                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
-                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
-                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
-                <div class="flex gap-6">
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
-                </div>
-            </div>
-
+      <div class="dd">
+        <button class="dd-btn">
+          Performance
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="dd-menu">
+          <a href="../performance/global/index.html" class="di">Global Market</a>
+          <a href="../performance/india/index.html"  class="di">Indian Market</a>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('mobile-menu-button');
-            const menu = document.getElementById('mobile-menu');
-            if (btn && menu) {
-                btn.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                });
-            }
-        });
-    </script>
+      <div class="dd">
+        <button class="dd-btn">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="dd-menu">
+          <a href="../doc/index.html"  class="di">Documentation</a>
+          <a href="../blog/index.html" class="di">Blogs</a>
+        </div>
+      </div>
+
+      <a href="index.html" class="nl on">Free Toolkit</a>
+
+      <div class="dd">
+        <button class="dd-btn">
+          Community
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="dd-menu">
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
+        </div>
+      </div>
+    </div>
+    <a href="../strategies/index.html#pricing" class="nav-cta">Get Access</a>
+    <button class="hbg" id="hbg" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob" id="mob">
+  <a href="../index.html"            class="ma">Home</a>
+  <a href="../strategies/index.html" class="ma">Indicator and Strategy</a>
+  <div class="mlbl">Performance</div>
+  <a href="../performance/global/index.html" class="ma">Global Market</a>
+  <a href="../performance/india/index.html"  class="ma">Indian Market</a>
+  <div class="mlbl">Resources</div>
+  <a href="../doc/index.html"  class="ma">Documentation</a>
+  <a href="../blog/index.html" class="ma">Blogs</a>
+  <a href="index.html" class="ma" style="color:var(--lime)">Free Toolkit</a>
+  <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
+  <a href="../strategies/index.html#pricing" class="m-cta">Get Access →</a>
+</div>
+
+<!-- ═══ TICKER ═══ -->
+<div class="page-pad">
+  <div class="ticker-wrap">
+    <div class="ticker-track" aria-hidden="true">
+      <span class="ti"><span class="td"></span>Free Scripts</span>
+      <span class="ti"><span class="td"></span>Open Source</span>
+      <span class="ti"><span class="td"></span>Pine Script v5</span>
+      <span class="ti"><span class="td"></span>TradingView</span>
+      <span class="ti"><span class="td"></span>Quant Toolkit</span>
+      <span class="ti"><span class="td"></span>Community Library</span>
+      <span class="ti"><span class="td"></span>Order Flow</span>
+      <span class="ti"><span class="td"></span>Experimental Indicators</span>
+      <span class="ti"><span class="td"></span>Free Scripts</span>
+      <span class="ti"><span class="td"></span>Open Source</span>
+      <span class="ti"><span class="td"></span>Pine Script v5</span>
+      <span class="ti"><span class="td"></span>TradingView</span>
+      <span class="ti"><span class="td"></span>Quant Toolkit</span>
+      <span class="ti"><span class="td"></span>Community Library</span>
+      <span class="ti"><span class="td"></span>Order Flow</span>
+      <span class="ti"><span class="td"></span>Experimental Indicators</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero-sec">
+  <div class="hero-inner">
+    <div class="hero-badge rv ru"><span class="pulse"></span>Quantitative Resource Library</div>
+    <span class="hero-eyebrow rv ru" style="transition-delay:.05s">Community-focused · Open Access · Pine Script v5</span>
+    <h1 class="hero-title rv ru" style="transition-delay:.09s">
+      Free Quant <span class="grad">Toolkit.</span>
+    </h1>
+    <p class="hero-sub rv ru" style="transition-delay:.14s">
+      A curated library of experimental and community-focused scripts developed by PointAlgo — all free, all on TradingView.
+    </p>
+
+    <!-- Count pills -->
+    <div class="count-row rv ru" style="transition-delay:.19s">
+      <div class="count-pill">
+        <span class="cp-icon vi"><i class="fa-solid fa-code-branch"></i></span>
+        <div><div class="cp-val">20</div><div class="cp-lbl">Free Scripts</div></div>
+      </div>
+      <div class="count-pill">
+        <span class="cp-icon li"><i class="fa-solid fa-chart-line"></i></span>
+        <div><div class="cp-val">100%</div><div class="cp-lbl">Open Access</div></div>
+      </div>
+      <div class="count-pill">
+        <span class="cp-icon te"><i class="fa-solid fa-bolt-lightning"></i></span>
+        <div><div class="cp-val">Pine v5</div><div class="cp-lbl">Language</div></div>
+      </div>
+      <div class="count-pill">
+        <span class="cp-icon co"><i class="fa-brands fa-tradingview"></i></span>
+        <div><div class="cp-val">TV</div><div class="cp-lbl">Platform</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<section class="sec" style="padding-top:clamp(48px,5vw,72px)">
+  <div class="si">
+    <div class="slbl rv ru">Script Library — {len(indicators)} Indicators</div>
+
+    <div class="tk-grid">
+{cards_html}
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner rv ru">
+      <div class="cta-bg-word">QUANT</div>
+      <span class="cta-eyebrow">Ready for Institutional Precision?</span>
+      <h2 class="cta-title">Upgrade to Pro Packs</h2>
+      <p class="cta-sub">Access specialized multi-market frameworks with invite-only scripts, alert-ready automation, and live trade performance data.</p>
+      <a href="../strategies/index.html" class="cta-btn">
+        Explore Pro Packs <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="fi">
+    <div class="fg">
+      <div>
+        <div class="flog"><img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" width="160" height="48" loading="lazy"></div>
+        <p class="ftag">Advanced Quantitative<br>Intelligence Systems.</p>
+        <div class="fsoc">
+          <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" style="color:var(--muted)" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Platform</div>
+        <a href="../index.html"            class="fli">Home</a>
+        <a href="../strategies/index.html" class="fli">Indicator &amp; Strategy</a>
+        <a href="../blog/index.html"       class="fli">Blog</a>
+        <a href="../doc/index.html"        class="fli">Documentation</a>
+        <a href="../contact/index.html"    class="fli cta">Contact Us ↗</a>
+      </div>
+      <div>
+        <div class="fct">Legal &amp; Compliance</div>
+        <a href="../legal/terms.html"  class="fli">Terms &amp; Conditions</a>
+        <a href="../legal/privacy.html" class="fli">Privacy Policy</a>
+        <a href="../legal/refund.html"  class="fli">Refund &amp; Cancellation</a>
+        <a href="../about.html"         class="fli">About Us</a>
+      </div>
+      <div>
+        <div class="fct">Connect</div>
+        <div class="fcl">Inquiries</div>
+        <a href="mailto:hello@pointalgo.com" class="fcv" style="display:block">hello@pointalgo.com</a>
+        <div class="fcl">Support</div>
+        <div class="fcv">+91-8452035834</div>
+        <p class="fci">Ghatkopar, Mumbai, India</p>
+      </div>
+    </div>
+    <div class="fdis-wrap">
+      <h4 class="fdis-t">Disclaimer from PointAlgo.com</h4>
+      <div class="fdis-box">
+        <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
+      </div>
+    </div>
+    <div class="fbar">
+      <span class="fcp">© 2026 PointAlgo Quantitative Intelligence</span>
+      <div class="ftags">
+        <span class="ftg">Built for Speed</span>
+        <span class="ftg">Built for Accuracy</span>
+        <span class="ftg">Built for Logic</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.wrap -->
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+/* ─── NAV SCROLL ─── */
+(function(){{
+  var n = document.getElementById('nav');
+  window.addEventListener('scroll', function(){{ n.classList.toggle('scrolled', window.scrollY > 24); }}, {{passive:true}});
+}})();
+
+/* ─── MOBILE MENU ─── */
+document.addEventListener('DOMContentLoaded', function(){{
+  var btn  = document.getElementById('hbg');
+  var menu = document.getElementById('mob');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function(e){{
+    e.stopPropagation();
+    var open = menu.classList.toggle('on');
+    btn.classList.toggle('on', open);
+  }});
+  document.addEventListener('click', function(e){{
+    if (!menu.contains(e.target) && !btn.contains(e.target)){{
+      menu.classList.remove('on'); btn.classList.remove('on');
+    }}
+  }});
+  menu.querySelectorAll('a').forEach(function(a){{
+    a.addEventListener('click', function(){{ menu.classList.remove('on'); btn.classList.remove('on'); }});
+  }});
+}});
+
+/* ─── SCROLL REVEAL ─── */
+(function(){{
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)){{ els.forEach(function(e){{ e.classList.add('on'); }}); return; }}
+  var obs = new IntersectionObserver(function(entries){{
+    entries.forEach(function(en){{
+      if (en.isIntersecting){{ en.target.classList.add('on'); obs.unobserve(en.target); }}
+    }});
+  }}, {{threshold:0.08}});
+  els.forEach(function(el){{ obs.observe(el); }});
+}})();
+</script>
+
 </body>
 </html>
