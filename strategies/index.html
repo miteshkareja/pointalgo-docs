@@ -133,7 +133,7 @@ hr.div{border:none;border-top:1px solid var(--div);position:relative;z-index:1}
 .h-left{display:flex;flex-direction:column;justify-content:center}
 .h-right{display:flex;flex-direction:column;justify-content:center;position:relative}
 
-/* H1 with animated gradient — same as home */
+/* H1 animated gradient */
 .h1{font-family:var(--fh);font-size:clamp(2.6rem,4vw,3.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.08;color:#fff;margin-bottom:20px}
 .h1 .plain{color:#fff;display:block}
 .h1 .grad{display:block;background:linear-gradient(90deg,var(--teal) 0%,var(--lime) 52%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gs 5s linear infinite}
@@ -150,7 +150,7 @@ hr.div{border:none;border-top:1px solid var(--div);position:relative;z-index:1}
 .cd:nth-child(1){background:#ff5f56}.cd:nth-child(2){background:#ffbd2e}.cd:nth-child(3){background:#28ca41}
 .caddr{flex:1;background:rgba(255,255,255,.05);border-radius:99px;height:19px;display:flex;align-items:center;padding:0 10px;font-size:10px;color:var(--faint);letter-spacing:.04em}
 
-/* ── SPINNING RING behind image (same as home .hring) ── */
+/* Spinning ring */
 .hring{
   position:absolute;
   inset:-28px;
@@ -163,7 +163,7 @@ hr.div{border:none;border-top:1px solid var(--div);position:relative;z-index:1}
 }
 @keyframes hring-spin{to{transform:rotate(360deg)}}
 
-/* ── FLOATING POPUP CARDS (same as home .ftr / .fbl) ── */
+/* Floating popup cards */
 .fc{
   position:absolute;
   z-index:10;
@@ -361,14 +361,14 @@ textarea.form-inp{height:120px;resize:none}
   <a href="#pricing" class="m-cta">Get Access →</a>
 </div>
 
-<!-- ═══ HERO (WITH ALL HOME ANIMATIONS) ═══ -->
+<!-- ═══ HERO ═══ -->
 <main>
 <section class="hero">
   <div class="hero-in">
     <div class="hero-badge rv ru"><span class="pulse"></span>Professional Quant Trading Systems</div>
     <div class="h-grid">
 
-      <!-- LEFT: text with animated gradient h1 -->
+      <!-- LEFT -->
       <div class="h-left rv rl">
         <h1 class="h1">
           <span class="plain">PointAlgo Quant</span>
@@ -383,26 +383,32 @@ textarea.form-inp{height:120px;resize:none}
         </div>
       </div>
 
-      <!-- RIGHT: image with spinning ring glow + floating popup cards -->
+      <!-- RIGHT -->
       <div class="h-right rv rr">
-        <!-- Spinning conic ring glow (same as home) -->
+        <!-- Spinning conic ring glow -->
         <div class="hring"></div>
 
-        <!-- Main dashboard screen -->
+        <!-- Main screen card -->
         <div class="hscreen">
           <div class="chrome">
             <span class="cd"></span><span class="cd"></span><span class="cd"></span>
             <span class="caddr">pointalgo.com / dashboard</span>
           </div>
-          <img src="strategy_herosection1.gif" alt="PointAlgo Quant Trading Framework" width="900" height="540" loading="eager">
+          <!-- ✅ UPDATED IMAGE SOURCE -->
+          <img
+            src="https://raw.githubusercontent.com/miteshkareja/pointalgo-docs/refs/heads/main/strategies/strategy_herosection.gif"
+            alt="PointAlgo Quant Trading Framework GIF"
+            width="900"
+            height="540"
+            loading="eager">
         </div>
 
-        <!-- Floating popup top-right (same as home alert_popup) -->
+        <!-- Floating popup top-right -->
         <div class="fc ftr">
           <img src="../Home/alert_popup.png" alt="Trade Alert" width="420" height="250" loading="lazy">
         </div>
 
-        <!-- Floating popup bottom-left (same as home left_stats) -->
+        <!-- Floating popup bottom-left -->
         <div class="fc fbl">
           <img src="../Home/left_stats.png" alt="Market Stats" width="420" height="250" loading="lazy">
         </div>
@@ -413,7 +419,7 @@ textarea.form-inp{height:120px;resize:none}
 </section>
 </main>
 
-<!-- TICKER -->
+<!-- ── TICKER ── -->
 <div class="ticker-wrap">
   <div class="ticker-track" aria-hidden="true">
     <span class="ti"><span class="td"></span>TradingView Invite-Only</span>
@@ -643,11 +649,11 @@ textarea.form-inp{height:120px;resize:none}
           <input type="tel" name="phone" placeholder="Mobile Number" required minlength="10" maxlength="15" oninput="this.value=this.value.replace(/[^0-9+]/g,'')" class="form-inp">
         </div>
         <input type="email" name="email" placeholder="Email Address" required class="form-inp" style="width:100%;margin-bottom:14px">
-        <input type="text" name="tv_username" placeholder="TradingView Username (Optional)" class="form-inp" style="width:100%;margin-bottom:14px">
+        <input type="text" name="tvusername" placeholder="TradingView Username (Optional)" class="form-inp" style="width:100%;margin-bottom:14px">
         <select name="plan" class="form-inp" style="width:100%;margin-bottom:14px">
           <option value="Enterprise">Enterprise License</option>
-          <option value="Global_USD">International Subscription ($)</option>
-          <option value="Custom_Dev">Custom Quantitative Development</option>
+          <option value="GlobalUSD">International Subscription</option>
+          <option value="CustomDev">Custom Quantitative Development</option>
         </select>
         <textarea name="message" placeholder="Describe your trading requirements..." required class="form-inp" style="width:100%;margin-bottom:14px"></textarea>
         <button type="submit" id="submitBtn" class="form-submit">Submit Lead</button>
@@ -677,7 +683,7 @@ textarea.form-inp{height:120px;resize:none}
         <a href="index.html" class="fli">Indicator &amp; Strategy</a>
         <a href="../blog/index.html" class="fli">Blog</a>
         <a href="../doc/index.html" class="fli">Documentation</a>
-        <a href="../contact/index.html" class="fli cta">Contact Us ↗</a>
+        <a href="../contact/index.html" class="fli cta">Contact Us</a>
       </div>
       <div>
         <div class="fct">Legal &amp; Compliance</div>
@@ -718,7 +724,7 @@ textarea.form-inp{height:120px;resize:none}
 /* NAV SCROLL */
 (function(){
   var n=document.getElementById('nav');
-  window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+  window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>24);},{passive:true});
 })();
 
 /* HAMBURGER */
@@ -740,19 +746,20 @@ document.addEventListener('DOMContentLoaded',function(){
       a.addEventListener('click',function(){menu.classList.remove('on');btn.classList.remove('on');});
     });
   }
+});
 
-  /* FORM */
-  var scriptURL='https://script.google.com/macros/s/AKfycbxwDlLf9qvyZe24NMGMnnL8dh85OJWtub8znSOK7xv34F58NMpva85Qvn8Rjb6kju8j/exec';
-  var form=document.getElementById('leadForm');
-  var submitBtn=document.getElementById('submitBtn');
-  var success=document.getElementById('formSuccess');
-  if(form){
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      var phone=form.querySelector('input[name="phone"]');
-      if(phone&&phone.value.length<10){alert('Please enter a valid mobile number (at least 10 digits).');phone.focus();return;}
-      if(submitBtn){submitBtn.innerHTML='SENDING...';submitBtn.disabled=true;}
-      fetch(scriptURL,{method:'POST',mode:'no-cors',body:new FormData(form)})
+/* FORM */
+var scriptURL='https://script.google.com/macros/s/AKfycbxwDlLf9qvyZe24NMGMnnL8dh85OJWtub8znSOK7xv34F58NMpva85Qvn8Rjb6kju8j/exec';
+var form=document.getElementById('leadForm');
+var submitBtn=document.getElementById('submitBtn');
+var success=document.getElementById('formSuccess');
+if(form){
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var phone=form.querySelector('input[name="phone"]');
+    if(phone&&phone.value.length<10){alert('Please enter a valid mobile number (at least 10 digits).');phone.focus();return;}
+    if(submitBtn){submitBtn.innerHTML='SENDING...';submitBtn.disabled=true;}
+    fetch(scriptURL,{method:'POST',mode:'no-cors',body:new FormData(form)})
       .then(function(){
         form.reset();
         if(submitBtn){submitBtn.innerHTML='SUBMIT LEAD';submitBtn.disabled=false;}
@@ -761,9 +768,8 @@ document.addEventListener('DOMContentLoaded',function(){
       .catch(function(){
         if(submitBtn){submitBtn.innerHTML='ERROR. TRY AGAIN.';submitBtn.disabled=false;}
       });
-    });
-  }
-});
+  });
+}
 
 /* CURRENCY TOGGLE */
 var curOn=false;
@@ -778,7 +784,7 @@ function handleCurToggle(el){
 /* SCROLL REVEAL */
 (function(){
   var els=document.querySelectorAll('.rv');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});return;}
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on');});return;}
   var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if(en.isIntersecting){en.target.classList.add('on');obs.unobserve(en.target);}
