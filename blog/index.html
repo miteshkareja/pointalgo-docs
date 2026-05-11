@@ -1,281 +1,459 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-GJZXB11LLJ');
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quant Insights Blog | PointAlgo</title>
-    <link rel="icon" type="image/png" href="../favicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { 
-            background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%);
-            background-attachment: fixed;
-            color: #f8fafc; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-        }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: #e2ff6e; transform: translateY(-5px); }
-        .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../favicon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GJZXB11LLJ');
+</script>
+<title>Quant Insights Blog | PointAlgo</title>
+<meta name="description" content="Weekly deep-dives into algorithmic trading, volatility, and market logic by PointAlgo.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#05080f;--s1:#090e1a;--s2:#0d1424;--s3:#111b30;
+  --bdr:rgba(255,255,255,.07);--bdr-m:rgba(255,255,255,.12);--bdr-h:rgba(255,255,255,.20);
+  --div:rgba(255,255,255,.04);
+  --txt:#dde6f0;--muted:#8a9bb5;--faint:#2c3d52;
+  --lime:#c9f135;--lime-g:rgba(201,241,53,.28);--lime-d:rgba(201,241,53,.09);
+  --teal:#00d4c8;--teal-g:rgba(0,212,200,.22);
+  --cobalt:#3b8ff5;
+  --emerald:#10e88e;
+  --amber:#f59e0b;
+  --fd:'Inter',system-ui,sans-serif;
+  --fh:'Space Grotesk','Inter',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--fd);font-size:16px;color:var(--txt);background:var(--bg);line-height:1.65;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+
+/* ── BG ── */
+.bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+.bg-orb-1{width:680px;height:680px;top:-180px;left:-120px;background:radial-gradient(circle,rgba(0,212,200,.16) 0%,transparent 70%);animation:od1 20s ease-in-out infinite alternate}
+.bg-orb-2{width:560px;height:560px;top:8%;right:-80px;background:radial-gradient(circle,rgba(201,241,53,.10) 0%,transparent 70%);animation:od2 24s ease-in-out infinite alternate}
+.bg-orb-3{width:480px;height:480px;bottom:12%;left:22%;background:radial-gradient(circle,rgba(59,143,245,.09) 0%,transparent 70%);animation:od3 28s ease-in-out infinite alternate}
+.bg-orb-4{width:380px;height:380px;bottom:-80px;right:12%;background:radial-gradient(circle,rgba(16,232,142,.07) 0%,transparent 70%);animation:od4 22s ease-in-out infinite alternate}
+@keyframes od1{to{transform:translate(70px,110px)}}
+@keyframes od2{to{transform:translate(-55px,85px)}}
+@keyframes od3{to{transform:translate(95px,-75px)}}
+@keyframes od4{to{transform:translate(-75px,-55px)}}
+.bg-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:60px 60px
+}
+.bg-vig{position:absolute;inset:0;background:radial-gradient(ellipse 130% 110% at 50% 50%,transparent 28%,rgba(5,8,15,.82) 100%)}
+.wrap{position:relative;z-index:1;display:flex;flex-direction:column;min-height:100vh}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:76px;background:rgba(5,8,15,.80);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--bdr);transition:border-color .3s}
+.nav.scrolled{border-bottom-color:var(--bdr-m)}
+.nav-in{max-width:1280px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo img{height:56px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nl-a{font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;letter-spacing:.01em}
+.nl-a:hover{color:var(--txt);background:rgba(255,255,255,.06)}
+.nl-a.on{color:var(--lime)}
+.dd{position:relative}
+.dd-btn{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;cursor:pointer;letter-spacing:.01em}
+.dd-btn:hover,.dd:hover .dd-btn{color:var(--txt);background:rgba(255,255,255,.06)}
+.dd-btn.on{color:var(--lime)}
+.dd-btn svg{width:10px;height:10px;opacity:.5;transition:transform .2s}
+.dd:hover .dd-btn svg{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 10px);left:0;min-width:190px;background:var(--s2);border:1px solid var(--bdr-m);border-radius:12px;overflow:hidden;box-shadow:0 18px 52px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04) inset;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s var(--ease),visibility .18s,transform .18s var(--ease)}
+.dd:hover .dd-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.di{display:block;padding:11px 18px;font-size:14px;font-weight:500;color:var(--muted);transition:color .15s,background .15s}
+.di:hover{color:var(--lime);background:rgba(255,255,255,.04)}
+.di.on{color:var(--lime)}
+.di+.di{border-top:1px solid var(--div)}
+.nav-cta{font-size:14px;font-weight:700;color:#050810;background:var(--lime);padding:10px 24px;border-radius:9px;white-space:nowrap;transition:opacity .18s,box-shadow .25s,transform .18s}
+.nav-cta:hover{opacity:.88;box-shadow:0 0 32px var(--lime-g);transform:translateY(-1px)}
+.hbg{display:none;flex-direction:column;gap:5px;padding:6px;border-radius:6px}
+.hbg span{width:24px;height:2px;background:var(--txt);border-radius:2px;display:block;transition:transform .25s,opacity .25s}
+.hbg.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.on span:nth-child(2){opacity:0}
+.hbg.on span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob{display:none;position:fixed;top:76px;left:0;right:0;background:rgba(5,8,15,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr-m);z-index:99;padding:18px 18px 30px;flex-direction:column;gap:2px}
+.mob.on{display:flex}
+.ma{font-size:16px;font-weight:500;color:var(--muted);padding:11px 14px;border-radius:8px;transition:color .15s,background .15s}
+.ma:hover{color:var(--txt);background:rgba(255,255,255,.05)}
+.mlbl{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--faint);padding:14px 14px 4px;text-transform:uppercase}
+.m-cta{margin-top:14px;padding:14px 20px;text-align:center;background:var(--lime);color:#050810;font-weight:700;font-size:15px;border-radius:8px;transition:opacity .18s}
+.m-cta:hover{opacity:.88}
+
+/* ── SHARED ── */
+.si{max-width:1280px;margin:0 auto}
+.sec{padding:clamp(76px,9vw,120px) 28px;position:relative;z-index:1}
+.slbl{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.slbl::before{content:'';display:block;width:18px;height:1.5px;background:linear-gradient(90deg,var(--teal),var(--lime));border-radius:2px}
+.stit{font-family:var(--fh);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.08}
+@keyframes gs{0%{background-position:0% center}100%{background-position:200% center}}
+.grad{background:linear-gradient(90deg,var(--teal) 0%,var(--lime) 52%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gs 5s linear infinite}
+
+/* ── HERO ── */
+.hero{padding:clamp(110px,13vw,160px) 28px clamp(60px,7vw,90px);position:relative;z-index:1;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);background:linear-gradient(135deg,rgba(0,212,200,.07),rgba(201,241,53,.05));border:1px solid rgba(0,212,200,.20);border-radius:99px;padding:7px 18px 7px 10px;margin-bottom:28px}
+.pulse{width:7px;height:7px;background:var(--teal);border-radius:50%;box-shadow:0 0 7px var(--teal);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.5}}
+.hero h1{font-family:var(--fh);font-size:clamp(3rem,7vw,6.5rem);font-weight:800;letter-spacing:-.04em;line-height:1.04;color:#fff;margin-bottom:20px}
+.hero p{font-size:clamp(15px,1.6vw,18px);color:var(--muted);max-width:560px;margin:0 auto 14px;line-height:1.7}
+
+/* ── BLOG GRID ── */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative;z-index:1}
+.bcard{background:var(--s1);border:1px solid var(--bdr-m);border-radius:28px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s}
+.bcard:hover{transform:translateY(-8px);border-color:var(--bdr-h);box-shadow:0 16px 56px rgba(0,0,0,.6)}
+.bcard.locked{opacity:.45;cursor:not-allowed;pointer-events:none}
+.bcard.locked:hover{transform:none}
+.bcard-img{height:220px;overflow:hidden;position:relative;background:var(--s2)}
+.bcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease),opacity .3s}
+.bcard:hover .bcard-img img{transform:scale(1.06);opacity:1}
+.bcard-img .fade{position:absolute;inset:0;background:linear-gradient(to top,var(--s1) 0%,transparent 60%);z-index:1}
+.bcard-img .lock-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--faint);z-index:2}
+
+/* card accent top line */
+.bcard::before{content:'';display:block;height:2px;background:linear-gradient(90deg,var(--teal),var(--lime));opacity:0;transition:opacity .25s}
+.bcard:hover::before{opacity:1}
+
+.bcard-body{padding:28px 28px 24px;flex:1;display:flex;flex-direction:column;gap:12px;position:relative;z-index:2;margin-top:-8px}
+.bcard-date{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--lime)}
+.bcard-title{font-family:var(--fh);font-size:18px;font-weight:700;color:#fff;line-height:1.3;letter-spacing:-.01em;transition:color .18s}
+.bcard:hover .bcard-title{color:var(--teal)}
+.bcard-excerpt{font-size:13px;color:var(--muted);line-height:1.65;flex:1}
+.bcard-cta{margin-top:8px;display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--txt);border-bottom:1.5px solid var(--lime);padding-bottom:2px;width:fit-content;transition:color .18s}
+.bcard-cta:hover{color:var(--lime)}
+.bcard-locked-lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.bcard-locked-title{font-family:var(--fh);font-size:18px;font-weight:700;color:var(--faint);line-height:1.3}
+.bcard-locked-sub{font-size:12px;color:var(--faint);font-style:italic}
+
+/* ── TICKER ── */
+.ticker-wrap{border-top:1px solid var(--div);border-bottom:1px solid var(--div);overflow:hidden;padding:11px 0;background:rgba(255,255,255,.01);position:relative;z-index:1}
+.ticker-track{display:flex;animation:tk 32s linear infinite;white-space:nowrap}
+.ticker-track:hover{animation-play-state:paused}
+.ti{display:inline-flex;align-items:center;gap:10px;padding:0 34px;font-size:11.5px;font-weight:600;color:var(--faint);letter-spacing:.09em;text-transform:uppercase}
+.td{width:4px;height:4px;background:var(--teal);border-radius:50%;opacity:.6}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--div);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);padding:80px 28px 36px;position:relative;z-index:1;margin-top:auto}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:60px;border-bottom:1px solid var(--div)}
+.flog img{height:48px;width:auto;margin-bottom:16px}
+.ftag{font-size:10.5px;color:var(--faint);letter-spacing:.13em;text-transform:uppercase;line-height:1.75;margin-bottom:22px}
+.fsoc{display:flex;gap:16px;font-size:18px}
+.fsoc a{transition:transform .18s,opacity .18s}.fsoc a:hover{transform:scale(1.15);opacity:.85}
+.fct{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:20px}
+.fli{display:block;font-size:13.5px;color:var(--muted);margin-bottom:11px;transition:color .15s}.fli:hover{color:var(--txt)}
+.fli.cta{color:var(--lime);font-weight:600}
+.fcl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+.fcv{font-size:13.5px;color:#fff;font-weight:500;margin-bottom:14px;transition:color .15s}.fcv:hover{color:var(--lime)}
+.fci{font-size:12px;color:var(--muted);font-style:italic}
+.fdis-wrap{margin-top:44px;padding-top:40px;border-top:1px solid var(--div)}
+.fdis-t{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}
+.fdis-box{background:rgba(0,0,0,.4);padding:28px 32px;border-radius:18px;border:1px solid var(--div)}
+.fdis-p{font-size:10px;color:var(--faint);line-height:1.82;text-align:justify;text-transform:uppercase;letter-spacing:.01em;font-weight:300}
+.fbar{margin-top:40px;padding-top:26px;border-top:1px solid var(--div);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.fcp{font-size:10px;color:var(--faint);letter-spacing:.36em;text-transform:uppercase}
+.ftags{display:flex;gap:18px}
+.ftg{font-size:9px;color:rgba(100,115,132,.5);letter-spacing:.14em;text-transform:uppercase}
+
+/* ── SCROLL REVEAL ── */
+.rv{opacity:0;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.on{opacity:1;transform:none !important}
+.ru{transform:translateY(30px)}.rl{transform:translateX(-26px)}.rr{transform:translateX(26px)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+  .hero{padding:106px 18px 52px}
+  .sec{padding:60px 18px}
+  .nav-in{padding:0 18px}
+  .nav-links,.nav-cta{display:none}
+  .hbg{display:flex}
+  .blog-grid{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr;gap:28px}
+  .footer{padding:52px 18px 28px}
+}
+</style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body>
 
-    <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between h-24">
-                
-                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../index.html'">
-                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
-                </div>
+<div class="bg-canvas" aria-hidden="true">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+  <div class="bg-orb bg-orb-4"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-vig"></div>
+</div>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="../index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">HOME</a>
-                    
-                    <a href="../strategies/index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">INDICATOR AND STRATEGY</a>
-                    
-                    <div class="relative group">
-                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
-                            PERFORMANCE <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
-                        </button>
-                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
-                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-                                <a href="../reports/global/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">GLOBAL MARKET</a>
-                                <a href="../reports/india/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">INDIAN MARKET</a>
-                            </div>
-                        </div>
-                    </div>
+<div class="wrap">
 
-                    <div class="relative group">
-                        <button class="flex items-center gap-1.5 text-sm font-bold text-blue-400 border-b-2 border-blue-400 pb-1 uppercase tracking-widest cursor-pointer py-2">
-                            RESOURCES <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
-                        </button>
-                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
-                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-                                <a href="../doc/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DOCUMENTATION</a>
-                                <a href="index.html" class="block px-5 py-3 text-xs font-bold text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">BLOGS</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
-                            COMMUNITY <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
-                        </button>
-                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
-                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-                                <a href="https://discord.gg/72wFfgmW" target="_blank" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">DISCORD</a>
-                                <a href="../free-tools/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#e2ff6e] hover:bg-white/5 transition-colors uppercase tracking-widest">FREE TOOLKIT</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:hidden relative z-[70]">
-                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none hover:text-[#e2ff6e] transition-colors">
-                        <i class="fa-solid fa-bars-staggered"></i>
-                    </button>
-                </div>
-            </div>
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="../index.html" class="logo">
+      <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" width="180" height="56">
+    </a>
+    <div class="nav-links">
+      <a href="../index.html" class="nl-a">Home</a>
+      <a href="../strategies/index.html" class="nl-a">Indicator and Strategy</a>
+      <div class="dd">
+        <button class="dd-btn">Performance <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-menu">
+          <a href="../reports/global/index.html" class="di">Global Market</a>
+          <a href="../reports/india/index.html" class="di">Indian Market</a>
         </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 z-[60] animate-fade-in">
-            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
-                <a href="../index.html" class="text-xl font-bold text-slate-300">HOME</a>
-                <hr class="border-white/5 w-12 mx-auto">
-                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">INDICATOR AND STRATEGY</a>
-                
-                <div class="py-2 border-y border-white/5">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Performance</p>
-                    <a href="../reports/global/index.html" class="block text-lg font-medium text-slate-300 mb-4">GLOBAL MARKET</a>
-                    <a href="../reports/india/index.html" class="block text-lg font-medium text-slate-300">INDIAN MARKET</a>
-                </div>
-
-                <div class="py-2 border-b border-white/5">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Resources</p>
-                    <a href="../doc/index.html" class="block text-lg font-medium text-slate-300 mb-4">DOCUMENTATION</a>
-                    <a href="index.html" class="block text-lg font-medium text-blue-400">BLOGS</a>
-                </div>
-
-                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300 uppercase tracking-widest">DISCORD</a>
-                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">FREE TOOLKIT</a>
-            </div>
+      </div>
+      <div class="dd">
+        <button class="dd-btn on">Resources <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-menu">
+          <a href="../doc/index.html" class="di">Documentation</a>
+          <a href="index.html" class="di on">Blogs</a>
         </div>
-    </nav>
-
-    <main class="flex-grow pt-48 pb-24 px-6 max-w-7xl mx-auto w-full">
-        <div class="text-center mb-24">
-            <h4 class="text-[#e2ff6e] font-bold text-xs uppercase tracking-[0.4em] mb-4">Market Microstructure</h4>
-            <h1 class="text-5xl md:text-8xl font-black text-white leading-tight mb-8 italic uppercase tracking-tighter">
-                Quant <span class="text-blue-500">Insights.</span>
-            </h1>
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto italic">
-                Weekly deep-dives into algorithmic trading, volatility, and market logic.
-            </p>
+      </div>
+      <div class="dd">
+        <button class="dd-btn">Community <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-menu">
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
+          <a href="../free-tools/index.html" class="di">Free Toolkit</a>
         </div>
+      </div>
+    </div>
+    <a href="../strategies/index.html#pricing" class="nav-cta">Get Access</a>
+    <button class="hbg" id="hbg" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col group cursor-pointer" onclick="window.location.href='Understanding GARCH Volatility in Nifty.html'">
-                <div class="h-56 bg-slate-900 overflow-hidden relative">
-                    <img src="understanding_garch.png" alt="GARCH Volatility in Nifty" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f1a] via-transparent to-transparent z-10"></div>
-                </div>
-                <div class="p-10 flex-grow relative z-20 -mt-6">
-                    <p class="text-[#e2ff6e] text-[10px] font-bold uppercase tracking-[0.3em] mb-4 drop-shadow-md">April 19, 2026</p>
-                    <h3 class="text-white font-bold text-2xl mb-4 italic uppercase leading-tight group-hover:text-blue-400 transition-colors">Understanding GARCH Volatility in Nifty</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8">How we use GARCH models to predict time-varying volatility, dynamic targets, and regime switching in the Indian markets...</p>
-                    <a href="Understanding GARCH Volatility in Nifty.html" class="inline-block text-white font-black text-[10px] uppercase tracking-[0.2em] border-b-2 border-[#e2ff6e] pb-1 hover:text-[#e2ff6e] transition-all">Read Analysis</a>
-                </div>
-            </article>
+<!-- Mobile Menu -->
+<div class="mob" id="mob">
+  <a href="../index.html" class="ma">Home</a>
+  <a href="../strategies/index.html" class="ma">Indicator and Strategy</a>
+  <div class="mlbl">Performance</div>
+  <a href="../reports/global/index.html" class="ma">Global Market</a>
+  <a href="../reports/india/index.html" class="ma">Indian Market</a>
+  <div class="mlbl">Resources</div>
+  <a href="../doc/index.html" class="ma">Documentation</a>
+  <a href="index.html" class="ma" style="color:var(--lime)">Blogs</a>
+  <div class="mlbl">Community</div>
+  <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
+  <a href="../free-tools/index.html" class="ma">Free Toolkit</a>
+  <a href="../strategies/index.html#pricing" class="m-cta">Get Access →</a>
+</div>
 
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col group cursor-pointer" onclick="window.location.href='how-to-build-algo.html'">
-                <div class="h-56 bg-slate-900 overflow-hidden relative">
-                    <img src="how_to_build_algo.png" alt="Build Algo Trading Strategy" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f1a] via-transparent to-transparent z-10"></div>
-                </div>
-                <div class="p-10 flex-grow relative z-20 -mt-6">
-                    <p class="text-[#e2ff6e] text-[10px] font-bold uppercase tracking-[0.3em] mb-4 drop-shadow-md">April 26, 2026</p>
-                    <h3 class="text-white font-bold text-2xl mb-4 italic uppercase leading-tight group-hover:text-blue-400 transition-colors">How to Build an Algo Strategy</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8">Learn the step-by-step framework to define, backtest, and code algorithmic trading strategies using TradingView Pine Script...</p>
-                    <a href="how-to-build-algo.html" class="inline-block text-white font-black text-[10px] uppercase tracking-[0.2em] border-b-2 border-[#e2ff6e] pb-1 hover:text-[#e2ff6e] transition-all">Read Tutorial</a>
-                </div>
-            </article>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="si">
+    <div class="rv ru">
+      <div class="hero-badge" style="justify-content:center;margin:0 auto 28px"><span class="pulse"></span>Market Microstructure</div>
+    </div>
+    <h1 class="rv ru" style="transition-delay:.08s">
+      Quant <span class="grad">Insights.</span>
+    </h1>
+    <p class="rv ru" style="transition-delay:.16s">
+      Weekly deep-dives into algorithmic trading, volatility, and market logic.
+    </p>
+  </div>
+</section>
 
-            <article class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col opacity-50">
-                <div class="h-56 bg-black/40 flex items-center justify-center italic text-slate-700">
-                    <i class="fa-solid fa-lock text-4xl"></i>
-                </div>
-                <div class="p-10">
-                    <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-4">In Queue</p>
-                    <h3 class="text-slate-500 font-bold text-2xl mb-4 italic uppercase">Options Greeks & Mean Reversion</h3>
-                    <p class="text-slate-600 text-sm italic">Deep dive into Greek-based spot signals.</p>
-                </div>
-            </article>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" aria-hidden="true">
+    <span class="ti"><span class="td"></span>GARCH Volatility Models</span>
+    <span class="ti"><span class="td"></span>Pine Script v6</span>
+    <span class="ti"><span class="td"></span>Options Greeks</span>
+    <span class="ti"><span class="td"></span>Market Microstructure</span>
+    <span class="ti"><span class="td"></span>Mean Reversion</span>
+    <span class="ti"><span class="td"></span>Algorithmic Strategy</span>
+    <span class="ti"><span class="td"></span>Nifty Analysis</span>
+    <span class="ti"><span class="td"></span>Quantitative Finance</span>
+    <span class="ti"><span class="td"></span>GARCH Volatility Models</span>
+    <span class="ti"><span class="td"></span>Pine Script v6</span>
+    <span class="ti"><span class="td"></span>Options Greeks</span>
+    <span class="ti"><span class="td"></span>Market Microstructure</span>
+    <span class="ti"><span class="td"></span>Mean Reversion</span>
+    <span class="ti"><span class="td"></span>Algorithmic Strategy</span>
+    <span class="ti"><span class="td"></span>Nifty Analysis</span>
+    <span class="ti"><span class="td"></span>Quantitative Finance</span>
+  </div>
+</div>
 
+<!-- ═══ BLOG GRID ═══ -->
+<main style="flex:1">
+<section class="sec" style="padding-top:clamp(52px,6vw,80px)">
+  <div class="si">
+
+    <!-- Section label -->
+    <div style="margin-bottom:48px" class="rv ru">
+      <div class="slbl">Latest Articles</div>
+      <h2 class="stit" style="margin-top:8px">Research &amp; <span style="color:var(--lime)">Analysis</span></h2>
+    </div>
+
+    <div class="blog-grid">
+
+      <!-- CARD 1 — GARCH -->
+      <article class="bcard rv ru" onclick="window.location.href='Understanding GARCH Volatility in Nifty.html'">
+        <div class="bcard-img">
+          <img src="understanding_garch.png" alt="GARCH Volatility in Nifty" loading="lazy">
+          <div class="fade"></div>
         </div>
-    </main>
-
-    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            
-            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
-                
-                <div class="col-span-1 md:col-span-1 space-y-6">
-                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
-                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
-                        Advanced Quantitative <br> Intelligence Systems.
-                    </p>
-
-                    <div class="flex gap-5 text-xl">
-                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                        <a href="#" class="text-slate-400 hover:text-white transition-all">
-                            <i class="fa-brands fa-x-twitter"></i>
-                        </a>
-                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-discord"></i>
-                        </a>
-                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    </div>
-                    
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
-                    <div class="space-y-3">
-                        <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
-                        <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
-                        <a href="../blog/index.html" class="block text-[#e2ff6e] font-bold text-sm hover:underline underline-offset-8 transition-all">Blog</a>
-                        <a href="../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
-                        <a href="../contact/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Contact Us</a>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
-                    <div class="space-y-3">
-                        <a href="../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
-                        <a href="../legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
-                        <a href="../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
-                        <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
-                    <div class="space-y-4">
-                        <div class="space-y-1">
-                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
-                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#e2ff6e]">hello@pointalgo.com</a>
-                        </div>
-                        <div class="space-y-1">
-                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
-                            <p class="text-white font-medium text-sm">+91-8452035834</p>
-                        </div>
-                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="pt-12 border-t border-white/5">
-                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
-                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
-                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
-                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
-                <div class="flex gap-6">
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
-                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
-                </div>
-            </div>
-
+        <div class="bcard-body">
+          <span class="bcard-date">April 19, 2026</span>
+          <h3 class="bcard-title">Understanding GARCH Volatility in Nifty</h3>
+          <p class="bcard-excerpt">How we use GARCH models to predict time-varying volatility, dynamic targets, and regime switching in the Indian markets...</p>
+          <a href="Understanding GARCH Volatility in Nifty.html" class="bcard-cta">
+            Read Analysis <i class="fa-solid fa-arrow-right" style="font-size:10px"></i>
+          </a>
         </div>
-    </footer>
+      </article>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('mobile-menu-button');
-            const menu = document.getElementById('mobile-menu');
-            if (btn && menu) {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation(); 
-                    menu.classList.toggle('hidden');
-                    const icon = btn.querySelector('i');
-                    if (icon) {
-                        icon.classList.toggle('fa-bars-staggered');
-                        icon.classList.toggle('fa-xmark');
-                    }
-                });
-                document.addEventListener('click', (event) => {
-                    if (!menu.contains(event.target) && !btn.contains(event.target)) {
-                        menu.classList.add('hidden');
-                        const icon = btn.querySelector('i');
-                        if (icon) {
-                            icon.classList.add('fa-bars-staggered');
-                            icon.classList.remove('fa-xmark');
-                        }
-                    }
-                });
-            }
-        });
-    </script>
+      <!-- CARD 2 — HOW TO BUILD ALGO -->
+      <article class="bcard rv ru" style="transition-delay:.1s" onclick="window.location.href='how-to-build-algo.html'">
+        <div class="bcard-img">
+          <img src="how_to_build_algo.png" alt="Build Algo Trading Strategy" loading="lazy">
+          <div class="fade"></div>
+        </div>
+        <div class="bcard-body">
+          <span class="bcard-date">April 26, 2026</span>
+          <h3 class="bcard-title">How to Build an Algo Strategy</h3>
+          <p class="bcard-excerpt">Learn the step-by-step framework to define, backtest, and code algorithmic trading strategies using TradingView Pine Script...</p>
+          <a href="how-to-build-algo.html" class="bcard-cta">
+            Read Tutorial <i class="fa-solid fa-arrow-right" style="font-size:10px"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- CARD 3 — LOCKED / IN QUEUE -->
+      <article class="bcard locked rv ru" style="transition-delay:.2s">
+        <div class="bcard-img">
+          <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
+        </div>
+        <div class="bcard-body" style="gap:10px">
+          <span class="bcard-locked-lbl">In Queue</span>
+          <h3 class="bcard-locked-title">Options Greeks &amp; Mean Reversion</h3>
+          <p class="bcard-locked-sub">Deep dive into Greek-based spot signals.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="fg">
+      <div>
+        <div class="flog"><img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" width="160" height="48" loading="lazy"></div>
+        <p class="ftag">Advanced Quantitative<br>Intelligence Systems.</p>
+        <div class="fsoc">
+          <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" style="color:var(--muted)" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Platform</div>
+        <a href="../index.html" class="fli">Home</a>
+        <a href="../strategies/index.html" class="fli">Indicator &amp; Strategy</a>
+        <a href="index.html" class="fli cta">Blog ↗</a>
+        <a href="../doc/index.html" class="fli">Documentation</a>
+        <a href="../contact/index.html" class="fli">Contact Us</a>
+      </div>
+      <div>
+        <div class="fct">Legal &amp; Compliance</div>
+        <a href="../legal/terms.html" class="fli">Terms &amp; Conditions</a>
+        <a href="../legal/privacy.html" class="fli">Privacy Policy</a>
+        <a href="../legal/refund.html" class="fli">Refund &amp; Cancellation</a>
+        <a href="../about.html" class="fli">About Us</a>
+      </div>
+      <div>
+        <div class="fct">Connect</div>
+        <div class="fcl">Inquiries</div>
+        <a href="mailto:hello@pointalgo.com" class="fcv" style="display:block">hello@pointalgo.com</a>
+        <div class="fcl">Support</div>
+        <div class="fcv">+91-8452035834</div>
+        <p class="fci">Ghatkopar, Mumbai, India</p>
+      </div>
+    </div>
+    <div class="fdis-wrap">
+      <h4 class="fdis-t">Disclaimer from PointAlgo.com</h4>
+      <div class="fdis-box">
+        <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
+      </div>
+    </div>
+    <div class="fbar">
+      <span class="fcp">© 2026 PointAlgo Quantitative Intelligence</span>
+      <div class="ftags">
+        <span class="ftg">Built for Speed</span>
+        <span class="ftg">Built for Accuracy</span>
+        <span class="ftg">Built for Logic</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- .wrap -->
+
+<script>
+/* NAV SCROLL */
+(function(){
+  var n=document.getElementById('nav');
+  window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+})();
+
+/* HAMBURGER */
+document.addEventListener('DOMContentLoaded',function(){
+  var btn=document.getElementById('hbg');
+  var menu=document.getElementById('mob');
+  if(btn&&menu){
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=menu.classList.toggle('on');
+      btn.classList.toggle('on',open);
+    });
+    document.addEventListener('click',function(e){
+      if(!menu.contains(e.target)&&!btn.contains(e.target)){
+        menu.classList.remove('on');btn.classList.remove('on');
+      }
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){menu.classList.remove('on');btn.classList.remove('on');});
+    });
+  }
+});
+
+/* SCROLL REVEAL */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});return;}
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('on');obs.unobserve(en.target);}
+    });
+  },{threshold:0.08});
+  els.forEach(function(el){obs.observe(el);});
+})();
+</script>
+
 </body>
 </html>
