@@ -40,7 +40,7 @@ img{display:block;max-width:100%;height:auto}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 
-/* ── BG ── */
+/* BG */
 .bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bg-orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
 .bg-orb-1{width:680px;height:680px;top:-180px;left:-120px;background:radial-gradient(circle,rgba(0,212,200,.16) 0%,transparent 70%);animation:od1 20s ease-in-out infinite alternate}
@@ -51,8 +51,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 @keyframes od2{to{transform:translate(-55px,85px)}}
 @keyframes od3{to{transform:translate(95px,-75px)}}
 @keyframes od4{to{transform:translate(-75px,-55px)}}
-
-/* ── GRID: opacity raised to 0.055 for visibility ── */
 .bg-grid{
   position:absolute;inset:0;
   background-image:
@@ -63,15 +61,11 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .bg-vig{position:absolute;inset:0;background:radial-gradient(ellipse 130% 110% at 50% 50%,transparent 28%,rgba(5,8,15,.82) 100%)}
 .wrap{position:relative;z-index:1}
 
-/* ── NAV: taller bar, bigger logo, bigger text ── */
+/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:76px;background:rgba(5,8,15,.80);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--bdr);transition:border-color .3s}
 .nav.scrolled{border-bottom-color:var(--bdr-m)}
 .nav-in{max-width:1280px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
-
-/* LOGO — 56px height */
 .logo img{height:56px;width:auto;display:block}
-
-/* NAV LINKS — 15px, weight 600 */
 .nav-links{display:flex;align-items:center;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;letter-spacing:.01em}
 .nl:hover{color:var(--txt);background:rgba(255,255,255,.06)}
@@ -86,12 +80,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .di{display:block;padding:11px 18px;font-size:14px;font-weight:500;color:var(--muted);transition:color .15s,background .15s}
 .di:hover{color:var(--lime);background:rgba(255,255,255,.04)}
 .di+.di{border-top:1px solid var(--div)}
-
-/* CTA button */
 .nav-cta{font-size:14px;font-weight:700;color:#050810;background:var(--lime);padding:10px 24px;border-radius:9px;white-space:nowrap;transition:opacity .18s,box-shadow .25s,transform .18s}
 .nav-cta:hover{opacity:.88;box-shadow:0 0 32px var(--lime-g);transform:translateY(-1px)}
-
-/* Hamburger */
 .hbg{display:none;flex-direction:column;gap:5px;padding:6px;border-radius:6px}
 .hbg span{width:24px;height:2px;background:var(--txt);border-radius:2px;display:block;transition:transform .25s,opacity .25s}
 .hbg.on span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -105,26 +95,62 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .m-cta{margin-top:14px;padding:14px 20px;text-align:center;background:var(--lime);color:#050810;font-weight:700;font-size:15px;border-radius:8px;transition:opacity .18s}
 .m-cta:hover{opacity:.88}
 
-/* ── HERO ── */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 28px 76px;max-width:1280px;margin:0 auto}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);background:linear-gradient(135deg,rgba(0,212,200,.07),rgba(201,241,53,.05));border:1px solid rgba(0,212,200,.20);border-radius:99px;padding:7px 18px 7px 10px;margin-bottom:34px}
+/* ═══════════════════════════════════════
+   HERO — KEY FIX:
+   - align-items: flex-start (removes the "center" that caused image to sit low)
+   - padding-top on left copy handles vertical rhythm
+   - h1 line-height tightened so less gap between lines
+   ═══════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:96px 28px 60px;
+  max-width:1280px;
+  margin:0 auto;
+}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);background:linear-gradient(135deg,rgba(0,212,200,.07),rgba(201,241,53,.05));border:1px solid rgba(0,212,200,.20);border-radius:99px;padding:7px 18px 7px 10px;margin-bottom:28px}
 .pulse{width:7px;height:7px;background:var(--teal);border-radius:50%;box-shadow:0 0 7px var(--teal);animation:pulse 2.2s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.5}}
-.h-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center}
-.h1{font-family:var(--fh);font-size:clamp(2.6rem,4.6vw,4.2rem);font-weight:800;letter-spacing:-.035em;margin-bottom:26px}
+
+/* ── GRID: align-items:start so right image starts from top ── */
+.h-grid{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:52px;
+  align-items:start; /* ← THE KEY FIX: was "center", now "start" */
+  width:100%;
+}
+
+/* Left copy: add top padding to optically center it against the image */
+.h-left{
+  padding-top:40px;
+}
+
+.h1{
+  font-family:var(--fh);
+  font-size:clamp(2.8rem,4.2vw,4rem);
+  font-weight:800;
+  letter-spacing:-.03em;
+  line-height:1.08; /* ← tighter: was default ~1.2, reduced gap between lines */
+  margin-bottom:22px;
+}
 .h1 .plain{color:#fff;display:block}
 .h1 .grad{display:block;background:linear-gradient(90deg,var(--teal) 0%,var(--lime) 52%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gs 5s linear infinite}
 @keyframes gs{0%{background-position:0% center}100%{background-position:200% center}}
-.h-sub{font-size:17px;color:var(--muted);line-height:1.68;max-width:460px;margin-bottom:42px}
+.h-sub{font-size:17px;color:var(--muted);line-height:1.65;max-width:460px;margin-bottom:36px}
 .acts{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .btn-l{display:inline-flex;align-items:center;gap:9px;background:var(--lime);color:#050810;font-size:14px;font-weight:700;padding:13px 28px;border-radius:8px;transition:opacity .18s,box-shadow .25s,transform .18s}
 .btn-l:hover{opacity:.9;box-shadow:0 0 40px var(--lime-g);transform:translateY(-2px)}
 .btn-o{display:inline-flex;align-items:center;gap:9px;background:transparent;color:var(--muted);font-size:14px;font-weight:500;padding:12px 22px;border-radius:8px;border:1px solid var(--bdr-m);transition:color .18s,border-color .18s,background .18s}
 .btn-o:hover{color:var(--txt);border-color:var(--bdr-h);background:rgba(255,255,255,.04)}
-.h-stats{display:flex;gap:32px;margin-top:48px;padding-top:38px;border-top:1px solid var(--div);flex-wrap:wrap}
+.h-stats{display:flex;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid var(--div);flex-wrap:wrap}
 .sv{font-family:var(--fh);font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em}
 .sv em{font-style:normal;color:var(--lime);font-size:15px}
 .sl{font-size:11px;color:var(--faint);letter-spacing:.09em;text-transform:uppercase;margin-top:3px}
+
+/* Right visual */
 .hv{position:relative}
 .hring{position:absolute;inset:-28px;border-radius:44px;background:conic-gradient(from 180deg at 50% 50%,var(--teal) 0deg,var(--lime) 120deg,var(--cobalt) 240deg,var(--teal) 360deg);opacity:.13;filter:blur(22px);animation:hs 12s linear infinite;z-index:0}
 @keyframes hs{to{transform:rotate(360deg)}}
@@ -143,7 +169,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 @keyframes fa{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-14px) translateX(6px)}}
 @keyframes fb{0%,100%{transform:translateX(0) translateY(0)}50%{transform:translateX(-12px) translateY(12px)}}
 
-/* ── TICKER ── */
+/* TICKER */
 .ticker-wrap{border-top:1px solid var(--div);border-bottom:1px solid var(--div);overflow:hidden;padding:11px 0;background:rgba(255,255,255,.01)}
 .ticker-track{display:flex;animation:tk 28s linear infinite;white-space:nowrap}
 .ticker-track:hover{animation-play-state:paused}
@@ -151,7 +177,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .td{width:4px;height:4px;background:var(--teal);border-radius:50%;opacity:.6}
 @keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 .sec{padding:clamp(76px,9vw,128px) 28px}
 .si{max-width:1280px;margin:0 auto}
 hr.div{border:none;border-top:1px solid var(--div)}
@@ -184,7 +210,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 .cki{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--muted);line-height:1.55}
 .cki i{color:var(--cobalt);margin-top:3px;flex-shrink:0;font-size:12px}
 
-/* ── PILLAR CARDS ── */
+/* PILLAR CARDS */
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:60px}
 .pcard{background:var(--s1);border:1px solid var(--bdr);border-radius:18px;padding:26px 20px;transition:border-color .22s,transform .22s;position:relative;overflow:hidden}
 .pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
@@ -198,7 +224,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 .ptl{font-size:14px;font-weight:700;color:#fff;margin-bottom:9px}
 .pde{font-size:13px;color:var(--muted);line-height:1.6}
 
-/* ── NEWSLETTER ── */
+/* NEWSLETTER */
 .nl-sec{padding:clamp(56px,7vw,96px) 28px;background:linear-gradient(to right,rgba(127,0,0,.06),transparent,rgba(0,0,80,.06))}
 .nl-box{max-width:820px;margin:0 auto;background:var(--s1);border:1px solid var(--bdr-m);border-radius:26px;padding:clamp(38px,5vw,62px);text-align:center;position:relative;overflow:hidden}
 .nl-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--lime),var(--cobalt),var(--teal));background-size:200% auto;animation:gs 4s linear infinite}
@@ -212,7 +238,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 .nl-ck{font-size:12px;color:var(--faint);margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}
 .nl-ck input{accent-color:var(--lime)}
 
-/* ── FOOTER ── */
+/* FOOTER */
 .footer{border-top:1px solid var(--div);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);padding:80px 28px 36px}
 .fi{max-width:1280px;margin:0 auto}
 .fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:60px;border-bottom:1px solid var(--div)}
@@ -238,16 +264,22 @@ hr.div{border:none;border-top:1px solid var(--div)}
 .ftags{display:flex;gap:18px}
 .ftg{font-size:9px;color:rgba(100,115,132,.5);letter-spacing:.14em;text-transform:uppercase}
 
-/* ── SCROLL REVEAL ── */
+/* SCROLL REVEAL */
 .rv{opacity:0;transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .rv.on{opacity:1;transform:none !important}
 .ru{transform:translateY(30px)}.rl{transform:translateX(-26px)}.rr{transform:translateX(26px)}
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media(max-width:1080px){.ftr,.fbl{display:none}.pgrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:860px){.h-grid,.twoc{grid-template-columns:1fr;gap:44px}.twoc.rev{direction:ltr}.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){
+  .h-grid{grid-template-columns:1fr;gap:44px}
+  .h-left{padding-top:0}
+  .twoc{grid-template-columns:1fr;gap:44px}
+  .twoc.rev{direction:ltr}
+  .fg{grid-template-columns:1fr 1fr}
+}
 @media(max-width:640px){
-  .hero{padding:108px 18px 56px;min-height:auto}
+  .hero{padding:100px 18px 52px;min-height:auto}
   .sec{padding:60px 18px}
   .nav-in{padding:0 18px}
   .nav-links,.nav-cta{display:none}
@@ -273,7 +305,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 
 <div class="wrap">
 
-<!-- ═══ NAV ═══ -->
+<!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a href="index.html" class="logo">
@@ -327,12 +359,14 @@ hr.div{border:none;border-top:1px solid var(--div)}
   <a href="strategies/index.html" class="m-cta">Get Access →</a>
 </div>
 
-<!-- ═══ HERO ═══ -->
+<!-- HERO -->
 <main>
 <section class="hero">
   <div class="hero-badge rv ru"><span class="pulse"></span>Institutional-Grade Quant Intelligence</div>
   <div class="h-grid">
-    <div class="rv rl">
+
+    <!-- LEFT: text copy — has padding-top to optically center vs image -->
+    <div class="h-left rv rl">
       <h1 class="h1">
         <span class="plain">Trade with Structure.</span>
         <span class="grad">Execute with Precision</span>
@@ -349,6 +383,8 @@ hr.div{border:none;border-top:1px solid var(--div)}
         <div><div class="sv">0<em>%</em></div><div class="sl">Repaint</div></div>
       </div>
     </div>
+
+    <!-- RIGHT: image starts from top of grid, no gap above -->
     <div class="hv rv rr">
       <div class="hring"></div>
       <div class="hscreen">
@@ -361,6 +397,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
       <div class="fc ftr"><img src="Home/alert_popup.png" alt="Trade Alert" width="420" height="250" loading="lazy"></div>
       <div class="fc fbl"><img src="Home/left_stats.png" alt="Market Stats" width="420" height="250" loading="lazy"></div>
     </div>
+
   </div>
 </section>
 </main>
@@ -387,7 +424,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
   </div>
 </div>
 
-<!-- ═══ S1: QUANT EDGE ═══ -->
+<!-- S1: QUANT EDGE -->
 <section class="sec">
   <div class="si">
     <div class="twoc">
@@ -417,7 +454,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- ═══ S2: INFRASTRUCTURE ═══ -->
+<!-- S2: INFRASTRUCTURE -->
 <section class="sec" style="background:rgba(0,0,0,.12)">
   <div class="si">
     <div style="text-align:center;max-width:640px;margin:0 auto 72px" class="rv ru">
@@ -447,7 +484,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- ═══ S3: TRADINGVIEW ═══ -->
+<!-- S3: TRADINGVIEW -->
 <section class="sec" style="background:linear-gradient(180deg,transparent,rgba(0,0,0,.22))">
   <div class="si">
     <div style="text-align:center;max-width:640px;margin:0 auto 72px" class="rv ru">
@@ -475,7 +512,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- ═══ S4: MT5 ═══ -->
+<!-- S4: MT5 -->
 <section class="sec" style="background:rgba(0,0,0,.3)">
   <div class="si">
     <div style="text-align:center;max-width:640px;margin:0 auto 72px" class="rv ru">
@@ -503,7 +540,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- ═══ S5: SCREENERS ═══ -->
+<!-- S5: SCREENERS -->
 <section class="sec">
   <div class="si">
     <div class="twoc">
@@ -529,7 +566,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- ═══ PILLARS ═══ -->
+<!-- PILLARS -->
 <section class="sec" style="padding-bottom:clamp(36px,5vw,72px)">
   <div class="si">
     <div style="text-align:center;max-width:520px;margin:0 auto" class="rv ru">
@@ -545,7 +582,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
   </div>
 </section>
 
-<!-- ═══ NEWSLETTER ═══ -->
+<!-- NEWSLETTER -->
 <section class="nl-sec">
   <div class="nl-box rv ru">
     <h2 class="nl-t">Join for the latest</h2>
@@ -560,7 +597,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="fi">
     <div class="fg">
@@ -598,14 +635,12 @@ hr.div{border:none;border-top:1px solid var(--div)}
         <p class="fci">Ghatkopar, Mumbai, India</p>
       </div>
     </div>
-
     <div class="fdis-wrap">
       <h4 class="fdis-t">Disclaimer from PointAlgo.com</h4>
       <div class="fdis-box">
         <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
       </div>
     </div>
-
     <div class="fbar">
       <span class="fcp">© 2026 PointAlgo Quantitative Intelligence</span>
       <div class="ftags">
@@ -624,7 +659,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
   var n=document.getElementById('nav');
   window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
 })();
-
 document.addEventListener('DOMContentLoaded',function(){
   var btn=document.getElementById('hbg');
   var menu=document.getElementById('mob');
@@ -636,24 +670,18 @@ document.addEventListener('DOMContentLoaded',function(){
   });
   document.addEventListener('click',function(e){
     if(!menu.contains(e.target)&&!btn.contains(e.target)){
-      menu.classList.remove('on');
-      btn.classList.remove('on');
+      menu.classList.remove('on');btn.classList.remove('on');
     }
   });
   menu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click',function(){
-      menu.classList.remove('on');
-      btn.classList.remove('on');
+      menu.classList.remove('on');btn.classList.remove('on');
     });
   });
 });
-
 (function(){
   var els=document.querySelectorAll('.rv');
-  if(!('IntersectionObserver' in window)){
-    els.forEach(function(e){e.classList.add('on')});
-    return;
-  }
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});return;}
   var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if(en.isIntersecting){en.target.classList.add('on');obs.unobserve(en.target);}
