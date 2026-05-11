@@ -11,7 +11,7 @@
   gtag('js', new Date());
   gtag('config', 'G-GJZXB11LLJ');
 </script>
-<title>PointAlgo Documentation | Quant Intelligence</title>
+<title>PointAlgo Documentation | Master Systems</title>
 <meta name="description" content="Complete documentation for PointAlgo quantitative trading indicators and systems. Learn Gann-Pi Matrix, Auto-Fib, Heatmap Profile, Quant AI Engine and more.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@ img{display:block;max-width:100%;height:auto}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 
-/* BG & ORBS */
+/* BACKGROUND ANIMATION */
 .bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bg-orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
 .bg-orb-1{width:680px;height:680px;top:-180px;left:-120px;background:radial-gradient(circle,rgba(0,212,200,.16) 0%,transparent 70%);animation:od1 20s ease-in-out infinite alternate}
@@ -52,7 +52,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .bg-vig{position:absolute;inset:0;background:radial-gradient(ellipse 130% 110% at 50% 50%,transparent 28%,rgba(5,8,15,.82) 100%)}
 .wrap{position:relative;z-index:1}
 
-/* NAV */
+/* NAVIGATION (5-MENU) */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:76px;background:rgba(5,8,15,.80);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--bdr);transition:border-color .3s}
 .nav.scrolled{border-bottom-color:var(--bdr-m)}
 .nav-in{max-width:1440px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
@@ -60,7 +60,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nl{font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;letter-spacing:.01em}
 .nl:hover{color:var(--txt);background:rgba(255,255,255,.06)}
-.nl.on{color:var(--lime)}
 .dd{position:relative}
 .dd-btn{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;cursor:pointer;letter-spacing:.01em}
 .dd-btn:hover,.dd:hover .dd-btn{color:var(--txt);background:rgba(255,255,255,.06)}
@@ -87,9 +86,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .mlbl{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--faint);padding:14px 14px 4px;text-transform:uppercase}
 .m-cta{margin-top:14px;padding:14px 20px;text-align:center;background:var(--lime);color:#050810;font-weight:700;font-size:15px;border-radius:8px;transition:opacity .18s}
 
-/* DOCS LAYOUT */
+/* LAYOUT */
 .doc-wrap{display:flex;gap:40px;max-width:1440px;margin:0 auto;padding:100px 32px 60px;position:relative;z-index:1;min-height:100vh}
-.doc-sidebar{width:260px;flex-shrink:0;position:sticky;top:100px;height:calc(100vh - 120px);overflow-y:auto;padding-right:16px;padding-bottom:40px}
+.doc-sidebar{width:300px;flex-shrink:0;position:sticky;top:100px;height:calc(100vh - 120px);overflow-y:auto;padding-right:16px;padding-bottom:40px}
 .doc-sidebar::-webkit-scrollbar{width:4px}
 .doc-sidebar::-webkit-scrollbar-track{background:transparent}
 .doc-sidebar::-webkit-scrollbar-thumb{background:var(--bdr-h);border-radius:4px}
@@ -101,7 +100,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .sl:hover{color:var(--txt);background:rgba(255,255,255,.04)}
 .sl.on{color:var(--lime);background:var(--lime-d);font-weight:600;border-left-color:var(--lime)}
 
-/* DOCS STYLING */
+/* CONTENT PANELS */
 .d-sec{padding-bottom:60px;margin-bottom:60px;border-bottom:1px solid var(--div);scroll-margin-top:100px}
 .d-sec:last-child{border-bottom:none;margin-bottom:0}
 .d-badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;padding:6px 12px;border-radius:99px;margin-bottom:18px;border:1px solid var(--bdr);background:var(--s2);color:var(--teal)}
@@ -110,42 +109,67 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .d-sub{font-size:17px;color:var(--muted);line-height:1.7;margin-bottom:24px;max-width:850px}
 .d-quote{padding:24px;background:var(--s2);border-left:4px solid var(--lime);border-radius:0 16px 16px 0;font-style:italic;color:var(--muted);margin:32px 0}
 
-/* GRIDS & CARDS */
+/* UPDATED IMAGE STYLES (CENTERED & REDUCED SIZE) */
+.d-img-wrap {
+    margin: 40px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers everything */
+}
+.d-img-head {
+    width: 65%; /* Constrains the header to match the image width */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.d-img-head h3 { font-family: var(--fh); font-size: 20px; font-weight: 700; color: #fff; font-style: italic; }
+.d-img-badge { background: var(--s2); border: 1px solid var(--bdr); color: var(--teal); padding: 5px 12px; border-radius: 8px; font-size: 9px; font-weight: 700; text-transform: uppercase; }
+
+.d-img {
+    width: 65%; /* DECREASED TO 65% AS REQUESTED */
+    max-width: 900px; /* Safety cap */
+    border: 1px solid var(--bdr);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--s1);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+}
+.d-img img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+}
+
+/* Make Settings images even smaller so they don't look awkwardly huge */
+.d-img.setting-img {
+    width: 45%; 
+    background: #000;
+}
+.d-img.setting-img img {
+    padding: 10px;
+    object-fit: contain;
+}
+
+.d-img-top{background:var(--s2);border-bottom:1px solid var(--bdr);padding:8px 14px;display:flex;align-items:center;gap:10px}
+.d-dots{display:flex;gap:5px}
+.d-dots span{width:8px;height:8px;border-radius:50%}
+.d-dots span:nth-child(1){background:#ff5f56}.d-dots span:nth-child(2){background:#ffbd2e}.d-dots span:nth-child(3){background:#28ca41}
+.d-img-label{font-size:9px;font-family:monospace;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
+
+/* GRID & CARDS */
 .d-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;margin:32px 0}
 .d-card{background:var(--s1);border:1px solid var(--bdr);border-radius:24px;padding:28px;transition:transform .2s, border-color .2s;position:relative;overflow:hidden}
 .d-card:hover{border-color:var(--bdr-h);transform:translateY(-2px)}
-.d-card.gl::before{content:'';position:absolute;inset:-2px;z-index:-1;background:linear-gradient(135deg,var(--lime-g),transparent 60%);filter:blur(20px)}
-.d-card.gt::before{content:'';position:absolute;inset:-2px;z-index:-1;background:linear-gradient(135deg,var(--teal-g),transparent 60%);filter:blur(20px)}
-.d-card.gc::before{content:'';position:absolute;inset:-2px;z-index:-1;background:linear-gradient(135deg,var(--cobalt-d),transparent 60%);filter:blur(20px)}
-.d-card.ge::before{content:'';position:absolute;inset:-2px;z-index:-1;background:linear-gradient(135deg,var(--emerald-d),transparent 60%);filter:blur(20px)}
 .d-card h3{color:#fff;font-family:var(--fh);font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.d-card h3 i{font-size:16px}
-.a-l{color:var(--lime)}.a-t{color:var(--teal)}.a-c{color:var(--cobalt)}.a-e{color:var(--emerald)}.a-a{color:var(--amber)}.a-p{color:#c084fc}.a-r{color:#fb7185}
-.d-card p{font-size:14.5px;color:var(--muted);line-height:1.6;margin-bottom:16px}
-.d-card ul{display:flex;flex-direction:column;gap:12px}
-.d-card li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:var(--muted);line-height:1.5}
-.d-card li i{margin-top:4px;font-size:12px}
+.d-card li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.d-card li i{margin-top:4px;font-size:12px; color:var(--lime)}
 
-/* IMAGE CONTAINERS */
-.d-img-wrap{margin:40px 0}
-.d-img-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.d-img-head h3{font-family:var(--fh);font-size:24px;font-weight:700;color:#fff;font-style:italic}
-.d-img-badge{background:var(--s2);border:1px solid var(--bdr);color:var(--teal);padding:6px 14px;border-radius:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
-.d-img{border:1px solid var(--bdr);border-radius:20px;overflow:hidden;background:var(--s1);box-shadow:0 12px 40px rgba(0,0,0,.5)}
-.d-img-top{background:var(--s2);border-bottom:1px solid var(--bdr);padding:10px 16px;display:flex;align-items:center;gap:12px}
-.d-dots{display:flex;gap:6px}
-.d-dots span{width:10px;height:10px;border-radius:50%}
-.d-dots span:nth-child(1){background:#ff5f56}.d-dots span:nth-child(2){background:#ffbd2e}.d-dots span:nth-child(3){background:#28ca41}
-.d-img-label{font-size:10px;font-family:monospace;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
-.d-img img{width:100%;display:block}
-
-/* UTILS */
-.d-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+/* FULL WIDTH BOXES */
+.d-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0}
 .d-box{background:var(--s2);border:1px solid var(--bdr);border-left:4px solid var(--bdr-m);padding:20px;border-radius:16px}
 .d-box strong{display:block;color:#fff;font-size:15px;margin-bottom:6px}
-.d-box.b-l{border-left-color:var(--lime)}.d-box.b-t{border-left-color:var(--teal)}.d-box.b-r{border-left-color:#ef4444}.d-box.b-p{border-left-color:#a855f7}.d-box.b-c{border-left-color:var(--cobalt)}.d-box.b-e{border-left-color:var(--emerald)}.d-box.b-a{border-left-color:var(--amber)}
-.d-math{background:var(--s1);padding:32px;border-radius:24px;border:1px solid var(--bdr);text-align:center;margin:32px 0}
-.d-math span{font-family:monospace;font-size:clamp(14px, 1.5vw, 20px);color:var(--emerald)}
 
 /* FOOTER */
 .footer{border-top:1px solid var(--div);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);padding:80px 28px 36px;position:relative;z-index:10}
@@ -154,38 +178,22 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .flog img{height:48px;width:auto;margin-bottom:16px}
 .ftag{font-size:10.5px;color:var(--faint);letter-spacing:.13em;text-transform:uppercase;line-height:1.75;margin-bottom:22px}
 .fsoc{display:flex;gap:16px;font-size:18px}
-.fsoc a{transition:transform .18s,opacity .18s}
-.fsoc a:hover{transform:scale(1.15);opacity:.85}
 .fct{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:20px}
 .fli{display:block;font-size:13.5px;color:var(--muted);margin-bottom:11px;transition:color .15s}
 .fli:hover{color:var(--txt)}
 .fli.cta{color:var(--lime);font-weight:600}
-.fcl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
-.fcv{font-size:13.5px;color:#fff;font-weight:500;margin-bottom:14px;transition:color .15s}
-.fcv:hover{color:var(--lime)}
-.fci{font-size:12px;color:var(--muted);font-style:italic}
-.fdis-wrap{margin-top:44px;padding-top:40px;border-top:1px solid var(--div)}
-.fdis-t{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}
-.fdis-box{background:rgba(0,0,0,.4);padding:28px 32px;border-radius:18px;border:1px solid var(--div)}
 .fdis-p{font-size:10px;color:var(--faint);line-height:1.82;text-align:justify;text-transform:uppercase;letter-spacing:.01em;font-weight:300}
-.fbar{margin-top:40px;padding-top:26px;border-top:1px solid var(--div);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.fcp{font-size:10px;color:var(--faint);letter-spacing:.36em;text-transform:uppercase}
-.ftags{display:flex;gap:18px}
-.ftg{font-size:9px;color:rgba(100,115,132,.5);letter-spacing:.14em;text-transform:uppercase}
 
 @media(max-width:1024px){
   .doc-sidebar{display:none}
   .doc-wrap{padding:100px 24px 60px}
-}
-@media(max-width:860px){
-  .fg{grid-template-columns:1fr 1fr}
+  .d-img-head, .d-img, .d-img.setting-img { width: 100%; }
 }
 @media(max-width:640px){
   .nav-in{padding:0 18px}
   .nav-links,.nav-cta{display:none}
   .hbg{display:flex}
   .fg{grid-template-columns:1fr;gap:28px}
-  .footer{padding:52px 18px 28px}
 }
 </style>
 </head>
@@ -287,6 +295,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <a href="#five-factor-model" class="sl">5-Factor Model Engine</a>
     <a href="#affine-factor-model" class="sl">Affine Factor Model</a>
 
+    <div class="sh">Dashboards & Screeners</div>
+    <a href="#market-screener" class="sl">Multi-Asset Scanner</a>
+
     <div class="sh">Support & Setup</div>
     <a href="#access-guide" class="sl">Accessing Indicators</a>
     <a href="#alert-setup" class="sl">Setting Alerts</a>
@@ -298,23 +309,30 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
   <main class="doc-content">
 
     <section id="what-is-pointalgo" class="d-sec">
-      <div class="d-badge">Introduction</div>
       <h1 class="d-title">What is PointAlgo?</h1>
       <p class="d-sub">PointAlgo is a quantitative trading intelligence platform built for traders who want speed, accuracy, and logic — not guesswork.</p>
-      <p class="d-sub" style="font-style:italic">We don’t believe in cluttered charts or emotional decisions. We believe in <span class="a-c font-semibold">structured signals backed by data and logic</span>.</p>
+      <p class="d-sub italic">We don’t believe in cluttered charts or emotional decisions. We believe in <span class="text-blue-400 font-semibold">structured signals backed by data and logic</span>.</p>
       
       <div class="d-grid">
-        <div class="d-card gc">
-          <h3 class="a-c"><i class="fa-solid fa-bolt-lightning"></i> Speed</h3>
-          <p>Markets move fast — your decisions should too. PointAlgo delivers real-time signals so you can act instantly without hesitation.</p>
+        <div class="d-card">
+          <div class="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center mb-6 text-xl"><i class="fa-solid fa-bolt-lightning"></i></div>
+          <h3 class="text-white font-bold mb-3 uppercase tracking-widest text-sm">Speed</h3>
+          <p class="text-sm text-slate-300 leading-relaxed mb-3 font-medium">Markets move fast — your decisions should too.</p>
+          <p class="text-sm text-slate-500 leading-relaxed">PointAlgo delivers real-time signals so you can act instantly without hesitation.</p>
         </div>
-        <div class="d-card ge">
-          <h3 class="a-e"><i class="fa-solid fa-bullseye"></i> Accuracy</h3>
-          <p>Every signal is designed to filter noise and focus on high-probability setups. No random indicators — only refined, tested logic.</p>
+        
+        <div class="d-card">
+          <div class="w-12 h-12 bg-emerald-600/20 text-emerald-500 rounded-xl flex items-center justify-center mb-6 text-xl"><i class="fa-solid fa-bullseye"></i></div>
+          <h3 class="text-white font-bold mb-3 uppercase tracking-widest text-sm">Accuracy</h3>
+          <p class="text-sm text-slate-300 leading-relaxed mb-3 font-medium">Every signal is designed to filter noise and focus on high-probability setups.</p>
+          <p class="text-sm text-slate-500 leading-relaxed">No random indicators — only refined, tested logic.</p>
         </div>
-        <div class="d-card gt">
-          <h3 class="a-p"><i class="fa-solid fa-microchip"></i> Logic</h3>
-          <p>Behind every signal is a clear, rule-based system. No black-box confusion — just disciplined, repeatable trading frameworks.</p>
+
+        <div class="d-card">
+          <div class="w-12 h-12 bg-purple-600/20 text-purple-500 rounded-xl flex items-center justify-center mb-6 text-xl"><i class="fa-solid fa-microchip"></i></div>
+          <h3 class="text-white font-bold mb-3 uppercase tracking-widest text-sm">Logic</h3>
+          <p class="text-sm text-slate-300 leading-relaxed mb-3 font-medium">Behind every signal is a clear, rule-based system.</p>
+          <p class="text-sm text-slate-500 leading-relaxed">No black-box confusion — just disciplined, repeatable trading frameworks.</p>
         </div>
       </div>
     </section>
@@ -323,10 +341,10 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
       <h2 class="d-title">What is TradingView?</h2>
       <p class="d-sub">The world's leading cloud charting platform. Analyze markets from any browser with PointAlgo's invite-only scripts.</p>
       <div class="d-row">
-        <div class="d-box b-c"><strong>Cloud-based charting</strong> Access anywhere</div>
-        <div class="d-box b-c"><strong>Real-time alerts</strong> Webhook compatible</div>
-        <div class="d-box b-c"><strong>Custom Pine Scripting</strong> Institutional logic</div>
-        <div class="d-box b-c"><strong>Mobile/Desktop Sync</strong> Trade on the go</div>
+        <div class="d-box" style="border-left-color: #3b82f6;"><strong><i class="fa-solid fa-check text-blue-500 mr-2"></i> Cloud-based charting</strong></div>
+        <div class="d-box" style="border-left-color: #3b82f6;"><strong><i class="fa-solid fa-check text-blue-500 mr-2"></i> Real-time alerts</strong></div>
+        <div class="d-box" style="border-left-color: #3b82f6;"><strong><i class="fa-solid fa-check text-blue-500 mr-2"></i> Custom Pine Scripting</strong></div>
+        <div class="d-box" style="border-left-color: #3b82f6;"><strong><i class="fa-solid fa-check text-blue-500 mr-2"></i> Mobile/Desktop Sync</strong></div>
       </div>
     </section>
 
@@ -340,7 +358,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 
     <section id="what-is-algo" class="d-sec">
       <h2 class="d-title">What is Algo Trading?</h2>
-      <p class="d-sub">Algorithmic trading is the process of using a pre-defined set of rules (an algorithm) to execute trades. Instead of clicking buttons based on intuition, the system monitors market conditions and executes according to <span class="a-c">Binary Logic</span>.</p>
+      <p class="d-sub">Algorithmic trading is the process of using a pre-defined set of rules (an algorithm) to execute trades. Instead of clicking buttons based on intuition, the system monitors market conditions and executes according to <span class="text-blue-400">Binary Logic</span>.</p>
       <div class="d-quote border-l-emerald-500 text-center text-[18px]">
         "Emotionless, tireless, and disciplined execution 24/7."
       </div>
@@ -355,7 +373,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="gann-pi" class="d-sec">
       <div class="d-badge">Premium Overlay Indicator</div>
       <h2 class="d-title">Gann-Pi Matrix <span>(Cross Edition)</span></h2>
-      <p class="d-sub">Gann-Pi Matrix is a structured trading indicator designed to identify high-probability price zones and timing windows using a combination of price geometry and cyclical behavior. It provides traders with clear, rule-based entry signals by aligning price levels with time-based market cycles. The result is a simplified decision-making framework that removes guesswork and focuses on actionable signals.</p>
+      <p class="d-sub">Gann-Pi Matrix is a structured trading indicator designed to identify high-probability price zones and timing windows using a combination of price geometry and cyclical behavior.</p>
+      <p class="d-sub">It provides traders with clear, rule-based entry signals by aligning price levels with time-based market cycles. The result is a simplified decision-making framework that removes guesswork and focuses on actionable signals.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -366,9 +385,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: Gann-pi-TV.png</span></div>
           <img src="../Gann-pi-TV.png" alt="PointAlgo TradingView Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: gannpi-settings_tv.png</span></div>
-          <img src="../gannpi-settings_tv.png" alt="PointAlgo Settings TV" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../gannpi-settings_tv.png" alt="PointAlgo Settings TV">
         </div>
       </div>
 
@@ -376,53 +395,53 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li>Identify precise entry points for long and short trades.</li>
-            <li>Trade reversals from structured support and resistance zones.</li>
-            <li>Align trades with favorable market timing conditions.</li>
-            <li>Reduce noise and avoid over-analysis.</li>
+            <li><i class="fa-solid fa-check"></i> Identify precise entry points for long and short trades.</li>
+            <li><i class="fa-solid fa-check"></i> Trade reversals from structured support and resistance zones.</li>
+            <li><i class="fa-solid fa-check"></i> Align trades with favorable market timing conditions.</li>
+            <li><i class="fa-solid fa-check"></i> Reduce noise and avoid over-analysis.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li>Clear and objective trading signals.</li>
-            <li>Eliminates emotional decision-making.</li>
-            <li>Combines price and time for better trade alignment.</li>
-            <li>Works across multiple markets and timeframes.</li>
-            <li>Minimal chart clutter with maximum clarity.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Clear and objective trading signals.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Eliminates emotional decision-making.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Combines price and time for better trade alignment.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Works across multiple markets and timeframes.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Minimal chart clutter with maximum clarity.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">What You See on Chart</h3>
-      <div class="d-row">
-        <div class="d-box"><strong>Buy Zones</strong> Structured support levels</div>
-        <div class="d-box"><strong>Sell Zones</strong> Structured resistance levels</div>
-        <div class="d-box"><strong>Signals</strong> Entry calls for long/short</div>
-        <div class="d-box"><strong>Timing Zones</strong> Highlighted favorable conditions</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">What You See on Chart</h3>
+      <div class="d-row text-sm">
+        <div class="d-box">Structured support levels (buy zones)</div>
+        <div class="d-box">Structured resistance levels (sell zones)</div>
+        <div class="d-box">Entry signals for long and short trades</div>
+        <div class="d-box">Highlighted timing zones (favorable conditions)</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">How to Use</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">How to Use</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> Long Trades</h4>
           <ul>
-            <li>Wait for a long signal to appear on the chart.</li>
-            <li>Ensure price is reacting near a support zone.</li>
-            <li>Prefer trades when the market is in a favorable time cycle.</li>
+            <li>• Wait for a long signal to appear on the chart.</li>
+            <li>• Ensure price is reacting near a support zone.</li>
+            <li>• Prefer trades when the market is in a favorable time cycle.</li>
           </ul>
         </div>
-        <div class="d-card b-r" style="border-left:4px solid #ef4444">
+        <div class="d-card" style="border-left:4px solid #ef4444">
           <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-down"></i> Short Trades</h4>
           <ul>
-            <li>Wait for a short signal to appear on the chart.</li>
-            <li>Ensure price is reacting near a resistance zone.</li>
-            <li>Prefer trades when the market is in a favorable time cycle.</li>
+            <li>• Wait for a short signal to appear on the chart.</li>
+            <li>• Ensure price is reacting near a resistance zone.</li>
+            <li>• Prefer trades when the market is in a favorable time cycle.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -431,29 +450,29 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: Gannpi-mt5.png</span></div>
           <img src="../Gannpi-mt5.png" alt="PointAlgo MT5 Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: Gannpi-mt5-setting.png</span></div>
-          <img src="../Gannpi-mt5-setting.png" alt="PointAlgo Settings MT5" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../Gannpi-mt5-setting.png" alt="PointAlgo Settings MT5">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li>Use on liquid markets (indices, stocks, futures).</li>
-            <li>Avoid trading during extremely low volatility periods.</li>
-            <li>Follow proper risk management for every trade.</li>
-            <li>Combine with higher timeframe direction for better accuracy.</li>
+          <ul class="text-slate-400">
+            <li>• Use on liquid markets (indices, stocks, futures).</li>
+            <li>• Avoid trading during extremely low volatility periods.</li>
+            <li>• Follow proper risk management for every trade.</li>
+            <li>• Combine with higher timeframe direction for better accuracy.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Traders looking for structured, rule-based entries.</li>
-            <li>Traders who want to avoid indicator overload.</li>
-            <li>Beginners who need clear buy/sell signals.</li>
-            <li>Advanced traders seeking disciplined execution.</li>
+          <ul class="text-slate-400">
+            <li>• Traders looking for structured, rule-based entries.</li>
+            <li>• Traders who want to avoid indicator overload.</li>
+            <li>• Beginners who need clear buy/sell signals.</li>
+            <li>• Advanced traders seeking disciplined execution.</li>
           </ul>
         </div>
       </div>
@@ -466,7 +485,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="auto-fib" class="d-sec">
       <div class="d-badge">Premium Overlay Indicator</div>
       <h2 class="d-title">Adaptive Auto-Fib Matrix <span>v2.0</span></h2>
-      <p class="d-sub">An intelligent, dynamic Fibonacci engine that auto-anchors to structural pivots and hunts for institutional liquidity sweeps within the Golden Zone. This indicator removes the subjectivity of manual charting. It automatically calculates structural high/low pivots, draws the retracement matrix, and uses a Volume-Weighted RSI (VRSI) to confirm momentum. Furthermore, it is fully equipped with Algobaba Order Routing for automated Futures and Options execution.</p>
+      <p class="d-sub">An intelligent, dynamic Fibonacci engine that auto-anchors to structural pivots and hunts for institutional liquidity sweeps within the Golden Zone.</p>
+      <p class="d-sub">This indicator removes the subjectivity of manual charting. It automatically calculates structural high/low pivots, draws the retracement matrix, and uses a Volume-Weighted RSI (VRSI) to confirm momentum. Furthermore, it is fully equipped with Algobaba Order Routing for automated Futures and Options execution.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -477,9 +497,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: Fib-matrix.png</span></div>
           <img src="../Fib-matrix.png" alt="PointAlgo Auto-Fib Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: Fib-matrix-setting.png</span></div>
-          <img src="../Fib-matrix-setting.png" alt="PointAlgo Auto-Fib Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../Fib-matrix-setting.png" alt="PointAlgo Auto-Fib Settings">
         </div>
       </div>
 
@@ -487,54 +507,54 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li>Trade high-probability pullback reversals via Liquidity Sweeps.</li>
-            <li>Automate the drawing of objective Fibonacci retracements.</li>
-            <li>Filter out fake breakouts using Volume-RSI momentum.</li>
-            <li>Automate end-to-end execution via built-in Algobaba routing.</li>
+            <li><i class="fa-solid fa-check"></i> Trade high-probability pullback reversals via Liquidity Sweeps.</li>
+            <li><i class="fa-solid fa-check"></i> Automate the drawing of objective Fibonacci retracements.</li>
+            <li><i class="fa-solid fa-check"></i> Filter out fake breakouts using Volume-RSI momentum.</li>
+            <li><i class="fa-solid fa-check"></i> Automate end-to-end execution via built-in Algobaba routing.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li>No manual charting—pivots adapt instantly to live market structure.</li>
-            <li>Golden Zone focus (0.500 - 0.618) keeps you in prime trade areas.</li>
-            <li>Built-in dynamic risk management (Target & SL auto-calculated).</li>
-            <li>Options & Futures ready (CE/PE strike routing included).</li>
-            <li>Intraday and Positional session controls.</li>
+            <li><i class="fa-solid fa-circle-check"></i> No manual charting—pivots adapt instantly to live market structure.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Golden Zone focus (0.500 - 0.618) keeps you in prime trade areas.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Built-in dynamic risk management (Target & SL auto-calculated).</li>
+            <li><i class="fa-solid fa-circle-check"></i> Options & Futures ready (CE/PE strike routing included).</li>
+            <li><i class="fa-solid fa-circle-check"></i> Intraday and Positional session controls.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">What You See on Chart</h3>
-      <div class="d-row">
-        <div class="d-box"><strong>Fib Levels</strong> Auto-updating 0 to 100 levels</div>
-        <div class="d-box b-a"><strong>Golden Zone</strong> Highlighted 0.5 - 0.618 area</div>
-        <div class="d-box"><strong>Triggers</strong> Buy/Short Sweep Arrows</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">What You See on Chart</h3>
+      <div class="d-row text-sm">
+        <div class="d-box">Auto-updating Fib 0 to 100 levels</div>
+        <div class="d-box" style="border-left-color: #f97316; color: #f97316;">Highlighted Golden Zone (0.5 - 0.618)</div>
+        <div class="d-box">Buy/Short Sweep Trigger Arrows</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Signal Logic: Liquidity Sweeps</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Signal Logic: Liquidity Sweeps</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> Long Sweep</h4>
           <ul>
-            <li>Trend direction is recognized as UP.</li>
-            <li>Price pulls back and wicks *below* the 0.5 or 0.618 level (trapping early sellers).</li>
-            <li>Candle closes strong *above* the level.</li>
-            <li>VRSI is Bullish (> 50) to confirm momentum.</li>
+            <li>• Trend direction is recognized as UP.</li>
+            <li>• Price pulls back and wicks *below* the 0.5 or 0.618 level (trapping early sellers).</li>
+            <li>• Candle closes strong *above* the level.</li>
+            <li>• VRSI is Bullish (> 50) to confirm momentum.</li>
           </ul>
         </div>
-        <div class="d-card b-r" style="border-left:4px solid #ef4444">
+        <div class="d-card" style="border-left:4px solid #ef4444">
           <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-down"></i> Short Sweep</h4>
           <ul>
-            <li>Trend direction is recognized as DOWN.</li>
-            <li>Price rallies and wicks *above* the 0.5 or 0.618 level (trapping early buyers).</li>
-            <li>Candle closes weak *below* the level.</li>
-            <li>VRSI is Bearish (< 50) to confirm momentum.</li>
+            <li>• Trend direction is recognized as DOWN.</li>
+            <li>• Price rallies and wicks *above* the 0.5 or 0.618 level (trapping early buyers).</li>
+            <li>• Candle closes weak *below* the level.</li>
+            <li>• VRSI is Bearish (< 50) to confirm momentum.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -543,29 +563,29 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: Fib-matrix-MT5.png</span></div>
           <img src="../Fib-matrix-MT5.png" alt="PointAlgo Auto-Fib MT5">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: Fib-matrix-setting-MT5.png</span></div>
-          <img src="../Fib-matrix-setting-MT5.png" alt="PointAlgo Auto-Fib Settings MT5" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../Fib-matrix-setting-MT5.png" alt="PointAlgo Auto-Fib Settings MT5">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li>Adjust "Structural Pivot Length" (lower for scalps, higher for swings).</li>
-            <li>Rely on the VRSI filter to avoid trading into exhausted momentum.</li>
-            <li>Ensure your Algobaba Webhook syntax is correct if auto-trading options.</li>
-            <li>Use the built-in Intraday Session times to avoid after-hours traps.</li>
+          <ul class="text-slate-400">
+            <li>• Adjust "Structural Pivot Length" (lower for scalps, higher for swings).</li>
+            <li>• Rely on the VRSI filter to avoid trading into exhausted momentum.</li>
+            <li>• Ensure your Algobaba Webhook syntax is correct if auto-trading options.</li>
+            <li>• Use the built-in Intraday Session times to avoid after-hours traps.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Trend-following pullback traders.</li>
-            <li>Systematic auto-traders using webhooks.</li>
-            <li>Options traders needing automated CE/PE strike routing.</li>
-            <li>Traders who struggle with subjective Fibonacci drawing.</li>
+          <ul class="text-slate-400">
+            <li>• Trend-following pullback traders.</li>
+            <li>• Systematic auto-traders using webhooks.</li>
+            <li>• Options traders needing automated CE/PE strike routing.</li>
+            <li>• Traders who struggle with subjective Fibonacci drawing.</li>
           </ul>
         </div>
       </div>
@@ -578,7 +598,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="heatmap-profile" class="d-sec">
       <div class="d-badge">Premium Overlay Indicator</div>
       <h2 class="d-title">Heatmap Profile & Sweep</h2>
-      <p class="d-sub">An advanced volume visualization and liquidity sweep engine that identifies where institutional money is trapped and where stop-losses are being hunted. This tool moves beyond standard price action. It dynamically builds a dual-sided Volume Profile on the right edge of your chart to reveal the Point of Control (POC). Simultaneously, its algorithmic engine tracks historical swing highs and lows, scanning for forceful liquidity sweeps (BSL/SSL purges) that signal major market reversals.</p>
+      <p class="d-sub">An advanced volume visualization and liquidity sweep engine that identifies where institutional money is trapped and where stop-losses are being hunted.</p>
+      <p class="d-sub">This tool moves beyond standard price action. It dynamically builds a dual-sided Volume Profile on the right edge of your chart to reveal the Point of Control (POC). Simultaneously, its algorithmic engine tracks historical swing highs and lows, scanning for forceful liquidity sweeps (BSL/SSL purges) that signal major market reversals.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -589,9 +610,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: Heatmap Profile.png</span></div>
           <img src="../Heatmap Profile.png" alt="PointAlgo Heatmap Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: Heatmap Profile_settings.png</span></div>
-          <img src="../Heatmap Profile_settings.png" alt="PointAlgo Heatmap Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../Heatmap Profile_settings.png" alt="PointAlgo Heatmap Settings">
         </div>
       </div>
 
@@ -599,54 +620,54 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-layer-group"></i> Core Use Case</h3>
           <ul>
-            <li>Identify high-volume nodes (magnet areas) using the Dynamic Profile.</li>
-            <li>Spot institutional "Stop Runs" before the market reverses.</li>
-            <li>Avoid entering trades directly into the Point of Control (POC) chop.</li>
-            <li>Monitor real-time market state via the integrated PointAlgo HUD.</li>
+            <li><i class="fa-solid fa-check"></i> Identify high-volume nodes (magnet areas) using the Dynamic Profile.</li>
+            <li><i class="fa-solid fa-check"></i> Spot institutional "Stop Runs" before the market reverses.</li>
+            <li><i class="fa-solid fa-check"></i> Avoid entering trades directly into the Point of Control (POC) chop.</li>
+            <li><i class="fa-solid fa-check"></i> Monitor real-time market state via the integrated PointAlgo HUD.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li><strong>Dual-Sided Data:</strong> See exact Buy vs. Sell volume distribution at every price level.</li>
-            <li><strong>Automated Memory:</strong> The engine remembers old swing levels and alerts you when they are purged.</li>
-            <li><strong>ATR Rejection Filter:</strong> Only triggers sweeps if the price rejection is mathematically significant (ATR Multiplier).</li>
-            <li><strong>Clean UI:</strong> Projects data cleanly to the right side of the chart, keeping candles visible.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Dual-Sided Data:</strong> See exact Buy vs. Sell volume distribution at every price level.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Automated Memory:</strong> The engine remembers old swing levels and alerts you when they are purged.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>ATR Rejection Filter:</strong> Only triggers sweeps if the price rejection is mathematically significant (ATR Multiplier).</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Clean UI:</strong> Projects data cleanly to the right side of the chart, keeping candles visible.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">What You See on Chart</h3>
-      <div class="d-row">
-        <div class="d-box"><strong>Volume Profile</strong> Right-Aligned Buy/Sell splits</div>
-        <div class="d-box b-a"><strong>POC Line</strong> Point of Control tracking</div>
-        <div class="d-box"><strong>Purge Labels</strong> BSL/SSL Liquidity purges</div>
-        <div class="d-box"><strong>Real-Time HUD</strong> Dashboard analytics</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">What You See on Chart</h3>
+      <div class="d-row text-sm">
+        <div class="d-box">Right-Aligned Volume Profile (Buy/Sell splits)</div>
+        <div class="d-box" style="border-left-color: #f97316; color: #f97316;">Point of Control (POC) Line</div>
+        <div class="d-box">Bullish (SSL) & Bearish (BSL) Liquidity Purge Labels</div>
+        <div class="d-box">Real-Time PointAlgo HUD Dashboard</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Signal Logic: Liquidity Purges</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Signal Logic: Liquidity Purges</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> SSL Sweep (Bullish)</h4>
           <ul>
-            <li>The algorithm remembers a previous Swing Low.</li>
-            <li>Price drops below this low, trapping retail breakout traders.</li>
-            <li>Price instantly reverses and closes strongly above the level.</li>
-            <li>A green <strong>"▲ LIQ PURGE"</strong> signal is printed, indicating institutions have accumulated longs.</li>
+            <li>• The algorithm remembers a previous Swing Low.</li>
+            <li>• Price drops below this low, trapping retail breakout traders.</li>
+            <li>• Price instantly reverses and closes strongly above the level.</li>
+            <li>• A green <strong>"▲ LIQ PURGE"</strong> signal is printed, indicating institutions have accumulated longs.</li>
           </ul>
         </div>
-        <div class="d-card b-r" style="border-left:4px solid #ef4444">
+        <div class="d-card" style="border-left:4px solid #ef4444">
           <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-down"></i> BSL Sweep (Bearish)</h4>
           <ul>
-            <li>The algorithm remembers a previous Swing High.</li>
-            <li>Price pushes above this high to trigger retail stop-losses.</li>
-            <li>Price forcefully rejects and closes back below the level.</li>
-            <li>A red <strong>"LIQ PURGE ▼"</strong> signal is printed, indicating institutions are offloading positions.</li>
+            <li>• The algorithm remembers a previous Swing High.</li>
+            <li>• Price pushes above this high to trigger retail stop-losses.</li>
+            <li>• Price forcefully rejects and closes back below the level.</li>
+            <li>• A red <strong>"LIQ PURGE ▼"</strong> signal is printed, indicating institutions are offloading positions.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -655,28 +676,28 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: Heatmap Profile MT5.png</span></div>
           <img src="../Heatmap Profile MT5.png" alt="PointAlgo Heatmap MT5">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: Heatmap Profile MT5 Settings.png</span></div>
-          <img src="../Heatmap Profile MT5 Settings.png" alt="PointAlgo Heatmap Settings MT5" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../Heatmap Profile MT5 Settings.png" alt="PointAlgo Heatmap Settings MT5">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li>Use the HUD to check proximity to the POC; avoid taking breakouts when price is stuck inside the POC gravity well.</li>
-            <li>Adjust the "Rejection ATR Requirement" higher (e.g., 2.0) to filter for only the most violent liquidity sweeps.</li>
-            <li>Increase "Profile Lookback" to analyze longer-term volume distribution.</li>
+          <ul class="text-slate-400">
+            <li>• Use the HUD to check proximity to the POC; avoid taking breakouts when price is stuck inside the POC gravity well.</li>
+            <li>• Adjust the "Rejection ATR Requirement" higher (e.g., 2.0) to filter for only the most violent liquidity sweeps.</li>
+            <li>• Increase "Profile Lookback" to analyze longer-term volume distribution.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Orderflow and Volume Profile traders.</li>
-            <li>Smart Money Concept (SMC) traders focusing on liquidity zones.</li>
-            <li>Intraday reversal and mean-reversion traders.</li>
-            <li>Traders seeking to understand the "why" behind sudden price spikes.</li>
+          <ul class="text-slate-400">
+            <li>• Orderflow and Volume Profile traders.</li>
+            <li>• Smart Money Concept (SMC) traders focusing on liquidity zones.</li>
+            <li>• Intraday reversal and mean-reversion traders.</li>
+            <li>• Traders seeking to understand the "why" behind sudden price spikes.</li>
           </ul>
         </div>
       </div>
@@ -689,7 +710,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="sd-zone-cross" class="d-sec">
       <div class="d-badge">Premium Overlay Indicator</div>
       <h2 class="d-title">S/D Zone Cross Signals</h2>
-      <p class="d-sub">An automated market structure engine that dynamically draws institutional Supply and Demand zones, alerting you to confirmed structural breakouts. Instead of subjectively drawing boxes on your chart, this algorithm detects structural peaks and troughs mathematically. It then applies an ATR (Average True Range) multiplier to calculate the exact "thickness" of the zone based on live volatility. It ignores standard touches and only fires signals when a zone is fully breached, indicating a true shift in market control.</p>
+      <p class="d-sub">An automated market structure engine that dynamically draws institutional Supply and Demand zones, alerting you to confirmed structural breakouts.</p>
+      <p class="d-sub">Instead of subjectively drawing boxes on your chart, this algorithm detects structural peaks and troughs mathematically. It then applies an ATR (Average True Range) multiplier to calculate the exact "thickness" of the zone based on live volatility. It ignores standard touches and only fires signals when a zone is fully breached, indicating a true shift in market control.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -700,9 +722,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: SdZone.png</span></div>
           <img src="../SdZone.png" alt="PointAlgo S/D Zone Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: SdZonesetting.png</span></div>
-          <img src="../SdZonesetting.png" alt="PointAlgo S/D Zone Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../SdZonesetting.png" alt="PointAlgo S/D Zone Settings">
         </div>
       </div>
 
@@ -710,52 +732,52 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li>Automate the tedious process of drawing Supply and Demand zones.</li>
-            <li>Trade confirmed momentum breakouts (not just range bounces).</li>
-            <li>Filter out "fakeout" wicks using the dynamic ATR zone thickness.</li>
+            <li><i class="fa-solid fa-check"></i> Automate the tedious process of drawing Supply and Demand zones.</li>
+            <li><i class="fa-solid fa-check"></i> Trade confirmed momentum breakouts (not just range bounces).</li>
+            <li><i class="fa-solid fa-check"></i> Filter out "fakeout" wicks using the dynamic ATR zone thickness.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li><strong>Volatility Adaptive:</strong> Zones get thicker in fast markets and thinner in slow markets.</li>
-            <li><strong>High-Contrast Visuals:</strong> Built with institutional Neon Cyan and Electric Orange color palettes.</li>
-            <li><strong>Instant Alerts:</strong> Receive cloud notifications the exact second a zone is breached.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Volatility Adaptive:</strong> Zones get thicker in fast markets and thinner in slow markets.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>High-Contrast Visuals:</strong> Built with institutional Neon Cyan and Electric Orange color palettes.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Instant Alerts:</strong> Receive cloud notifications the exact second a zone is breached.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">What You See on Chart</h3>
-      <div class="d-row">
-        <div class="d-box" style="border-left-color:#ff4d00"><strong>Supply Zones</strong> Electric Orange (Resistance)</div>
-        <div class="d-box" style="border-left-color:#00ffbb"><strong>Demand Zones</strong> Neon Cyan (Support)</div>
-        <div class="d-box"><strong>Breakout</strong> Small ▲ Long Signals</div>
-        <div class="d-box"><strong>Breakdown</strong> Small ▼ Short Signals</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">What You See on Chart</h3>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: #ff4d00;">Electric Orange Supply Zones (Resistance)</div>
+        <div class="d-box" style="border-left-color: #00ffbb;">Neon Cyan Demand Zones (Support)</div>
+        <div class="d-box">Small <span class="text-[#00ffbb] font-bold">▲</span> Long Breakout Signals</div>
+        <div class="d-box">Small <span class="text-[#ff4d00] font-bold">▼</span> Short Breakdown Signals</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Signal Logic: Zone Crosses</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Signal Logic: Zone Crosses</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
-          <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> Supply Breakout (Long)</h4>
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
+          <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> Supply Zone Breakout (Long)</h4>
           <ul>
-            <li>The algorithm maps a Red Supply Zone overhead.</li>
-            <li>Price rallies and fully crosses <strong>ABOVE the top</strong> of the Red Zone.</li>
-            <li>This indicates sellers are exhausted and buyers have taken structural control.</li>
-            <li>A Green Up-Triangle ▲ is printed.</li>
+            <li>• The algorithm maps a Red Supply Zone overhead.</li>
+            <li>• Price rallies and fully crosses <strong>ABOVE the top</strong> of the Red Zone.</li>
+            <li>• This indicates sellers are exhausted and buyers have taken structural control.</li>
+            <li>• A Green Up-Triangle <span class="text-[#00ffbb]">▲</span> is printed.</li>
           </ul>
         </div>
-        <div class="d-card b-r" style="border-left:4px solid #ef4444">
-          <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-down"></i> Demand Breakdown (Short)</h4>
+        <div class="d-card" style="border-left:4px solid #ef4444">
+          <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-down"></i> Demand Zone Breakdown (Short)</h4>
           <ul>
-            <li>The algorithm maps a Green Demand Zone below.</li>
-            <li>Price drops and fully crosses <strong>BELOW the bottom</strong> of the Green Zone.</li>
-            <li>This indicates buyers have capitulated and sellers have structural control.</li>
-            <li>A Red Down-Triangle ▼ is printed.</li>
+            <li>• The algorithm maps a Green Demand Zone below.</li>
+            <li>• Price drops and fully crosses <strong>BELOW the bottom</strong> of the Green Zone.</li>
+            <li>• This indicates buyers have capitulated and sellers have structural control.</li>
+            <li>• A Red Down-Triangle <span class="text-[#ff4d00]">▼</span> is printed.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -764,27 +786,27 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: SdZone_MT5.png</span></div>
           <img src="../SdZone_MT5.png" alt="PointAlgo S/D MT5 Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: SdZone_MT5_settings.png</span></div>
-          <img src="../SdZone_MT5_settings.png" alt="PointAlgo S/D MT5 Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../SdZone_MT5_settings.png" alt="PointAlgo S/D MT5 Settings">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li>Adjust "Zone Detection Length" based on your timeframe (lower for scalping, higher for swing trading).</li>
-            <li>Tweak the "Zone Thickness (ATR)" multiplier to increase/decrease sensitivity. A higher multiplier requires a much stronger breakout to trigger a signal.</li>
-            <li>Place stop-losses securely below/above the recently broken zone.</li>
+          <ul class="text-slate-400">
+            <li>• Adjust "Zone Detection Length" based on your timeframe (lower for scalping, higher for swing trading).</li>
+            <li>• Tweak the "Zone Thickness (ATR)" multiplier to increase/decrease sensitivity. A higher multiplier requires a much stronger breakout to trigger a signal.</li>
+            <li>• Place stop-losses securely below/above the recently broken zone.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Price Action and Market Structure traders.</li>
-            <li>Breakout traders looking for confirmed shifts in momentum.</li>
-            <li>Traders who struggle to identify true Support and Resistance levels manually.</li>
+          <ul class="text-slate-400">
+            <li>• Price Action and Market Structure traders.</li>
+            <li>• Breakout traders looking for confirmed shifts in momentum.</li>
+            <li>• Traders who struggle to identify true Support and Resistance levels manually.</li>
           </ul>
         </div>
       </div>
@@ -797,7 +819,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="vector-rail" class="d-sec">
       <div class="d-badge">Premium Overlay Indicator</div>
       <h2 class="d-title">Structural Vector Rail</h2>
-      <p class="d-sub">A dynamic, institutional-grade trendline that uses Linear Regression math to automatically anchor itself to structural support or resistance. Standard moving averages lag behind the market. The Vector Rail solves this by calculating the true statistical slope of the trend. If the slope is bullish, the Rail automatically anchors to the lower standard deviation boundary (Support). If the slope flips bearish, it instantly re-anchors to the upper boundary (Resistance). The result is a seamless, mathematically pure trend-following band.</p>
+      <p class="d-sub">A dynamic, institutional-grade trendline that uses Linear Regression math to automatically anchor itself to structural support or resistance.</p>
+      <p class="d-sub">Standard moving averages lag behind the market. The Vector Rail solves this by calculating the true statistical slope of the trend. If the slope is bullish, the Rail automatically anchors to the lower standard deviation boundary (Support). If the slope flips bearish, it instantly re-anchors to the upper boundary (Resistance). The result is a seamless, mathematically pure trend-following band.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -808,9 +831,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: Vector_Rail.png</span></div>
           <img src="../Vector_Rail.png" alt="PointAlgo Vector Rail Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: Vector_Rail_setting.png</span></div>
-          <img src="../Vector_Rail_setting.png" alt="PointAlgo Vector Rail Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../Vector_Rail_setting.png" alt="PointAlgo Vector Rail Settings">
         </div>
       </div>
 
@@ -818,52 +841,52 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li>Ride massive trends without getting shaken out by minor pullbacks.</li>
-            <li>Use the Rail as an objective, mathematical Trailing Stop Loss.</li>
-            <li>Quickly identify the true directional bias of the market at a glance.</li>
+            <li><i class="fa-solid fa-check"></i> Ride massive trends without getting shaken out by minor pullbacks.</li>
+            <li><i class="fa-solid fa-check"></i> Use the Rail as an objective, mathematical Trailing Stop Loss.</li>
+            <li><i class="fa-solid fa-check"></i> Quickly identify the true directional bias of the market at a glance.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li><strong>Zero-Lag Concept:</strong> Based on Linear Regression, which hugs price closer than an SMA/EMA.</li>
-            <li><strong>Visual Aura:</strong> Features a smoothed background "braid" effect in Electric Aqua and Rose for instant visual clarity.</li>
-            <li><strong>Live Dashboard:</strong> A built-in HUD displays the exact quantitative slope value and active anchor point.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Zero-Lag Concept:</strong> Based on Linear Regression, which hugs price closer than an SMA/EMA.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Visual Aura:</strong> Features a smoothed background "braid" effect in Electric Aqua and Rose for instant visual clarity.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Live Dashboard:</strong> A built-in HUD displays the exact quantitative slope value and active anchor point.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">What You See on Chart</h3>
-      <div class="d-row">
-        <div class="d-box" style="border-left-color:#00FFD1"><strong>Aqua Support</strong> Bullish Rail</div>
-        <div class="d-box" style="border-left-color:#FF0055"><strong>Rose Resistance</strong> Bearish Rail</div>
-        <div class="d-box"><strong>Entry Labels</strong> Crossover Up/Down</div>
-        <div class="d-box"><strong>Vector HUD</strong> Top Right Metrics</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">What You See on Chart</h3>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: #00FFD1;">Electric Aqua Support Rail (Bullish)</div>
+        <div class="d-box" style="border-left-color: #FF0055;">Electric Rose Resistance Rail (Bearish)</div>
+        <div class="d-box">Crossover Entry Labels (Up/Down)</div>
+        <div class="d-box">PointAlgo Vector HUD (Top Right)</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Signal Logic: Structural Crosses</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Signal Logic: Structural Crosses</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> Trend Resumption (Long)</h4>
           <ul>
-            <li>The underlying Linear Regression slope must be positive (Bullish).</li>
-            <li>Price dips below the Electric Aqua Rail to gather liquidity.</li>
-            <li>Price crosses back <strong>ABOVE</strong> the Rail.</li>
-            <li>This confirms the pullback is over and the main trend is resuming.</li>
+            <li>• The underlying Linear Regression slope must be positive (Bullish).</li>
+            <li>• Price dips below the Electric Aqua Rail to gather liquidity.</li>
+            <li>• Price crosses back <strong>ABOVE</strong> the Rail.</li>
+            <li>• This confirms the pullback is over and the main trend is resuming.</li>
           </ul>
         </div>
-        <div class="d-card b-r" style="border-left:4px solid #ef4444">
+        <div class="d-card" style="border-left:4px solid #ef4444">
           <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-down"></i> Trend Resumption (Short)</h4>
           <ul>
-            <li>The underlying Linear Regression slope must be negative (Bearish).</li>
-            <li>Price rallies above the Electric Rose Rail to trap buyers.</li>
-            <li>Price crosses back <strong>BELOW</strong> the Rail.</li>
-            <li>This confirms the relief rally has failed and the downtrend is resuming.</li>
+            <li>• The underlying Linear Regression slope must be negative (Bearish).</li>
+            <li>• Price rallies above the Electric Rose Rail to trap buyers.</li>
+            <li>• Price crosses back <strong>BELOW</strong> the Rail.</li>
+            <li>• This confirms the relief rally has failed and the downtrend is resuming.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -872,27 +895,27 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: Vector_RailMT5.png</span></div>
           <img src="../Vector_RailMT5.png" alt="PointAlgo Vector Rail MT5 Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: Vector_Rail_settingMT5.png</span></div>
-          <img src="../Vector_Rail_settingMT5.png" alt="PointAlgo Vector Rail MT5 Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../Vector_Rail_settingMT5.png" alt="PointAlgo Vector Rail MT5 Settings">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li>Use the Rail exclusively as a trailing stop loss. If you are Long, exit the moment a candle closes fully below the Aqua line.</li>
-            <li>Increase the "Trendline Deviation" multiplier if you trade volatile assets like Crypto, ensuring the Rail doesn't get clipped by wicks.</li>
-            <li>Ignore signals when the HUD Slope value is hovering around absolute zero (flat market).</li>
+          <ul class="text-slate-400">
+            <li>• Use the Rail exclusively as a trailing stop loss. If you are Long, exit the moment a candle closes fully below the Aqua line.</li>
+            <li>• Increase the "Trendline Deviation" multiplier if you trade volatile assets like Crypto, ensuring the Rail doesn't get clipped by wicks.</li>
+            <li>• Ignore signals when the HUD Slope value is hovering around absolute zero (flat market).</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Trend-following and momentum traders.</li>
-            <li>Traders who struggle to hold winning positions and exit too early.</li>
-            <li>System builders needing a mathematical "on/off" switch for their directional bias.</li>
+          <ul class="text-slate-400">
+            <li>• Trend-following and momentum traders.</li>
+            <li>• Traders who struggle to hold winning positions and exit too early.</li>
+            <li>• System builders needing a mathematical "on/off" switch for their directional bias.</li>
           </ul>
         </div>
       </div>
@@ -905,7 +928,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="trend-aligned-engine" class="d-sec">
       <div class="d-badge">Premium Oscillator Indicator</div>
       <h2 class="d-title">Trend-Aligned Engine <span>(PA V2)</span></h2>
-      <p class="d-sub">A multi-factor quantitative oscillator that merges Volatility Z-Scores, Price Mean Reversion, and Market-Neutral Momentum into a single, highly accurate directional score. Standard RSI and MACD oscillators fail because they only look at price momentum. The Trend-Aligned Engine evaluates the market across three dimensions simultaneously. It calculates how far price has deviated from its statistical mean, filters out periods of extreme erratic volatility, and outputs a clean composite score bounded between -100 and +100.</p>
+      <p class="d-sub">A multi-factor quantitative oscillator that merges Volatility Z-Scores, Price Mean Reversion, and Market-Neutral Momentum into a single, highly accurate directional score.</p>
+      <p class="d-sub">Standard RSI and MACD oscillators fail because they only look at price momentum. The Trend-Aligned Engine evaluates the market across three dimensions simultaneously. It calculates how far price has deviated from its statistical mean, filters out periods of extreme erratic volatility, and outputs a clean composite score bounded between -100 and +100.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -916,9 +940,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: TrendalighnedTV.png</span></div>
           <img src="../TrendalighnedTV.png" alt="PointAlgo Trend-Aligned TV Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: TrendalighnedTVSET.png</span></div>
-          <img src="../TrendalighnedTVSET.png" alt="PointAlgo Trend-Aligned TV Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../TrendalighnedTVSET.png" alt="PointAlgo Trend-Aligned TV Settings">
         </div>
       </div>
 
@@ -926,48 +950,48 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li>Pinpoint exact mean-reversion tops and bottoms using the +/- 40 threshold.</li>
-            <li>Catch early trend shifts the moment the PA Score crosses the Zero-Line.</li>
-            <li>Avoid getting chopped out by ignoring trades when the volatility background flashes orange.</li>
+            <li><i class="fa-solid fa-check"></i> Pinpoint exact mean-reversion tops and bottoms using the +/- 40 threshold.</li>
+            <li><i class="fa-solid fa-check"></i> Catch early trend shifts the moment the PA Score crosses the Zero-Line.</li>
+            <li><i class="fa-solid fa-check"></i> Avoid getting chopped out by ignoring trades when the volatility background flashes orange.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li><strong>Z-Score Math:</strong> Prices are normalized using standard deviations, making the indicator effective on both Crypto and Forex without tweaking settings.</li>
-            <li><strong>Composite Polarity:</strong> Consolidates three complex metrics into one simple, color-coded main line.</li>
-            <li><strong>Quant HUD:</strong> A built-in dashboard displays the exact underlying values for Volatility and Price Deviation in real-time.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Z-Score Math:</strong> Prices are normalized using standard deviations, making the indicator effective on both Crypto and Forex without tweaking settings.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Composite Polarity:</strong> Consolidates three complex metrics into one simple, color-coded main line.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Quant HUD:</strong> A built-in dashboard displays the exact underlying values for Volatility and Price Deviation in real-time.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">What You See on Chart</h3>
-      <div class="d-row">
-        <div class="d-box" style="border-left-color:#00ffbb"><strong>Lime Line</strong> Bullish Momentum</div>
-        <div class="d-box" style="border-left-color:#ff0000"><strong>Red Line</strong> Bearish Momentum</div>
-        <div class="d-box b-a"><strong>Orange BG</strong> Extreme Volatility Warning</div>
-        <div class="d-box"><strong>Zones</strong> +/- 40 Dashed Action Zones</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">What You See on Chart</h3>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: #00ffbb;">Lime Main Line (Bullish Momentum)</div>
+        <div class="d-box" style="border-left-color: #ff0000;">Red Main Line (Bearish Momentum)</div>
+        <div class="d-box" style="border-left-color: #f97316;">Orange Background (Extreme Volatility Warning)</div>
+        <div class="d-box">+/- 40 Dashed Action Zones</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Signal Logic & Interpretation</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Signal Logic & Interpretation</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> Long & Reversal Signals</h4>
           <ul>
-            <li><strong>Zero Cross Up:</strong> The composite score crosses above 0. Indicates a fresh bullish trend is beginning.</li>
-            <li><strong>Mean Reversion BUY:</strong> The score drops below -40 (oversold) while the Volatility Z-score remains normal (< 1.0). Price is statistically undervalued and ready to snap back up.</li>
+            <li>• <strong>Zero Cross Up (<span class="text-lime-400">▲</span>):</strong> The composite score crosses above 0. Indicates a fresh bullish trend is beginning.</li>
+            <li>• <strong>Mean Reversion BUY:</strong> The score drops below -40 (oversold) while the Volatility Z-score remains normal (< 1.0). Price is statistically undervalued and ready to snap back up.</li>
           </ul>
         </div>
-        <div class="d-card b-r" style="border-left:4px solid #ef4444">
+        <div class="d-card" style="border-left:4px solid #ef4444">
           <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-down"></i> Short & Exhaustion Signals</h4>
           <ul>
-            <li><strong>Zero Cross Down:</strong> The composite score crosses below 0. Indicates a fresh bearish trend is beginning.</li>
-            <li><strong>Mean Reversion SELL:</strong> The score spikes above +40 (overbought) while the Volatility Z-score remains normal (< 1.0). Price is mathematically overextended and due for a pullback.</li>
+            <li>• <strong>Zero Cross Down (<span class="text-red-500">▼</span>):</strong> The composite score crosses below 0. Indicates a fresh bearish trend is beginning.</li>
+            <li>• <strong>Mean Reversion SELL:</strong> The score spikes above +40 (overbought) while the Volatility Z-score remains normal (< 1.0). Price is mathematically overextended and due for a pullback.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -976,26 +1000,26 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: TrendalighnedMT5.png</span></div>
           <img src="../TrendalighnedMT5.png" alt="PointAlgo Trend-Aligned MT5 Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: TrendalighnedMT5set.png</span></div>
-          <img src="../TrendalighnedMT5set.png" alt="PointAlgo Trend-Aligned MT5 Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../TrendalighnedMT5set.png" alt="PointAlgo Trend-Aligned MT5 Settings">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li><strong>Respect the Orange:</strong> If the background flashes orange, it means volatility has spiked to standard deviation extremes (> 1.5). Do not take mean-reversion trades here, as trends can "melt up" or "melt down" beyond normal limits.</li>
-            <li>Pair the Zero-Cross arrows with structural breakouts from the <strong>S/D Zone Cross</strong> overlay for highly validated entries.</li>
+          <ul class="text-slate-400">
+            <li>• <strong>Respect the Orange:</strong> If the background flashes orange, it means volatility has spiked to standard deviation extremes (> 1.5). Do not take mean-reversion trades here, as trends can "melt up" or "melt down" beyond normal limits.</li>
+            <li>• Pair the Zero-Cross arrows with structural breakouts from the <strong>S/D Zone Cross</strong> overlay for highly validated entries.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Quantitative traders looking for statistical edges rather than basic momentum.</li>
-            <li>Mean-reversion traders who want to catch market tops and bottoms safely.</li>
-            <li>Traders seeking a reliable confirmation indicator to filter out fake breakouts.</li>
+          <ul class="text-slate-400">
+            <li>• Quantitative traders looking for statistical edges rather than basic momentum.</li>
+            <li>• Mean-reversion traders who want to catch market tops and bottoms safely.</li>
+            <li>• Traders seeking a reliable confirmation indicator to filter out fake breakouts.</li>
           </ul>
         </div>
       </div>
@@ -1008,7 +1032,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="microstructure-regime" class="d-sec">
       <div class="d-badge">Premium Oscillator Indicator</div>
       <h2 class="d-title">Microstructure Regime <span>(PA-MicroStruct)</span></h2>
-      <p class="d-sub">An advanced quantitative regime filter that continuously measures market Drift (Trend) and Volatility (Risk) using log returns to classify the exact state of the market. Markets do not behave the same way all the time. Standard indicators fail because they treat a low-volatility chop exactly the same as a high-volatility trend. The Microstructure Regime calculates a 200-period rolling Z-Score for both directional drift and raw volatility, categorizing the current market into one of four distinct states: Efficient Trend, Volatile Chop, Dislocation, or Stationary Noise.</p>
+      <p class="d-sub">An advanced quantitative regime filter that continuously measures market Drift (Trend) and Volatility (Risk) using log returns to classify the exact state of the market.</p>
+      <p class="d-sub">Markets do not behave the same way all the time. Standard indicators fail because they treat a low-volatility chop exactly the same as a high-volatility trend. The Microstructure Regime calculates a 200-period rolling Z-Score for both directional drift and raw volatility, categorizing the current market into one of four distinct states: Efficient Trend, Volatile Chop, Dislocation, or Stationary Noise.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -1019,9 +1044,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: MicroStruct_Regime.png</span></div>
           <img src="../MicroStruct_Regime.png" alt="PointAlgo Microstructure Regime TV Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: MicroStruct_Regime_set.png</span></div>
-          <img src="../MicroStruct_Regime_set.png" alt="PointAlgo Microstructure Regime TV Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../MicroStruct_Regime_set.png" alt="PointAlgo Microstructure Regime TV Settings">
         </div>
       </div>
 
@@ -1029,48 +1054,48 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li><strong>Avoid the Chop:</strong> Keep your capital safe by ignoring trade setups when the background shifts to Blue (Stationary) or Yellow (Volatile Chop).</li>
-            <li><strong>Capitalize on Trends:</strong> Execute your overlay breakouts aggressively only when the market is in a Green (Efficient Trend) state.</li>
-            <li><strong>Catch Early Shifts:</strong> The smoothed white Drift line crossing the zero boundary provides an early mathematical signal of trend initiation.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Avoid the Chop:</strong> Keep your capital safe by ignoring trade setups when the background shifts to Blue (Stationary) or Yellow (Volatile Chop).</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Capitalize on Trends:</strong> Execute your overlay breakouts aggressively only when the market is in a Green (Efficient Trend) state.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Catch Early Shifts:</strong> The smoothed white Drift line crossing the zero boundary provides an early mathematical signal of trend initiation.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li><strong>Log Return Math:</strong> Uses institutional-grade logarithmic returns (ln(close/close[1])) instead of simple price changes for highly accurate volatility estimation.</li>
-            <li><strong>Smoothing Kernel:</strong> A customizable EMA kernel filters out raw Z-score spikes, preventing indicator flicker and providing stable signals.</li>
-            <li><strong>Instant Visual Context:</strong> The color-coded background instantly tells you if your current trading strategy will work in the current environment.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Log Return Math:</strong> Uses institutional-grade logarithmic returns (ln(close/close[1])) instead of simple price changes for highly accurate volatility estimation.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Smoothing Kernel:</strong> A customizable EMA kernel filters out raw Z-score spikes, preventing indicator flicker and providing stable signals.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Instant Visual Context:</strong> The color-coded background instantly tells you if your current trading strategy will work in the current environment.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Understanding the 4 Market Regimes</h3>
-      <div class="d-row">
-        <div class="d-box b-e"><strong>🟢 Efficient Trend</strong> High Drift, Low Risk. Ideal state for trading. Trend-following works best here.</div>
-        <div class="d-box b-c"><strong>🔵 Stationary Noise</strong> Low Drift, Low Risk. Market is flat. Avoid breakouts, use tight mean reversion.</div>
-        <div class="d-box b-a"><strong>🟡 Volatile Chop</strong> Low Drift, High Risk. High danger zone. Sidelines recommended.</div>
-        <div class="d-box b-r"><strong>🔴 Dislocation</strong> High Drift, High Risk. Aggressive panic/euphoria state.</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Understanding the 4 Market Regimes</h3>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: #22c55e;"><strong>🟢 Efficient Trend (High Drift, Low Risk)</strong> The ideal state for trading. Price has strong directional momentum but standard volatility. Breakout and trend-following strategies work best here.</div>
+        <div class="d-box" style="border-left-color: #3b82f6;"><strong>🔵 Stationary / Noise (Low Drift, Low Risk)</strong> The market is flat and resting. Price is bouncing around randomly. Avoid breakout trades, or switch to tight range-bound mean reversion tactics.</div>
+        <div class="d-box" style="border-left-color: #eab308;"><strong>🟡 Volatile Chop (Low Drift, High Risk)</strong> High danger zone. Price is swinging wildly but going nowhere (whipsaw). It is highly recommended to sit on the sidelines and protect capital.</div>
+        <div class="d-box" style="border-left-color: #ef4444;"><strong>🔴 Dislocation (High Drift, High Risk)</strong> A highly aggressive, panic or euphoria state (e.g., news events, liquidations). Momentum is massive, but pullbacks will be violent.</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Chart Elements & Signals</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Chart Elements & Signals</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-c" style="border-left:4px solid var(--cobalt)">
+        <div class="d-card" style="border-left:4px solid var(--cobalt)">
           <h4 class="a-c font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-chart-line"></i> Core Components</h4>
           <ul>
-            <li><strong>White Line (Drift):</strong> Represents normalized directional momentum. Above 0 = Bullish. Below 0 = Bearish.</li>
-            <li><strong>Gray Area (Risk):</strong> Represents normalized volatility. Spikes indicate turbulence.</li>
+            <li>• <strong>White Line (Drift/Trend):</strong> Represents the normalized directional momentum (Z-Score of μ). Above zero is bullish; below zero is bearish.</li>
+            <li>• <strong>Gray Area (Volatility/Risk):</strong> Represents the normalized volatility (Z-Score of σ). Spikes indicate increasing market turbulence.</li>
           </ul>
         </div>
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-bolt"></i> Drift Cross Signals</h4>
           <ul>
-            <li><strong>LONG Signal:</strong> White Drift crosses above 0. Bullish trend taking control.</li>
-            <li><strong>SHORT Signal:</strong> White Drift crosses below 0. Bearish trend taking control.</li>
+            <li>• <strong>LONG Signal (Green Arrow):</strong> The White Drift Line crosses above the zero boundary. Bullish trend taking control.</li>
+            <li>• <strong>SHORT Signal (Red Arrow):</strong> The White Drift Line crosses below the zero boundary. Bearish trend taking control.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -1079,25 +1104,25 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: MicroStruct_Regime_MT5.png</span></div>
           <img src="../MicroStruct_Regime_MT5.png" alt="PointAlgo Microstructure Regime MT5 Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: MicroStruct_Regime_MTset.png</span></div>
-          <img src="../MicroStruct_Regime_MTset.png" alt="PointAlgo Microstructure Regime MT5 Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../MicroStruct_Regime_MTset.png" alt="PointAlgo Microstructure Regime MT5 Settings">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li>Use this indicator as your <strong>Master Filter</strong>. Only take trades on your overlays if the Microstructure Regime gives you a Green (Trend) or Red (Dislocation) background.</li>
-            <li>If you receive a trade alert but the background is Yellow (Chop), skip the trade.</li>
+          <ul class="text-slate-400">
+            <li>• Use this indicator as your <strong>Master Filter</strong>. Only take trades on your overlays (like the Auto-Fib or S/D Zones) if the Microstructure Regime gives you a Green (Trend) or Red (Dislocation) background.</li>
+            <li>• If you receive a trade alert but the background is Yellow (Chop), skip the trade.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Traders who struggle with "overtrading" in choppy, sideways markets.</li>
-            <li>System builders looking to programmatically turn their bots on/off based on statistical market regimes.</li>
+          <ul class="text-slate-400">
+            <li>• Traders who struggle with "overtrading" in choppy, sideways markets.</li>
+            <li>• System builders looking to programmatically turn their bots on/off based on statistical market regimes.</li>
           </ul>
         </div>
       </div>
@@ -1110,7 +1135,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="principal-component-geometry" class="d-sec">
       <div class="d-badge">Premium Oscillator Indicator</div>
       <h2 class="d-title">Principal Component Geometry <span>(PCG)</span></h2>
-      <p class="d-sub">An institutional-grade covariance matrix model that uses Eigenvalue Decomposition to extract the true underlying market direction, filtering out noise via Spectral Entropy and Variance Concentration. Standard indicators calculate moving averages based on a single price source (like the Close). The PCG Oscillator compares two distinct series (e.g., Close vs. HL2) to build a 2x2 Correlation Matrix. By finding the Principal Component (PC1), it isolates the dominant trend vector. It then measures market disorder (Spectral Entropy) and structural breakdowns (Reconstruction Residual) to warn you of reversals long before price action reflects them.</p>
+      <p class="d-sub">An institutional-grade covariance matrix model that uses Eigenvalue Decomposition to extract the true underlying market direction, filtering out noise via Spectral Entropy and Variance Concentration.</p>
+      <p class="d-sub">Standard indicators calculate moving averages based on a single price source (like the Close). The PCG Oscillator compares two distinct series (e.g., Close vs. HL2) to build a 2x2 Correlation Matrix. By finding the Principal Component (PC1), it isolates the dominant trend vector. It then measures market disorder (Spectral Entropy) and structural breakdowns (Reconstruction Residual) to warn you of reversals long before price action reflects them.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -1121,9 +1147,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: PCG_Oscillator.png</span></div>
           <img src="../PCG_Oscillator.png" alt="PointAlgo PCG Oscillator TV Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: PCG_Oscillatorset.png</span></div>
-          <img src="../PCG_Oscillatorset.png" alt="PointAlgo PCG Oscillator TV Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../PCG_Oscillatorset.png" alt="PointAlgo PCG Oscillator TV Settings">
         </div>
       </div>
 
@@ -1131,47 +1157,47 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li><strong>Trade the True Vector:</strong> Follow the PC1 Score (z-score) as your master trend line. When it crosses zero, the fundamental geometry of the market has shifted.</li>
-            <li><strong>Detect Disorder:</strong> If Spectral Entropy (the area plot) starts rising rapidly, the trend is breaking down mathematically. Tighten stops or exit.</li>
-            <li><strong>Spot Hidden Divergence:</strong> If price makes a new high but the PC1 Score fails to push higher (and EVR drops), a severe reversal is imminent.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Trade the True Vector:</strong> Follow the PC1 Score (z-score) as your master trend line. When it crosses zero, the fundamental geometry of the market has shifted.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Detect Disorder:</strong> If Spectral Entropy (the area plot) starts rising rapidly, the trend is breaking down mathematically. Tighten stops or exit.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Spot Hidden Divergence:</strong> If price makes a new high but the PC1 Score fails to push higher (and EVR drops), a severe reversal is imminent.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li><strong>Eigenvalue Math:</strong> Automatically calculates lambda 1 and lambda 2 to find the exact percentage of variance driven by the main trend versus noise.</li>
-            <li><strong>Z-Score Normalized:</strong> Every complex metric is converted into a standard Z-Score, making it easy to read visually without needing a math degree.</li>
-            <li><strong>Real-Time Quant HUD:</strong> Displays all current matrix values, correlations, and entropy levels natively on your chart.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Eigenvalue Math:</strong> Automatically calculates lambda 1 and lambda 2 to find the exact percentage of variance driven by the main trend versus noise.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Z-Score Normalized:</strong> Every complex metric (Entropy, Residuals, Condition Number) is converted into a standard Z-Score, making it easy to read visually without needing a math degree.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Real-Time Quant HUD:</strong> Displays all current matrix values, correlations, and entropy levels natively on your chart.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Deconstructing the PCG Sub-Chart</h3>
-      <div class="d-row">
-        <div class="d-box" style="border-left-color:#00e676"><strong>PC1 Score</strong> Thick Aqua/Red Line (Primary Trend)</div>
-        <div class="d-box b-a"><strong>EVR Histogram</strong> Explained Variance Ratio (Yellow = Strong Trend)</div>
-        <div class="d-box b-r"><strong>Spectral Entropy</strong> Area Plot measuring Chaos (Red = Danger)</div>
-        <div class="d-box b-p"><strong>PC2 & Residuals</strong> Thin Lines identifying Shocks/Dislocations</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Deconstructing the PCG Sub-Chart</h3>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: #00e676;"><strong>PC1 Score (Thick Line: Aqua/Red)</strong> The primary trend axis. Aqua means bullish structural momentum, Red means bearish. The most important line on the chart.</div>
+        <div class="d-box" style="border-left-color: #eab308;"><strong>EVR Balance (Histogram)</strong> Explained Variance Ratio. When this is high (yellow), the market is heavily dominated by a single, strong directional trend.</div>
+        <div class="d-box" style="border-left-color: #ef4444;"><strong>Spectral Entropy (Area Plot)</strong> Measures market chaos. If this spikes into the red, the primary trend is losing control to random noise. Do not enter new trend trades here.</div>
+        <div class="d-box" style="border-left-color: #d946ef;"><strong>PC2 Score & Residuals (Thin Lines)</strong> The "error" or secondary variance. Spikes in these thin lines indicate sudden market shocks or structural dislocations.</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Signal Logic & Interpretation</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Signal Logic & Interpretation</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> Co-Movement Entries</h4>
           <ul>
-            <li><strong>PC1 Zero Cross:</strong> Clean, simple momentum shifts. Trade these when EVR is rising.</li>
-            <li><strong>PCG Buy:</strong> A restrictive signal indicating a perfect quantitative environment: EVR is high, Entropy is low, and PC1 is accelerating upwards.</li>
+            <li>• <strong>PC1 Zero Cross (<span class="text-lime-400">Long/Short Arrows</span>):</strong> Clean, simple momentum shifts. Trade these when EVR is rising.</li>
+            <li>• <strong>PCG Buy (<span class="text-lime-400">PC Triangle</span>):</strong> A highly restrictive signal indicating a perfect quantitative environment: EVR is high, Entropy is low, and the PC1 score is accelerating upwards.</li>
           </ul>
         </div>
-        <div class="d-card b-r" style="border-left:4px solid #ef4444">
+        <div class="d-card" style="border-left:4px solid #ef4444">
           <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-triangle-exclamation"></i> Divergence Exits</h4>
           <ul>
-            <li><strong>PCG Sell:</strong> Represents a structural breakdown. EVR is falling, Entropy is rising, and residuals are spiking. Close long positions immediately.</li>
+            <li>• <strong>PCG Sell (<span class="text-red-500">PD Triangle</span>):</strong> Represents a structural breakdown. EVR is falling, Entropy is rising, and reconstruction residuals are spiking. Close long positions immediately.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -1180,25 +1206,25 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: PCG_Oscillator_MT5.png</span></div>
           <img src="../PCG_Oscillator_MT5.png" alt="PointAlgo PCG Oscillator MT5 Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: PCG_Osc_MT5_set.png</span></div>
-          <img src="../PCG_Oscillator_MT5set.png" alt="PointAlgo PCG Oscillator MT5 Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../PCG_Oscillator_MT5set.png" alt="PointAlgo PCG Oscillator MT5 Settings">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li>Use the **Spectral Entropy Area** as a filter. If the entropy background is green (low disorder), you can trust overlay breakouts. If it is red (high disorder), you will likely get chopped out.</li>
-            <li>Combine this with the **Auto-Fib Matrix**: Look for the PC1 score to cross zero exactly as price bounces off a major Fib level.</li>
+          <ul class="text-slate-400">
+            <li>• Use the **Spectral Entropy Area** as a filter. If the entropy background is green (low disorder), you can trust overlay breakouts. If it is red (high disorder), you will likely get chopped out.</li>
+            <li>• Combine this with the **Auto-Fib Matrix**: Look for the PC1 score to cross zero exactly as price bounces off a major Fib level.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Advanced technical analysts looking to upgrade from traditional RSI or MACD.</li>
-            <li>Traders who want to measure the mathematical "quality" of a trend, not just its speed.</li>
+          <ul class="text-slate-400">
+            <li>• Advanced technical analysts looking to upgrade from traditional RSI or MACD.</li>
+            <li>• Traders who want to measure the mathematical "quality" of a trend, not just its speed.</li>
           </ul>
         </div>
       </div>
@@ -1211,7 +1237,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="institutional-flow-matrix" class="d-sec">
       <div class="d-badge">Premium Oscillator Indicator</div>
       <h2 class="d-title">Institutional Flow Matrix <span>(PA-Flow)</span></h2>
-      <p class="d-sub">A definitive Order Flow and Market Structure engine that translates tick-approximated Volume Delta, Premium/Discount zones, and Liquidity Sweeps into a unified quantitative Confluence Score. Smart Money Concepts (SMC) are often subjective and prone to human error. The Institutional Flow Matrix removes the guesswork by tracking True Volume Delta alongside structural anomalies like Fair Value Gaps (FVGs) and real-time liquidity traps. Instead of cluttering your chart with dozens of lines, it distills these complex institutional footprints into a single, highly readable lower-pane oscillator and scoring matrix.</p>
+      <p class="d-sub">A definitive Order Flow and Market Structure engine that translates tick-approximated Volume Delta, Premium/Discount zones, and Liquidity Sweeps into a unified quantitative Confluence Score.</p>
+      <p class="d-sub">Smart Money Concepts (SMC) are often subjective and prone to human error. The Institutional Flow Matrix removes the guesswork by tracking True Volume Delta alongside structural anomalies like Fair Value Gaps (FVGs) and real-time liquidity traps. Instead of cluttering your chart with dozens of lines, it distills these complex institutional footprints into a single, highly readable lower-pane oscillator and scoring matrix.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -1222,9 +1249,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: PA_Flow_Matrix.png</span></div>
           <img src="../PA_Flow_Matrix.png" alt="PointAlgo Institutional Flow Matrix TV Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: PA_Flow_Matrix_set.png</span></div>
-          <img src="../PA_Flow_Matrix_set.png" alt="PointAlgo Institutional Flow Matrix TV Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../PA_Flow_Matrix_set.png" alt="PointAlgo Institutional Flow Matrix TV Settings">
         </div>
       </div>
 
@@ -1232,43 +1259,43 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li><strong>Trade the Trap:</strong> Wait for price to enter deep Discount/Premium zones and look for Institutional Footprint spikes indicating accumulation or distribution.</li>
-            <li><strong>Validate Breakouts:</strong> A structural breakout on the main chart should always be backed by a strong Volume Delta surge in the same direction.</li>
-            <li><strong>Zero-Cross Scalping:</strong> Utilize the synchronized Delta Zero-Cross arrows for precision entries when order flow officially shifts polarity.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Trade the Trap:</strong> Wait for price to enter deep Discount/Premium zones (background color change) and look for Institutional Footprint spikes indicating accumulation or distribution.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Validate Breakouts:</strong> A structural breakout on the main chart should always be backed by a strong Volume Delta surge in the same direction.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Zero-Cross Scalping:</strong> Utilize the synchronized Delta Zero-Cross arrows for precision entries when order flow officially shifts polarity.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li><strong>Tick-Approximated CVD:</strong> Splits raw volume into buying and selling pressure based on high/low ranges, offering true visibility into aggressive market orders.</li>
-            <li><strong>5-Point Matrix Score:</strong> Automatically grades the market (-5 to +5) by scoring Premium/Discount location, FVG presence, Delta momentum, and Liquidity Sweeps simultaneously.</li>
-            <li><strong>Synchronized Alerts:</strong> Prevents fake-outs by allowing you to require Confluence Score alignment before triggering a Delta crossover alert.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Tick-Approximated CVD:</strong> Splits raw volume into buying and selling pressure based on high/low ranges, offering true visibility into aggressive market orders.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>5-Point Matrix Score:</strong> Automatically grades the market (-5 to +5) by scoring Premium/Discount location, FVG presence, Delta momentum, and Liquidity Sweeps simultaneously.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Synchronized Alerts:</strong> Prevents fake-outs by allowing you to require Confluence Score alignment before triggering a Delta crossover alert.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Deconstructing the Matrix</h3>
-      <div class="d-row">
-        <div class="d-box b-e"><strong>Confluence Score</strong> Background bars graded -5 to +5</div>
-        <div class="d-box"><strong>Volume Delta Wave</strong> The main oscillator line tracking buy/sell pressure</div>
-        <div class="d-box b-a"><strong>Prem/Disc Background</strong> BG shifts in extreme zones</div>
-        <div class="d-box b-p"><strong>Inst. Footprint</strong> Triangle markers for Big Money injection</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Deconstructing the Matrix</h3>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: #00E676;"><strong>Confluence Histogram (The Score)</strong> The background bars represent the total Matrix Score. Tall green bars indicate massive bullish confluence; deep red bars indicate strong bearish control.</div>
+        <div class="d-box" style="border-left-color: #fff;"><strong>Volume Delta Wave (The Line)</strong> Tracks the normalized buying vs. selling pressure. Watch for divergences where price makes a new high but this Delta wave makes a lower high.</div>
+        <div class="d-box" style="border-left-color: #f97316;"><strong>Premium / Discount Backgrounds</strong> The oscillator background subtly shifts color when price enters the extreme top 20% (Premium) or bottom 20% (Discount) of the macro structure.</div>
+        <div class="d-box" style="border-left-color: #a855f7;"><strong>Institutional Footprint (Small Triangles)</strong> Small markers on the top/bottom of the pane flag bars where volume exceeded the moving average multiplier, revealing "Big Money" footprints.</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Signal Logic & Alerts</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Signal Logic & Alerts</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-c" style="border-left:4px solid var(--cobalt)">
+        <div class="d-card" style="border-left:4px solid var(--cobalt)">
           <h4 class="a-c font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrows-turn-to-dots"></i> Delta Zero Cross</h4>
           <p>Large arrows appear precisely on the equilibrium (0) line when Order Flow officially flips from negative to positive, or vice versa.</p>
           <p class="text-sm text-slate-500 italic mt-2">*Pro Tip: Use the "Require Confluence Sync" toggle in settings to ensure you only get notified of these crosses when the background Matrix Score agrees with the direction.</p>
         </div>
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-shield-cat"></i> Strong Buy / Sell Triggers</h4>
           <p>The ultimate Quantum Signal fires when the Matrix Score hits a +/- 3 threshold. This means at least 3 critical institutional factors (e.g., Deep Discount + Sweep + Bullish FVG) have aligned perfectly.</p>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -1277,25 +1304,25 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: PA_Flow_Matrix_MT5.png</span></div>
           <img src="../PA_Flow_Matrix_MT5.png" alt="PointAlgo Institutional Flow Matrix MT5 Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: PA_Flow_MT5_set.png</span></div>
-          <img src="../PA_Flow_Matrix_MT5_set.png" alt="PointAlgo Institutional Flow Matrix MT5 Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../PA_Flow_Matrix_MT5_set.png" alt="PointAlgo Institutional Flow Matrix MT5 Settings">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li>The <strong>Institutional HUD</strong> on the right side of your chart updates tick-by-tick. Glance at this before entering any trade to ensure you are not buying in Premium or selling in Discount.</li>
-            <li>Combine this with the <strong>S/D Zone Cross Signals</strong>. A Supply Zone test combined with a "Sell-Side Swept" HUD reading is an ultra-high probability short setup.</li>
+          <ul class="text-slate-400">
+            <li>• The <strong>Institutional HUD</strong> on the right side of your chart updates tick-by-tick. Glance at this before entering any trade to ensure you are not buying in Premium or selling in Discount.</li>
+            <li>• Combine this with the <strong>S/D Zone Cross Signals</strong>. A Supply Zone test combined with a "Sell-Side Swept" HUD reading is an ultra-high probability short setup.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>ICT and SMC traders who want to automate their structural mapping and validate their biases with actual volume data.</li>
-            <li>Order flow traders who need a clean, visual representation of buying/selling pressure without using complex footprint charts.</li>
+          <ul class="text-slate-400">
+            <li>• ICT and SMC traders who want to automate their structural mapping and validate their biases with actual volume data.</li>
+            <li>• Order flow traders who need a clean, visual representation of buying/selling pressure without using complex footprint charts.</li>
           </ul>
         </div>
       </div>
@@ -1308,7 +1335,8 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <section id="systematic-factor-engine" class="d-sec">
       <div class="d-badge">Premium Oscillator Indicator</div>
       <h2 class="d-title">Systematic Factor Engine <span>(PA-SFE)</span></h2>
-      <p class="d-sub">An institutional-grade portfolio engine that tracks the four pillars of quant investing—Value, Momentum, Quality, and Low-Volatility—merging them into a single predictive composite score. Retail indicators almost exclusively rely on Momentum. Hedge funds, however, use Factor Investing. The Systematic Factor Engine brings "Smart Beta" to your charts. It simultaneously calculates if an asset is fundamentally cheap (Value), trending strongly (Momentum), exhibiting stable underlying metrics (Quality), and minimizing risk (Low Volatility). It also tracks portfolio drift, alerting you exactly when it's statistically necessary to rebalance.</p>
+      <p class="d-sub">An institutional-grade portfolio engine that tracks the four pillars of quant investing—Value, Momentum, Quality, and Low-Volatility—merging them into a single predictive composite score.</p>
+      <p class="d-sub">Retail indicators almost exclusively rely on Momentum. Hedge funds, however, use Factor Investing. The Systematic Factor Engine brings "Smart Beta" to your charts. It simultaneously calculates if an asset is fundamentally cheap (Value), trending strongly (Momentum), exhibiting stable underlying metrics (Quality), and minimizing risk (Low Volatility). It also tracks portfolio drift, alerting you exactly when it's statistically necessary to rebalance.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -1319,9 +1347,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: PA_Factor_Engine.png</span></div>
           <img src="../PA_Factor_Engine.png" alt="PointAlgo Factor Engine TV Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: PA_Factor_Engineset.png</span></div>
-          <img src="../PA_Factor_Engineset.png" alt="PointAlgo Factor Engine TV Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../PA_Factor_Engineset.png" alt="PointAlgo Factor Engine TV Settings">
         </div>
       </div>
 
@@ -1329,42 +1357,42 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-crosshairs"></i> Core Use Case</h3>
           <ul>
-            <li><strong>High-Conviction Entries:</strong> A "BR LONG" or "BR SHORT" signal only fires when all 4 independent mathematical factors agree. These are exceptionally high-probability structural setups.</li>
-            <li><strong>Risk Parity Rebalancing:</strong> Don't guess when to take profits on a long-term hold. The indicator alerts you with a Rebalance Signal when portfolio drift exceeds 1.5 standard deviations.</li>
-            <li><strong>Macro Trend Following:</strong> Keep your eye on the thick main Composite line. As long as it is above 0, the overall multi-factor tailwind is bullish.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>High-Conviction Entries:</strong> A "BR LONG" or "BR SHORT" signal only fires when all 4 independent mathematical factors agree. These are exceptionally high-probability structural setups.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Risk Parity Rebalancing:</strong> Don't guess when to take profits on a long-term hold. The indicator alerts you with a Rebalance Signal when portfolio drift exceeds 1.5 standard deviations.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Macro Trend Following:</strong> Keep your eye on the thick main Composite line. As long as it is above 0, the overall multi-factor tailwind is bullish.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-shield-halved"></i> Key Benefits</h3>
           <ul>
-            <li><strong>Weighted Z-Score Normalization:</strong> Each factor is normalized via Z-Scores and custom-weighted (30% Value, 25% Mom, 25% Qual, 20% Low-Vol) to prevent highly volatile moves from skewing the data.</li>
-            <li><strong>Massive Factor HUD:</strong> Features a 14-row dashboard that breaks down the exact status, Z-score, and conviction grading of every underlying factor in real-time.</li>
-            <li><strong>Multi-Disciplinary:</strong> Replaces the need to have 4 different oscillators on your chart, freeing up screen space while providing deeper insights.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Weighted Z-Score Normalization:</strong> Each factor is normalized via Z-Scores and custom-weighted (30% Value, 25% Mom, 25% Qual, 20% Low-Vol) to prevent highly volatile moves from skewing the data.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Massive Factor HUD:</strong> Features a 14-row dashboard that breaks down the exact status, Z-score, and conviction grading of every underlying factor in real-time.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Multi-Disciplinary:</strong> Replaces the need to have 4 different oscillators on your chart, freeing up screen space while providing deeper insights.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Deconstructing the Sub-Chart</h3>
-      <div class="d-row">
-        <div class="d-box b-e"><strong>Composite Score</strong> Thick master line</div>
-        <div class="d-box b-c"><strong>Factor Components</strong> Thin Val/Mom/Qual/Vol lines</div>
-        <div class="d-box" style="border-left-color:#94a3b8"><strong>Rebalance Zone</strong> Gray Background</div>
-        <div class="d-box"><strong>Conviction HUD</strong> Tells you exactly what to do</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Deconstructing the Sub-Chart</h3>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: #c9f135;"><strong>Composite Score (Thick Line)</strong> The master weighted average of all four factors. Oscillates between +100 and -100. Values above +50 or below -50 show extreme systemic control.</div>
+        <div class="d-box" style="border-left-color: #3b82f6;"><strong>Factor Components (Thin Lines)</strong> <span class="text-blue-400">Blue (Value)</span>, <span class="text-orange-400">Orange (Momentum)</span>, <span class="text-purple-400">Purple (Quality)</span>, and <span class="text-yellow-400">Yellow (Low-Vol)</span> track the underlying engines.</div>
+        <div class="d-box" style="border-left-color: #9ca3af;"><strong>Rebalance Zone (Gray Background)</strong> If the background turns gray, cumulative returns have drifted statistically too far from the mean. It is time to rebalance your exposure.</div>
+        <div class="d-box" style="border-left-color: #fff;"><strong>Conviction Dashboard</strong> The HUD explicitly states how many factors are aligned (e.g., "3/4 aligned") and outputs a clear "ACTION" command (Long, Short, Rebalance, or Hold).</div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Signal Logic</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Signal Logic</h3>
       <div class="d-grid mt-4">
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-up"></i> FACTORS LONG</h4>
           <p>The ultimate bullish alignment. Occurs <strong>only</strong> when the asset is fundamentally cheap, trending up, showing stable high-quality variance, and operating in a low-risk volatility regime.</p>
         </div>
-        <div class="d-card b-r" style="border-left:4px solid #ef4444">
+        <div class="d-card" style="border-left:4px solid #ef4444">
           <h4 class="text-red-400 font-bold uppercase text-xs tracking-widest mb-4"><i class="fa-solid fa-arrow-trend-down"></i> FACTORS SHORT</h4>
           <p>The ultimate bearish alignment. Occurs when an asset is fundamentally overvalued (expensive), losing momentum, acting erratically (low quality), and flashing high-risk volatility spikes.</p>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Quant Terminal</span>
@@ -1373,25 +1401,25 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">CHART_VIEW: PA_Factor_EngineMT5.png</span></div>
           <img src="../PA_Factor_EngineMT5.png" alt="PointAlgo Factor Engine MT5 Chart">
         </div>
-        <div class="d-img mt-6">
+        <div class="d-img mt-6 setting-img">
           <div class="d-img-top"><div class="d-dots"><span></span><span></span><span></span></div><span class="d-img-label">SETTINGS_VIEW: PA_Factor_MT5_set.png</span></div>
-          <img src="../PA_Factor_EngineMT5set.png" alt="PointAlgo Factor Engine MT5 Settings" style="max-height:500px;object-fit:contain;padding:16px">
+          <img src="../PA_Factor_EngineMT5set.png" alt="PointAlgo Factor Engine MT5 Settings">
         </div>
       </div>
 
-      <div class="d-grid">
+      <div class="d-grid mb-12">
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Best Practices</h4>
-          <ul>
-            <li><strong>Swing / Macro Focus:</strong> Because it relies on deep historical statistical averages, this indicator is vastly superior on higher timeframes (4H, Daily, Weekly) than on 1-minute charts.</li>
-            <li>Use the Rebalance background (gray) as a prompt to take partial profits, even if a direct reversal signal hasn't fired yet.</li>
+          <ul class="text-slate-400">
+            <li>• <strong>Swing / Macro Focus:</strong> Because it relies on deep historical statistical averages, this indicator is vastly superior on higher timeframes (4H, Daily, Weekly) than on 1-minute charts.</li>
+            <li>• Use the Rebalance background (gray) as a prompt to take partial profits, even if a direct reversal signal hasn't fired yet.</li>
           </ul>
         </div>
         <div class="d-card">
           <h4 class="text-white font-bold mb-4">Who is this for?</h4>
-          <ul>
-            <li>Swing traders and long-term investors looking to build systematic, rules-based portfolios.</li>
-            <li>Traders who want to avoid "buying the top" by ensuring fundamental Value and Quality factors support the Momentum.</li>
+          <ul class="text-slate-400">
+            <li>• Swing traders and long-term investors looking to build systematic, rules-based portfolios.</li>
+            <li>• Traders who want to avoid "buying the top" by ensuring fundamental Value and Quality factors support the Momentum.</li>
           </ul>
         </div>
       </div>
@@ -1418,33 +1446,33 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
       </div>
 
       <div class="d-grid">
-        <div class="d-card b-a" style="border-left:4px solid var(--amber)">
+        <div class="d-card" style="border-left:4px solid var(--amber)">
           <h4 class="a-a font-bold mb-3 uppercase tracking-tight"><i class="fa-solid fa-microchip"></i> Quant State</h4>
           <p>Monitors TTM Squeezes and Z-Score dislocations. It knows when kinetic energy is storing and when a mean-reversion bounce is mathematically mandatory.</p>
         </div>
-        <div class="d-card b-c" style="border-left:4px solid var(--cobalt)">
+        <div class="d-card" style="border-left:4px solid var(--cobalt)">
           <h4 class="a-c font-bold mb-3 uppercase tracking-tight"><i class="fa-solid fa-waves-square"></i> Volume Anomaly</h4>
           <p>Scans for RVOL (Relative Volume) spikes above 200%. It separates retail noise from institutional order flow injections instantly.</p>
         </div>
-        <div class="d-card b-e" style="border-left:4px solid var(--emerald)">
+        <div class="d-card" style="border-left:4px solid var(--emerald)">
           <h4 class="a-e font-bold mb-3 uppercase tracking-tight"><i class="fa-solid fa-brain"></i> Deep Think PA</h4>
           <p>The logic core. It identifies BSL/SSL sweeps and classifies rejections versus legitimate institutional breakouts.</p>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Interpreting the Verdict</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Interpreting the Verdict</h3>
       <div class="d-row">
-        <div class="d-box b-e">
+        <div class="d-box" style="border-left-color: var(--emerald);">
           <strong class="a-e">STRONGLY BULLISH</strong>
           Confluence of Oversold Z-Score + Bullish Divergence + SSL Sweep.
         </div>
-        <div class="d-box b-r">
+        <div class="d-box" style="border-left-color: #ef4444;">
           <strong class="text-red-400">STRONGLY BEARISH</strong>
           Confluence of Overbought Z-Score + Bearish Divergence + BSL Sweep.
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Terminal View</h3>
           <span class="d-img-badge">Static Analysis</span>
@@ -1461,9 +1489,10 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     </section>
 
     <section id="chaos-engine" class="d-sec">
-      <div class="d-badge">Advanced Fractal Analysis</div>
+      <div class="d-badge" style="border-color:var(--cobalt);color:var(--cobalt)">Advanced Fractal Analysis</div>
       <h2 class="d-title">Chaos Engine <span>(PA-Chaos)</span></h2>
-      <p class="d-sub">A quantitative engine that measures the Hurst Exponent to identify the fractal memory of the market—separating trending cycles from random noise. Based on the Rescaled Range (R/S) calculation, the Chaos Engine determines if price action is <strong>Persistent</strong> (trending), <strong>Anti-Persistent</strong> (mean-reverting), or a <strong>Random Walk</strong>. By calculating the logarithmic returns across a rolling 100-bar matrix, this model predicts the *structural durability* of a move before most traders even realize it has begun.</p>
+      <p class="d-sub">A quantitative engine that measures the Hurst Exponent to identify the fractal memory of the market—separating trending cycles from random noise.</p>
+      <p class="d-sub">Based on the Rescaled Range (R/S) calculation, the Chaos Engine determines if price action is <strong>Persistent</strong> (trending), <strong>Anti-Persistent</strong> (mean-reverting), or a <strong>Random Walk</strong>. By calculating the logarithmic returns across a rolling 100-bar matrix, this model predicts the *structural durability* of a move before most traders even realize it has begun.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
@@ -1495,20 +1524,20 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-brain"></i> Quant Logic</h3>
           <ul>
-            <li><strong>Rescaled Range Matrix:</strong> Executes a deep scan of price deviations over a 100-period window to find the R/S ratio.</li>
-            <li><strong>Signal Smoothing:</strong> Employs a weighted moving average (WMA) kernel to remove statistical jitter, providing a clean regime line.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Rescaled Range Matrix:</strong> Executes a deep scan of price deviations over a 100-period window to find the R/S ratio.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Signal Smoothing:</strong> Employs a weighted moving average (WMA) kernel to remove statistical jitter, providing a clean regime line.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-chart-simple"></i> UI Intelligence</h3>
           <ul>
-            <li><strong>Regime Painting:</strong> Background colors shift automatically to highlight Trending (Aqua) or Mean-Reverting (Fuchsia) zones.</li>
-            <li><strong>Institutional HUD:</strong> Real-time dashboard outputting the exact 'H' value and a clear text-based market state verdict.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Regime Painting:</strong> Background colors shift automatically to highlight Trending (Aqua) or Mean-Reverting (Fuchsia) zones.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Institutional HUD:</strong> Real-time dashboard outputting the exact 'H' value and a clear text-based market state verdict.</li>
           </ul>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Terminal Mode</span>
@@ -1525,13 +1554,14 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     </section>
 
     <section id="dtw-predictive-plotter" class="d-sec">
-      <div class="d-badge">Time-Series Elasticity Model</div>
+      <div class="d-badge" style="border-color:var(--teal);color:var(--teal)">Time-Series Elasticity Model</div>
       <h2 class="d-title">DTW Predictive Plotter <span>(PA-DTW)</span></h2>
-      <p class="d-sub">A holographic projection engine that utilizes Dynamic Time Warping (DTW) to identify historical price analogs and project their outcomes into the future. Standard pattern matching is rigid—it fails if a historical move was slightly faster or slower than the current one. The **DTW Predictive Plotter** solves this through <em>Elastic Matching</em>. It warps the time axis to find the closest structural match in 3,000 bars of history, scales that move to current volatility, and draws a predictive spline (projection) of what happened next.</p>
+      <p class="d-sub">A holographic projection engine that utilizes Dynamic Time Warping (DTW) to identify historical price analogs and project their outcomes into the future.</p>
+      <p class="d-sub">Standard pattern matching is rigid—it fails if a historical move was slightly faster or slower than the current one. The **DTW Predictive Plotter** solves this through <em>Elastic Matching</em>. It warps the time axis to find the closest structural match in 3,000 bars of history, scales that move to current volatility, and draws a predictive spline (projection) of what happened next.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
-          <h3><i class="fa-solid fa-project-diagram a-t mr-2"></i> Holographic Interface</h3>
+          <h3><i class="fa-solid fa-project-diagram mr-3 text-cyan-400"></i> Holographic Interface</h3>
           <span class="d-img-badge">Vector Search Active</span>
         </div>
         <div class="d-img">
@@ -1544,28 +1574,28 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-microchip"></i> The Warping Engine</h3>
           <p>Unlike Euclidean distance which compares points vertically, DTW allows for horizontal warping. If a historical "Head and Shoulders" took 20 bars to form and the current one is taking 25, the DTW engine recognizes them as the same mathematical entity.</p>
-          <ul>
-            <li><strong>Matrix Search Depth:</strong> Scans up to 2,500 historical bars for the most optimal cost-path match.</li>
-            <li><strong>Normalization:</strong> Converts price to Z-Scores (Standard Deviations) so it can compare $60k BTC price action to $20k BTC price action accurately.</li>
+          <ul class="mt-4">
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Matrix Search Depth:</strong> Scans up to 2,500 historical bars for the most optimal cost-path match.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Normalization:</strong> Converts price to Z-Scores (Standard Deviations) so it can compare $60,000 BTC price action to $20,000 BTC price action accurately.</li>
           </ul>
         </div>
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-bullseye"></i> Predictive Analytics</h3>
-          <ul>
-            <li><strong>Forward Projection:</strong> Draws a future spline up to 50 bars ahead based on the historical "What Happened Next" data.</li>
-            <li><strong>Confidence Scoring:</strong> The HUD outputs a % Confidence based on the "Lowest Cost" path found. Higher % means the analog is nearly identical.</li>
-            <li><strong>Algo Target Label:</strong> Automatically calculates the specific price target where the historical analog ended.</li>
+          <ul class="mt-4">
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Forward Projection:</strong> Draws a future spline up to 50 bars ahead based on the historical "What Happened Next" data.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Confidence Scoring:</strong> The HUD outputs a % Confidence based on the "Lowest Cost" path found. Higher % means the analog is nearly identical.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Algo Target Label:</strong> Automatically calculates the specific price target where the historical analog ended.</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">Visual Legend</h3>
-      <div class="d-row">
-        <div class="d-box" style="border-left-color:var(--teal)"><strong>Bullish Projection</strong> Cyan spline. Historical match resulted in a price increase.</div>
-        <div class="d-box" style="border-left-color:#c084fc"><strong>Bearish Projection</strong> Purple spline. Historical match resulted in a price drop.</div>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Visual Legend</h3>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: var(--teal);"><strong>Bullish Projection</strong> Cyan spline indicates the historical match resulted in a price increase. High-probability trend continuation.</div>
+        <div class="d-box" style="border-left-color: #c084fc;"><strong>Bearish Projection</strong> Purple spline indicates the historical match resulted in a price drop. Potential for upcoming distribution.</div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Terminal View</h3>
           <span class="d-img-badge">Vector Mode</span>
@@ -1582,7 +1612,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     </section>
 
     <section id="five-factor-model" class="d-sec">
-      <div class="d-badge">Institutional Regression Model</div>
+      <div class="d-badge" style="border-color:var(--emerald);color:var(--emerald)">Institutional Regression Model</div>
       <h2 class="d-title">5-Factor Model Engine <span>(PA-Factor)</span></h2>
       <p class="d-sub">A matrix-based Ordinary Least Squares (OLS) regression engine that deconstructs price action into the Fama-French five risk factors to isolate systematic Alpha.</p>
       
@@ -1592,7 +1622,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 
       <div class="d-img-wrap">
         <div class="d-img-head">
-          <h3><i class="fa-solid fa-square-root-variable a-e mr-2"></i> Statistical Interface</h3>
+          <h3><i class="fa-solid fa-square-root-variable mr-3 text-emerald-400"></i> Statistical Interface</h3>
           <span class="d-img-badge">OLS Matrix Active</span>
         </div>
         <div class="d-img">
@@ -1601,36 +1631,42 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         </div>
       </div>
 
-      <div class="d-math">
-        <h3 class="d-title" style="font-size:24px">The Regression Equation</h3>
-        <p class="d-sub mx-auto">The engine executes an <strong>OLS Matrix Regression</strong> across a rolling 60-bar window to calculate the Beta coefficients (β) for each risk pillar:</p>
-        <span>$$R_a - R_f = \alpha + \beta_1(Mkt) + \beta_2(SMB) + \beta_3(HML) + \beta_4(RMW) + \beta_5(CMA) + \epsilon$$</span>
-        <div class="d-row mt-8 text-left">
-          <div><i class="fa-solid fa-chart-line a-e mr-2"></i> Mkt: Market Risk</div>
-          <div><i class="fa-solid fa-up-right-and-down-left-from-center a-c mr-2"></i> SMB: Size Factor</div>
-          <div><i class="fa-solid fa-scale-balanced a-p mr-2"></i> HML: Value Factor</div>
-          <div><i class="fa-solid fa-coins a-e mr-2"></i> RMW: Profitability</div>
-          <div><i class="fa-solid fa-shield-halved a-a mr-2"></i> CMA: Investment</div>
-          <div><i class="fa-solid fa-bolt text-white mr-2"></i> ε: Residual Alpha</div>
+      <div class="p-8 bg-slate-900/50 rounded-3xl border border-slate-800 mb-12 text-center">
+        <h3 class="text-2xl font-bold text-white mb-6 uppercase tracking-tight">The Regression Equation</h3>
+        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+            The engine executes an <strong>OLS Matrix Regression</strong> across a rolling 60-bar window to calculate the Beta coefficients for each risk pillar:
+        </p>
+        <div class="bg-black/40 p-6 rounded-2xl mb-8 border border-slate-800">
+            <span class="text-emerald-400 text-lg md:text-xl font-mono">
+                R_a - R_f = α + β1(Mkt) + β2(SMB) + β3(HML) + β4(RMW) + β5(CMA) + ε
+            </span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-[11px] text-slate-400 uppercase tracking-widest font-bold">
+            <div class="flex items-center justify-center"><i class="fa-solid fa-chart-line mr-2 text-emerald-500"></i> Mkt: Market Risk</div>
+            <div class="flex items-center justify-center"><i class="fa-solid fa-up-right-and-down-left-from-center mr-2 text-blue-400"></i> SMB: Size Factor</div>
+            <div class="flex items-center justify-center"><i class="fa-solid fa-scale-balanced mr-2 text-purple-400"></i> HML: Value Factor</div>
+            <div class="flex items-center justify-center"><i class="fa-solid fa-coins mr-2 text-emerald-400"></i> RMW: Profitability</div>
+            <div class="flex items-center justify-center"><i class="fa-solid fa-shield-halved mr-2 text-yellow-400"></i> CMA: Investment</div>
+            <div class="flex items-center justify-center"><i class="fa-solid fa-bolt mr-2 text-white"></i> ε: Residual Alpha</div>
         </div>
       </div>
 
       <div class="d-grid">
         <div class="d-card ge">
           <h3 class="a-e"><i class="fa-solid fa-magnifying-glass-chart"></i> Alpha Recognition</h3>
-          <p>The **Residual Alpha (ε)** histogram identifies price movements that are statistically independent of standard risk factors. When Residual Alpha spikes while the general model is neutral, it flags an "Anomalous" move—often a leading indicator of institutional front-running.</p>
+          <p>The **Residual Alpha ($\epsilon$)** histogram identifies price movements that are statistically independent of standard risk factors. When Residual Alpha spikes while the general model is neutral, it flags an "Anomalous" move—often a leading indicator of institutional front-running.</p>
           <ul>
-            <li><strong class="a-e">Systematic Bullish:</strong> High R-Squared alignment with positive Predicted Returns.</li>
-            <li><strong class="a-a">Anomalous Spike:</strong> Pure Alpha events that defy standard factor explanation.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong class="text-emerald-400">Systematic Bullish:</strong> High R-Squared alignment with positive Predicted Returns.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong class="text-yellow-400">Anomalous Spike:</strong> Pure Alpha events that defy standard factor explanation.</li>
           </ul>
         </div>
         <div class="d-card gc">
           <h3 class="a-c"><i class="fa-solid fa-sliders"></i> Factor Dominance Analysis</h3>
-          <p>The model identifies the **Dominant Factor** (highest β). This tells you the specific theme currently driving the asset—whether it's broad market sentiment, small-cap rally momentum, or value-based mean reversion.</p>
+          <p>The model identifies the **Dominant Factor** (highest $\beta$). This tells you the specific theme currently driving the asset—whether it's broad market sentiment, small-cap rally momentum, or value-based mean reversion.</p>
         </div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Quant Terminal</span>
@@ -1647,13 +1683,14 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     </section>
 
     <section id="affine-factor-model" class="d-sec">
-      <div class="d-badge">Geometric Projection Model</div>
+      <div class="d-badge" style="border-color:var(--orange);color:var(--orange)">Geometric Projection Model</div>
       <h2 class="d-title">Affine Factor Model <span>(PA-AFM)</span></h2>
-      <p class="d-sub">An elite geometric engine that treats market benchmarks as a "Factor Subspace," projecting asset returns onto an affine manifold to identify structural breakdowns and shifts. Traditional models look at price in a vacuum. The <strong>Affine Factor Model</strong> maps the relationship between an asset (Y) and an internal benchmark (X) using two geometric vectors: the <strong>Affine Shift (Alpha)</strong> and the <strong>Linear Mapping (Beta)</strong>. It predicts future price action by measuring how far an asset drifts from its expected geometric path—an event known as an Orthogonal Projection Error.</p>
+      <p class="d-sub">An elite geometric engine that treats market benchmarks as a "Factor Subspace," projecting asset returns onto an affine manifold to identify structural breakdowns and shifts.</p>
+      <p class="d-sub">Traditional models look at price in a vacuum. The <strong>Affine Factor Model</strong> maps the relationship between an asset (Y) and an internal benchmark (X) using two geometric vectors: the <strong>Affine Shift (Alpha)</strong> and the <strong>Linear Mapping (Beta)</strong>. It predicts future price action by measuring how far an asset drifts from its expected geometric path—an event known as an Orthogonal Projection Error.</p>
 
       <div class="d-img-wrap">
         <div class="d-img-head">
-          <h3><i class="fa-solid fa-draw-polygon a-a mr-2"></i> Manifold Projection</h3>
+          <h3><i class="fa-solid fa-draw-polygon mr-3 text-orange-400"></i> Manifold Projection</h3>
           <span class="d-img-badge">Idiosyncratic Scan On</span>
         </div>
         <div class="d-img">
@@ -1663,27 +1700,31 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
       </div>
 
       <div class="d-grid">
-        <div class="d-card">
+        <div class="d-card" style="border-left: 4px solid #f97316;">
           <h3 class="text-orange-500"><i class="fa-solid fa-arrows-up-down-left-right"></i> Affine Shift (Alpha)</h3>
-          <p>In geometry, an affine transformation F(x) = α + βx involves a "translation" vector (α). This represents the asset's ability to move independently of the benchmark.</p>
-          <div class="d-box" style="border-left-color:#f97316; margin-top:16px;"><strong>Predictive Value:</strong> A rising Alpha Shift indicates the asset is detaching from market gravity and entering a high-performance "Structural Alpha" phase.</div>
+          <p>In geometry, an affine transformation $F(x) = \alpha + \beta x$ involves a "translation" vector ($\alpha$). This represents the asset's ability to move independently of the benchmark.</p>
+          <div class="mt-4 p-4 bg-orange-500/5 rounded-xl border border-orange-500/20 text-[11px] text-orange-200">
+            <strong>Predictive Value:</strong> A rising Alpha Shift indicates the asset is detaching from market gravity and entering a high-performance "Structural Alpha" phase.
+          </div>
         </div>
-        <div class="d-card">
+        <div class="d-card" style="border-left: 4px solid #eab308;">
           <h3 class="text-yellow-500"><i class="fa-solid fa-expand"></i> Linear Mapping (Beta)</h3>
           <p>The Beta vector measures the "scaling" or rotation of the asset relative to the factor. It tells the engine how sensitive the asset is to broader market volatility.</p>
-          <div class="d-box" style="border-left-color:#eab308; margin-top:16px;"><strong>Predictive Value:</strong> A collapse in Beta signifies a structural breakdown, predicting that the asset will no longer follow historical price correlations.</div>
+          <div class="mt-4 p-4 bg-yellow-500/5 rounded-xl border border-yellow-500/20 text-[11px] text-yellow-200">
+            <strong>Predictive Value:</strong> A collapse in Beta signifies a structural breakdown, predicting that the asset will no longer follow historical price correlations.
+          </div>
         </div>
       </div>
 
-      <h3 class="stit mt-12" style="font-size:22px">The Orthogonal Error (ε)</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">The Orthogonal Error (ε)</h3>
       <p class="d-sub">When an asset moves, it is either following the "Factor Manifold" or drifting away from it. The **Orthogonal Error** measures the literal geometric distance from the actual return to the predicted hyperplane.</p>
       
-      <div class="d-row">
-        <div class="d-box b-r"><strong>Subspace Breakdown (SB)</strong> Fires when Orthogonal Error spikes. Predicts a total loss of trend structure—expect high-volatility liquidations.</div>
-        <div class="d-box b-e"><strong>Structural Alpha (AB)</strong> Fires when Alpha is high and Information Ratio is rising. Predicts a clean, efficient trend move.</div>
+      <div class="d-row text-sm">
+        <div class="d-box" style="border-left-color: #ef4444;"><strong>Subspace Breakdown (SB)</strong> Fires when the Orthogonal Error (IdioVol) spikes. This predicts a total loss of trend structure—expect high-volatility liquidations.</div>
+        <div class="d-box" style="border-left-color: #10b981;"><strong>Structural Alpha (AB)</strong> Fires when Alpha is high and the Information Ratio is rising. Predicts a clean, efficient trend move with low mathematical noise.</div>
       </div>
 
-      <div class="d-img-wrap pt-12 border-t border-white/5">
+      <div class="d-img-wrap pt-16 border-t border-slate-800">
         <div class="d-img-head">
           <h3>MT5 Platform View</h3>
           <span class="d-img-badge">Geometry Terminal</span>
@@ -1694,8 +1735,19 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         </div>
       </div>
 
-      <div class="d-quote border-l-amber-500 text-center text-[18px] text-white">
+      <div class="d-quote border-l-orange-500 text-center text-[18px] text-white">
         <strong>Predictive Summary:</strong> The Affine Factor Model brings the precision of subspace geometry to technical analysis. By quantifying how cleanly an asset "translates" and "scales" across its market manifold, it offers a predictive lens into structural trend stability that standard oscillators cannot see.
+      </div>
+    </section>
+
+    <section id="market-screener" class="d-sec">
+      <div class="d-badge">Dashboards & Screeners</div>
+      <h2 class="d-title">Multi-Asset Scanner</h2>
+      <p class="d-sub">PointAlgo includes custom, real-time market screeners designed to monitor 40+ assets simultaneously. Don't stare at charts all day—let the dashboard flag the exact pairs that are breaking structural nodes or firing Quant AI signals.</p>
+      <div class="d-img-wrap">
+        <div class="d-img">
+          <img src="../Home/screeners_section.gif" alt="PointAlgo Market Screener">
+        </div>
       </div>
     </section>
 
@@ -1703,11 +1755,11 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
       <h2 class="d-title">Getting Started</h2>
       <p class="d-sub">Follow these steps to activate your PointAlgo license, configure smart alerts, and automate your quantitative trading.</p>
       
-      <h3 class="stit mt-12" style="font-size:22px">Finding Your Indicators</h3>
+      <h3 class="text-2xl font-bold text-white mt-12 mb-6">Finding Your Indicators</h3>
       <p class="d-sub">Once your PointAlgo subscription is active, the scripts are added to your TradingView account manually. You will not find them in the public library.</p>
       
-      <div class="d-img mt-8 mb-8">
-        <img src="../invite_only_preview.png" alt="Invite Only Guide">
+      <div class="d-img-wrap">
+        <div class="d-img"><img src="../invite_only_preview.png" alt="Invite Only Guide"></div>
       </div>
       
       <div class="d-row">
@@ -1721,28 +1773,26 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
       <h2 class="d-title">Configuring Smart Alerts</h2>
       <p class="d-sub">Setting up alerts correctly ensures you never miss a systematic edge. Follow this step-by-step visual guide.</p>
       
-      <div class="d-row mt-12">
-        <div>
-          <h3 class="a-c font-bold mb-2">1. Open Indicator Menu</h3>
-          <p class="text-slate-400 text-sm mb-4">Hover over the PointAlgo indicator name on your chart, and click the 3 dots (More).</p>
-          <div class="d-img"><img src="../Alert (1).png" alt="Click 3 dots"></div>
+      <div class="d-grid mt-8">
+        <div class="d-card">
+          <h4 class="text-blue-400 font-bold mb-4">1. Open Indicator Menu</h4>
+          <p class="text-sm text-slate-400 mb-4">Hover over the PointAlgo indicator name on your chart, and click the <strong>3 dots (More)</strong>.</p>
+          <div class="d-img setting-img" style="width: 100%;"><img src="../Alert (1).png" alt="Click 3 dots"></div>
         </div>
-        <div>
-          <h3 class="a-c font-bold mb-2">2. Initialize Alert</h3>
-          <p class="text-slate-400 text-sm mb-4">Select "Add alert on [Indicator Name]" from the dropdown menu.</p>
-          <div class="d-img"><img src="../Alert (2).png" alt="Add alert"></div>
+        <div class="d-card">
+          <h4 class="text-blue-400 font-bold mb-4">2. Initialize Alert</h4>
+          <p class="text-sm text-slate-400 mb-4">Select <strong>"Add alert on [Indicator Name]"</strong> from the dropdown menu.</p>
+          <div class="d-img setting-img" style="width: 100%;"><img src="../Alert (2).png" alt="Add alert"></div>
         </div>
-      </div>
-      <div class="d-row mt-12">
-        <div>
-          <h3 class="a-a font-bold mb-2">3. Configure the Trigger</h3>
-          <p class="text-slate-400 text-sm mb-4">Select "Once per bar close" to prevent repainting issues during high volatility.</p>
-          <div class="d-img"><img src="../Alert (3).png" alt="Set Trigger"></div>
+        <div class="d-card">
+          <h4 class="text-yellow-500 font-bold mb-4">3. Configure the Trigger</h4>
+          <p class="text-sm text-slate-400 mb-4">Click the Trigger dropdown. Select <strong>"Once per bar close"</strong> to prevent repainting issues.</p>
+          <div class="d-img setting-img" style="width: 100%;"><img src="../Alert (3).png" alt="Set Trigger"></div>
         </div>
-        <div>
-          <h3 class="a-a font-bold mb-2">4. Set Expiration</h3>
-          <p class="text-slate-400 text-sm mb-4">Select Open-ended or a custom date to keep the alert active.</p>
-          <div class="d-img"><img src="../Alert (4).png" alt="Set Expiration"></div>
+        <div class="d-card">
+          <h4 class="text-yellow-500 font-bold mb-4">4. Set Expiration</h4>
+          <p class="text-sm text-slate-400 mb-4">Click the Expiration dropdown and select your desired timeframe (e.g., <strong>Open-ended</strong>).</p>
+          <div class="d-img setting-img" style="width: 100%;"><img src="../Alert (4).png" alt="Set Expiration"></div>
         </div>
       </div>
     </section>
@@ -1752,32 +1802,33 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
       <h2 class="d-title">Webhook Automation</h2>
       <p class="d-sub">Connect PointAlgo to 3Commas, Wunderbit, or custom Python scripts. Configure the alert message with your specific exchange syntax and send it directly via Webhook.</p>
       
-      <div class="d-row mt-12">
-        <div>
-          <h3 class="a-e font-bold mb-2">5. Format JSON Message</h3>
-          <p class="text-slate-400 text-sm mb-4">Click the arrow next to Message to edit the text. Paste your required JSON syntax or bot command here.</p>
-          <div class="d-img"><img src="../Alert (5).png" alt="Edit Message"></div>
+      <div class="d-grid mt-8">
+        <div class="d-card">
+          <h4 class="text-emerald-400 font-bold mb-4">5. Format JSON Message</h4>
+          <p class="text-sm text-slate-400 mb-4">Click the arrow next to <strong>Message</strong> to edit the text. Paste your required JSON syntax here.</p>
+          <div class="d-img setting-img" style="width: 100%;"><img src="../Alert (5).png" alt="Edit Message"></div>
         </div>
-        <div>
-          <h3 class="a-e font-bold mb-2">6. Activate Webhook URL</h3>
-          <p class="text-slate-400 text-sm mb-4">Go to the Notifications tab. Check "Webhook URL" and paste your automated bridge link.</p>
-          <div class="d-img"><img src="../Alert (6).png" alt="Set Webhook URL"></div>
+        <div class="d-card">
+          <h4 class="text-emerald-400 font-bold mb-4">6. Activate Webhook URL</h4>
+          <p class="text-sm text-slate-400 mb-4">Go to the <strong>Notifications</strong> tab. Check "Webhook URL" and paste your automated bridge link.</p>
+          <div class="d-img setting-img" style="width: 100%;"><img src="../Alert (6).png" alt="Set Webhook URL"></div>
         </div>
       </div>
+
       <div class="d-box b-e mt-8">
-        <strong class="a-e">TradingView Requirement</strong>
-        Webhook functionality requires a TradingView Essential, Plus, or Premium subscription to actively send POST requests to your exchange.
+        <strong class="a-e"><i class="fa-solid fa-circle-info mr-2"></i> TradingView Requirement</strong>
+        <p class="text-sm text-slate-400">Webhook functionality requires a TradingView Essential, Plus, or Premium subscription to actively send POST requests to your exchange.</p>
       </div>
     </section>
 
     <section id="mt5-install" class="d-sec">
       <h2 class="d-title">MT5 Indicator Installation</h2>
-      <p class="d-sub">If you received an encrypted .ex5 file from us, follow these steps to install it on MetaTrader 5:</p>
+      <p class="d-sub">If you received an encrypted <strong>.ex5</strong> file from us, follow these steps to install it on MetaTrader 5:</p>
       
       <div class="d-row">
-        <div class="d-box b-c"><strong>Step 1: Data Folder</strong> In MT5, go to File -> Open Data Folder.</div>
-        <div class="d-box b-e"><strong>Step 2: Copy File</strong> Navigate to MQL5 -> Indicators and paste your encrypted file here.</div>
-        <div class="d-box b-p"><strong>Step 3: Refresh Navigator</strong> Right-click 'Indicators' in your MT5 Navigator panel and click Refresh. Drag the indicator onto your chart.</div>
+        <div class="d-box" style="border-left-color: #3b82f6;"><strong>Step 1: Data Folder</strong> In MT5, go to File -> Open Data Folder.</div>
+        <div class="d-box" style="border-left-color: #10b981;"><strong>Step 2: Copy File</strong> Navigate to MQL5 -> Indicators and paste your encrypted file here.</div>
+        <div class="d-box" style="border-left-color: #c084fc;"><strong>Step 3: Refresh Navigator</strong> Right-click 'Indicators' in your MT5 Navigator panel and click Refresh. Drag the indicator onto your chart.</div>
       </div>
     </section>
 
@@ -1787,35 +1838,35 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
       
       <div class="d-grid mt-8">
         <div class="d-card">
-          <h3 class="text-white">Does PointAlgo repaint?</h3>
+          <h3 class="text-white text-xl font-bold mb-3">Does PointAlgo repaint?</h3>
           <p>No. All our signals are strictly calculated on the <strong>bar close</strong>. This ensures that what you see in your historical backtests is exactly what you get in live trading.</p>
         </div>
         <div class="d-card">
-          <h3 class="text-white">Do I need a paid TradingView account?</h3>
+          <h3 class="text-white text-xl font-bold mb-3">Do I need a paid TradingView account?</h3>
           <p>PointAlgo works perfectly on the <strong>free</strong> tier of TradingView. However, if you want to set up multiple automated Webhooks or use second-based timeframes, TradingView requires a premium plan.</p>
         </div>
         <div class="d-card">
-          <h3 class="text-white">Can I use this for Indian Stocks & F&O?</h3>
+          <h3 class="text-white text-xl font-bold mb-3">Can I use this for Indian Stocks & F&O?</h3>
           <p>Yes. Our quantitative models process raw price data, meaning they work flawlessly on NIFTY, BankNifty, FinNifty, and all individual NSE/BSE equities.</p>
         </div>
         <div class="d-card">
-          <h3 class="text-white">Does it work on Crypto or Forex (XAUUSD)?</h3>
+          <h3 class="text-white text-xl font-bold mb-3">Does it work on Crypto or Forex (XAUUSD)?</h3>
           <p>Absolutely. Institutional order flow and volatility math are universal. The suite is highly effective on Crypto (Binance/Bybit) and Forex/Commodities like XAUUSD.</p>
         </div>
         <div class="d-card">
-          <h3 class="text-white">Do I need coding experience?</h3>
+          <h3 class="text-white text-xl font-bold mb-3">Do I need coding experience?</h3>
           <p>Not at all. We have done the heavy quantitative lifting—like coding the OLS regressions and DTW matrices in Pine Script. For you, it is a simple "plug-and-play" visual dashboard.</p>
         </div>
         <div class="d-card">
-          <h3 class="text-white">Which timeframe is best?</h3>
+          <h3 class="text-white text-xl font-bold mb-3">Which timeframe is best?</h3>
           <p>While the indicators are fractal and work on any chart, we recommend the <strong>5m/15m</strong> for intraday scalping and the <strong>1h/4h</strong> for swing trading and macro trends.</p>
         </div>
         <div class="d-card">
-          <h3 class="text-white">Is this Financial Advice?</h3>
+          <h3 class="text-white text-xl font-bold mb-3">Is this Financial Advice?</h3>
           <p>No. PointAlgo provides advanced data visualization and mathematical models. Even though we partner with SEBI Registered entities, the indicators are analytical tools meant to assist your own risk management, not a "get rich quick" signal service.</p>
         </div>
         <div class="d-card">
-          <h3 class="text-white">How do I get access?</h3>
+          <h3 class="text-white text-xl font-bold mb-3">How do I get access?</h3>
           <p>Once you purchase a license at <strong>pointalgo.com</strong>, simply submit your TradingView username via our portal. Our team will grant you invite-only access within a few hours.</p>
         </div>
       </div>
@@ -1831,10 +1882,9 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <div class="flog"><img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" width="160" height="48" loading="lazy"></div>
         <p class="ftag">Advanced Quantitative<br>Intelligence Systems.</p>
         <div class="fsoc">
-          <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" style="color:var(--muted)" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-          <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
       <div>
@@ -1843,14 +1893,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <a href="../strategies/index.html" class="fli">Indicator &amp; Strategy</a>
         <a href="../blog/index.html" class="fli">Blog</a>
         <a href="index.html" class="fli cta" style="color:var(--lime)">Documentation</a>
-        <a href="../contact/index.html" class="fli">Contact Us</a>
-      </div>
-      <div>
-        <div class="fct">Legal &amp; Compliance</div>
-        <a href="../legal/terms.html" class="fli">Terms &amp; Conditions</a>
-        <a href="../legal/privacy.html" class="fli">Privacy Policy</a>
-        <a href="../legal/refund.html" class="fli">Refund &amp; Cancellation</a>
-        <a href="../about.html" class="fli">About Us</a>
       </div>
       <div>
         <div class="fct">Connect</div>
@@ -1858,22 +1900,14 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         <a href="mailto:hello@pointalgo.com" class="fcv" style="display:block">hello@pointalgo.com</a>
         <div class="fcl">Support</div>
         <div class="fcv">+91-8452035834</div>
-        <p class="fci">Ghatkopar, Mumbai, India</p>
       </div>
     </div>
     <div class="fdis-wrap">
-      <h4 class="fdis-t">Disclaimer from PointAlgo.com</h4>
-      <div class="fdis-box">
-        <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
-      </div>
+      <h4 class="fct" style="color:rgba(255,255,255,.3)">Disclaimer</h4>
+      <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
     </div>
     <div class="fbar">
       <span class="fcp">© 2026 PointAlgo Quantitative Intelligence</span>
-      <div class="ftags">
-        <span class="ftg">Built for Speed</span>
-        <span class="ftg">Built for Accuracy</span>
-        <span class="ftg">Built for Logic</span>
-      </div>
     </div>
   </div>
 </footer>
@@ -1881,32 +1915,25 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 </div>
 
 <script>
+// SCROLL DETECTION FOR NAV
 (function(){
   var n=document.getElementById('nav');
   window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
 })();
+
+// MOBILE MENU
 document.addEventListener('DOMContentLoaded',function(){
   var btn=document.getElementById('hbg');
   var menu=document.getElementById('mob');
   if(btn&&menu){
     btn.addEventListener('click',function(e){
       e.stopPropagation();
-      var open=menu.classList.toggle('on');
-      btn.classList.toggle('on',open);
-    });
-    document.addEventListener('click',function(e){
-      if(!menu.contains(e.target)&&!btn.contains(e.target)){
-        menu.classList.remove('on');btn.classList.remove('on');
-      }
-    });
-    menu.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click',function(){
-        menu.classList.remove('on');btn.classList.remove('on');
-      });
+      menu.classList.toggle('on');
+      btn.classList.toggle('on');
     });
   }
 
-  // Active Link Highlighting
+  // SIDEBAR ACTIVE STATE
   const sections = document.querySelectorAll('.d-sec');
   const navLinks = document.querySelectorAll('.sl');
   const headerOffset = 180;
