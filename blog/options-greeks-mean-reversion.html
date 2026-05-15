@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GJZXB11LLJ');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <title>Options Greeks & Mean Reversion | PointAlgo Blog</title>
+    <meta name="description" content="Discover how to leverage Options Greeks for spot trading. Deep dive into Gamma Exposure (GEX), Delta Skew, and second-order Greeks to build highly effective mean reversion trading strategies.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { 
+            background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%);
+            background-attachment: fixed;
+            color: #f8fafc; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+        }
+        .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+        
+        /* Custom formatting for the blog post content */
+        .prose h2 { color: #ffffff; font-weight: 800; font-size: 1.875rem; margin-top: 3.5rem; margin-bottom: 1.25rem; letter-spacing: -0.025em; }
+        .prose h3 { color: #ffffff; font-weight: 700; font-size: 1.25rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .prose p { color: #cbd5e1; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; }
+        .prose ul, .prose ol { color: #cbd5e1; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .prose li { margin-bottom: 0.75rem; }
+        .prose strong { color: #ffffff; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                
+                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../index.html'">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">HOME</a>
+                    <a href="../strategies/index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            PERFORMANCE <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../reports/global/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">GLOBAL MARKET</a>
+                                <a href="../reports/india/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">INDIAN MARKET</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-[#00e676] border-b-2 border-[#00e676] pb-1 uppercase tracking-widest cursor-pointer py-2">
+                            RESOURCES <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../doc/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">DOCUMENTATION</a>
+                                <a href="index.html" class="block px-5 py-3 text-xs font-bold text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">BLOGS</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            COMMUNITY <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="https://discord.gg/72wFfgmW" target="_blank" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">DISCORD</a>
+                                <a href="../free-tools/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">FREE TOOLKIT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:hidden relative z-[70]">
+                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none hover:text-[#00e676] transition-colors">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 z-[60] animate-fade-in">
+            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
+                <a href="../index.html" class="text-xl font-bold text-slate-300">HOME</a>
+                <hr class="border-white/5 w-12 mx-auto">
+                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                
+                <div class="py-2 border-y border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Performance</p>
+                    <a href="../reports/global/index.html" class="block text-lg font-medium text-slate-300 mb-4">GLOBAL MARKET</a>
+                    <a href="../reports/india/index.html" class="block text-lg font-medium text-slate-300">INDIAN MARKET</a>
+                </div>
+
+                <div class="py-2 border-b border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Resources</p>
+                    <a href="../doc/index.html" class="block text-lg font-medium text-slate-300 mb-4">DOCUMENTATION</a>
+                    <a href="index.html" class="block text-lg font-medium text-[#00e676]">BLOGS</a>
+                </div>
+
+                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300 uppercase tracking-widest">DISCORD</a>
+                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">FREE TOOLKIT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-36 pb-24 px-6 lg:px-8 max-w-4xl mx-auto w-full">
+        
+        <header class="mb-12 text-center md:text-left">
+            <div class="inline-block bg-[#00e676]/10 text-[#00e676] text-xs font-bold px-3 py-1.5 rounded-full mb-6 uppercase tracking-widest border border-[#00e676]/20">
+                Market Microstructure
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white italic tracking-tighter mb-6 leading-tight">
+                Mastering Market Gravity: <br><span class="text-[#00e676]">Options Greeks & Mean Reversion</span>
+            </h1>
+            <div class="flex items-center justify-center md:justify-start gap-4 text-sm text-slate-400 font-medium">
+                <span>By PointAlgo Quant Team</span>
+                <span>•</span>
+                <span>7 Min Read</span>
+            </div>
+        </header>
+
+        <div class="mb-12">
+            <div class="w-full h-64 md:h-96 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center bg-[#090e1a] relative overflow-hidden">
+                <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-[#00e676]/10 to-transparent"></div>
+                <i class="fa-solid fa-chart-pie text-6xl md:text-8xl text-slate-800 absolute z-0 opacity-50 transform -rotate-12 translate-x-12 translate-y-12"></i>
+                <h2 class="text-2xl md:text-4xl font-black italic tracking-widest text-[#00e676] z-10 drop-shadow-lg uppercase"><i class="fa-solid fa-lock mr-3"></i> Premium Insights</h2>
+            </div>
+        </div>
+
+        <article class="prose">
+            <p>If you are trading the spot market (equities, forex, or crypto) without looking at the options derivatives market, you are driving with one eye closed. Today’s markets are increasingly driven by the "tail wagging the dog"—where options positioning dictates the movement of the underlying asset.</p>
+
+            <p>One of the most powerful ways to exploit this dynamic is by combining Options Greeks with Mean Reversion strategies. By understanding how market makers and large dealers hedge their massive options portfolios, retail and institutional traders alike can identify high-probability signals for when an overextended spot price is about to snap back to its mean.</p>
+
+            <p>In this deep dive, we will explore how to translate complex Greek data into actionable spot signals, focusing on the mechanics that force price reversals.</p>
+
+            <h2>What is Mean Reversion?</h2>
+            <p>At its core, mean reversion is a financial theory positing that asset prices, volatility, and historical returns eventually return to their long-term mean or average level. When an asset price stretches too far in one direction—like a rubber band—it accumulates tension. Mean reversion traders look for the exact moment that tension releases, snapping the price back to its baseline.</p>
+            <p>While traditional mean reversion relies on technical indicators like Bollinger Bands or RSI, modern order-flow traders look under the hood at Options Greeks.</p>
+
+            <h2>The Core Concept: Dealer Hedging and Market Gravity</h2>
+            <p>To understand Greek-based spot signals, you must understand the "Market Maker." When retail and institutional traders buy options, market makers are usually taking the other side of that trade. Because market makers want to profit from the spread and avoid directional risk, they constantly buy and sell the underlying asset (spot) to remain "Delta Neutral."</p>
+            <p>This continuous buying and selling creates invisible boundaries in the market. Depending on the overall options positioning, market makers will either act as a dampener on volatility (creating mean reversion) or an accelerant (creating trends).</p>
+            <p>Here is how the specific Greeks provide signals for mean reversion:</p>
+
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-[#00e676]">
+                <h3 class="!mt-0 text-[#00e676] flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-[#00e676]/20 flex items-center justify-center text-sm font-black text-[#00e676]">1</span>
+                    Gamma Exposure (GEX): The Ultimate Mean Reversion Magnet
+                </h3>
+                <p>Gamma measures the rate of change in Delta for every $1 move in the underlying asset. For spot traders, aggregate Gamma Exposure (GEX) is the single most important metric to track.</p>
+                <p><strong>Positive GEX Environment (High Mean Reversion):</strong> When market makers are net-long Gamma, they must sell the underlying asset as it goes up, and buy it as it goes down to remain delta-neutral. This creates massive liquidity walls. If the spot price pushes up, dealer selling pushes it back down. If it drops, dealer buying props it up.</p>
+                <div class="mt-4 p-4 bg-black/40 rounded-xl border border-white/5">
+                    <p class="!mb-0 text-sm"><strong class="text-[#00e676]">The Signal:</strong> In a high positive GEX environment, traditional breakout strategies will fail. This is the optimal environment for mean reversion. Look to fade the extremes (short the rallies, buy the dips) because dealer hedging is actively fighting the trend.</p>
+                </div>
+            </div>
+
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-blue-400">
+                <h3 class="!mt-0 text-blue-400 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-blue-400/20 flex items-center justify-center text-sm font-black text-blue-400">2</span>
+                    Delta Skew: Spotting The Extreme Rubber Band
+                </h3>
+                <p>Delta measures an option's sensitivity to the price of the underlying asset. By looking at the Delta Skew (the difference in implied volatility and pricing between Out-Of-The-Money Calls and Out-Of-The-Money Puts), you can gauge market sentiment and positioning.</p>
+                <div class="mt-4 p-4 bg-black/40 rounded-xl border border-white/5">
+                    <p class="!mb-0 text-sm"><strong class="text-blue-400">The Signal:</strong> When Delta Skew reaches historic extremes—for example, if traders are panic-buying OTM puts to protect their portfolios, driving put premiums into the stratosphere—it often signals exhaustion. Once the catalyst for the panic passes, the demand for puts evaporates. As market makers unwind their short-spot hedges, it triggers a violent "short covering" rally, reverting the spot price aggressively back to the upside.</p>
+                </div>
+            </div>
+
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-purple-400">
+                <h3 class="!mt-0 text-purple-400 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-purple-400/20 flex items-center justify-center text-sm font-black text-purple-400">3</span>
+                    Vanna: The Volatility-Driven Reversal
+                </h3>
+                <p>Vanna is a second-order Greek that measures the change in Delta relative to a change in Implied Volatility (IV). It tells us how market makers have to adjust their spot hedges when volatility spikes or crushes.</p>
+                <p><strong>The Mechanics:</strong> Let's say the market experiences a sudden drop, and Implied Volatility spikes. If market makers have negative Vanna exposure, this IV spike forces them to short the underlying asset, exacerbating the drop.</p>
+                <div class="mt-4 p-4 bg-black/40 rounded-xl border border-white/5">
+                    <p class="!mb-0 text-sm"><strong class="text-purple-400">The Signal:</strong> The mean reversion signal triggers when IV peaks and begins to crush (often after an event, like an earnings call or macroeconomic data release). As IV drops, the Vanna effect reverses. Dealers are forced to buy back the underlying asset they shorted, causing a swift mean reversion rally in the spot price.</p>
+                </div>
+            </div>
+
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-orange-400">
+                <h3 class="!mt-0 text-orange-400 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-orange-400/20 flex items-center justify-center text-sm font-black text-orange-400">4</span>
+                    Charm: The Silent Time-Decay Squeeze
+                </h3>
+                <p>Charm (also known as Delta Decay) measures how Delta changes as time passes and we get closer to the option's expiration (usually related to Theta).</p>
+                <p><strong>The Mechanics:</strong> As options approach expiration, OTM options lose their Delta rapidly, while In-The-Money (ITM) options see their Delta move toward 1.0 (or -1.0 for puts).</p>
+                <div class="mt-4 p-4 bg-black/40 rounded-xl border border-white/5">
+                    <p class="!mb-0 text-sm"><strong class="text-orange-400">The Signal:</strong> Towards the end of the week or month (specifically around "OpEx" or Options Expiration days), Charm flows become incredibly powerful. If dealers are holding hedges for millions of OTM put options, and those options begin to decay to zero as Friday approaches, dealers must buy back the spot asset to un-hedge. This creates a predictable upward drift or mean reversion into the end of the week, entirely driven by the passage of time.</p>
+                </div>
+            </div>
+
+            <h2>Building a Greek-Based Mean Reversion Strategy</h2>
+            <p>Ready to put this into practice? Here is a blueprint for integrating these concepts into your spot trading strategy:</p>
+            <ul class="list-disc">
+                <li><strong>Map the Gamma Levels:</strong> Before the trading session begins, identify the largest Call Gamma and Put Gamma strikes. These act as your extreme support and resistance zones.</li>
+                <li><strong>Determine the GEX Regime:</strong> Are we in Positive GEX or Negative GEX? If Positive GEX, deploy your mean reversion strategies (RSI divergence, fading Bollinger Bands) at the key Gamma levels.</li>
+                <li><strong>Watch the VIX / Volatility:</strong> If the spot price is dropping into a heavy Put Gamma wall, watch for a peak in volatility. The moment volatility stops rising and begins to crush, look for a long entry. Vanna flows will fuel your mean reversion trade.</li>
+                <li><strong>Time Your Entries Around OpEx:</strong> Be highly aware of OpEx weeks. Mean reversion signals are exponentially stronger when Charm flows are forcing dealers to unwind hedges.</li>
+            </ul>
+
+            <div class="mt-16 p-8 bg-[#00e676]/5 border border-[#00e676]/20 rounded-3xl text-center shadow-lg">
+                <h2 class="!mt-0 !mb-4">The Bottom Line</h2>
+                <p class="!mb-0 text-slate-300">Trading spot without understanding options positioning is a massive disadvantage. The Options Greeks—specifically aggregate Gamma, Vanna, and Charm—reveal the hidden mechanical forces driving market gravity.</p>
+                <p class="mt-4 !mb-0 text-slate-300">By identifying environments where dealer hedging creates friction (Positive GEX) and timing your entries with volatility crushes (Vanna) or time decay (Charm), you can transform standard mean reversion setups into high-probability, structural market anomalies.</p>
+            </div>
+            
+        </article>
+    </main>
+
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                
+                <div class="col-span-1 md:col-span-1 space-y-6">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
+                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
+                        Advanced Quantitative <br> Intelligence Systems.
+                    </p>
+                    <div class="flex gap-5 text-xl">
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
+                    <div class="space-y-3">
+                        <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
+                        <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
+                        <a href="index.html" class="block text-[#00e676] font-bold text-sm transition-colors">Blog</a>
+                        <a href="../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
+                        <a href="../contact/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
+                    <div class="space-y-3">
+                        <a href="../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                        <a href="../legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
+                        <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
+                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#00e676]">hello@pointalgo.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
+                            <p class="text-white font-medium text-sm">+91-8452035834</p>
+                        </div>
+                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-12 border-t border-white/5">
+                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
+                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
+                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
+                <div class="flex gap-6">
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        if (btn && menu) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                menu.classList.toggle('hidden');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars-staggered');
+                    icon.classList.toggle('fa-xmark');
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                    menu.classList.add('hidden');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars-staggered');
+                        icon.classList.remove('fa-xmark');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
