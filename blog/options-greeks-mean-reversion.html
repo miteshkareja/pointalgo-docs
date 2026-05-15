@@ -19,17 +19,48 @@
     
     <style>
         body { 
-            background: linear-gradient(135deg, #0b0f1a 0%, #17002e 100%);
-            background-attachment: fixed;
+            background-color: #05080f; /* Base dark color */
             color: #f8fafc; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            overflow-x: hidden;
         }
+
+        /* ── ANIMATED BACKGROUND & GRID ── */
+        .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .bg-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; }
+        .bg-orb-1 { width: 680px; height: 680px; top: -180px; left: -120px; background: radial-gradient(circle, rgba(0,212,200,0.16) 0%, transparent 70%); animation: od1 20s ease-in-out infinite alternate; }
+        .bg-orb-2 { width: 560px; height: 560px; top: 8%; right: -80px; background: radial-gradient(circle, rgba(201,241,53,0.10) 0%, transparent 70%); animation: od2 24s ease-in-out infinite alternate; }
+        .bg-orb-3 { width: 480px; height: 480px; bottom: 12%; left: 22%; background: radial-gradient(circle, rgba(59,143,245,0.09) 0%, transparent 70%); animation: od3 28s ease-in-out infinite alternate; }
+        .bg-orb-4 { width: 380px; height: 380px; bottom: -80px; right: 12%; background: radial-gradient(circle, rgba(16,232,142,0.07) 0%, transparent 70%); animation: od4 22s ease-in-out infinite alternate; }
+        @keyframes od1 { to { transform: translate(70px, 110px); } }
+        @keyframes od2 { to { transform: translate(-55px, 85px); } }
+        @keyframes od3 { to { transform: translate(95px, -75px); } }
+        @keyframes od4 { to { transform: translate(-75px, -55px); } }
+        
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .bg-vig { position: absolute; inset: 0; background: radial-gradient(ellipse 130% 110% at 50% 50%, transparent 28%, rgba(5,8,15,0.82) 100%); }
+        .wrap { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* ── SCROLL REVEAL ANIMATIONS ── */
+        .rv { opacity: 0; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .rv.on { opacity: 1; transform: none !important; }
+        .ru { transform: translateY(40px); }
+        .rl { transform: translateX(-30px); }
+        .rr { transform: translateX(30px); }
+
+        /* ── UI ELEMENTS ── */
         .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card { 
             background: rgba(255, 255, 255, 0.02); 
             backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .glass-card:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
         
         /* Custom formatting for the blog post content */
         .prose h2 { color: #ffffff; font-weight: 800; font-size: 1.875rem; margin-top: 3.5rem; margin-bottom: 1.25rem; letter-spacing: -0.025em; }
@@ -40,7 +71,18 @@
         .prose strong { color: #ffffff; }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased">
+
+<div class="bg-canvas" aria-hidden="true">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-orb bg-orb-4"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-vig"></div>
+</div>
+
+<div class="wrap">
 
     <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
@@ -123,48 +165,43 @@
         </div>
     </nav>
 
-    <main class="flex-grow pt-36 pb-24 px-6 lg:px-8 max-w-4xl mx-auto w-full">
+    <main class="flex-grow pt-36 pb-24 px-6 lg:px-8 max-w-4xl mx-auto w-full relative z-10">
         
         <header class="mb-12 text-center md:text-left">
-            <div class="inline-block bg-[#00e676]/10 text-[#00e676] text-xs font-bold px-3 py-1.5 rounded-full mb-6 uppercase tracking-widest border border-[#00e676]/20">
+            <div class="inline-block bg-[#00e676]/10 text-[#00e676] text-xs font-bold px-3 py-1.5 rounded-full mb-6 uppercase tracking-widest border border-[#00e676]/20 rv ru">
                 Market Microstructure
             </div>
-            <h1 class="text-4xl md:text-6xl font-black text-white italic tracking-tighter mb-6 leading-tight">
+            <h1 class="text-4xl md:text-6xl font-black text-white italic tracking-tighter mb-6 leading-tight rv ru" style="transition-delay: 0.1s;">
                 Mastering Market Gravity: <br><span class="text-[#00e676]">Options Greeks & Mean Reversion</span>
             </h1>
-            <div class="flex items-center justify-center md:justify-start gap-4 text-sm text-slate-400 font-medium">
+            <div class="flex items-center justify-center md:justify-start gap-4 text-sm text-slate-400 font-medium rv ru" style="transition-delay: 0.2s;">
                 <span>By PointAlgo Quant Team</span>
                 <span>•</span>
                 <span>7 Min Read</span>
             </div>
         </header>
 
-        <div class="mb-12">
-            <div class="w-full h-64 md:h-96 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center bg-[#090e1a] relative overflow-hidden">
-                <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
-                <div class="absolute inset-0 bg-gradient-to-tr from-[#00e676]/10 to-transparent"></div>
-                <i class="fa-solid fa-chart-pie text-6xl md:text-8xl text-slate-800 absolute z-0 opacity-50 transform -rotate-12 translate-x-12 translate-y-12"></i>
-                <h2 class="text-2xl md:text-4xl font-black italic tracking-widest text-[#00e676] z-10 drop-shadow-lg uppercase"><i class="fa-solid fa-lock mr-3"></i> Premium Insights</h2>
-            </div>
+        <div class="mb-12 rv ru" style="transition-delay: 0.3s;">
+            <img src="options_greeks.png" alt="Options Greeks and Mean Reversion" class="w-full h-auto rounded-[2rem] border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] object-cover hover:scale-[1.02] transition-transform duration-500 ease-out">
         </div>
 
         <article class="prose">
-            <p>If you are trading the spot market (equities, forex, or crypto) without looking at the options derivatives market, you are driving with one eye closed. Today’s markets are increasingly driven by the "tail wagging the dog"—where options positioning dictates the movement of the underlying asset.</p>
+            <p class="rv ru">If you are trading the spot market (equities, forex, or crypto) without looking at the options derivatives market, you are driving with one eye closed. Today’s markets are increasingly driven by the "tail wagging the dog"—where options positioning dictates the movement of the underlying asset.</p>
 
-            <p>One of the most powerful ways to exploit this dynamic is by combining Options Greeks with Mean Reversion strategies. By understanding how market makers and large dealers hedge their massive options portfolios, retail and institutional traders alike can identify high-probability signals for when an overextended spot price is about to snap back to its mean.</p>
+            <p class="rv ru">One of the most powerful ways to exploit this dynamic is by combining Options Greeks with Mean Reversion strategies. By understanding how market makers and large dealers hedge their massive options portfolios, retail and institutional traders alike can identify high-probability signals for when an overextended spot price is about to snap back to its mean.</p>
 
-            <p>In this deep dive, we will explore how to translate complex Greek data into actionable spot signals, focusing on the mechanics that force price reversals.</p>
+            <p class="rv ru">In this deep dive, we will explore how to translate complex Greek data into actionable spot signals, focusing on the mechanics that force price reversals.</p>
 
-            <h2>What is Mean Reversion?</h2>
-            <p>At its core, mean reversion is a financial theory positing that asset prices, volatility, and historical returns eventually return to their long-term mean or average level. When an asset price stretches too far in one direction—like a rubber band—it accumulates tension. Mean reversion traders look for the exact moment that tension releases, snapping the price back to its baseline.</p>
-            <p>While traditional mean reversion relies on technical indicators like Bollinger Bands or RSI, modern order-flow traders look under the hood at Options Greeks.</p>
+            <h2 class="rv ru">What is Mean Reversion?</h2>
+            <p class="rv ru">At its core, mean reversion is a financial theory positing that asset prices, volatility, and historical returns eventually return to their long-term mean or average level. When an asset price stretches too far in one direction—like a rubber band—it accumulates tension. Mean reversion traders look for the exact moment that tension releases, snapping the price back to its baseline.</p>
+            <p class="rv ru">While traditional mean reversion relies on technical indicators like Bollinger Bands or RSI, modern order-flow traders look under the hood at Options Greeks.</p>
 
-            <h2>The Core Concept: Dealer Hedging and Market Gravity</h2>
-            <p>To understand Greek-based spot signals, you must understand the "Market Maker." When retail and institutional traders buy options, market makers are usually taking the other side of that trade. Because market makers want to profit from the spread and avoid directional risk, they constantly buy and sell the underlying asset (spot) to remain "Delta Neutral."</p>
-            <p>This continuous buying and selling creates invisible boundaries in the market. Depending on the overall options positioning, market makers will either act as a dampener on volatility (creating mean reversion) or an accelerant (creating trends).</p>
-            <p>Here is how the specific Greeks provide signals for mean reversion:</p>
+            <h2 class="rv ru">The Core Concept: Dealer Hedging and Market Gravity</h2>
+            <p class="rv ru">To understand Greek-based spot signals, you must understand the "Market Maker." When retail and institutional traders buy options, market makers are usually taking the other side of that trade. Because market makers want to profit from the spread and avoid directional risk, they constantly buy and sell the underlying asset (spot) to remain "Delta Neutral."</p>
+            <p class="rv ru">This continuous buying and selling creates invisible boundaries in the market. Depending on the overall options positioning, market makers will either act as a dampener on volatility (creating mean reversion) or an accelerant (creating trends).</p>
+            <p class="rv ru">Here is how the specific Greeks provide signals for mean reversion:</p>
 
-            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-[#00e676]">
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-[#00e676] rv ru">
                 <h3 class="!mt-0 text-[#00e676] flex items-center gap-3">
                     <span class="w-8 h-8 rounded-full bg-[#00e676]/20 flex items-center justify-center text-sm font-black text-[#00e676]">1</span>
                     Gamma Exposure (GEX): The Ultimate Mean Reversion Magnet
@@ -176,7 +213,7 @@
                 </div>
             </div>
 
-            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-blue-400">
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-blue-400 rv ru">
                 <h3 class="!mt-0 text-blue-400 flex items-center gap-3">
                     <span class="w-8 h-8 rounded-full bg-blue-400/20 flex items-center justify-center text-sm font-black text-blue-400">2</span>
                     Delta Skew: Spotting The Extreme Rubber Band
@@ -187,7 +224,7 @@
                 </div>
             </div>
 
-            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-purple-400">
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-purple-400 rv ru">
                 <h3 class="!mt-0 text-purple-400 flex items-center gap-3">
                     <span class="w-8 h-8 rounded-full bg-purple-400/20 flex items-center justify-center text-sm font-black text-purple-400">3</span>
                     Vanna: The Volatility-Driven Reversal
@@ -199,7 +236,7 @@
                 </div>
             </div>
 
-            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-orange-400">
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-orange-400 rv ru">
                 <h3 class="!mt-0 text-orange-400 flex items-center gap-3">
                     <span class="w-8 h-8 rounded-full bg-orange-400/20 flex items-center justify-center text-sm font-black text-orange-400">4</span>
                     Charm: The Silent Time-Decay Squeeze
@@ -211,16 +248,16 @@
                 </div>
             </div>
 
-            <h2>Building a Greek-Based Mean Reversion Strategy</h2>
-            <p>Ready to put this into practice? Here is a blueprint for integrating these concepts into your spot trading strategy:</p>
-            <ul class="list-disc">
+            <h2 class="rv ru">Building a Greek-Based Mean Reversion Strategy</h2>
+            <p class="rv ru">Ready to put this into practice? Here is a blueprint for integrating these concepts into your spot trading strategy:</p>
+            <ul class="list-disc rv ru">
                 <li><strong>Map the Gamma Levels:</strong> Before the trading session begins, identify the largest Call Gamma and Put Gamma strikes. These act as your extreme support and resistance zones.</li>
                 <li><strong>Determine the GEX Regime:</strong> Are we in Positive GEX or Negative GEX? If Positive GEX, deploy your mean reversion strategies (RSI divergence, fading Bollinger Bands) at the key Gamma levels.</li>
                 <li><strong>Watch the VIX / Volatility:</strong> If the spot price is dropping into a heavy Put Gamma wall, watch for a peak in volatility. The moment volatility stops rising and begins to crush, look for a long entry. Vanna flows will fuel your mean reversion trade.</li>
                 <li><strong>Time Your Entries Around OpEx:</strong> Be highly aware of OpEx weeks. Mean reversion signals are exponentially stronger when Charm flows are forcing dealers to unwind hedges.</li>
             </ul>
 
-            <div class="mt-16 p-8 bg-[#00e676]/5 border border-[#00e676]/20 rounded-3xl text-center shadow-lg">
+            <div class="mt-16 p-8 bg-[#00e676]/5 border border-[#00e676]/20 rounded-3xl text-center shadow-[0_10px_40px_rgba(0,230,118,0.05)] rv ru">
                 <h2 class="!mt-0 !mb-4">The Bottom Line</h2>
                 <p class="!mb-0 text-slate-300">Trading spot without understanding options positioning is a massive disadvantage. The Options Greeks—specifically aggregate Gamma, Vanna, and Charm—reveal the hidden mechanical forces driving market gravity.</p>
                 <p class="mt-4 !mb-0 text-slate-300">By identifying environments where dealer hedging creates friction (Positive GEX) and timing your entries with volatility crushes (Vanna) or time decay (Charm), you can transform standard mean reversion setups into high-probability, structural market anomalies.</p>
@@ -229,7 +266,7 @@
         </article>
     </main>
 
-    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto">
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto relative z-10">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
                 
@@ -304,7 +341,7 @@
         </div>
     </footer>
 
-    <script>
+</div> <script>
         // Mobile Menu Logic
         const btn = document.getElementById('mobile-menu-button');
         const menu = document.getElementById('mobile-menu');
@@ -331,6 +368,24 @@
                 }
             });
         }
+
+        // SCROLL REVEAL ANIMATIONS
+        (function(){
+            var els = document.querySelectorAll('.rv');
+            if(!('IntersectionObserver' in window)){
+                els.forEach(function(e){e.classList.add('on')});
+                return;
+            }
+            var obs = new IntersectionObserver(function(entries){
+                entries.forEach(function(en){
+                    if(en.isIntersecting){
+                        en.target.classList.add('on');
+                        obs.unobserve(en.target);
+                    }
+                });
+            },{threshold:0.1});
+            els.forEach(function(el){obs.observe(el);});
+        })();
     </script>
 </body>
 </html>
