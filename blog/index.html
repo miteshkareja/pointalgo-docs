@@ -204,7 +204,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 
 <div class="wrap">
 
-<!-- ═══ NAV ═══ -->
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a href="../index.html" class="logo">
@@ -242,7 +241,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
   </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div class="mob" id="mob">
   <a href="../index.html" class="ma">Home</a>
   <a href="../strategies/index.html" class="ma">Indicator and Strategy</a>
@@ -258,7 +256,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
   <a href="../strategies/index.html#pricing" class="m-cta">Get Access →</a>
 </div>
 
-<!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="si">
     <div class="rv ru">
@@ -273,7 +270,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
   </div>
 </section>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track" aria-hidden="true">
     <span class="ti"><span class="td"></span>GARCH Volatility Models</span>
@@ -295,12 +291,10 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
   </div>
 </div>
 
-<!-- ═══ BLOG GRID ═══ -->
 <main style="flex:1">
 <section class="sec" style="padding-top:clamp(52px,6vw,80px)">
   <div class="si">
 
-    <!-- Section label -->
     <div style="margin-bottom:48px" class="rv ru">
       <div class="slbl">Latest Articles</div>
       <h2 class="stit" style="margin-top:8px">Research &amp; <span style="color:var(--lime)">Analysis</span></h2>
@@ -308,7 +302,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 
     <div class="blog-grid">
 
-      <!-- CARD 1 — GARCH -->
       <article class="bcard rv ru" onclick="window.location.href='Understanding GARCH Volatility in Nifty.html'">
         <div class="bcard-img">
           <img src="understanding_garch.png" alt="GARCH Volatility in Nifty" loading="lazy">
@@ -324,7 +317,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         </div>
       </article>
 
-      <!-- CARD 2 — HOW TO BUILD ALGO -->
       <article class="bcard rv ru" style="transition-delay:.1s" onclick="window.location.href='how-to-build-algo.html'">
         <div class="bcard-img">
           <img src="how_to_build_algo.png" alt="Build Algo Trading Strategy" loading="lazy">
@@ -339,16 +331,30 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
           </a>
         </div>
       </article>
+      
+      <article class="bcard rv ru" style="transition-delay:.2s" onclick="window.location.href='options-greeks-mean-reversion.html'">
+        <div class="bcard-img">
+          <img src="options_greeks.png" alt="Options Greeks and Mean Reversion" loading="lazy">
+          <div class="fade"></div>
+        </div>
+        <div class="bcard-body">
+          <span class="bcard-date">May 3, 2026</span>
+          <h3 class="bcard-title">Options Greeks &amp; Mean Reversion</h3>
+          <p class="bcard-excerpt">Discover how to leverage Gamma Exposure (GEX), Delta Skew, and second-order Greeks for highly effective spot trading signals...</p>
+          <a href="options-greeks-mean-reversion.html" class="bcard-cta">
+            Read Analysis <i class="fa-solid fa-arrow-right" style="font-size:10px"></i>
+          </a>
+        </div>
+      </article>
 
-      <!-- CARD 3 — LOCKED / IN QUEUE -->
-      <article class="bcard locked rv ru" style="transition-delay:.2s">
+      <article class="bcard locked rv ru" style="transition-delay:.3s">
         <div class="bcard-img">
           <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
         </div>
         <div class="bcard-body" style="gap:10px">
           <span class="bcard-locked-lbl">In Queue</span>
-          <h3 class="bcard-locked-title">Options Greeks &amp; Mean Reversion</h3>
-          <p class="bcard-locked-sub">Deep dive into Greek-based spot signals.</p>
+          <h3 class="bcard-locked-title">Advanced Order Flow Dynamics</h3>
+          <p class="bcard-locked-sub">Visualizing institutional liquidity and CVD sweeps.</p>
         </div>
       </article>
 
@@ -357,7 +363,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 </section>
 </main>
 
-<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
   <div style="max-width:1280px;margin:0 auto">
     <div class="fg">
@@ -412,9 +417,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
   </div>
 </footer>
 
-</div><!-- .wrap -->
-
-<script>
+</div><script>
 /* NAV SCROLL */
 (function(){
   var n=document.getElementById('nav');
