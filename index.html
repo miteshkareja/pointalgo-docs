@@ -95,12 +95,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .m-cta{margin-top:14px;padding:14px 20px;text-align:center;background:var(--lime);color:#050810;font-weight:700;font-size:15px;border-radius:8px;transition:opacity .18s}
 .m-cta:hover{opacity:.88}
 
-/* ════════════════════════════════
-   HERO — KEY CHANGE:
-   - h-grid uses align-items:stretch so both columns fill full height
-   - h-left is a flex column that justifies content to center
-   - h-right is a flex column that justifies the image to center (vertically middle)
-   ════════════════════════════════ */
+/* HERO */
 .hero{
   min-height:100vh;
   display:flex;
@@ -119,31 +114,24 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 }
 .pulse{width:7px;height:7px;background:var(--teal);border-radius:50%;box-shadow:0 0 7px var(--teal);animation:pulse 2.2s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.5}}
-
-/* Grid stretches both cols to equal height */
 .h-grid{
   display:grid;
   grid-template-columns:1fr 1.1fr;
   gap:52px;
-  align-items:stretch; /* both columns same height */
+  align-items:stretch;
   width:100%;
 }
-
-/* Left col: flex column, content pushed to vertical center */
 .h-left{
   display:flex;
   flex-direction:column;
-  justify-content:center;  /* vertically center the text block */
+  justify-content:center;
 }
-
-/* Right col: flex column, image centered vertically */
 .h-right{
   display:flex;
   flex-direction:column;
-  justify-content:center;  /* ← THIS centers image in the middle of the section */
+  justify-content:center;
   position:relative;
 }
-
 .h1{
   font-family:var(--fh);
   font-size:clamp(2.8rem,4.2vw,4rem);
@@ -306,9 +294,107 @@ hr.div{border:none;border-top:1px solid var(--div)}
   .h-stats{gap:18px}
   .nl-sec{padding:44px 18px}
 }
+
+/* CUSTOM CANDLE CURSOR */
+.candle-cursor-layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  overflow:hidden;
+}
+
+.candle-cursor-arrow{
+  position:fixed;
+  left:0;
+  top:0;
+  width:18px;
+  height:18px;
+  pointer-events:none;
+  z-index:10000;
+  transform:translate3d(-100px,-100px,0);
+  opacity:.95;
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.12));
+}
+
+.candle-cursor-arrow svg{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.cursor-candle{
+  position:fixed;
+  left:0;
+  top:0;
+  width:8px;
+  height:18px;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.24;
+  will-change:transform,opacity;
+  filter:blur(.15px) drop-shadow(0 0 8px currentColor);
+}
+
+.cursor-candle .wick{
+  position:absolute;
+  left:50%;
+  top:1px;
+  width:1px;
+  height:16px;
+  transform:translateX(-50%);
+  background:currentColor;
+  opacity:.45;
+  border-radius:2px;
+}
+
+.cursor-candle .body{
+  position:absolute;
+  left:50%;
+  top:4px;
+  width:6px;
+  height:10px;
+  transform:translateX(-50%);
+  border-radius:2px;
+  border:1px solid currentColor;
+  background:currentColor;
+  box-shadow:0 0 10px currentColor;
+  opacity:.7;
+}
+
+.cursor-candle.bull .body{
+  background:rgba(16,232,142,.18);
+}
+
+.cursor-candle.bear .body{
+  background:rgba(255,99,132,.16);
+}
+
+.cursor-candle.alt1{color:rgba(0,212,200,.72);}
+.cursor-candle.alt2{color:rgba(201,241,53,.72);}
+.cursor-candle.alt3{color:rgba(59,143,245,.72);}
+.cursor-candle.alt4{color:rgba(16,232,142,.72);}
+.cursor-candle.alt5{color:rgba(245,158,11,.68);}
+.cursor-candle.alt6{color:rgba(255,99,132,.66);}
+
+@media (max-width: 768px){
+  .candle-cursor-layer,
+  .candle-cursor-arrow{
+    display:none;
+  }
+}
 </style>
 </head>
 <body>
+
+<div class="candle-cursor-layer" id="candleCursorLayer" aria-hidden="true"></div>
+
+<div class="candle-cursor-arrow" id="candleCursorArrow" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="rgba(255,255,255,.92)"/>
+    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" stroke="rgba(255,255,255,.45)" stroke-width="0.8"/>
+  </svg>
+</div>
 
 <div class="bg-canvas" aria-hidden="true">
   <div class="bg-orb bg-orb-1"></div>
@@ -321,7 +407,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
 
 <div class="wrap">
 
-<!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a href="index.html" class="logo">
@@ -359,7 +444,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
   </div>
 </nav>
 
-<!-- Mobile menu -->
 <div class="mob" id="mob">
   <a href="index.html" class="ma" style="color:var(--lime)">Home</a>
   <a href="strategies/index.html" class="ma">Indicator and Strategy</a>
@@ -375,13 +459,11 @@ hr.div{border:none;border-top:1px solid var(--div)}
   <a href="strategies/index.html" class="m-cta">Get Access →</a>
 </div>
 
-<!-- HERO -->
 <main>
 <section class="hero">
   <div class="hero-badge rv ru"><span class="pulse"></span>Institutional-Grade Quant Intelligence</div>
   <div class="h-grid">
 
-    <!-- LEFT: text — flex column, centered vertically -->
     <div class="h-left rv rl">
       <h1 class="h1">
         <span class="plain">Trade with Structure.</span>
@@ -400,7 +482,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
       </div>
     </div>
 
-    <!-- RIGHT: image — flex column, justify-content:center puts image in middle -->
     <div class="h-right rv rr">
       <div class="hv">
         <div class="hring"></div>
@@ -420,7 +501,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 </main>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track" aria-hidden="true">
     <span class="ti"><span class="td"></span>Pine Script v6</span>
@@ -442,7 +522,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
   </div>
 </div>
 
-<!-- S1: QUANT EDGE -->
 <section class="sec">
   <div class="si">
     <div class="twoc">
@@ -472,7 +551,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- S2: INFRASTRUCTURE -->
 <section class="sec" style="background:rgba(0,0,0,.12)">
   <div class="si">
     <div style="text-align:center;max-width:640px;margin:0 auto 72px" class="rv ru">
@@ -502,7 +580,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- S3: TRADINGVIEW -->
 <section class="sec" style="background:linear-gradient(180deg,transparent,rgba(0,0,0,.22))">
   <div class="si">
     <div style="text-align:center;max-width:640px;margin:0 auto 72px" class="rv ru">
@@ -530,7 +607,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- S4: MT5 -->
 <section class="sec" style="background:rgba(0,0,0,.3)">
   <div class="si">
     <div style="text-align:center;max-width:640px;margin:0 auto 72px" class="rv ru">
@@ -558,7 +634,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- S5: SCREENERS -->
 <section class="sec">
   <div class="si">
     <div class="twoc">
@@ -584,7 +659,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
 </section>
 <hr class="div">
 
-<!-- PILLARS -->
 <section class="sec" style="padding-bottom:clamp(36px,5vw,72px)">
   <div class="si">
     <div style="text-align:center;max-width:520px;margin:0 auto" class="rv ru">
@@ -600,7 +674,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
   </div>
 </section>
 
-<!-- NEWSLETTER -->
 <section class="nl-sec">
   <div class="nl-box rv ru">
     <h2 class="nl-t">Join for the latest</h2>
@@ -615,7 +688,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="fi">
     <div class="fg">
@@ -706,6 +778,160 @@ document.addEventListener('DOMContentLoaded',function(){
     });
   },{threshold:0.1});
   els.forEach(function(el){obs.observe(el);});
+})();
+</script>
+
+<script>
+(function(){
+  var layer = document.getElementById('candleCursorLayer');
+  var arrow = document.getElementById('candleCursorArrow');
+  if(!layer || !arrow) return;
+
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+
+  var mouse = {
+    x: window.innerWidth * 0.5,
+    y: window.innerHeight * 0.5,
+    tx: window.innerWidth * 0.5,
+    ty: window.innerHeight * 0.5,
+    active: false
+  };
+
+  var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
+  var total = 18;
+  var candles = [];
+  var rafId = null;
+
+  function rand(min,max){ return Math.random() * (max - min) + min; }
+
+  function createCandle(i){
+    var el = document.createElement('div');
+    var bull = Math.random() > 0.45;
+    el.className = 'cursor-candle ' + (bull ? 'bull' : 'bear') + ' ' + colors[i % colors.length];
+
+    var wick = document.createElement('span');
+    wick.className = 'wick';
+
+    var body = document.createElement('span');
+    body.className = 'body';
+
+    var bodyH = rand(6, 12);
+    var wickH = bodyH + rand(6, 10);
+    var bodyTop = rand(3, 6);
+
+    el.style.width = rand(6, 9) + 'px';
+    el.style.height = Math.max(16, wickH + 2) + 'px';
+    el.style.opacity = rand(0.08, 0.20);
+
+    wick.style.height = wickH + 'px';
+    wick.style.top = '1px';
+
+    body.style.height = bodyH + 'px';
+    body.style.width = rand(4, 7) + 'px';
+    body.style.top = bodyTop + 'px';
+
+    el.appendChild(wick);
+    el.appendChild(body);
+    layer.appendChild(el);
+
+    return {
+      el: el,
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      vx: rand(-0.18, 0.18),
+      vy: rand(-0.18, 0.18),
+      driftX: rand(-0.015, 0.015),
+      driftY: rand(-0.015, 0.015),
+      angle: rand(-18, 18),
+      rotSpeed: rand(-0.08, 0.08),
+      size: rand(0.85, 1.18),
+      magnet: rand(70, 120),
+      pull: rand(0.008, 0.018),
+      ease: rand(0.92, 0.965),
+      phase: rand(0, Math.PI * 2),
+      bob: rand(0.08, 0.22)
+    };
+  }
+
+  function init(){
+    for(var i=0;i<total;i++){
+      candles.push(createCandle(i));
+    }
+  }
+
+  function onMove(e){
+    mouse.tx = e.clientX;
+    mouse.ty = e.clientY;
+    mouse.active = true;
+  }
+
+  function onLeave(){
+    mouse.active = false;
+  }
+
+  function resizeReset(){
+    for(var i=0;i<candles.length;i++){
+      candles[i].x = rand(0, window.innerWidth);
+      candles[i].y = rand(0, window.innerHeight);
+    }
+  }
+
+  function animate(){
+    mouse.x += (mouse.tx - mouse.x) * 0.18;
+    mouse.y += (mouse.ty - mouse.y) * 0.18;
+
+    arrow.style.transform = 'translate3d(' + (mouse.x - 1) + 'px,' + (mouse.y - 1) + 'px,0)';
+
+    var t = performance.now() * 0.001;
+
+    for(var i=0;i<candles.length;i++){
+      var c = candles[i];
+
+      c.vx += c.driftX + Math.sin(t + c.phase) * 0.0018;
+      c.vy += c.driftY + Math.cos(t * 0.9 + c.phase) * 0.0018;
+
+      if(mouse.active){
+        var dx = mouse.x - c.x;
+        var dy = mouse.y - c.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+
+        if(dist < c.magnet){
+          var force = (1 - dist / c.magnet) * c.pull;
+          c.vx += (dx / dist) * force * 2.2;
+          c.vy += (dy / dist) * force * 2.2;
+        }
+      }
+
+      c.vx *= c.ease;
+      c.vy *= c.ease;
+
+      c.x += c.vx;
+      c.y += c.vy;
+
+      if(c.x < -20){ c.x = window.innerWidth + 20; }
+      if(c.x > window.innerWidth + 20){ c.x = -20; }
+      if(c.y < -20){ c.y = window.innerHeight + 20; }
+      if(c.y > window.innerHeight + 20){ c.y = -20; }
+
+      c.angle += c.rotSpeed;
+      var bobY = Math.sin(t * 1.4 + c.phase) * c.bob * 8;
+
+      c.el.style.transform =
+        'translate3d(' + c.x + 'px,' + (c.y + bobY) + 'px,0) ' +
+        'rotate(' + c.angle + 'deg) scale(' + c.size + ')';
+    }
+
+    rafId = requestAnimationFrame(animate);
+  }
+
+  init();
+  window.addEventListener('mousemove', onMove, { passive:true });
+  window.addEventListener('mouseenter', onMove, { passive:true });
+  document.addEventListener('mouseleave', onLeave, { passive:true });
+  window.addEventListener('resize', resizeReset, { passive:true });
+
+  animate();
 })();
 </script>
 
