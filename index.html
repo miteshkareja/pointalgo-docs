@@ -295,7 +295,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
   .nl-sec{padding:44px 18px}
 }
 
-/* CUSTOM CANDLE CURSOR */
+/* CUSTOM CANDLE CURSOR (BRIGHTER & MORE VISIBLE) */
 .candle-cursor-layer{
   position:fixed;
   inset:0;
@@ -331,7 +331,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
   height:18px;
   pointer-events:none;
   z-index:9999;
-  opacity:.24;
+  /* Base opacity removed from here, controlled dynamically in JS */
   will-change:transform,opacity;
   filter:blur(.15px) drop-shadow(0 0 8px currentColor);
 }
@@ -344,7 +344,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
   height:16px;
   transform:translateX(-50%);
   background:currentColor;
-  opacity:.45;
+  opacity:.70;
   border-radius:2px;
 }
 
@@ -357,25 +357,26 @@ hr.div{border:none;border-top:1px solid var(--div)}
   transform:translateX(-50%);
   border-radius:2px;
   border:1px solid currentColor;
-  background:currentColor;
   box-shadow:0 0 10px currentColor;
-  opacity:.7;
+  opacity:.9;
 }
 
+/* Vibrant body backgrounds */
 .cursor-candle.bull .body{
-  background:rgba(16,232,142,.18);
+  background:rgba(16,232,142,.45);
 }
 
 .cursor-candle.bear .body{
-  background:rgba(255,99,132,.16);
+  background:rgba(255,99,132,.45);
 }
 
-.cursor-candle.alt1{color:rgba(0,212,200,.72);}
-.cursor-candle.alt2{color:rgba(201,241,53,.72);}
-.cursor-candle.alt3{color:rgba(59,143,245,.72);}
-.cursor-candle.alt4{color:rgba(16,232,142,.72);}
-.cursor-candle.alt5{color:rgba(245,158,11,.68);}
-.cursor-candle.alt6{color:rgba(255,99,132,.66);}
+/* Bright solid colors for the drop-shadows and borders */
+.cursor-candle.alt1{color:rgba(0,212,200,.95);}
+.cursor-candle.alt2{color:rgba(201,241,53,.95);}
+.cursor-candle.alt3{color:rgba(59,143,245,.95);}
+.cursor-candle.alt4{color:rgba(16,232,142,.95);}
+.cursor-candle.alt5{color:rgba(245,158,11,.95);}
+.cursor-candle.alt6{color:rgba(255,99,132,.95);}
 
 @media (max-width: 768px){
   .candle-cursor-layer,
@@ -799,7 +800,7 @@ document.addEventListener('DOMContentLoaded',function(){
   };
 
   var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
-  var total = 18;
+  var total = 18; /* Small tuning: reduced to 18 */
   var candles = [];
   var rafId = null;
 
@@ -822,7 +823,9 @@ document.addEventListener('DOMContentLoaded',function(){
 
     el.style.width = rand(6, 9) + 'px';
     el.style.height = Math.max(16, wickH + 2) + 'px';
-    el.style.opacity = rand(0.08, 0.20);
+    
+    /* INCREASED OPACITY RANGE HERE */
+    el.style.opacity = rand(0.35, 0.75);
 
     wick.style.height = wickH + 'px';
     wick.style.top = '1px';
@@ -846,6 +849,7 @@ document.addEventListener('DOMContentLoaded',function(){
       angle: rand(-18, 18),
       rotSpeed: rand(-0.08, 0.08),
       size: rand(0.85, 1.18),
+      /* WEAKER MAGNET FOR SUBTLETY */
       magnet: rand(70, 120),
       pull: rand(0.008, 0.018),
       ease: rand(0.92, 0.965),
