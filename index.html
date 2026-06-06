@@ -33,12 +33,12 @@
   --fh:'Space Grotesk','Inter',sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0; cursor:none !important;} /* HIDES DEFAULT WHITE SYSTEM CURSOR */
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:var(--fd);font-size:16px;color:var(--txt);background:var(--bg);line-height:1.65;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
 a{text-decoration:none;color:inherit}
-button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+button{background:none;border:none;font:inherit;color:inherit}
 
 /* BG */
 .bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
@@ -71,7 +71,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .nl:hover{color:var(--txt);background:rgba(255,255,255,.06)}
 .nl.on{color:var(--lime)}
 .dd{position:relative}
-.dd-btn{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;cursor:pointer;letter-spacing:.01em}
+.dd-btn{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:7px;transition:color .18s,background .18s;letter-spacing:.01em}
 .dd-btn:hover,.dd:hover .dd-btn{color:var(--txt);background:rgba(255,255,255,.06)}
 .dd-btn svg{width:10px;height:10px;opacity:.5;transition:transform .2s}
 .dd:hover .dd-btn svg{transform:rotate(180deg)}
@@ -295,7 +295,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
   .nl-sec{padding:44px 18px}
 }
 
-/* CUSTOM CANDLE CURSOR (BRIGHTER & MORE VISIBLE) */
+/* CUSTOM CANDLE CURSOR (BRIGHTER & STRONGER MAGNET) */
 .candle-cursor-layer{
   position:fixed;
   inset:0;
@@ -314,7 +314,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
   z-index:10000;
   transform:translate3d(-100px,-100px,0);
   opacity:.95;
-  filter:drop-shadow(0 0 8px rgba(255,255,255,.12));
+  filter:drop-shadow(0 0 8px rgba(239,68,68,.3));
 }
 
 .candle-cursor-arrow svg{
@@ -331,7 +331,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
   height:18px;
   pointer-events:none;
   z-index:9999;
-  /* Base opacity removed from here, controlled dynamically in JS */
   will-change:transform,opacity;
   filter:blur(.15px) drop-shadow(0 0 8px currentColor);
 }
@@ -361,7 +360,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
   opacity:.9;
 }
 
-/* Vibrant body backgrounds */
 .cursor-candle.bull .body{
   background:rgba(16,232,142,.45);
 }
@@ -370,7 +368,6 @@ hr.div{border:none;border-top:1px solid var(--div)}
   background:rgba(255,99,132,.45);
 }
 
-/* Bright solid colors for the drop-shadows and borders */
 .cursor-candle.alt1{color:rgba(0,212,200,.95);}
 .cursor-candle.alt2{color:rgba(201,241,53,.95);}
 .cursor-candle.alt3{color:rgba(59,143,245,.95);}
@@ -392,8 +389,7 @@ hr.div{border:none;border-top:1px solid var(--div)}
 
 <div class="candle-cursor-arrow" id="candleCursorArrow" aria-hidden="true">
   <svg viewBox="0 0 24 24" fill="none">
-    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="rgba(255,255,255,.92)"/>
-    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" stroke="rgba(255,255,255,.45)" stroke-width="0.8"/>
+    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="#ef4444"/>
   </svg>
 </div>
 
@@ -800,7 +796,7 @@ document.addEventListener('DOMContentLoaded',function(){
   };
 
   var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
-  var total = 18; /* Small tuning: reduced to 18 */
+  var total = 18;
   var candles = [];
   var rafId = null;
 
@@ -824,7 +820,6 @@ document.addEventListener('DOMContentLoaded',function(){
     el.style.width = rand(6, 9) + 'px';
     el.style.height = Math.max(16, wickH + 2) + 'px';
     
-    /* INCREASED OPACITY RANGE HERE */
     el.style.opacity = rand(0.35, 0.75);
 
     wick.style.height = wickH + 'px';
@@ -849,9 +844,9 @@ document.addEventListener('DOMContentLoaded',function(){
       angle: rand(-18, 18),
       rotSpeed: rand(-0.08, 0.08),
       size: rand(0.85, 1.18),
-      /* WEAKER MAGNET FOR SUBTLETY */
-      magnet: rand(70, 120),
-      pull: rand(0.008, 0.018),
+      /* SIGNIFICANTLY STRONGER MAGNET SETTINGS */
+      magnet: rand(180, 280), /* Hugely increased radius */
+      pull: rand(0.025, 0.050), /* Hugely increased force */
       ease: rand(0.92, 0.965),
       phase: rand(0, Math.PI * 2),
       bob: rand(0.08, 0.22)
@@ -902,8 +897,9 @@ document.addEventListener('DOMContentLoaded',function(){
 
         if(dist < c.magnet){
           var force = (1 - dist / c.magnet) * c.pull;
-          c.vx += (dx / dist) * force * 2.2;
-          c.vy += (dy / dist) * force * 2.2;
+          /* Increased force multiplier to snap faster */
+          c.vx += (dx / dist) * force * 4.0;
+          c.vy += (dy / dist) * force * 4.0;
         }
       }
 
