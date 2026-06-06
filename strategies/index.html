@@ -33,7 +33,7 @@
   --fh:'Space Grotesk','Inter',sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0; cursor:none !important;}
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:var(--fd);font-size:16px;color:var(--txt);background:var(--bg);line-height:1.65;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
@@ -292,9 +292,104 @@ textarea.form-inp{height:120px;resize:none}
   .fg{grid-template-columns:1fr;gap:28px}
   .footer{padding:52px 18px 28px}
 }
+
+/* CUSTOM CANDLE CURSOR (BRIGHTER & STRONGER MAGNET) */
+.candle-cursor-layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  overflow:hidden;
+}
+
+.candle-cursor-arrow{
+  position:fixed;
+  left:0;
+  top:0;
+  width:18px;
+  height:18px;
+  pointer-events:none;
+  z-index:10000;
+  transform:translate3d(-100px,-100px,0);
+  opacity:.95;
+  filter:drop-shadow(0 0 8px rgba(239,68,68,.3));
+}
+
+.candle-cursor-arrow svg{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.cursor-candle{
+  position:fixed;
+  left:0;
+  top:0;
+  width:8px;
+  height:18px;
+  pointer-events:none;
+  z-index:9999;
+  will-change:transform,opacity;
+  filter:blur(.15px) drop-shadow(0 0 8px currentColor);
+}
+
+.cursor-candle .wick{
+  position:absolute;
+  left:50%;
+  top:1px;
+  width:1px;
+  height:16px;
+  transform:translateX(-50%);
+  background:currentColor;
+  opacity:.70;
+  border-radius:2px;
+}
+
+.cursor-candle .body{
+  position:absolute;
+  left:50%;
+  top:4px;
+  width:6px;
+  height:10px;
+  transform:translateX(-50%);
+  border-radius:2px;
+  border:1px solid currentColor;
+  box-shadow:0 0 10px currentColor;
+  opacity:.9;
+}
+
+.cursor-candle.bull .body{
+  background:rgba(16,232,142,.45);
+}
+
+.cursor-candle.bear .body{
+  background:rgba(255,99,132,.45);
+}
+
+.cursor-candle.alt1{color:rgba(0,212,200,.95);}
+.cursor-candle.alt2{color:rgba(201,241,53,.95);}
+.cursor-candle.alt3{color:rgba(59,143,245,.95);}
+.cursor-candle.alt4{color:rgba(16,232,142,.95);}
+.cursor-candle.alt5{color:rgba(245,158,11,.95);}
+.cursor-candle.alt6{color:rgba(255,99,132,.95);}
+
+@media (max-width: 768px){
+  .candle-cursor-layer,
+  .candle-cursor-arrow{
+    display:none;
+  }
+}
 </style>
 </head>
 <body>
+
+<div class="candle-cursor-layer" id="candleCursorLayer" aria-hidden="true"></div>
+
+<div class="candle-cursor-arrow" id="candleCursorArrow" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="#ef4444"/>
+  </svg>
+</div>
 
 <div class="bg-canvas" aria-hidden="true">
   <div class="bg-orb bg-orb-1"></div>
@@ -307,7 +402,6 @@ textarea.form-inp{height:120px;resize:none}
 
 <div class="wrap">
 
-<!-- ═══ NAV ═══ -->
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a href="../index.html" class="logo">
@@ -345,7 +439,6 @@ textarea.form-inp{height:120px;resize:none}
   </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div class="mob" id="mob">
   <a href="../index.html" class="ma">Home</a>
   <a href="index.html" class="ma" style="color:var(--lime)">Indicator and Strategy</a>
@@ -361,14 +454,12 @@ textarea.form-inp{height:120px;resize:none}
   <a href="#pricing" class="m-cta">Get Access →</a>
 </div>
 
-<!-- ═══ HERO ═══ -->
 <main>
 <section class="hero">
   <div class="hero-in">
     <div class="hero-badge rv ru"><span class="pulse"></span>Professional Quant Trading Systems</div>
     <div class="h-grid">
 
-      <!-- LEFT -->
       <div class="h-left rv rl">
         <h1 class="h1">
           <span class="plain">PointAlgo Quant</span>
@@ -383,18 +474,14 @@ textarea.form-inp{height:120px;resize:none}
         </div>
       </div>
 
-      <!-- RIGHT -->
       <div class="h-right rv rr">
-        <!-- Spinning conic ring glow -->
         <div class="hring"></div>
 
-        <!-- Main screen card -->
         <div class="hscreen">
           <div class="chrome">
             <span class="cd"></span><span class="cd"></span><span class="cd"></span>
             <span class="caddr">pointalgo.com / dashboard</span>
           </div>
-          <!-- ✅ UPDATED IMAGE SOURCE -->
           <img
             src="https://raw.githubusercontent.com/miteshkareja/pointalgo-docs/refs/heads/main/strategies/strategy_herosection.gif"
             alt="PointAlgo Quant Trading Framework GIF"
@@ -403,12 +490,10 @@ textarea.form-inp{height:120px;resize:none}
             loading="eager">
         </div>
 
-        <!-- Floating popup top-right -->
         <div class="fc ftr">
           <img src="../Home/alert_popup.png" alt="Trade Alert" width="420" height="250" loading="lazy">
         </div>
 
-        <!-- Floating popup bottom-left -->
         <div class="fc fbl">
           <img src="../Home/left_stats.png" alt="Market Stats" width="420" height="250" loading="lazy">
         </div>
@@ -419,7 +504,6 @@ textarea.form-inp{height:120px;resize:none}
 </section>
 </main>
 
-<!-- ── TICKER ── -->
 <div class="ticker-wrap">
   <div class="ticker-track" aria-hidden="true">
     <span class="ti"><span class="td"></span>TradingView Invite-Only</span>
@@ -441,7 +525,6 @@ textarea.form-inp{height:120px;resize:none}
   </div>
 </div>
 
-<!-- ═══ WHY POINTALGO ═══ -->
 <section class="sec">
   <div class="si">
     <div class="twoc">
@@ -470,7 +553,6 @@ textarea.form-inp{height:120px;resize:none}
 </section>
 <hr class="div">
 
-<!-- ═══ INSTITUTIONAL TOOLKIT SLIDER ═══ -->
 <section class="sec" style="padding-bottom:clamp(40px,6vw,80px)">
   <div class="si" style="text-align:center;margin-bottom:56px">
     <div class="slbl rv ru" style="justify-content:center">Live Toolkit</div>
@@ -497,7 +579,6 @@ textarea.form-inp{height:120px;resize:none}
 </section>
 <hr class="div">
 
-<!-- ═══ PRICING ═══ -->
 <section id="pricing" class="sec">
   <div class="si">
     <div style="text-align:center;max-width:640px;margin:0 auto" class="rv ru">
@@ -506,7 +587,6 @@ textarea.form-inp{height:120px;resize:none}
       <p style="font-size:14px;color:var(--muted)">Institutional-grade tools. Structured for every level of trader.</p>
     </div>
 
-    <!-- Currency Toggle TOP -->
     <div class="cur-wrap rv ru" style="margin-top:40px">
       <span class="cur-lbl">INR (₹)</span>
       <div class="cur-track" id="curToggle1" onclick="handleCurToggle(this)"><div class="cur-thumb"></div></div>
@@ -515,7 +595,6 @@ textarea.form-inp{height:120px;resize:none}
 
     <div class="pricing-grid">
 
-      <!-- STARTER -->
       <div class="pcard rv ru">
         <div class="pcard-head" style="background:rgba(59,143,245,.08)"><h3>Quant Starter Pack</h3></div>
         <div class="pcard-body">
@@ -553,7 +632,6 @@ textarea.form-inp{height:120px;resize:none}
         </div>
       </div>
 
-      <!-- PRO FEATURED -->
       <div class="pcard featured rv ru" style="transition-delay:.1s">
         <div class="pcard-head" style="background:rgba(59,143,245,.18)"><h3>Quant Pro Pack</h3></div>
         <div class="pcard-body">
@@ -590,7 +668,6 @@ textarea.form-inp{height:120px;resize:none}
         </div>
       </div>
 
-      <!-- ENTERPRISE -->
       <div class="pcard rv ru" style="transition-delay:.2s">
         <div class="pcard-head" style="background:rgba(16,232,142,.06)"><h3>Enterprise Quant Suite</h3></div>
         <div class="pcard-body">
@@ -624,7 +701,6 @@ textarea.form-inp{height:120px;resize:none}
 
     </div>
 
-    <!-- Currency Toggle BOTTOM -->
     <div class="cur-wrap rv ru" style="margin-bottom:0">
       <span class="cur-lbl">INR (₹)</span>
       <div class="cur-track" id="curToggle2" onclick="handleCurToggle(this)"><div class="cur-thumb"></div></div>
@@ -634,7 +710,6 @@ textarea.form-inp{height:120px;resize:none}
 </section>
 <hr class="div">
 
-<!-- ═══ CONTACT FORM ═══ -->
 <section id="contact-section" class="sec" style="background:rgba(0,0,0,.15)">
   <div class="si">
     <div style="text-align:center;max-width:540px;margin:0 auto 52px" class="rv ru">
@@ -663,7 +738,6 @@ textarea.form-inp{height:120px;resize:none}
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
   <div style="max-width:1280px;margin:0 auto">
     <div class="fg">
@@ -718,9 +792,7 @@ textarea.form-inp{height:120px;resize:none}
   </div>
 </footer>
 
-</div><!-- .wrap -->
-
-<script>
+</div><script>
 /* NAV SCROLL */
 (function(){
   var n=document.getElementById('nav');
@@ -743,7 +815,9 @@ document.addEventListener('DOMContentLoaded',function(){
       }
     });
     menu.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click',function(){menu.classList.remove('on');btn.classList.remove('on');});
+      a.addEventListener('click',function(){
+        menu.classList.remove('on');btn.classList.remove('on');
+      });
     });
   }
 });
@@ -791,6 +865,163 @@ function handleCurToggle(el){
     });
   },{threshold:0.08});
   els.forEach(function(el){obs.observe(el);});
+})();
+</script>
+
+<script>
+(function(){
+  var layer = document.getElementById('candleCursorLayer');
+  var arrow = document.getElementById('candleCursorArrow');
+  if(!layer || !arrow) return;
+
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+
+  var mouse = {
+    x: window.innerWidth * 0.5,
+    y: window.innerHeight * 0.5,
+    tx: window.innerWidth * 0.5,
+    ty: window.innerHeight * 0.5,
+    active: false
+  };
+
+  var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
+  var total = 18;
+  var candles = [];
+  var rafId = null;
+
+  function rand(min,max){ return Math.random() * (max - min) + min; }
+
+  function createCandle(i){
+    var el = document.createElement('div');
+    var bull = Math.random() > 0.45;
+    el.className = 'cursor-candle ' + (bull ? 'bull' : 'bear') + ' ' + colors[i % colors.length];
+
+    var wick = document.createElement('span');
+    wick.className = 'wick';
+
+    var body = document.createElement('span');
+    body.className = 'body';
+
+    var bodyH = rand(6, 12);
+    var wickH = bodyH + rand(6, 10);
+    var bodyTop = rand(3, 6);
+
+    el.style.width = rand(6, 9) + 'px';
+    el.style.height = Math.max(16, wickH + 2) + 'px';
+    
+    el.style.opacity = rand(0.35, 0.75);
+
+    wick.style.height = wickH + 'px';
+    wick.style.top = '1px';
+
+    body.style.height = bodyH + 'px';
+    body.style.width = rand(4, 7) + 'px';
+    body.style.top = bodyTop + 'px';
+
+    el.appendChild(wick);
+    el.appendChild(body);
+    layer.appendChild(el);
+
+    return {
+      el: el,
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      vx: rand(-0.18, 0.18),
+      vy: rand(-0.18, 0.18),
+      driftX: rand(-0.015, 0.015),
+      driftY: rand(-0.015, 0.015),
+      angle: rand(-18, 18),
+      rotSpeed: rand(-0.08, 0.08),
+      size: rand(0.85, 1.18),
+      /* SIGNIFICANTLY STRONGER MAGNET SETTINGS */
+      magnet: rand(180, 280), /* Hugely increased radius */
+      pull: rand(0.025, 0.050), /* Hugely increased force */
+      ease: rand(0.92, 0.965),
+      phase: rand(0, Math.PI * 2),
+      bob: rand(0.08, 0.22)
+    };
+  }
+
+  function init(){
+    for(var i=0;i<total;i++){
+      candles.push(createCandle(i));
+    }
+  }
+
+  function onMove(e){
+    mouse.tx = e.clientX;
+    mouse.ty = e.clientY;
+    mouse.active = true;
+  }
+
+  function onLeave(){
+    mouse.active = false;
+  }
+
+  function resizeReset(){
+    for(var i=0;i<candles.length;i++){
+      candles[i].x = rand(0, window.innerWidth);
+      candles[i].y = rand(0, window.innerHeight);
+    }
+  }
+
+  function animate(){
+    mouse.x += (mouse.tx - mouse.x) * 0.18;
+    mouse.y += (mouse.ty - mouse.y) * 0.18;
+
+    arrow.style.transform = 'translate3d(' + (mouse.x - 1) + 'px,' + (mouse.y - 1) + 'px,0)';
+
+    var t = performance.now() * 0.001;
+
+    for(var i=0;i<candles.length;i++){
+      var c = candles[i];
+
+      c.vx += c.driftX + Math.sin(t + c.phase) * 0.0018;
+      c.vy += c.driftY + Math.cos(t * 0.9 + c.phase) * 0.0018;
+
+      if(mouse.active){
+        var dx = mouse.x - c.x;
+        var dy = mouse.y - c.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+
+        if(dist < c.magnet){
+          var force = (1 - dist / c.magnet) * c.pull;
+          /* Increased force multiplier to snap faster */
+          c.vx += (dx / dist) * force * 4.0;
+          c.vy += (dy / dist) * force * 4.0;
+        }
+      }
+
+      c.vx *= c.ease;
+      c.vy *= c.ease;
+
+      c.x += c.vx;
+      c.y += c.vy;
+
+      if(c.x < -20){ c.x = window.innerWidth + 20; }
+      if(c.x > window.innerWidth + 20){ c.x = -20; }
+      if(c.y < -20){ c.y = window.innerHeight + 20; }
+      if(c.y > window.innerHeight + 20){ c.y = -20; }
+
+      c.angle += c.rotSpeed;
+      var bobY = Math.sin(t * 1.4 + c.phase) * c.bob * 8;
+
+      c.el.style.transform =
+        'translate3d(' + c.x + 'px,' + (c.y + bobY) + 'px,0) ' +
+        'rotate(' + c.angle + 'deg) scale(' + c.size + ')';
+    }
+
+    rafId = requestAnimationFrame(animate);
+  }
+
+  init();
+  window.addEventListener('mousemove', onMove, { passive:true });
+  window.addEventListener('mouseenter', onMove, { passive:true });
+  document.addEventListener('mouseleave', onLeave, { passive:true });
+  window.addEventListener('resize', resizeReset, { passive:true });
+
+  animate();
 })();
 </script>
 
