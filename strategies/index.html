@@ -6,10 +6,10 @@
 <link rel="icon" type="image/png" href="../favicon.png">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-GJZXB11LLJ');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GJZXB11LLJ');
 </script>
 <title>Trading Strategies & Frameworks | PointAlgo</title>
 <meta name="description" content="Explore professional quantitative trading strategies for TradingView. PointAlgo offers structured frameworks for Nifty, Gold, Crypto, and Forex.">
@@ -20,18 +20,18 @@
 
 <style>
 :root{
-  --bg:#05080f;--s1:#090e1a;--s2:#0d1424;--s3:#111b30;
-  --bdr:rgba(255,255,255,.07);--bdr-m:rgba(255,255,255,.12);--bdr-h:rgba(255,255,255,.20);
-  --div:rgba(255,255,255,.04);
-  --txt:#dde6f0;--muted:#8a9bb5;--faint:#2c3d52;
-  --lime:#c9f135;--lime-g:rgba(201,241,53,.28);--lime-d:rgba(201,241,53,.09);
-  --teal:#00d4c8;--teal-g:rgba(0,212,200,.22);--teal-d:rgba(0,212,200,.09);
-  --cobalt:#3b8ff5;--cobalt-d:rgba(59,143,245,.09);
-  --emerald:#10e88e;--emerald-d:rgba(16,232,142,.09);
-  --amber:#f59e0b;--amber-d:rgba(245,158,11,.09);
-  --fd:'Inter',system-ui,sans-serif;
-  --fh:'Space Grotesk','Inter',sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1);
+  --bg:#05080f;--s1:#090e1a;--s2:#0d1424;--s3:#111b30;
+  --bdr:rgba(255,255,255,.07);--bdr-m:rgba(255,255,255,.12);--bdr-h:rgba(255,255,255,.20);
+  --div:rgba(255,255,255,.04);
+  --txt:#dde6f0;--muted:#8a9bb5;--faint:#2c3d52;
+  --lime:#c9f135;--lime-g:rgba(201,241,53,.28);--lime-d:rgba(201,241,53,.09);
+  --teal:#00d4c8;--teal-g:rgba(0,212,200,.22);--teal-d:rgba(0,212,200,.09);
+  --cobalt:#3b8ff5;--cobalt-d:rgba(59,143,245,.09);
+  --emerald:#10e88e;--emerald-d:rgba(16,232,142,.09);
+  --amber:#f59e0b;--amber-d:rgba(245,158,11,.09);
+  --fd:'Inter',system-ui,sans-serif;
+  --fh:'Space Grotesk','Inter',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0; cursor:none !important;}
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}
@@ -52,11 +52,11 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 @keyframes od3{to{transform:translate(95px,-75px)}}
 @keyframes od4{to{transform:translate(-75px,-55px)}}
 .bg-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
-  background-size:60px 60px
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:60px 60px
 }
 .bg-vig{position:absolute;inset:0;background:radial-gradient(ellipse 130% 110% at 50% 50%,transparent 28%,rgba(5,8,15,.82) 100%)}
 .wrap{position:relative;z-index:1}
@@ -118,8 +118,8 @@ hr.div{border:none;border-top:1px solid var(--div);position:relative;z-index:1}
 .cki i{color:var(--cobalt);margin-top:3px;flex-shrink:0;font-size:13px}
 
 /* ══════════════════════════════════════
-   HERO — WITH ALL HOME PAGE ANIMATIONS
-   ══════════════════════════════════════ */
+   HERO — WITH ALL HOME PAGE ANIMATIONS
+   ══════════════════════════════════════ */
 .hero{min-height:100vh;display:flex;align-items:center;padding:96px 28px 60px;position:relative;z-index:1}
 .hero-in{max-width:1280px;margin:0 auto;width:100%}
 
@@ -152,26 +152,26 @@ hr.div{border:none;border-top:1px solid var(--div);position:relative;z-index:1}
 
 /* Spinning ring */
 .hring{
-  position:absolute;
-  inset:-28px;
-  border-radius:44px;
-  background:conic-gradient(from 180deg at 50% 50%,var(--teal) 0deg,var(--lime) 120deg,var(--cobalt) 240deg,var(--teal) 360deg);
-  opacity:.13;
-  filter:blur(22px);
-  animation:hring-spin 12s linear infinite;
-  z-index:0
+  position:absolute;
+  inset:-28px;
+  border-radius:44px;
+  background:conic-gradient(from 180deg at 50% 50%,var(--teal) 0deg,var(--lime) 120deg,var(--cobalt) 240deg,var(--teal) 360deg);
+  opacity:.13;
+  filter:blur(22px);
+  animation:hring-spin 12s linear infinite;
+  z-index:0
 }
 @keyframes hring-spin{to{transform:rotate(360deg)}}
 
 /* Floating popup cards */
 .fc{
-  position:absolute;
-  z-index:10;
-  background:var(--s3);
-  border:1px solid var(--bdr-m);
-  border-radius:16px;
-  padding:5px;
-  box-shadow:0 12px 40px rgba(0,0,0,.72),0 0 0 1px rgba(255,255,255,.04) inset
+  position:absolute;
+  z-index:10;
+  background:var(--s3);
+  border:1px solid var(--bdr-m);
+  border-radius:16px;
+  padding:5px;
+  box-shadow:0 12px 40px rgba(0,0,0,.72),0 0 0 1px rgba(255,255,255,.04) inset
 }
 .fc img{border-radius:12px;width:100%;display:block}
 .ftr{top:-40px;right:-40px;width:clamp(130px,13vw,190px);animation:float-a 7s ease-in-out infinite}
@@ -270,100 +270,100 @@ textarea.form-inp{height:120px;resize:none}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1080px){
-  .ftr,.fbl{display:none}
-  .pricing-grid{grid-template-columns:1fr 1fr}
-  .pcard.featured{transform:none}
+  .ftr,.fbl{display:none}
+  .pricing-grid{grid-template-columns:1fr 1fr}
+  .pcard.featured{transform:none}
 }
 @media(max-width:860px){
-  .h-grid,.twoc{grid-template-columns:1fr;gap:44px}
-  .twoc.rev{direction:ltr}
-  .h-left,.h-right{justify-content:flex-start}
-  .fg{grid-template-columns:1fr 1fr}
-  .form-group{grid-template-columns:1fr}
+  .h-grid,.twoc{grid-template-columns:1fr;gap:44px}
+  .twoc.rev{direction:ltr}
+  .h-left,.h-right{justify-content:flex-start}
+  .fg{grid-template-columns:1fr 1fr}
+  .form-group{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  .hero{padding:100px 18px 52px;min-height:auto}
-  .sec{padding:60px 18px}
-  .nav-in{padding:0 18px}
-  .nav-links,.nav-cta{display:none}
-  .hbg{display:flex}
-  .pricing-grid{grid-template-columns:1fr}
-  .pcard.featured{transform:none}
-  .fg{grid-template-columns:1fr;gap:28px}
-  .footer{padding:52px 18px 28px}
+  .hero{padding:100px 18px 52px;min-height:auto}
+  .sec{padding:60px 18px}
+  .nav-in{padding:0 18px}
+  .nav-links,.nav-cta{display:none}
+  .hbg{display:flex}
+  .pricing-grid{grid-template-columns:1fr}
+  .pcard.featured{transform:none}
+  .fg{grid-template-columns:1fr;gap:28px}
+  .footer{padding:52px 18px 28px}
 }
 
 /* CUSTOM CANDLE CURSOR (BRIGHTER & STRONGER MAGNET) */
 .candle-cursor-layer{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:9999;
-  overflow:hidden;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  overflow:hidden;
 }
 
 .candle-cursor-arrow{
-  position:fixed;
-  left:0;
-  top:0;
-  width:18px;
-  height:18px;
-  pointer-events:none;
-  z-index:10000;
-  transform:translate3d(-100px,-100px,0);
-  opacity:.95;
-  filter:drop-shadow(0 0 8px rgba(239,68,68,.3));
+  position:fixed;
+  left:0;
+  top:0;
+  width:18px;
+  height:18px;
+  pointer-events:none;
+  z-index:10000;
+  transform:translate3d(-100px,-100px,0);
+  opacity:.95;
+  filter:drop-shadow(0 0 8px rgba(239,68,68,.3));
 }
 
 .candle-cursor-arrow svg{
-  display:block;
-  width:100%;
-  height:100%;
+  display:block;
+  width:100%;
+  height:100%;
 }
 
 .cursor-candle{
-  position:fixed;
-  left:0;
-  top:0;
-  width:8px;
-  height:18px;
-  pointer-events:none;
-  z-index:9999;
-  will-change:transform,opacity;
-  filter:blur(.15px) drop-shadow(0 0 8px currentColor);
+  position:fixed;
+  left:0;
+  top:0;
+  width:8px;
+  height:18px;
+  pointer-events:none;
+  z-index:9999;
+  will-change:transform,opacity;
+  filter:blur(.15px) drop-shadow(0 0 8px currentColor);
 }
 
 .cursor-candle .wick{
-  position:absolute;
-  left:50%;
-  top:1px;
-  width:1px;
-  height:16px;
-  transform:translateX(-50%);
-  background:currentColor;
-  opacity:.70;
-  border-radius:2px;
+  position:absolute;
+  left:50%;
+  top:1px;
+  width:1px;
+  height:16px;
+  transform:translateX(-50%);
+  background:currentColor;
+  opacity:.70;
+  border-radius:2px;
 }
 
 .cursor-candle .body{
-  position:absolute;
-  left:50%;
-  top:4px;
-  width:6px;
-  height:10px;
-  transform:translateX(-50%);
-  border-radius:2px;
-  border:1px solid currentColor;
-  box-shadow:0 0 10px currentColor;
-  opacity:.9;
+  position:absolute;
+  left:50%;
+  top:4px;
+  width:6px;
+  height:10px;
+  transform:translateX(-50%);
+  border-radius:2px;
+  border:1px solid currentColor;
+  box-shadow:0 0 10px currentColor;
+  opacity:.9;
 }
 
 .cursor-candle.bull .body{
-  background:rgba(16,232,142,.45);
+  background:rgba(16,232,142,.45);
 }
 
 .cursor-candle.bear .body{
-  background:rgba(255,99,132,.45);
+  background:rgba(255,99,132,.45);
 }
 
 .cursor-candle.alt1{color:rgba(0,212,200,.95);}
@@ -374,10 +374,10 @@ textarea.form-inp{height:120px;resize:none}
 .cursor-candle.alt6{color:rgba(255,99,132,.95);}
 
 @media (max-width: 768px){
-  .candle-cursor-layer,
-  .candle-cursor-arrow{
-    display:none;
-  }
+  .candle-cursor-layer,
+  .candle-cursor-arrow{
+    display:none;
+  }
 }
 </style>
 </head>
@@ -386,440 +386,440 @@ textarea.form-inp{height:120px;resize:none}
 <div class="candle-cursor-layer" id="candleCursorLayer" aria-hidden="true"></div>
 
 <div class="candle-cursor-arrow" id="candleCursorArrow" aria-hidden="true">
-  <svg viewBox="0 0 24 24" fill="none">
-    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="#ef4444"/>
-  </svg>
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="#ef4444"/>
+  </svg>
 </div>
 
 <div class="bg-canvas" aria-hidden="true">
-  <div class="bg-orb bg-orb-1"></div>
-  <div class="bg-orb bg-orb-2"></div>
-  <div class="bg-orb bg-orb-3"></div>
-  <div class="bg-orb bg-orb-4"></div>
-  <div class="bg-grid"></div>
-  <div class="bg-vig"></div>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+  <div class="bg-orb bg-orb-4"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-vig"></div>
 </div>
 
 <div class="wrap">
 
 <nav class="nav" id="nav">
-  <div class="nav-in">
-    <a href="../index.html" class="logo">
-      <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" width="180" height="56">
-    </a>
-    <div class="nav-links">
-      <a href="../index.html" class="nl-a">Home</a>
-      <a href="index.html" class="nl-a on">Indicator and Strategy</a>
-      <div class="dd">
-        <button class="dd-btn">Performance <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-menu">
-          <a href="../reports/global/index.html" class="di">Global Market</a>
-          <a href="../reports/india/index.html" class="di">Indian Market</a>
-        </div>
-      </div>
-      <div class="dd">
-        <button class="dd-btn">Resources <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-menu">
-          <a href="../doc/index.html" class="di">Documentation</a>
-          <a href="../blog/index.html" class="di">Blogs</a>
-        </div>
-      </div>
-      <div class="dd">
-        <button class="dd-btn">Community <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-menu">
-          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
-          <a href="../free-tools/index.html" class="di">Free Toolkit</a>
-        </div>
-      </div>
-    </div>
-    <a href="#pricing" class="nav-cta">Get Access</a>
-    <button class="hbg" id="hbg" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+  <div class="nav-in">
+    <a href="../index.html" class="logo">
+      <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" width="180" height="56">
+    </a>
+    <div class="nav-links">
+      <a href="../index.html" class="nl-a">Home</a>
+      <a href="index.html" class="nl-a on">Indicator and Strategy</a>
+      <div class="dd">
+        <button class="dd-btn">Performance <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-menu">
+          <a href="../reports/global/index.html" class="di">Global Market</a>
+          <a href="../reports/india/index.html" class="di">Indian Market</a>
+        </div>
+      </div>
+      <div class="dd">
+        <button class="dd-btn">Resources <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-menu">
+          <a href="../doc/index.html" class="di">Documentation</a>
+          <a href="../blog/index.html" class="di">Blogs</a>
+        </div>
+      </div>
+      <div class="dd">
+        <button class="dd-btn">Community <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="dd-menu">
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
+          <a href="../free-tools/index.html" class="di">Free Toolkit</a>
+        </div>
+      </div>
+    </div>
+    <a href="#pricing" class="nav-cta">Get Access</a>
+    <button class="hbg" id="hbg" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="mob" id="mob">
-  <a href="../index.html" class="ma">Home</a>
-  <a href="index.html" class="ma" style="color:var(--lime)">Indicator and Strategy</a>
-  <div class="mlbl">Performance</div>
-  <a href="../reports/global/index.html" class="ma">Global Market</a>
-  <a href="../reports/india/index.html" class="ma">Indian Market</a>
-  <div class="mlbl">Resources</div>
-  <a href="../doc/index.html" class="ma">Documentation</a>
-  <a href="../blog/index.html" class="ma">Blogs</a>
-  <div class="mlbl">Community</div>
-  <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
-  <a href="../free-tools/index.html" class="ma">Free Toolkit</a>
-  <a href="#pricing" class="m-cta">Get Access →</a>
+  <a href="../index.html" class="ma">Home</a>
+  <a href="index.html" class="ma" style="color:var(--lime)">Indicator and Strategy</a>
+  <div class="mlbl">Performance</div>
+  <a href="../reports/global/index.html" class="ma">Global Market</a>
+  <a href="../reports/india/index.html" class="ma">Indian Market</a>
+  <div class="mlbl">Resources</div>
+  <a href="../doc/index.html" class="ma">Documentation</a>
+  <a href="../blog/index.html" class="ma">Blogs</a>
+  <div class="mlbl">Community</div>
+  <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
+  <a href="../free-tools/index.html" class="ma">Free Toolkit</a>
+  <a href="#pricing" class="m-cta">Get Access →</a>
 </div>
 
 <main>
 <section class="hero">
-  <div class="hero-in">
-    <div class="hero-badge rv ru"><span class="pulse"></span>Professional Quant Trading Systems</div>
-    <div class="h-grid">
+  <div class="hero-in">
+    <div class="hero-badge rv ru"><span class="pulse"></span>Professional Quant Trading Systems</div>
+    <div class="h-grid">
 
-      <div class="h-left rv rl">
-        <h1 class="h1">
-          <span class="plain">PointAlgo Quant</span>
-          <span class="grad">Trading Framework</span>
-        </h1>
-        <p class="h-sub">Professional quant-based trading systems designed for Equity, Options, Futures, Forex, Commodity &amp; Crypto markets.</p>
-        <p class="h-sub">Access professional signal systems through private TradingView invite-only scripts designed for disciplined and structured trading.</p>
-        <p class="h-em">Built as complete frameworks — not standalone indicators.</p>
-        <div style="display:flex;gap:14px;flex-wrap:wrap">
-          <a href="#pricing" class="btn-l">Get Access Now <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></a>
-          <a href="../doc/index.html" class="btn-o"><i class="fa-solid fa-book-open" style="font-size:12px"></i> Documentation</a>
-        </div>
-      </div>
+      <div class="h-left rv rl">
+        <h1 class="h1">
+          <span class="plain">PointAlgo Quant</span>
+          <span class="grad">Trading Framework</span>
+        </h1>
+        <p class="h-sub">Professional quant-based trading systems designed for Equity, Options, Futures, Forex, Commodity &amp; Crypto markets.</p>
+        <p class="h-sub">Access professional signal systems through private TradingView invite-only scripts designed for disciplined and structured trading.</p>
+        <p class="h-em">Built as complete frameworks — not standalone indicators.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="#pricing" class="btn-l">Get Access Now <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></a>
+          <a href="../doc/index.html" class="btn-o"><i class="fa-solid fa-book-open" style="font-size:12px"></i> Documentation</a>
+        </div>
+      </div>
 
-      <div class="h-right rv rr">
-        <div class="hring"></div>
+      <div class="h-right rv rr">
+        <div class="hring"></div>
 
-        <div class="hscreen">
-          <div class="chrome">
-            <span class="cd"></span><span class="cd"></span><span class="cd"></span>
-            <span class="caddr">pointalgo.com / dashboard</span>
-          </div>
-          <img
-            src="https://raw.githubusercontent.com/miteshkareja/pointalgo-docs/refs/heads/main/strategies/strategy_herosection.gif"
-            alt="PointAlgo Quant Trading Framework GIF"
-            width="900"
-            height="540"
-            loading="eager">
-        </div>
+        <div class="hscreen">
+          <div class="chrome">
+            <span class="cd"></span><span class="cd"></span><span class="cd"></span>
+            <span class="caddr">pointalgo.com / dashboard</span>
+          </div>
+          <img
+            src="https://raw.githubusercontent.com/miteshkareja/pointalgo-docs/refs/heads/main/strategies/strategy_herosection.gif"
+            alt="PointAlgo Quant Trading Framework GIF"
+            width="900"
+            height="540"
+            loading="eager">
+        </div>
 
-        <div class="fc ftr">
-          <img src="../Home/alert_popup.png" alt="Trade Alert" width="420" height="250" loading="lazy">
-        </div>
+        <div class="fc ftr">
+          <img src="../Home/alert_popup.png" alt="Trade Alert" width="420" height="250" loading="lazy">
+        </div>
 
-        <div class="fc fbl">
-          <img src="../Home/left_stats.png" alt="Market Stats" width="420" height="250" loading="lazy">
-        </div>
-      </div>
+        <div class="fc fbl">
+          <img src="../Home/left_stats.png" alt="Market Stats" width="420" height="250" loading="lazy">
+        </div>
+      </div>
 
-    </div>
-  </div>
+    </div>
+  </div>
 </section>
 </main>
 
 <div class="ticker-wrap">
-  <div class="ticker-track" aria-hidden="true">
-    <span class="ti"><span class="td"></span>TradingView Invite-Only</span>
-    <span class="ti"><span class="td"></span>Non-Repaint Signals</span>
-    <span class="ti"><span class="td"></span>Equity &amp; Options Systems</span>
-    <span class="ti"><span class="td"></span>Nifty &amp; Global Equities</span>
-    <span class="ti"><span class="td"></span>Forex &amp; Crypto Frameworks</span>
-    <span class="ti"><span class="td"></span>Alert-Enabled Execution</span>
-    <span class="ti"><span class="td"></span>Multi-Layer Signal Confirmation</span>
-    <span class="ti"><span class="td"></span>Pine Script v6</span>
-    <span class="ti"><span class="td"></span>TradingView Invite-Only</span>
-    <span class="ti"><span class="td"></span>Non-Repaint Signals</span>
-    <span class="ti"><span class="td"></span>Equity &amp; Options Systems</span>
-    <span class="ti"><span class="td"></span>Nifty &amp; Global Equities</span>
-    <span class="ti"><span class="td"></span>Forex &amp; Crypto Frameworks</span>
-    <span class="ti"><span class="td"></span>Alert-Enabled Execution</span>
-    <span class="ti"><span class="td"></span>Multi-Layer Signal Confirmation</span>
-    <span class="ti"><span class="td"></span>Pine Script v6</span>
-  </div>
+  <div class="ticker-track" aria-hidden="true">
+    <span class="ti"><span class="td"></span>TradingView Invite-Only</span>
+    <span class="ti"><span class="td"></span>Non-Repaint Signals</span>
+    <span class="ti"><span class="td"></span>Equity &amp; Options Systems</span>
+    <span class="ti"><span class="td"></span>Nifty &amp; Global Equities</span>
+    <span class="ti"><span class="td"></span>Forex &amp; Crypto Frameworks</span>
+    <span class="ti"><span class="td"></span>Alert-Enabled Execution</span>
+    <span class="ti"><span class="td"></span>Multi-Layer Signal Confirmation</span>
+    <span class="ti"><span class="td"></span>Pine Script v6</span>
+    <span class="ti"><span class="td"></span>TradingView Invite-Only</span>
+    <span class="ti"><span class="td"></span>Non-Repaint Signals</span>
+    <span class="ti"><span class="td"></span>Equity &amp; Options Systems</span>
+    <span class="ti"><span class="td"></span>Nifty &amp; Global Equities</span>
+    <span class="ti"><span class="td"></span>Forex &amp; Crypto Frameworks</span>
+    <span class="ti"><span class="td"></span>Alert-Enabled Execution</span>
+    <span class="ti"><span class="td"></span>Multi-Layer Signal Confirmation</span>
+    <span class="ti"><span class="td"></span>Pine Script v6</span>
+  </div>
 </div>
 
 <section class="sec">
-  <div class="si">
-    <div class="twoc">
-      <div class="rv rl">
-        <div class="panel gt">
-          <img src="3dorderflow.gif" alt="Multi-layer signal confirmation framework" width="900" height="580" loading="lazy">
-        </div>
-      </div>
-      <div class="rv rr">
-        <div class="slbl">Core Advantage</div>
-        <h2 class="stit" style="margin-bottom:18px">Why <span class="a-t">PointAlgo</span> Systems?</h2>
-        <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:12px">Most traders rely on isolated indicators that generate conflicting signals.</p>
-        <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:28px">PointAlgo systems are designed as <strong style="color:#fff">structured trading frameworks</strong> where multiple signals work together within defined market logic.</p>
-        <p style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em">Our indicator packs provide:</p>
-        <div class="cklist">
-          <div class="cki"><i class="fa-solid fa-circle-check"></i>Multi-layer signal confirmation</div>
-          <div class="cki"><i class="fa-solid fa-circle-check"></i>Strategy-based trading setups</div>
-          <div class="cki"><i class="fa-solid fa-circle-check"></i>Cross-market adaptability</div>
-          <div class="cki"><i class="fa-solid fa-circle-check"></i>Structured decision frameworks</div>
-          <div class="cki"><i class="fa-solid fa-circle-check"></i>Alert-enabled execution systems</div>
-        </div>
-        <div style="margin-top:32px"><a href="#pricing" class="btn-l">Get Access Now <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></a></div>
-      </div>
-    </div>
-  </div>
+  <div class="si">
+    <div class="twoc">
+      <div class="rv rl">
+        <div class="panel gt">
+          <img src="3dorderflow.gif" alt="Multi-layer signal confirmation framework" width="900" height="580" loading="lazy">
+        </div>
+      </div>
+      <div class="rv rr">
+        <div class="slbl">Core Advantage</div>
+        <h2 class="stit" style="margin-bottom:18px">Why <span class="a-t">PointAlgo</span> Systems?</h2>
+        <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:12px">Most traders rely on isolated indicators that generate conflicting signals.</p>
+        <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:28px">PointAlgo systems are designed as <strong style="color:#fff">structured trading frameworks</strong> where multiple signals work together within defined market logic.</p>
+        <p style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em">Our indicator packs provide:</p>
+        <div class="cklist">
+          <div class="cki"><i class="fa-solid fa-circle-check"></i>Multi-layer signal confirmation</div>
+          <div class="cki"><i class="fa-solid fa-circle-check"></i>Strategy-based trading setups</div>
+          <div class="cki"><i class="fa-solid fa-circle-check"></i>Cross-market adaptability</div>
+          <div class="cki"><i class="fa-solid fa-circle-check"></i>Structured decision frameworks</div>
+          <div class="cki"><i class="fa-solid fa-circle-check"></i>Alert-enabled execution systems</div>
+        </div>
+        <div style="margin-top:32px"><a href="#pricing" class="btn-l">Get Access Now <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></a></div>
+      </div>
+    </div>
+  </div>
 </section>
 <hr class="div">
 
 <section class="sec" style="padding-bottom:clamp(40px,6vw,80px)">
-  <div class="si" style="text-align:center;margin-bottom:56px">
-    <div class="slbl rv ru" style="justify-content:center">Live Toolkit</div>
-    <h2 class="stit rv ru" style="margin-top:8px">Institutional <span class="a-l">Toolkit</span></h2>
-  </div>
-  <div class="toolkit-wrapper">
-    <div class="toolkit-track">
-      <div class="toolkit-card"><img src="slider_1.gif" alt="Indicator 1" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_2.gif" alt="Indicator 2" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_3.gif" alt="Indicator 3" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_4.gif" alt="Indicator 4" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_5.gif" alt="Indicator 5" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_6.gif" alt="Indicator 6" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_7.gif" alt="Indicator 7" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_1.gif" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_2.gif" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_3.gif" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_4.gif" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_5.gif" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_6.gif" loading="lazy"></div>
-      <div class="toolkit-card"><img src="slider_7.gif" loading="lazy"></div>
-    </div>
-  </div>
+  <div class="si" style="text-align:center;margin-bottom:56px">
+    <div class="slbl rv ru" style="justify-content:center">Live Toolkit</div>
+    <h2 class="stit rv ru" style="margin-top:8px">Institutional <span class="a-l">Toolkit</span></h2>
+  </div>
+  <div class="toolkit-wrapper">
+    <div class="toolkit-track">
+      <div class="toolkit-card"><img src="slider_1.gif" alt="Indicator 1" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_2.gif" alt="Indicator 2" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_3.gif" alt="Indicator 3" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_4.gif" alt="Indicator 4" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_5.gif" alt="Indicator 5" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_6.gif" alt="Indicator 6" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_7.gif" alt="Indicator 7" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_1.gif" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_2.gif" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_3.gif" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_4.gif" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_5.gif" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_6.gif" loading="lazy"></div>
+      <div class="toolkit-card"><img src="slider_7.gif" loading="lazy"></div>
+    </div>
+  </div>
 </section>
 <hr class="div">
 
 <section id="pricing" class="sec">
-  <div class="si">
-    <div style="text-align:center;max-width:640px;margin:0 auto" class="rv ru">
-      <div class="slbl" style="justify-content:center">Pricing</div>
-      <h2 class="stit" style="margin-top:8px;margin-bottom:14px">Choose Your <span class="a-l">Trading Framework</span></h2>
-      <p style="font-size:14px;color:var(--muted)">Institutional-grade tools. Structured for every level of trader.</p>
-    </div>
+  <div class="si">
+    <div style="text-align:center;max-width:640px;margin:0 auto" class="rv ru">
+      <div class="slbl" style="justify-content:center">Pricing</div>
+      <h2 class="stit" style="margin-top:8px;margin-bottom:14px">Choose Your <span class="a-l">Trading Framework</span></h2>
+      <p style="font-size:14px;color:var(--muted)">Institutional-grade tools. Structured for every level of trader.</p>
+    </div>
 
-    <div class="cur-wrap rv ru" style="margin-top:40px">
-      <span class="cur-lbl">INR (₹)</span>
-      <div class="cur-track" id="curToggle1" onclick="handleCurToggle(this)"><div class="cur-thumb"></div></div>
-      <span class="cur-lbl">USD ($)</span>
-    </div>
+    <div class="cur-wrap rv ru" style="margin-top:40px">
+      <span class="cur-lbl">INR (₹)</span>
+      <div class="cur-track" id="curToggle1" onclick="handleCurToggle(this)"><div class="cur-thumb"></div></div>
+      <span class="cur-lbl">USD ($)</span>
+    </div>
 
-    <div class="pricing-grid">
+    <div class="pricing-grid">
 
-      <div class="pcard rv ru">
-        <div class="pcard-head" style="background:rgba(59,143,245,.08)"><h3>Quant Starter Pack</h3></div>
-        <div class="pcard-body">
-          <div class="pcard-price">
-            <div class="inr-price"><span class="amt">₹ 999</span></div>
-            <div class="usd-price"><span class="amt">$ 10</span></div>
-          </div>
-          <p style="font-size:13px;color:var(--muted);font-style:italic">Built for traders who want structured, disciplined market signals.</p>
-          <div class="pcard-section">
-            <h4>Includes 4 trading systems</h4>
-            <ul>
-              <li>Equity Trading Indicator</li>
-              <li>Options Scalping System</li>
-              <li>Options Buying System</li>
-              <li>Commodity / Crypto Indicator</li>
-            </ul>
-          </div>
-          <div class="pcard-section">
-            <h4>Access Includes</h4>
-            <ul>
-              <li>TradingView invite-only indicators</li>
-              <li>Alert-enabled signals</li>
-              <li>Strategy usage guidance</li>
-              <li>Regular updates</li>
-              <li>Webinars</li>
-            </ul>
-          </div>
-        </div>
-        <div class="pcard-footer">
-          <div class="subtxt inr-price">Get Now ₹ 999/- Per Month</div>
-          <div class="subtxt usd-price">Get Now $ 10 USD Per Month</div>
-          <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Starter_Pack_Indicator" target="_blank" rel="noopener" class="pay-btn pay-btn-lime inr-price">Get Access (₹999)</a>
-          <a href="https://www.paypal.com/ncp/payment/76F7XRDPZEUQC" target="_blank" rel="noopener" class="pay-btn pay-btn-lime usd-price">Get Access ($10)</a>
-          <p class="usd-price" style="font-size:10px;color:var(--faint);text-align:center;letter-spacing:.1em;text-transform:uppercase;margin-top:6px">1 Month Access (No Auto-Renewal)</p>
-        </div>
-      </div>
+      <div class="pcard rv ru">
+        <div class="pcard-head" style="background:rgba(59,143,245,.08)"><h3>Quant Starter Pack</h3></div>
+        <div class="pcard-body">
+          <div class="pcard-price">
+            <div class="inr-price"><span class="amt">₹ 999</span></div>
+            <div class="usd-price"><span class="amt">$ 10</span></div>
+          </div>
+          <p style="font-size:13px;color:var(--muted);font-style:italic">Built for traders who want structured, disciplined market signals.</p>
+          <div class="pcard-section">
+            <h4>Includes 4 trading systems</h4>
+            <ul>
+              <li>Equity Trading Indicator</li>
+              <li>Options Scalping System</li>
+              <li>Options Buying System</li>
+              <li>Commodity / Crypto Indicator</li>
+            </ul>
+          </div>
+          <div class="pcard-section">
+            <h4>Access Includes</h4>
+            <ul>
+              <li>TradingView invite-only indicators</li>
+              <li>Alert-enabled signals</li>
+              <li>Strategy usage guidance</li>
+              <li>Regular updates</li>
+              <li>Webinars</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pcard-footer">
+          <div class="subtxt inr-price">Get Now ₹ 999/- Per Month</div>
+          <div class="subtxt usd-price">Get Now $ 10 USD Per Month</div>
+          <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Starter_Pack_Indicator" target="_blank" rel="noopener" class="pay-btn pay-btn-lime inr-price">Get Access (₹999)</a>
+          <a href="https://www.paypal.com/ncp/payment/76F7XRDPZEUQC" target="_blank" rel="noopener" class="pay-btn pay-btn-lime usd-price">Get Access ($10)</a>
+          <p class="usd-price" style="font-size:10px;color:var(--faint);text-align:center;letter-spacing:.1em;text-transform:uppercase;margin-top:6px">1 Month Access (No Auto-Renewal)</p>
+        </div>
+      </div>
 
-      <div class="pcard featured rv ru" style="transition-delay:.1s">
-        <div class="pcard-head" style="background:rgba(59,143,245,.18)"><h3>Quant Pro Pack</h3></div>
-        <div class="pcard-body">
-          <div class="pcard-price" style="background:rgba(59,143,245,.06);border-color:rgba(59,143,245,.2)">
-            <div class="inr-price"><span class="amt" style="color:var(--teal)">₹ 1,999</span></div>
-            <div class="usd-price"><span class="amt" style="color:var(--teal)">$ 20</span></div>
-          </div>
-          <p style="font-size:13px;color:var(--txt);font-style:italic;font-weight:500">Built for serious traders who operate across multiple markets.</p>
-          <div class="pcard-section">
-            <h4>Includes 10 trading systems</h4>
-            <ul>
-              <li>Equity Intraday Trading System</li>
-              <li>Options Buying System</li>
-              <li>All Segment System</li>
-              <li>Forex Trading System</li>
-            </ul>
-          </div>
-          <div class="pcard-section">
-            <h4>Access Includes</h4>
-            <ul>
-              <li>TradingView invite-only indicators</li>
-              <li>Alert-enabled signals</li>
-              <li>Multi-market trading frameworks</li>
-              <li>Priority indicator updates</li>
-            </ul>
-          </div>
-        </div>
-        <div class="pcard-footer">
-          <div class="subtxt inr-price">Get Now ₹ 1,999/- Per Month</div>
-          <div class="subtxt usd-price">Get Now $ 20 USD Per Month</div>
-          <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Professional_Pack" target="_blank" rel="noopener" class="pay-btn pay-btn-lime inr-price">Get Access (₹1999)</a>
-          <a href="https://www.paypal.com/ncp/payment/SS8BT3YWRUSY2" target="_blank" rel="noopener" class="pay-btn pay-btn-lime usd-price">Get Access ($20)</a>
-          <p class="usd-price" style="font-size:10px;color:var(--faint);text-align:center;letter-spacing:.1em;text-transform:uppercase;margin-top:6px">1 Month Access (No Auto-Renewal)</p>
-        </div>
-      </div>
+      <div class="pcard featured rv ru" style="transition-delay:.1s">
+        <div class="pcard-head" style="background:rgba(59,143,245,.18)"><h3>Quant Pro Pack</h3></div>
+        <div class="pcard-body">
+          <div class="pcard-price" style="background:rgba(59,143,245,.06);border-color:rgba(59,143,245,.2)">
+            <div class="inr-price"><span class="amt" style="color:var(--teal)">₹ 1,999</span></div>
+            <div class="usd-price"><span class="amt" style="color:var(--teal)">$ 20</span></div>
+          </div>
+          <p style="font-size:13px;color:var(--txt);font-style:italic;font-weight:500">Built for serious traders who operate across multiple markets.</p>
+          <div class="pcard-section">
+            <h4>Includes 10 trading systems</h4>
+            <ul>
+              <li>Equity Intraday Trading System</li>
+              <li>Options Buying System</li>
+              <li>All Segment System</li>
+              <li>Forex Trading System</li>
+            </ul>
+          </div>
+          <div class="pcard-section">
+            <h4>Access Includes</h4>
+            <ul>
+              <li>TradingView invite-only indicators</li>
+              <li>Alert-enabled signals</li>
+              <li>Multi-market trading frameworks</li>
+              <li>Priority indicator updates</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pcard-footer">
+          <div class="subtxt inr-price">Get Now ₹ 1,999/- Per Month</div>
+          <div class="subtxt usd-price">Get Now $ 20 USD Per Month</div>
+          <a href="https://payments.cashfree.com/forms/PointAlgo_Quant_Professional_Pack" target="_blank" rel="noopener" class="pay-btn pay-btn-lime inr-price">Get Access (₹1999)</a>
+          <a href="https://www.paypal.com/ncp/payment/SS8BT3YWRUSY2" target="_blank" rel="noopener" class="pay-btn pay-btn-lime usd-price">Get Access ($20)</a>
+          <p class="usd-price" style="font-size:10px;color:var(--faint);text-align:center;letter-spacing:.1em;text-transform:uppercase;margin-top:6px">1 Month Access (No Auto-Renewal)</p>
+        </div>
+      </div>
 
-      <div class="pcard rv ru" style="transition-delay:.2s">
-        <div class="pcard-head" style="background:rgba(16,232,142,.06)"><h3>Enterprise Quant Suite</h3></div>
-        <div class="pcard-body">
-          <div class="pcard-price">
-            <span class="amt" style="font-size:18px;letter-spacing:.06em;text-transform:uppercase">Institutional</span>
-          </div>
-          <p style="font-size:13px;color:var(--muted);font-style:italic">Designed for professional traders, brokers, and institutions.</p>
-          <div class="pcard-section">
-            <h4>Includes</h4>
-            <ul>
-              <li>Full indicator library access</li>
-              <li>Custom strategy development</li>
-              <li>Institutional-grade trading systems</li>
-              <li>Multi-market trading frameworks</li>
-            </ul>
-          </div>
-          <div class="pcard-section">
-            <h4>Access Includes</h4>
-            <ul>
-              <li>TradingView invite-only indicators</li>
-              <li>Custom deployment (AFL / MT5)</li>
-              <li>Dedicated setup assistance</li>
-              <li>Priority support and updates</li>
-            </ul>
-          </div>
-        </div>
-        <div class="pcard-footer">
-          <a href="#contact-section" class="pay-btn pay-btn-white">Contact Sales</a>
-        </div>
-      </div>
+      <div class="pcard rv ru" style="transition-delay:.2s">
+        <div class="pcard-head" style="background:rgba(16,232,142,.06)"><h3>Enterprise Quant Suite</h3></div>
+        <div class="pcard-body">
+          <div class="pcard-price">
+            <span class="amt" style="font-size:18px;letter-spacing:.06em;text-transform:uppercase">Institutional</span>
+          </div>
+          <p style="font-size:13px;color:var(--muted);font-style:italic">Designed for professional traders, brokers, and institutions.</p>
+          <div class="pcard-section">
+            <h4>Includes</h4>
+            <ul>
+              <li>Full indicator library access</li>
+              <li>Custom strategy development</li>
+              <li>Institutional-grade trading systems</li>
+              <li>Multi-market trading frameworks</li>
+            </ul>
+          </div>
+          <div class="pcard-section">
+            <h4>Access Includes</h4>
+            <ul>
+              <li>TradingView invite-only indicators</li>
+              <li>Custom deployment (AFL / MT5)</li>
+              <li>Dedicated setup assistance</li>
+              <li>Priority support and updates</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pcard-footer">
+          <a href="#contact-section" class="pay-btn pay-btn-white">Contact Sales</a>
+        </div>
+      </div>
 
-    </div>
+    </div>
 
-    <div class="cur-wrap rv ru" style="margin-bottom:0">
-      <span class="cur-lbl">INR (₹)</span>
-      <div class="cur-track" id="curToggle2" onclick="handleCurToggle(this)"><div class="cur-thumb"></div></div>
-      <span class="cur-lbl">USD ($)</span>
-    </div>
-  </div>
+    <div class="cur-wrap rv ru" style="margin-bottom:0">
+      <span class="cur-lbl">INR (₹)</span>
+      <div class="cur-track" id="curToggle2" onclick="handleCurToggle(this)"><div class="cur-thumb"></div></div>
+      <span class="cur-lbl">USD ($)</span>
+    </div>
+  </div>
 </section>
 <hr class="div">
 
 <section id="contact-section" class="sec" style="background:rgba(0,0,0,.15)">
-  <div class="si">
-    <div style="text-align:center;max-width:540px;margin:0 auto 52px" class="rv ru">
-      <div class="slbl" style="justify-content:center">Enterprise &amp; Custom</div>
-      <h2 class="stit" style="margin-top:8px;margin-bottom:12px">Quant <span class="a-l">Inquiry</span></h2>
-      <p style="font-size:14px;color:var(--muted)">Request enterprise access or custom algorithmic development.</p>
-    </div>
-    <div class="form-wrap rv ru">
-      <form id="leadForm" autocomplete="off">
-        <div class="form-group" style="margin-bottom:14px">
-          <input type="text" name="name" placeholder="Full Name" required class="form-inp">
-          <input type="tel" name="phone" placeholder="Mobile Number" required minlength="10" maxlength="15" oninput="this.value=this.value.replace(/[^0-9+]/g,'')" class="form-inp">
-        </div>
-        <input type="email" name="email" placeholder="Email Address" required class="form-inp" style="width:100%;margin-bottom:14px">
-        <input type="text" name="tvusername" placeholder="TradingView Username (Optional)" class="form-inp" style="width:100%;margin-bottom:14px">
-        <select name="plan" class="form-inp" style="width:100%;margin-bottom:14px">
-          <option value="Enterprise">Enterprise License</option>
-          <option value="GlobalUSD">International Subscription</option>
-          <option value="CustomDev">Custom Quantitative Development</option>
-        </select>
-        <textarea name="message" placeholder="Describe your trading requirements..." required class="form-inp" style="width:100%;margin-bottom:14px"></textarea>
-        <button type="submit" id="submitBtn" class="form-submit">Submit Lead</button>
-      </form>
-      <div class="form-success" id="formSuccess">Request received. Our quant team will reach out shortly.</div>
-    </div>
-  </div>
+  <div class="si">
+    <div style="text-align:center;max-width:540px;margin:0 auto 52px" class="rv ru">
+      <div class="slbl" style="justify-content:center">Enterprise &amp; Custom</div>
+      <h2 class="stit" style="margin-top:8px;margin-bottom:12px">Quant <span class="a-l">Inquiry</span></h2>
+      <p style="font-size:14px;color:var(--muted)">Request enterprise access or custom algorithmic development.</p>
+    </div>
+    <div class="form-wrap rv ru">
+      <form id="leadForm" autocomplete="off">
+        <div class="form-group" style="margin-bottom:14px">
+          <input type="text" name="name" placeholder="Full Name" required class="form-inp">
+          <input type="tel" name="phone" placeholder="Mobile Number" required minlength="10" maxlength="15" oninput="this.value=this.value.replace(/[^0-9+]/g,'')" class="form-inp">
+        </div>
+        <input type="email" name="email" placeholder="Email Address" required class="form-inp" style="width:100%;margin-bottom:14px">
+        <input type="text" name="tvusername" placeholder="TradingView Username (Optional)" class="form-inp" style="width:100%;margin-bottom:14px">
+        <select name="plan" class="form-inp" style="width:100%;margin-bottom:14px">
+          <option value="Enterprise">Enterprise License</option>
+          <option value="GlobalUSD">International Subscription</option>
+          <option value="CustomDev">Custom Quantitative Development</option>
+        </select>
+        <textarea name="message" placeholder="Describe your trading requirements..." required class="form-inp" style="width:100%;margin-bottom:14px"></textarea>
+        <button type="submit" id="submitBtn" class="form-submit">Submit Lead</button>
+      </form>
+      <div class="form-success" id="formSuccess">Request received. Our quant team will reach out shortly.</div>
+    </div>
+  </div>
 </section>
 
 <footer class="footer">
-  <div style="max-width:1280px;margin:0 auto">
-    <div class="fg">
-      <div>
-        <div class="flog"><img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" width="160" height="48" loading="lazy"></div>
-        <p class="ftag">Advanced Quantitative<br>Intelligence Systems.</p>
-        <div class="fsoc">
-          <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" style="color:var(--muted)" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-          <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-      </div>
-      <div>
-        <div class="fct">Platform</div>
-        <a href="../index.html" class="fli">Home</a>
-        <a href="index.html" class="fli">Indicator &amp; Strategy</a>
-        <a href="../blog/index.html" class="fli">Blog</a>
-        <a href="../doc/index.html" class="fli">Documentation</a>
-        <a href="../contact/index.html" class="fli cta">Contact Us</a>
-      </div>
-      <div>
-        <div class="fct">Legal &amp; Compliance</div>
-        <a href="../legal/terms.html" class="fli">Terms &amp; Conditions</a>
-        <a href="../legal/privacy.html" class="fli">Privacy Policy</a>
-        <a href="../legal/refund.html" class="fli">Refund &amp; Cancellation</a>
-        <a href="../about.html" class="fli">About Us</a>
-      </div>
-      <div>
-        <div class="fct">Connect</div>
-        <div class="fcl">Inquiries</div>
-        <a href="mailto:hello@pointalgo.com" class="fcv" style="display:block">hello@pointalgo.com</a>
-        <div class="fcl">Support</div>
-        <div class="fcv">+91-8452035834</div>
-        <p class="fci">Ghatkopar, Mumbai, India</p>
-      </div>
-    </div>
-    <div class="fdis-wrap">
-      <h4 class="fdis-t">Disclaimer from PointAlgo.com</h4>
-      <div class="fdis-box">
-        <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
-      </div>
-    </div>
-    <div class="fbar">
-      <span class="fcp">© 2026 PointAlgo Quantitative Intelligence</span>
-      <div class="ftags">
-        <span class="ftg">Built for Speed</span>
-        <span class="ftg">Built for Accuracy</span>
-        <span class="ftg">Built for Logic</span>
-      </div>
-    </div>
-  </div>
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="fg">
+      <div>
+        <div class="flog"><img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" width="160" height="48" loading="lazy"></div>
+        <p class="ftag">Advanced Quantitative<br>Intelligence Systems.</p>
+        <div class="fsoc">
+          <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" style="color:var(--muted)" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Platform</div>
+        <a href="../index.html" class="fli">Home</a>
+        <a href="index.html" class="fli">Indicator &amp; Strategy</a>
+        <a href="../blog/index.html" class="fli">Blog</a>
+        <a href="../doc/index.html" class="fli">Documentation</a>
+        <a href="../contact/index.html" class="fli cta">Contact Us</a>
+      </div>
+      <div>
+        <div class="fct">Legal &amp; Compliance</div>
+        <a href="../legal/terms.html" class="fli">Terms &amp; Conditions</a>
+        <a href="../legal/privacy.html" class="fli">Privacy Policy</a>
+        <a href="../legal/refund.html" class="fli">Refund &amp; Cancellation</a>
+        <a href="../about.html" class="fli">About Us</a>
+      </div>
+      <div>
+        <div class="fct">Connect</div>
+        <div class="fcl">Inquiries</div>
+        <a href="mailto:hello@pointalgo.com" class="fcv" style="display:block">hello@pointalgo.com</a>
+        <div class="fcl">Support</div>
+        <div class="fcv">+91-8452035834</div>
+        <p class="fci">Ghatkopar, Mumbai, India</p>
+      </div>
+    </div>
+    <div class="fdis-wrap">
+      <h4 class="fdis-t">Disclaimer from PointAlgo.com</h4>
+      <div class="fdis-box">
+        <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
+      </div>
+    </div>
+    <div class="fbar">
+      <span class="fcp">© 2026 PointAlgo Quantitative Intelligence</span>
+      <div class="ftags">
+        <span class="ftg">Built for Speed</span>
+        <span class="ftg">Built for Accuracy</span>
+        <span class="ftg">Built for Logic</span>
+      </div>
+    </div>
+  </div>
 </footer>
 
 </div><script>
 /* NAV SCROLL */
 (function(){
-  var n=document.getElementById('nav');
-  window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>24);},{passive:true});
+  var n=document.getElementById('nav');
+  window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>24);},{passive:true});
 })();
 
 /* HAMBURGER */
 document.addEventListener('DOMContentLoaded',function(){
-  var btn=document.getElementById('hbg');
-  var menu=document.getElementById('mob');
-  if(btn&&menu){
-    btn.addEventListener('click',function(e){
-      e.stopPropagation();
-      var open=menu.classList.toggle('on');
-      btn.classList.toggle('on',open);
-    });
-    document.addEventListener('click',function(e){
-      if(!menu.contains(e.target)&&!btn.contains(e.target)){
-        menu.classList.remove('on');btn.classList.remove('on');
-      }
-    });
-    menu.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click',function(){
-        menu.classList.remove('on');btn.classList.remove('on');
-      });
-    });
-  }
+  var btn=document.getElementById('hbg');
+  var menu=document.getElementById('mob');
+  if(btn&&menu){
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=menu.classList.toggle('on');
+      btn.classList.toggle('on',open);
+    });
+    document.addEventListener('click',function(e){
+      if(!menu.contains(e.target)&&!btn.contains(e.target)){
+        menu.classList.remove('on');btn.classList.remove('on');
+      }
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        menu.classList.remove('on');btn.classList.remove('on');
+      });
+    });
+  }
 });
 
 /* FORM */
@@ -828,200 +828,200 @@ var form=document.getElementById('leadForm');
 var submitBtn=document.getElementById('submitBtn');
 var success=document.getElementById('formSuccess');
 if(form){
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var phone=form.querySelector('input[name="phone"]');
-    if(phone&&phone.value.length<10){alert('Please enter a valid mobile number (at least 10 digits).');phone.focus();return;}
-    if(submitBtn){submitBtn.innerHTML='SENDING...';submitBtn.disabled=true;}
-    fetch(scriptURL,{method:'POST',mode:'no-cors',body:new FormData(form)})
-      .then(function(){
-        form.reset();
-        if(submitBtn){submitBtn.innerHTML='SUBMIT LEAD';submitBtn.disabled=false;}
-        if(success){success.style.display='block';}
-      })
-      .catch(function(){
-        if(submitBtn){submitBtn.innerHTML='ERROR. TRY AGAIN.';submitBtn.disabled=false;}
-      });
-  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var phone=form.querySelector('input[name="phone"]');
+    if(phone&&phone.value.length<10){alert('Please enter a valid mobile number (at least 10 digits).');phone.focus();return;}
+    if(submitBtn){submitBtn.innerHTML='SENDING...';submitBtn.disabled=true;}
+    fetch(scriptURL,{method:'POST',mode:'no-cors',body:new FormData(form)})
+      .then(function(){
+        form.reset();
+        if(submitBtn){submitBtn.innerHTML='SUBMIT LEAD';submitBtn.disabled=false;}
+        if(success){success.style.display='block';}
+      })
+      .catch(function(){
+        if(submitBtn){submitBtn.innerHTML='ERROR. TRY AGAIN.';submitBtn.disabled=false;}
+      });
+  });
 }
 
 /* CURRENCY TOGGLE */
 var curOn=false;
 function handleCurToggle(el){
-  curOn=!curOn;
-  document.getElementById('curToggle1').classList.toggle('on',curOn);
-  document.getElementById('curToggle2').classList.toggle('on',curOn);
-  document.querySelectorAll('.inr-price').forEach(function(x){x.style.display=curOn?'none':'block';});
-  document.querySelectorAll('.usd-price').forEach(function(x){x.style.display=curOn?'block':'none';});
+  curOn=!curOn;
+  document.getElementById('curToggle1').classList.toggle('on',curOn);
+  document.getElementById('curToggle2').classList.toggle('on',curOn);
+  document.querySelectorAll('.inr-price').forEach(function(x){x.style.display=curOn?'none':'block';});
+  document.querySelectorAll('.usd-price').forEach(function(x){x.style.display=curOn?'block':'none';});
 }
 
 /* SCROLL REVEAL */
 (function(){
-  var els=document.querySelectorAll('.rv');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on');});return;}
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){en.target.classList.add('on');obs.unobserve(en.target);}
-    });
-  },{threshold:0.08});
-  els.forEach(function(el){obs.observe(el);});
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on');});return;}
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('on');obs.unobserve(en.target);}
+    });
+  },{threshold:0.08});
+  els.forEach(function(el){obs.observe(el);});
 })();
 </script>
 
 <script>
 (function(){
-  var layer = document.getElementById('candleCursorLayer');
-  var arrow = document.getElementById('candleCursorArrow');
-  if(!layer || !arrow) return;
+  var layer = document.getElementById('candleCursorLayer');
+  var arrow = document.getElementById('candleCursorArrow');
+  if(!layer || !arrow) return;
 
-  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(prefersReduced) return;
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
 
-  var mouse = {
-    x: window.innerWidth * 0.5,
-    y: window.innerHeight * 0.5,
-    tx: window.innerWidth * 0.5,
-    ty: window.innerHeight * 0.5,
-    active: false
-  };
+  var mouse = {
+    x: window.innerWidth * 0.5,
+    y: window.innerHeight * 0.5,
+    tx: window.innerWidth * 0.5,
+    ty: window.innerHeight * 0.5,
+    active: false
+  };
 
-  var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
-  var total = 18;
-  var candles = [];
-  var rafId = null;
+  var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
+  var total = 18;
+  var candles = [];
+  var rafId = null;
 
-  function rand(min,max){ return Math.random() * (max - min) + min; }
+  function rand(min,max){ return Math.random() * (max - min) + min; }
 
-  function createCandle(i){
-    var el = document.createElement('div');
-    var bull = Math.random() > 0.45;
-    el.className = 'cursor-candle ' + (bull ? 'bull' : 'bear') + ' ' + colors[i % colors.length];
+  function createCandle(i){
+    var el = document.createElement('div');
+    var bull = Math.random() > 0.45;
+    el.className = 'cursor-candle ' + (bull ? 'bull' : 'bear') + ' ' + colors[i % colors.length];
 
-    var wick = document.createElement('span');
-    wick.className = 'wick';
+    var wick = document.createElement('span');
+    wick.className = 'wick';
 
-    var body = document.createElement('span');
-    body.className = 'body';
+    var body = document.createElement('span');
+    body.className = 'body';
 
-    var bodyH = rand(6, 12);
-    var wickH = bodyH + rand(6, 10);
-    var bodyTop = rand(3, 6);
+    var bodyH = rand(6, 12);
+    var wickH = bodyH + rand(6, 10);
+    var bodyTop = rand(3, 6);
 
-    el.style.width = rand(6, 9) + 'px';
-    el.style.height = Math.max(16, wickH + 2) + 'px';
-    
-    el.style.opacity = rand(0.35, 0.75);
+    el.style.width = rand(6, 9) + 'px';
+    el.style.height = Math.max(16, wickH + 2) + 'px';
+    
+    el.style.opacity = rand(0.35, 0.75);
 
-    wick.style.height = wickH + 'px';
-    wick.style.top = '1px';
+    wick.style.height = wickH + 'px';
+    wick.style.top = '1px';
 
-    body.style.height = bodyH + 'px';
-    body.style.width = rand(4, 7) + 'px';
-    body.style.top = bodyTop + 'px';
+    body.style.height = bodyH + 'px';
+    body.style.width = rand(4, 7) + 'px';
+    body.style.top = bodyTop + 'px';
 
-    el.appendChild(wick);
-    el.appendChild(body);
-    layer.appendChild(el);
+    el.appendChild(wick);
+    el.appendChild(body);
+    layer.appendChild(el);
 
-    return {
-      el: el,
-      x: rand(0, window.innerWidth),
-      y: rand(0, window.innerHeight),
-      vx: rand(-0.18, 0.18),
-      vy: rand(-0.18, 0.18),
-      driftX: rand(-0.015, 0.015),
-      driftY: rand(-0.015, 0.015),
-      angle: rand(-18, 18),
-      rotSpeed: rand(-0.08, 0.08),
-      size: rand(0.85, 1.18),
-      /* SIGNIFICANTLY STRONGER MAGNET SETTINGS */
-      magnet: rand(180, 280), /* Hugely increased radius */
-      pull: rand(0.025, 0.050), /* Hugely increased force */
-      ease: rand(0.92, 0.965),
-      phase: rand(0, Math.PI * 2),
-      bob: rand(0.08, 0.22)
-    };
-  }
+    return {
+      el: el,
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      vx: rand(-0.18, 0.18),
+      vy: rand(-0.18, 0.18),
+      driftX: rand(-0.015, 0.015),
+      driftY: rand(-0.015, 0.015),
+      angle: rand(-18, 18),
+      rotSpeed: rand(-0.08, 0.08),
+      size: rand(0.85, 1.18),
+      /* SIGNIFICANTLY STRONGER MAGNET SETTINGS */
+      magnet: rand(180, 280), /* Hugely increased radius */
+      pull: rand(0.025, 0.050), /* Hugely increased force */
+      ease: rand(0.92, 0.965),
+      phase: rand(0, Math.PI * 2),
+      bob: rand(0.08, 0.22)
+    };
+  }
 
-  function init(){
-    for(var i=0;i<total;i++){
-      candles.push(createCandle(i));
-    }
-  }
+  function init(){
+    for(var i=0;i<total;i++){
+      candles.push(createCandle(i));
+    }
+  }
 
-  function onMove(e){
-    mouse.tx = e.clientX;
-    mouse.ty = e.clientY;
-    mouse.active = true;
-  }
+  function onMove(e){
+    mouse.tx = e.clientX;
+    mouse.ty = e.clientY;
+    mouse.active = true;
+  }
 
-  function onLeave(){
-    mouse.active = false;
-  }
+  function onLeave(){
+    mouse.active = false;
+  }
 
-  function resizeReset(){
-    for(var i=0;i<candles.length;i++){
-      candles[i].x = rand(0, window.innerWidth);
-      candles[i].y = rand(0, window.innerHeight);
-    }
-  }
+  function resizeReset(){
+    for(var i=0;i<candles.length;i++){
+      candles[i].x = rand(0, window.innerWidth);
+      candles[i].y = rand(0, window.innerHeight);
+    }
+  }
 
-  function animate(){
-    mouse.x += (mouse.tx - mouse.x) * 0.18;
-    mouse.y += (mouse.ty - mouse.y) * 0.18;
+  function animate(){
+    mouse.x += (mouse.tx - mouse.x) * 0.18;
+    mouse.y += (mouse.ty - mouse.y) * 0.18;
 
-    arrow.style.transform = 'translate3d(' + (mouse.x - 1) + 'px,' + (mouse.y - 1) + 'px,0)';
+    arrow.style.transform = 'translate3d(' + (mouse.x - 1) + 'px,' + (mouse.y - 1) + 'px,0)';
 
-    var t = performance.now() * 0.001;
+    var t = performance.now() * 0.001;
 
-    for(var i=0;i<candles.length;i++){
-      var c = candles[i];
+    for(var i=0;i<candles.length;i++){
+      var c = candles[i];
 
-      c.vx += c.driftX + Math.sin(t + c.phase) * 0.0018;
-      c.vy += c.driftY + Math.cos(t * 0.9 + c.phase) * 0.0018;
+      c.vx += c.driftX + Math.sin(t + c.phase) * 0.0018;
+      c.vy += c.driftY + Math.cos(t * 0.9 + c.phase) * 0.0018;
 
-      if(mouse.active){
-        var dx = mouse.x - c.x;
-        var dy = mouse.y - c.y;
-        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+      if(mouse.active){
+        var dx = mouse.x - c.x;
+        var dy = mouse.y - c.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
 
-        if(dist < c.magnet){
-          var force = (1 - dist / c.magnet) * c.pull;
-          /* Increased force multiplier to snap faster */
-          c.vx += (dx / dist) * force * 4.0;
-          c.vy += (dy / dist) * force * 4.0;
-        }
-      }
+        if(dist < c.magnet){
+          var force = (1 - dist / c.magnet) * c.pull;
+          /* Increased force multiplier to snap faster */
+          c.vx += (dx / dist) * force * 4.0;
+          c.vy += (dy / dist) * force * 4.0;
+        }
+      }
 
-      c.vx *= c.ease;
-      c.vy *= c.ease;
+      c.vx *= c.ease;
+      c.vy *= c.ease;
 
-      c.x += c.vx;
-      c.y += c.vy;
+      c.x += c.vx;
+      c.y += c.vy;
 
-      if(c.x < -20){ c.x = window.innerWidth + 20; }
-      if(c.x > window.innerWidth + 20){ c.x = -20; }
-      if(c.y < -20){ c.y = window.innerHeight + 20; }
-      if(c.y > window.innerHeight + 20){ c.y = -20; }
+      if(c.x < -20){ c.x = window.innerWidth + 20; }
+      if(c.x > window.innerWidth + 20){ c.x = -20; }
+      if(c.y < -20){ c.y = window.innerHeight + 20; }
+      if(c.y > window.innerHeight + 20){ c.y = -20; }
 
-      c.angle += c.rotSpeed;
-      var bobY = Math.sin(t * 1.4 + c.phase) * c.bob * 8;
+      c.angle += c.rotSpeed;
+      var bobY = Math.sin(t * 1.4 + c.phase) * c.bob * 8;
 
-      c.el.style.transform =
-        'translate3d(' + c.x + 'px,' + (c.y + bobY) + 'px,0) ' +
-        'rotate(' + c.angle + 'deg) scale(' + c.size + ')';
-    }
+      c.el.style.transform =
+        'translate3d(' + c.x + 'px,' + (c.y + bobY) + 'px,0) ' +
+        'rotate(' + c.angle + 'deg) scale(' + c.size + ')';
+    }
 
-    rafId = requestAnimationFrame(animate);
-  }
+    rafId = requestAnimationFrame(animate);
+  }
 
-  init();
-  window.addEventListener('mousemove', onMove, { passive:true });
-  window.addEventListener('mouseenter', onMove, { passive:true });
-  document.addEventListener('mouseleave', onLeave, { passive:true });
-  window.addEventListener('resize', resizeReset, { passive:true });
+  init();
+  window.addEventListener('mousemove', onMove, { passive:true });
+  window.addEventListener('mouseenter', onMove, { passive:true });
+  document.addEventListener('mouseleave', onLeave, { passive:true });
+  window.addEventListener('resize', resizeReset, { passive:true });
 
-  animate();
+  animate();
 })();
 </script>
 
