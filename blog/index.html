@@ -25,15 +25,15 @@
   --div:rgba(255,255,255,.04);
   --txt:#dde6f0;--muted:#8a9bb5;--faint:#2c3d52;
   --lime:#c9f135;--lime-g:rgba(201,241,53,.28);--lime-d:rgba(201,241,53,.09);
-  --teal:#00d4c8;--teal-g:rgba(0,212,200,.22);
-  --cobalt:#3b8ff5;
-  --emerald:#10e88e;
-  --amber:#f59e0b;
+  --teal:#00d4c8;--teal-g:rgba(0,212,200,.22);--teal-d:rgba(0,212,200,.09);
+  --cobalt:#3b8ff5;--cobalt-d:rgba(59,143,245,.09);
+  --emerald:#10e88e;--emerald-d:rgba(16,232,142,.09);
+  --amber:#f59e0b;--amber-d:rgba(245,158,11,.09);
   --fd:'Inter',system-ui,sans-serif;
   --fh:'Space Grotesk','Inter',sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0; cursor:none !important;}
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:var(--fd);font-size:16px;color:var(--txt);background:var(--bg);line-height:1.65;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
 img{display:block;max-width:100%;height:auto}
@@ -141,14 +141,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .bcard-locked-title{font-family:var(--fh);font-size:18px;font-weight:700;color:var(--faint);line-height:1.3}
 .bcard-locked-sub{font-size:12px;color:var(--faint);font-style:italic}
 
-/* ── TICKER ── */
-.ticker-wrap{border-top:1px solid var(--div);border-bottom:1px solid var(--div);overflow:hidden;padding:11px 0;background:rgba(255,255,255,.01);position:relative;z-index:1}
-.ticker-track{display:flex;animation:tk 32s linear infinite;white-space:nowrap}
-.ticker-track:hover{animation-play-state:paused}
-.ti{display:inline-flex;align-items:center;gap:10px;padding:0 34px;font-size:11.5px;font-weight:600;color:var(--faint);letter-spacing:.09em;text-transform:uppercase}
-.td{width:4px;height:4px;background:var(--teal);border-radius:50%;opacity:.6}
-@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
 /* ── FOOTER ── */
 .footer{border-top:1px solid var(--div);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);padding:80px 28px 36px;position:relative;z-index:1;margin-top:auto}
 .fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:60px;border-bottom:1px solid var(--div)}
@@ -189,9 +181,104 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
   .fg{grid-template-columns:1fr;gap:28px}
   .footer{padding:52px 18px 28px}
 }
+
+/* CUSTOM CANDLE CURSOR (BRIGHTER & STRONGER MAGNET) */
+.candle-cursor-layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  overflow:hidden;
+}
+
+.candle-cursor-arrow{
+  position:fixed;
+  left:0;
+  top:0;
+  width:18px;
+  height:18px;
+  pointer-events:none;
+  z-index:10000;
+  transform:translate3d(-100px,-100px,0);
+  opacity:.95;
+  filter:drop-shadow(0 0 8px rgba(239,68,68,.3));
+}
+
+.candle-cursor-arrow svg{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.cursor-candle{
+  position:fixed;
+  left:0;
+  top:0;
+  width:8px;
+  height:18px;
+  pointer-events:none;
+  z-index:9999;
+  will-change:transform,opacity;
+  filter:blur(.15px) drop-shadow(0 0 8px currentColor);
+}
+
+.cursor-candle .wick{
+  position:absolute;
+  left:50%;
+  top:1px;
+  width:1px;
+  height:16px;
+  transform:translateX(-50%);
+  background:currentColor;
+  opacity:.70;
+  border-radius:2px;
+}
+
+.cursor-candle .body{
+  position:absolute;
+  left:50%;
+  top:4px;
+  width:6px;
+  height:10px;
+  transform:translateX(-50%);
+  border-radius:2px;
+  border:1px solid currentColor;
+  box-shadow:0 0 10px currentColor;
+  opacity:.9;
+}
+
+.cursor-candle.bull .body{
+  background:rgba(16,232,142,.45);
+}
+
+.cursor-candle.bear .body{
+  background:rgba(255,99,132,.45);
+}
+
+.cursor-candle.alt1{color:rgba(0,212,200,.95);}
+.cursor-candle.alt2{color:rgba(201,241,53,.95);}
+.cursor-candle.alt3{color:rgba(59,143,245,.95);}
+.cursor-candle.alt4{color:rgba(16,232,142,.95);}
+.cursor-candle.alt5{color:rgba(245,158,11,.95);}
+.cursor-candle.alt6{color:rgba(255,99,132,.95);}
+
+@media (max-width: 768px){
+  .candle-cursor-layer,
+  .candle-cursor-arrow{
+    display:none;
+  }
+}
 </style>
 </head>
 <body>
+
+<div class="candle-cursor-layer" id="candleCursorLayer" aria-hidden="true"></div>
+
+<div class="candle-cursor-arrow" id="candleCursorArrow" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="#ef4444"/>
+  </svg>
+</div>
 
 <div class="bg-canvas" aria-hidden="true">
   <div class="bg-orb bg-orb-1"></div>
@@ -212,13 +299,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     <div class="nav-links">
       <a href="../index.html" class="nl-a">Home</a>
       <a href="../strategies/index.html" class="nl-a">Indicator and Strategy</a>
-      <div class="dd">
-        <button class="dd-btn">Performance <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
-        <div class="dd-menu">
-          <a href="../reports/global/index.html" class="di">Global Market</a>
-          <a href="../reports/india/index.html" class="di">Indian Market</a>
-        </div>
-      </div>
       <div class="dd">
         <button class="dd-btn on">Resources <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="dd-menu">
@@ -244,9 +324,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 <div class="mob" id="mob">
   <a href="../index.html" class="ma">Home</a>
   <a href="../strategies/index.html" class="ma">Indicator and Strategy</a>
-  <div class="mlbl">Performance</div>
-  <a href="../reports/global/index.html" class="ma">Global Market</a>
-  <a href="../reports/india/index.html" class="ma">Indian Market</a>
   <div class="mlbl">Resources</div>
   <a href="../doc/index.html" class="ma">Documentation</a>
   <a href="index.html" class="ma" style="color:var(--lime)">Blogs</a>
@@ -269,27 +346,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
     </p>
   </div>
 </section>
-
-<div class="ticker-wrap">
-  <div class="ticker-track" aria-hidden="true">
-    <span class="ti"><span class="td"></span>GARCH Volatility Models</span>
-    <span class="ti"><span class="td"></span>Pine Script v6</span>
-    <span class="ti"><span class="td"></span>Options Greeks</span>
-    <span class="ti"><span class="td"></span>Market Microstructure</span>
-    <span class="ti"><span class="td"></span>Mean Reversion</span>
-    <span class="ti"><span class="td"></span>Algorithmic Strategy</span>
-    <span class="ti"><span class="td"></span>Nifty Analysis</span>
-    <span class="ti"><span class="td"></span>Quantitative Finance</span>
-    <span class="ti"><span class="td"></span>GARCH Volatility Models</span>
-    <span class="ti"><span class="td"></span>Pine Script v6</span>
-    <span class="ti"><span class="td"></span>Options Greeks</span>
-    <span class="ti"><span class="td"></span>Market Microstructure</span>
-    <span class="ti"><span class="td"></span>Mean Reversion</span>
-    <span class="ti"><span class="td"></span>Algorithmic Strategy</span>
-    <span class="ti"><span class="td"></span>Nifty Analysis</span>
-    <span class="ti"><span class="td"></span>Quantitative Finance</span>
-  </div>
-</div>
 
 <main style="flex:1">
 <section class="sec" style="padding-top:clamp(52px,6vw,80px)">
@@ -317,17 +373,25 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         </div>
       </article>
 
-      <article class="bcard rv ru" style="transition-delay:.1s" onclick="window.location.href='how-to-build-algo.html'">
+      <article class="bcard rv ru" style="transition-delay:.1s" onclick="window.location.href='ai_trading_vs_algo_trading.html'">
         <div class="bcard-img">
-          <img src="how_to_build_algo.png" alt="Build Algo Trading Strategy" loading="lazy">
+          <div class="w-full h-full flex" style="background:#090e1a;">
+             <div style="flex:1; border-right:1px solid rgba(0,212,200,0.3); background:radial-gradient(circle at center, rgba(0,212,200,0.1), transparent); display:flex; align-items:center; justify-content:center;">
+                 <i class="fa-solid fa-code text-4xl text-[#00d4c8] opacity-50"></i>
+             </div>
+             <div style="flex:1; background:radial-gradient(circle at center, rgba(201,241,53,0.1), transparent); display:flex; align-items:center; justify-content:center;">
+                 <i class="fa-solid fa-brain text-4xl text-[#c9f135] opacity-50"></i>
+             </div>
+             <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:#0d1424; padding:8px 12px; border-radius:12px; border:1px solid rgba(255,255,255,0.1); color:white; font-weight:bold; font-size:12px;">VS</div>
+          </div>
           <div class="fade"></div>
         </div>
         <div class="bcard-body">
           <span class="bcard-date">April 26, 2026</span>
-          <h3 class="bcard-title">How to Build an Algo Strategy</h3>
-          <p class="bcard-excerpt">Learn the step-by-step framework to define, backtest, and code algorithmic trading strategies using TradingView Pine Script...</p>
-          <a href="how-to-build-algo.html" class="bcard-cta">
-            Read Tutorial <i class="fa-solid fa-arrow-right" style="font-size:10px"></i>
+          <h3 class="bcard-title">AI Trading vs Algo Trading</h3>
+          <p class="bcard-excerpt">Discover the real difference between AI Trading and Algorithmic Trading, and find out what actually works in Indian markets...</p>
+          <a href="ai_trading_vs_algo_trading.html" class="bcard-cta">
+            Read Analysis <i class="fa-solid fa-arrow-right" style="font-size:10px"></i>
           </a>
         </div>
       </article>
@@ -347,7 +411,22 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
         </div>
       </article>
 
-      <article class="bcard locked rv ru" style="transition-delay:.3s">
+      <article class="bcard rv ru" style="transition-delay:.3s" onclick="window.location.href='how-to-build-algo.html'">
+        <div class="bcard-img">
+          <img src="how_to_build_algo.png" alt="Build Algo Trading Strategy" loading="lazy">
+          <div class="fade"></div>
+        </div>
+        <div class="bcard-body">
+          <span class="bcard-date">May 10, 2026</span>
+          <h3 class="bcard-title">How to Build an Algo Strategy</h3>
+          <p class="bcard-excerpt">Learn the step-by-step framework to define, backtest, and code algorithmic trading strategies using TradingView Pine Script...</p>
+          <a href="how-to-build-algo.html" class="bcard-cta">
+            Read Tutorial <i class="fa-solid fa-arrow-right" style="font-size:10px"></i>
+          </a>
+        </div>
+      </article>
+      
+      <article class="bcard locked rv ru" style="transition-delay:.4s">
         <div class="bcard-img">
           <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
         </div>
@@ -455,6 +534,162 @@ document.addEventListener('DOMContentLoaded',function(){
     });
   },{threshold:0.08});
   els.forEach(function(el){obs.observe(el);});
+})();
+</script>
+
+<script>
+(function(){
+  var layer = document.getElementById('candleCursorLayer');
+  var arrow = document.getElementById('candleCursorArrow');
+  if(!layer || !arrow) return;
+
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+
+  var mouse = {
+    x: window.innerWidth * 0.5,
+    y: window.innerHeight * 0.5,
+    tx: window.innerWidth * 0.5,
+    ty: window.innerHeight * 0.5,
+    active: false
+  };
+
+  var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
+  var total = 18;
+  var candles = [];
+  var rafId = null;
+
+  function rand(min,max){ return Math.random() * (max - min) + min; }
+
+  function createCandle(i){
+    var el = document.createElement('div');
+    var bull = Math.random() > 0.45;
+    el.className = 'cursor-candle ' + (bull ? 'bull' : 'bear') + ' ' + colors[i % colors.length];
+
+    var wick = document.createElement('span');
+    wick.className = 'wick';
+
+    var body = document.createElement('span');
+    body.className = 'body';
+
+    var bodyH = rand(6, 12);
+    var wickH = bodyH + rand(6, 10);
+    var bodyTop = rand(3, 6);
+
+    el.style.width = rand(6, 9) + 'px';
+    el.style.height = Math.max(16, wickH + 2) + 'px';
+    
+    el.style.opacity = rand(0.35, 0.75);
+
+    wick.style.height = wickH + 'px';
+    wick.style.top = '1px';
+
+    body.style.height = bodyH + 'px';
+    body.style.width = rand(4, 7) + 'px';
+    body.style.top = bodyTop + 'px';
+
+    el.appendChild(wick);
+    el.appendChild(body);
+    layer.appendChild(el);
+
+    return {
+      el: el,
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      vx: rand(-0.18, 0.18),
+      vy: rand(-0.18, 0.18),
+      driftX: rand(-0.015, 0.015),
+      driftY: rand(-0.015, 0.015),
+      angle: rand(-18, 18),
+      rotSpeed: rand(-0.08, 0.08),
+      size: rand(0.85, 1.18),
+      magnet: rand(180, 280), /* Hugely increased radius */
+      pull: rand(0.025, 0.050), /* Hugely increased force */
+      ease: rand(0.92, 0.965),
+      phase: rand(0, Math.PI * 2),
+      bob: rand(0.08, 0.22)
+    };
+  }
+
+  function init(){
+    for(var i=0;i<total;i++){
+      candles.push(createCandle(i));
+    }
+  }
+
+  function onMove(e){
+    mouse.tx = e.clientX;
+    mouse.ty = e.clientY;
+    mouse.active = true;
+  }
+
+  function onLeave(){
+    mouse.active = false;
+  }
+
+  function resizeReset(){
+    for(var i=0;i<candles.length;i++){
+      candles[i].x = rand(0, window.innerWidth);
+      candles[i].y = rand(0, window.innerHeight);
+    }
+  }
+
+  function animate(){
+    mouse.x += (mouse.tx - mouse.x) * 0.18;
+    mouse.y += (mouse.ty - mouse.y) * 0.18;
+
+    arrow.style.transform = 'translate3d(' + (mouse.x - 1) + 'px,' + (mouse.y - 1) + 'px,0)';
+
+    var t = performance.now() * 0.001;
+
+    for(var i=0;i<candles.length;i++){
+      var c = candles[i];
+
+      c.vx += c.driftX + Math.sin(t + c.phase) * 0.0018;
+      c.vy += c.driftY + Math.cos(t * 0.9 + c.phase) * 0.0018;
+
+      if(mouse.active){
+        var dx = mouse.x - c.x;
+        var dy = mouse.y - c.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+
+        if(dist < c.magnet){
+          var force = (1 - dist / c.magnet) * c.pull;
+          /* Increased force multiplier to snap faster */
+          c.vx += (dx / dist) * force * 4.0;
+          c.vy += (dy / dist) * force * 4.0;
+        }
+      }
+
+      c.vx *= c.ease;
+      c.vy *= c.ease;
+
+      c.x += c.vx;
+      c.y += c.vy;
+
+      if(c.x < -20){ c.x = window.innerWidth + 20; }
+      if(c.x > window.innerWidth + 20){ c.x = -20; }
+      if(c.y < -20){ c.y = window.innerHeight + 20; }
+      if(c.y > window.innerHeight + 20){ c.y = -20; }
+
+      c.angle += c.rotSpeed;
+      var bobY = Math.sin(t * 1.4 + c.phase) * c.bob * 8;
+
+      c.el.style.transform =
+        'translate3d(' + c.x + 'px,' + (c.y + bobY) + 'px,0) ' +
+        'rotate(' + c.angle + 'deg) scale(' + c.size + ')';
+    }
+
+    rafId = requestAnimationFrame(animate);
+  }
+
+  init();
+  window.addEventListener('mousemove', onMove, { passive:true });
+  window.addEventListener('mouseenter', onMove, { passive:true });
+  document.addEventListener('mouseleave', onLeave, { passive:true });
+  window.addEventListener('resize', resizeReset, { passive:true });
+
+  animate();
 })();
 </script>
 
