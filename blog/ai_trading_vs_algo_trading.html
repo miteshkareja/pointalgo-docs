@@ -1,1 +1,633 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GJZXB11LLJ');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <title>AI Trading vs Algo Trading | PointAlgo Blog</title>
+    <meta name="description" content="Discover the real difference between AI Trading and Algorithmic Trading, and find out what actually works consistently in the Indian markets.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root{
+          --bg:#05080f;--s1:#090e1a;--s2:#0d1424;--s3:#111b30;
+          --bdr:rgba(255,255,255,.07);--bdr-m:rgba(255,255,255,.12);--bdr-h:rgba(255,255,255,.20);
+          --div:rgba(255,255,255,.04);
+          --txt:#dde6f0;--muted:#8a9bb5;--faint:#2c3d52;
+          --lime:#c9f135;--lime-g:rgba(201,241,53,.28);--lime-d:rgba(201,241,53,.09);
+          --teal:#00d4c8;--teal-g:rgba(0,212,200,.22);
+          --cobalt:#3b8ff5;
+          --emerald:#10e88e;
+          --amber:#f59e0b;
+          --fd:'Inter',system-ui,sans-serif;
+          --fh:'Space Grotesk','Inter',sans-serif;
+          --ease:cubic-bezier(.16,1,.3,1);
+        }
+        
+        body { 
+            background-color: var(--bg);
+            color: var(--txt); 
+            font-family: var(--fd); 
+            overflow-x: hidden;
+            cursor: none !important; /* Hides default system cursor */
+        }
 
+        /* ── ANIMATED BACKGROUND & GRID ── */
+        .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .bg-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; }
+        .bg-orb-1 { width: 680px; height: 680px; top: -180px; left: -120px; background: radial-gradient(circle, rgba(0,212,200,0.16) 0%, transparent 70%); animation: od1 20s ease-in-out infinite alternate; }
+        .bg-orb-2 { width: 560px; height: 560px; top: 8%; right: -80px; background: radial-gradient(circle, rgba(201,241,53,0.10) 0%, transparent 70%); animation: od2 24s ease-in-out infinite alternate; }
+        .bg-orb-3 { width: 480px; height: 480px; bottom: 12%; left: 22%; background: radial-gradient(circle, rgba(59,143,245,0.09) 0%, transparent 70%); animation: od3 28s ease-in-out infinite alternate; }
+        .bg-orb-4 { width: 380px; height: 380px; bottom: -80px; right: 12%; background: radial-gradient(circle, rgba(16,232,142,0.07) 0%, transparent 70%); animation: od4 22s ease-in-out infinite alternate; }
+        @keyframes od1 { to { transform: translate(70px, 110px); } }
+        @keyframes od2 { to { transform: translate(-55px, 85px); } }
+        @keyframes od3 { to { transform: translate(95px, -75px); } }
+        @keyframes od4 { to { transform: translate(-75px, -55px); } }
+        
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .bg-vig { position: absolute; inset: 0; background: radial-gradient(ellipse 130% 110% at 50% 50%, transparent 28%, rgba(5,8,15,0.82) 100%); }
+        .wrap { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* ── SCROLL REVEAL ANIMATIONS ── */
+        .rv { opacity: 0; transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .rv.on { opacity: 1; transform: none !important; }
+        .ru { transform: translateY(40px); }
+        .rl { transform: translateX(-30px); }
+        .rr { transform: translateX(30px); }
+
+        /* ── UI ELEMENTS ── */
+        .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid var(--bdr); }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid var(--bdr); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+        
+        /* Custom formatting for the blog post content */
+        .prose h2 { color: #ffffff; font-family: var(--fh); font-weight: 800; font-size: 1.875rem; margin-top: 3.5rem; margin-bottom: 1.25rem; letter-spacing: -0.025em; }
+        .prose h3 { color: #ffffff; font-family: var(--fh); font-weight: 700; font-size: 1.25rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .prose p { color: var(--muted); font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; }
+        .prose ul, .prose ol { color: var(--muted); font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .prose li { margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+        .prose li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--lime); margin-top: 0.25rem; font-size: 14px; }
+        .prose strong { color: #ffffff; }
+
+        /* ── CUSTOM AI VS ALGO ANIMATION (CSS ONLY) ── */
+        .hero-anim-wrap {
+            width: 100%; height: 240px; border-radius: 2rem; border: 1px solid var(--bdr-m); 
+            background: var(--s2); overflow: hidden; display: flex; position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+        @media (min-width: 768px) { .hero-anim-wrap { height: 320px; } }
+        
+        .algo-side {
+            flex: 1; position: relative; overflow: hidden; border-right: 1px solid var(--bdr);
+            background: radial-gradient(circle at center, rgba(0, 212, 200, 0.15) 0%, transparent 80%);
+        }
+        .ai-side {
+            flex: 1; position: relative; overflow: hidden;
+            background: radial-gradient(circle at center, rgba(201, 241, 53, 0.15) 0%, transparent 80%);
+        }
+        
+        /* Algo Animated Line */
+        .algo-chart {
+            position: absolute; left: -100%; top: 50%; width: 200%; height: 120px; transform: translateY(-50%);
+            background: linear-gradient(90deg, transparent, rgba(0,212,200,0.8) 50%, transparent);
+            clip-path: polygon(0 50%, 10% 50%, 10% 20%, 20% 20%, 20% 80%, 35% 80%, 35% 40%, 50% 40%, 50% 60%, 65% 60%, 65% 30%, 80% 30%, 80% 50%, 100% 50%, 100% 52%, 82% 52%, 82% 32%, 63% 32%, 63% 62%, 48% 62%, 48% 42%, 33% 42%, 33% 82%, 18% 82%, 18% 22%, 8% 22%, 8% 52%, 0 52%);
+            animation: algo-scan 6s linear infinite;
+        }
+        @keyframes algo-scan { 0% { transform: translate(0, -50%); } 100% { transform: translate(50%, -50%); } }
+        
+        /* AI Nodes */
+        .ai-node {
+            position: absolute; width: 14px; height: 14px; background: var(--lime); border-radius: 50%;
+            box-shadow: 0 0 20px var(--lime); animation: ai-pulse 2s ease-in-out infinite alternate;
+        }
+        .n1 { top: 25%; left: 30%; animation-delay: 0s; }
+        .n2 { top: 65%; left: 55%; animation-delay: 0.6s; }
+        .n3 { top: 35%; left: 75%; animation-delay: 1.2s; }
+        .n4 { top: 75%; left: 20%; animation-delay: 1.8s; }
+        .ai-link {
+            position: absolute; background: rgba(201, 241, 53, 0.4); transform-origin: 0 0;
+            box-shadow: 0 0 10px rgba(201, 241, 53, 0.2);
+        }
+        .l1 { top: 27%; left: 32%; width: 100px; height: 2px; transform: rotate(52deg); }
+        .l2 { top: 67%; left: 57%; width: 90px; height: 2px; transform: rotate(-45deg); }
+        .l3 { top: 27%; left: 32%; width: 120px; height: 2px; transform: rotate(115deg); }
+        
+        @keyframes ai-pulse { 0% { transform: scale(0.7); opacity: 0.4; } 100% { transform: scale(1.4); opacity: 1; } }
+        
+        .vs-badge {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 54px; height: 54px; background: var(--s1); border: 2px solid var(--bdr-m);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: var(--fh); font-weight: 800; font-size: 18px; color: #fff; z-index: 10;
+            box-shadow: 0 0 30px rgba(0,0,0,0.9);
+        }
+
+        /* ── CUSTOM CANDLE CURSOR ── */
+        .candle-cursor-layer{ position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden; }
+        .candle-cursor-arrow{ position:fixed; left:0; top:0; width:18px; height:18px; pointer-events:none; z-index:10000; transform:translate3d(-100px,-100px,0); opacity:.95; filter:drop-shadow(0 0 8px rgba(239,68,68,.3)); }
+        .candle-cursor-arrow svg{ display:block; width:100%; height:100%; }
+        .cursor-candle{ position:fixed; left:0; top:0; width:8px; height:18px; pointer-events:none; z-index:9999; will-change:transform,opacity; filter:blur(.15px) drop-shadow(0 0 8px currentColor); }
+        .cursor-candle .wick{ position:absolute; left:50%; top:1px; width:1px; height:16px; transform:translateX(-50%); background:currentColor; opacity:.70; border-radius:2px; }
+        .cursor-candle .body{ position:absolute; left:50%; top:4px; width:6px; height:10px; transform:translateX(-50%); border-radius:2px; border:1px solid currentColor; box-shadow:0 0 10px currentColor; opacity:.9; }
+        .cursor-candle.bull .body{ background:rgba(16,232,142,.45); }
+        .cursor-candle.bear .body{ background:rgba(255,99,132,.45); }
+        .cursor-candle.alt1{color:rgba(0,212,200,.95);}
+        .cursor-candle.alt2{color:rgba(201,241,53,.95);}
+        .cursor-candle.alt3{color:rgba(59,143,245,.95);}
+        .cursor-candle.alt4{color:rgba(16,232,142,.95);}
+        .cursor-candle.alt5{color:rgba(245,158,11,.95);}
+        .cursor-candle.alt6{color:rgba(255,99,132,.95);}
+        @media (max-width: 768px){ .candle-cursor-layer, .candle-cursor-arrow{ display:none; } }
+    </style>
+</head>
+<body class="antialiased">
+
+<div class="candle-cursor-layer" id="candleCursorLayer" aria-hidden="true"></div>
+<div class="candle-cursor-arrow" id="candleCursorArrow" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="#ef4444"/>
+  </svg>
+</div>
+
+<div class="bg-canvas" aria-hidden="true">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-orb bg-orb-4"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-vig"></div>
+</div>
+
+<div class="wrap">
+
+    <nav class="nav" id="nav">
+      <div class="nav-in">
+        <a href="../index.html" class="logo">
+          <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" width="180" height="56">
+        </a>
+        <div class="nav-links">
+          <a href="../index.html" class="nl-a">Home</a>
+          <a href="../strategies/index.html" class="nl-a">Indicator and Strategy</a>
+          
+          <div class="dd">
+            <button class="dd-btn on">Resources <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
+            <div class="dd-menu">
+              <a href="../doc/index.html" class="di">Documentation</a>
+              <a href="index.html" class="di on">Blogs</a>
+            </div>
+          </div>
+          <div class="dd">
+            <button class="dd-btn">Community <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg></button>
+            <div class="dd-menu">
+              <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
+              <a href="../free-tools/index.html" class="di">Free Toolkit</a>
+            </div>
+          </div>
+        </div>
+        <a href="../strategies/index.html#pricing" class="nav-cta">Get Access</a>
+        <button class="hbg" id="hbg" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mob" id="mob">
+      <a href="../index.html" class="ma">Home</a>
+      <a href="../strategies/index.html" class="ma">Indicator and Strategy</a>
+      <div class="mlbl">Resources</div>
+      <a href="../doc/index.html" class="ma">Documentation</a>
+      <a href="index.html" class="ma" style="color:var(--lime)">Blogs</a>
+      <div class="mlbl">Community</div>
+      <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
+      <a href="../free-tools/index.html" class="ma">Free Toolkit</a>
+      <a href="../strategies/index.html#pricing" class="m-cta">Get Access →</a>
+    </div>
+
+    <main class="flex-grow pt-36 pb-24 px-6 lg:px-8 max-w-4xl mx-auto w-full relative z-10">
+        
+        <header class="mb-12 text-center md:text-left">
+            <div class="inline-block bg-[#00d4c8]/10 text-[#00d4c8] text-xs font-bold px-3 py-1.5 rounded-full mb-6 uppercase tracking-widest border border-[#00d4c8]/20 rv ru">
+                Quantitative Comparison
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white italic tracking-tighter mb-6 leading-tight rv ru" style="transition-delay: 0.1s;">
+                AI Trading vs Algo Trading: <br><span class="text-[#00d4c8]">What Actually Works in Indian Markets?</span>
+            </h1>
+            <div class="flex items-center justify-center md:justify-start gap-4 text-sm text-slate-400 font-medium rv ru" style="transition-delay: 0.2s;">
+                <span>By PointAlgo Quant Team</span>
+                <span>•</span>
+                <span>5 Min Read</span>
+            </div>
+        </header>
+
+        <div class="mb-12 rv ru" style="transition-delay: 0.3s;">
+            <div class="hero-anim-wrap">
+                <div class="algo-side">
+                    <div class="algo-chart"></div>
+                    <div class="absolute bottom-4 left-6 text-xs md:text-sm font-mono text-[#00d4c8] font-bold uppercase tracking-widest z-10">Algorithmic Trading</div>
+                </div>
+                <div class="ai-side">
+                    <div class="ai-node n1"></div>
+                    <div class="ai-node n2"></div>
+                    <div class="ai-node n3"></div>
+                    <div class="ai-node n4"></div>
+                    <div class="ai-link l1"></div>
+                    <div class="ai-link l2"></div>
+                    <div class="ai-link l3"></div>
+                    <div class="absolute bottom-4 right-6 text-xs md:text-sm font-mono text-[#c9f135] font-bold uppercase tracking-widest text-right z-10">Adaptive AI</div>
+                </div>
+                <div class="vs-badge">VS</div>
+            </div>
+        </div>
+
+        <article class="prose">
+            <p class="rv ru">Artificial Intelligence (AI) has become one of the most discussed topics in financial markets. Every week new platforms claim to offer AI-powered trading systems capable of predicting market movements.</p>
+
+            <p class="rv ru">But does AI really outperform traditional algorithmic trading?</p>
+            <p class="rv ru">Let's examine the facts.</p>
+
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-[#00d4c8] rv ru">
+                <h2 class="!mt-0 text-[#00d4c8]">What is Algorithmic Trading?</h2>
+                <p>Algorithmic trading uses predefined rules to execute trades automatically. Examples include:</p>
+                <ul class="mb-6">
+                    <li>Moving Average Crossover</li>
+                    <li>RSI Strategies</li>
+                    <li>Breakout Systems</li>
+                    <li>Mean Reversion Models</li>
+                    <li>Volatility Based Models</li>
+                </ul>
+                <div class="mt-4 p-4 bg-black/40 rounded-xl border border-white/5">
+                    <p class="!mb-0 text-sm font-medium"><strong>The core principle:</strong> The strategy logic is fixed and transparent.</p>
+                </div>
+            </div>
+
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-[#c9f135] rv ru">
+                <h2 class="!mt-0 text-[#c9f135]">What is AI Trading?</h2>
+                <p>AI trading systems attempt to learn patterns from historical data. Popular techniques include:</p>
+                <ul class="mb-6" style="--lime: #c9f135;">
+                    <li>Machine Learning</li>
+                    <li>Random Forest Models</li>
+                    <li>Neural Networks</li>
+                    <li>Reinforcement Learning</li>
+                    <li>Deep Learning</li>
+                </ul>
+                <div class="mt-4 p-4 bg-black/40 rounded-xl border border-white/5">
+                    <p class="!mb-0 text-sm font-medium"><strong>The core principle:</strong> Instead of fixed rules, AI continuously adapts based on data.</p>
+                </div>
+            </div>
+
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-[#ef4444] rv ru">
+                <h2 class="!mt-0 text-[#ef4444]">Why Most AI Trading Systems Fail</h2>
+                <p>Many traders believe AI can predict markets with near-perfect accuracy. In reality:</p>
+                <ul class="mb-6" style="--lime: #ef4444;">
+                    <li>Markets change constantly (Regime shifts)</li>
+                    <li>Historical relationships break down</li>
+                    <li>Overfitting is common (performing well in backtests, failing in live markets)</li>
+                    <li>AI requires huge datasets (often unavailable for specific intraday derivatives)</li>
+                </ul>
+                <p class="!mb-0 italic text-slate-400">Even billion-dollar hedge funds struggle to maintain profitable pure-AI directional models.</p>
+            </div>
+
+            <h2 class="rv ru">Where AI Actually Helps Traders</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 rv ru">
+                <div class="glass-card p-6 rounded-2xl border-t border-t-[#c9f135]">
+                    <h3 class="!mt-0 !mb-2 text-lg text-white"><i class="fa-solid fa-filter text-[#c9f135] mr-2"></i> Signal Filtering</h3>
+                    <p class="!mb-0 text-sm text-slate-400">Removing low-quality trades and identifying false breakouts before they happen.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-t border-t-[#00d4c8]">
+                    <h3 class="!mt-0 !mb-2 text-lg text-white"><i class="fa-solid fa-layer-group text-[#00d4c8] mr-2"></i> Regime Detection</h3>
+                    <p class="!mb-0 text-sm text-slate-400">Identifying Trending Markets, Range Bound Markets, and High Volatility Environments instantly.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-t border-t-[#3b8ff5]">
+                    <h3 class="!mt-0 !mb-2 text-lg text-white"><i class="fa-solid fa-chart-pie text-[#3b8ff5] mr-2"></i> Portfolio Optimization</h3>
+                    <p class="!mb-0 text-sm text-slate-400">Allocating capital efficiently based on live risk-metrics and dynamic correlation.</p>
+                </div>
+            </div>
+
+            <h2 class="rv ru">What Works Better in India?</h2>
+            <p class="rv ru">For most retail and proprietary traders operating in Nifty, BankNifty, and Indian Equities:</p>
+            <div class="text-center my-8 p-6 bg-slate-800/50 rounded-2xl border border-slate-700 rv ru">
+                <span class="text-xl md:text-2xl font-black italic tracking-tight text-white">
+                    Rule-Based Algorithmic Trading <span class="text-[#00d4c8] mx-2">></span> AI Trading
+                </span>
+            </div>
+            <p class="rv ru"><strong>Reasons why:</strong></p>
+            <ul class="rv ru">
+                <li><strong>Easier to understand:</strong> You know exactly why a trade was taken.</li>
+                <li><strong>Easier to backtest:</strong> Fixed parameters mean reliable historical testing.</li>
+                <li><strong>Lower infrastructure cost:</strong> You don't need cloud GPUs to run a rule-based logic script.</li>
+                <li><strong>Better transparency:</strong> If it fails, you can isolate the variable and fix it.</li>
+            </ul>
+            <p class="rv ru italic">Many of the most profitable Indian traders still rely heavily on quantitative, rule-based systems rather than pure AI black boxes.</p>
+
+            <div class="mt-16 p-8 bg-[#00d4c8]/5 border border-[#00d4c8]/20 rounded-3xl text-center shadow-[0_10px_40px_rgba(0,212,200,0.05)] rv ru">
+                <h2 class="!mt-0 !mb-4 text-[#00d4c8]">Final Thoughts</h2>
+                <p class="!mb-6 text-slate-300">AI is a powerful tool, but it is not a magic solution. The most successful trading systems currently operating do not rely solely on one or the other. They combine:</p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm font-bold text-white mb-6">
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg">Quantitative Rules</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg">Risk Management</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg">Volatility Models</span>
+                    <span class="px-4 py-2 bg-[#c9f135]/10 border border-[#c9f135]/30 text-[#c9f135] rounded-lg">AI-Based Filters</span>
+                </div>
+                <p class="!mb-0 text-slate-400 italic">This hybrid approach—using rigid algorithms for execution and AI for environmental filtering—often produces much more stable results than pure AI.</p>
+            </div>
+            
+        </article>
+    </main>
+
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                
+                <div class="col-span-1 md:col-span-1 space-y-6">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
+                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
+                        Advanced Quantitative <br> Intelligence Systems.
+                    </p>
+                    <div class="flex gap-5 text-xl">
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
+                    <div class="space-y-3">
+                        <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
+                        <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
+                        <a href="index.html" class="block text-[#00d4c8] font-bold text-sm transition-colors">Blog</a>
+                        <a href="../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
+                        <a href="../contact/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
+                    <div class="space-y-3">
+                        <a href="../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                        <a href="../legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
+                        <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
+                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#00d4c8]">hello@pointalgo.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
+                            <p class="text-white font-medium text-sm">+91-8452035834</p>
+                        </div>
+                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-12 border-t border-white/5">
+                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
+                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
+                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
+                <div class="flex gap-6">
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div> <script>
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        if (btn && menu) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                menu.classList.toggle('hidden');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars-staggered');
+                    icon.classList.toggle('fa-xmark');
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                    menu.classList.add('hidden');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars-staggered');
+                        icon.classList.remove('fa-xmark');
+                    }
+                }
+            });
+        }
+
+        // SCROLL REVEAL ANIMATIONS
+        (function(){
+            var els = document.querySelectorAll('.rv');
+            if(!('IntersectionObserver' in window)){
+                els.forEach(function(e){e.classList.add('on')});
+                return;
+            }
+            var obs = new IntersectionObserver(function(entries){
+                entries.forEach(function(en){
+                    if(en.isIntersecting){
+                        en.target.classList.add('on');
+                        obs.unobserve(en.target);
+                    }
+                });
+            },{threshold:0.1});
+            els.forEach(function(el){obs.observe(el);});
+        })();
+    </script>
+
+<script>
+(function(){
+  var layer = document.getElementById('candleCursorLayer');
+  var arrow = document.getElementById('candleCursorArrow');
+  if(!layer || !arrow) return;
+
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+
+  var mouse = {
+    x: window.innerWidth * 0.5,
+    y: window.innerHeight * 0.5,
+    tx: window.innerWidth * 0.5,
+    ty: window.innerHeight * 0.5,
+    active: false
+  };
+
+  var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
+  var total = 18;
+  var candles = [];
+  var rafId = null;
+
+  function rand(min,max){ return Math.random() * (max - min) + min; }
+
+  function createCandle(i){
+    var el = document.createElement('div');
+    var bull = Math.random() > 0.45;
+    el.className = 'cursor-candle ' + (bull ? 'bull' : 'bear') + ' ' + colors[i % colors.length];
+
+    var wick = document.createElement('span');
+    wick.className = 'wick';
+
+    var body = document.createElement('span');
+    body.className = 'body';
+
+    var bodyH = rand(6, 12);
+    var wickH = bodyH + rand(6, 10);
+    var bodyTop = rand(3, 6);
+
+    el.style.width = rand(6, 9) + 'px';
+    el.style.height = Math.max(16, wickH + 2) + 'px';
+    
+    el.style.opacity = rand(0.35, 0.75);
+
+    wick.style.height = wickH + 'px';
+    wick.style.top = '1px';
+
+    body.style.height = bodyH + 'px';
+    body.style.width = rand(4, 7) + 'px';
+    body.style.top = bodyTop + 'px';
+
+    el.appendChild(wick);
+    el.appendChild(body);
+    layer.appendChild(el);
+
+    return {
+      el: el,
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      vx: rand(-0.18, 0.18),
+      vy: rand(-0.18, 0.18),
+      driftX: rand(-0.015, 0.015),
+      driftY: rand(-0.015, 0.015),
+      angle: rand(-18, 18),
+      rotSpeed: rand(-0.08, 0.08),
+      size: rand(0.85, 1.18),
+      magnet: rand(180, 280),
+      pull: rand(0.025, 0.050),
+      ease: rand(0.92, 0.965),
+      phase: rand(0, Math.PI * 2),
+      bob: rand(0.08, 0.22)
+    };
+  }
+
+  function init(){
+    for(var i=0;i<total;i++){
+      candles.push(createCandle(i));
+    }
+  }
+
+  function onMove(e){
+    mouse.tx = e.clientX;
+    mouse.ty = e.clientY;
+    mouse.active = true;
+  }
+
+  function onLeave(){
+    mouse.active = false;
+  }
+
+  function resizeReset(){
+    for(var i=0;i<candles.length;i++){
+      candles[i].x = rand(0, window.innerWidth);
+      candles[i].y = rand(0, window.innerHeight);
+    }
+  }
+
+  function animate(){
+    mouse.x += (mouse.tx - mouse.x) * 0.18;
+    mouse.y += (mouse.ty - mouse.y) * 0.18;
+
+    arrow.style.transform = 'translate3d(' + (mouse.x - 1) + 'px,' + (mouse.y - 1) + 'px,0)';
+
+    var t = performance.now() * 0.001;
+
+    for(var i=0;i<candles.length;i++){
+      var c = candles[i];
+
+      c.vx += c.driftX + Math.sin(t + c.phase) * 0.0018;
+      c.vy += c.driftY + Math.cos(t * 0.9 + c.phase) * 0.0018;
+
+      if(mouse.active){
+        var dx = mouse.x - c.x;
+        var dy = mouse.y - c.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+
+        if(dist < c.magnet){
+          var force = (1 - dist / c.magnet) * c.pull;
+          c.vx += (dx / dist) * force * 4.0;
+          c.vy += (dy / dist) * force * 4.0;
+        }
+      }
+
+      c.vx *= c.ease;
+      c.vy *= c.ease;
+
+      c.x += c.vx;
+      c.y += c.vy;
+
+      if(c.x < -20){ c.x = window.innerWidth + 20; }
+      if(c.x > window.innerWidth + 20){ c.x = -20; }
+      if(c.y < -20){ c.y = window.innerHeight + 20; }
+      if(c.y > window.innerHeight + 20){ c.y = -20; }
+
+      c.angle += c.rotSpeed;
+      var bobY = Math.sin(t * 1.4 + c.phase) * c.bob * 8;
+
+      c.el.style.transform =
+        'translate3d(' + c.x + 'px,' + (c.y + bobY) + 'px,0) ' +
+        'rotate(' + c.angle + 'deg) scale(' + c.size + ')';
+    }
+
+    rafId = requestAnimationFrame(animate);
+  }
+
+  init();
+  window.addEventListener('mousemove', onMove, { passive:true });
+  window.addEventListener('mouseenter', onMove, { passive:true });
+  document.addEventListener('mouseleave', onLeave, { passive:true });
+  window.addEventListener('resize', resizeReset, { passive:true });
+
+  animate();
+})();
+</script>
+
+</body>
+</html>
