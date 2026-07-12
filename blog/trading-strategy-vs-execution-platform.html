@@ -1,1 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GJZXB11LLJ');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <title>Trading Strategy vs Execution Platform | PointAlgo Blog</title>
+    <meta name="description" content="Understand the difference between a trading strategy and an execution platform in algorithmic trading. Learn how PointAlgo builds strategies and how execution platforms automate them.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { 
+            background-color: #05080f;
+            color: #f8fafc; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            overflow-x: hidden;
+        }
 
+        .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .bg-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; }
+        .bg-orb-1 { width: 680px; height: 680px; top: -180px; left: -120px; background: radial-gradient(circle, rgba(0,212,200,0.16) 0%, transparent 70%); animation: od1 20s ease-in-out infinite alternate; }
+        .bg-orb-2 { width: 560px; height: 560px; top: 8%; right: -80px; background: radial-gradient(circle, rgba(201,241,53,0.10) 0%, transparent 70%); animation: od2 24s ease-in-out infinite alternate; }
+        .bg-orb-3 { width: 480px; height: 480px; bottom: 12%; left: 22%; background: radial-gradient(circle, rgba(59,143,245,0.09) 0%, transparent 70%); animation: od3 28s ease-in-out infinite alternate; }
+        .bg-orb-4 { width: 380px; height: 380px; bottom: -80px; right: 12%; background: radial-gradient(circle, rgba(16,232,142,0.07) 0%, transparent 70%); animation: od4 22s ease-in-out infinite alternate; }
+        @keyframes od1 { to { transform: translate(70px, 110px); } }
+        @keyframes od2 { to { transform: translate(-55px, 85px); } }
+        @keyframes od3 { to { transform: translate(95px, -75px); } }
+        @keyframes od4 { to { transform: translate(-75px, -55px); } }
+        
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .bg-vig { position: absolute; inset: 0; background: radial-gradient(ellipse 130% 110% at 50% 50%, transparent 28%, rgba(5,8,15,0.82) 100%); }
+        .wrap { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
+
+        .rv { opacity: 0; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .rv.on { opacity: 1; transform: none !important; }
+        .ru { transform: translateY(40px); }
+        .rl { transform: translateX(-30px); }
+        .rr { transform: translateX(30px); }
+
+        .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+        
+        .prose h2 { color: #ffffff; font-weight: 800; font-size: 1.875rem; margin-top: 3.5rem; margin-bottom: 1.25rem; letter-spacing: -0.025em; }
+        .prose h3 { color: #ffffff; font-weight: 700; font-size: 1.25rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .prose p { color: #cbd5e1; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; }
+        .prose ul, .prose ol { color: #cbd5e1; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .prose li { margin-bottom: 0.75rem; }
+        .prose strong { color: #ffffff; }
+
+        .workflow-step { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 18px; border-radius: 10px; min-width: 240px; font-size: 0.95rem; font-weight: 700; color: #f8fafc; }
+        .workflow-num { width: 26px; height: 26px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+        .workflow-step.broker { border-color: rgba(16,185,129,0.25); background: rgba(16,185,129,0.06); }
+        .workflow-step.broker .workflow-num { background: #10b981; }
+        .workflow-step.execute { border-color: rgba(245,158,11,0.25); background: rgba(245,158,11,0.06); }
+        .workflow-step.execute .workflow-num { background: #f59e0b; }
+        .arrow-down { color: #64748b; font-size: 1.1rem; padding: 4px 0; }
+    </style>
+</head>
+<body class="antialiased">
+
+<div class="bg-canvas" aria-hidden="true">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-orb bg-orb-4"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-vig"></div>
+</div>
+
+<div class="wrap">
+
+    <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                
+                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../index.html'">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">HOME</a>
+                    <a href="../strategies/index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            PERFORMANCE <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../reports/global/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">GLOBAL MARKET</a>
+                                <a href="../reports/india/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">INDIAN MARKET</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-[#00e676] border-b-2 border-[#00e676] pb-1 uppercase tracking-widest cursor-pointer py-2">
+                            RESOURCES <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../doc/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">DOCUMENTATION</a>
+                                <a href="index.html" class="block px-5 py-3 text-xs font-bold text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">BLOGS</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            COMMUNITY <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="https://discord.gg/72wFfgmW" target="_blank" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">DISCORD</a>
+                                <a href="../free-tools/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">FREE TOOLKIT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:hidden relative z-[70]">
+                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none hover:text-[#00e676] transition-colors">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 z-[60] animate-fade-in">
+            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
+                <a href="../index.html" class="text-xl font-bold text-slate-300">HOME</a>
+                <hr class="border-white/5 w-12 mx-auto">
+                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                
+                <div class="py-2 border-y border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Performance</p>
+                    <a href="../reports/global/index.html" class="block text-lg font-medium text-slate-300 mb-4">GLOBAL MARKET</a>
+                    <a href="../reports/india/index.html" class="block text-lg font-medium text-slate-300">INDIAN MARKET</a>
+                </div>
+
+                <div class="py-2 border-b border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Resources</p>
+                    <a href="../doc/index.html" class="block text-lg font-medium text-slate-300 mb-4">DOCUMENTATION</a>
+                    <a href="index.html" class="block text-lg font-medium text-[#00e676]">BLOGS</a>
+                </div>
+
+                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300 uppercase tracking-widest">DISCORD</a>
+                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">FREE TOOLKIT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-36 pb-24 px-6 lg:px-8 max-w-4xl mx-auto w-full relative z-10">
+        
+        <header class="mb-12 text-center md:text-left">
+            <div class="inline-block bg-[#00e676]/10 text-[#00e676] text-xs font-bold px-3 py-1.5 rounded-full mb-6 uppercase tracking-widest border border-[#00e676]/20 rv ru">
+                Algorithmic Trading
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white italic tracking-tighter mb-6 leading-tight rv ru" style="transition-delay: 0.1s;">
+                Strategy vs Execution: <br><span class="text-[#00e676]">Two Pillars of Algo Trading</span>
+            </h1>
+            <div class="flex items-center justify-center md:justify-start gap-4 text-sm text-slate-400 font-medium rv ru" style="transition-delay: 0.2s;">
+                <span>By PointAlgo Team</span>
+                <span>•</span>
+                <span>6 Min Read</span>
+            </div>
+        </header>
+
+        <div class="mb-12 rv ru" style="transition-delay: 0.3s;">
+            <img src="https://raw.githubusercontent.com/miteshkareja/pointalgo-docs/refs/heads/main/blog/trading-strategy-vs-execution-platform.png" alt="Trading Strategy vs Execution Platform" class="w-full h-auto rounded-[2rem] border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] object-cover hover:scale-[1.02] transition-transform duration-500 ease-out">
+        </div>
+
+        <article class="prose">
+            <p class="rv ru">Many traders entering the world of algorithmic trading assume that a <strong>trading strategy</strong> and an <strong>execution platform</strong> are the same thing. In reality, they serve completely different purposes.</p>
+            <p class="rv ru">A profitable algorithmic trading setup consists of two essential components: a <strong>well-tested trading strategy</strong> and a <strong>reliable execution platform</strong> that automatically places trades. Understanding this distinction helps traders build more reliable and scalable trading systems.</p>
+
+            <h2 class="rv ru">What is a Trading Strategy?</h2>
+            <p class="rv ru">A trading strategy is a predefined set of rules that decides <strong>when to buy</strong>, <strong>when to sell</strong>, <strong>where to exit</strong>, and <strong>how much risk to take</strong>.</p>
+            <p class="rv ru">These rules may be based on:</p>
+            <ul class="rv ru">
+                <li>Technical indicators</li>
+                <li>Price action</li>
+                <li>Market structure</li>
+                <li>Volume analysis</li>
+                <li>Quantitative models</li>
+                <li>Statistical research</li>
+                <li>Machine learning models</li>
+            </ul>
+            <p class="rv ru">The strategy generates <strong>trading signals</strong>. It does <strong>not</strong> place orders in your broker account. This is where many beginners become confused.</p>
+
+            <h2 class="rv ru">What is an Execution Platform?</h2>
+            <p class="rv ru">An execution platform receives trading signals and converts them into actual buy or sell orders. It acts as the <strong>bridge</strong> between your trading strategy and your broker.</p>
+            <p class="rv ru">Typical responsibilities include:</p>
+            <ul class="rv ru">
+                <li>Receiving TradingView alerts</li>
+                <li>Connecting with broker APIs</li>
+                <li>Placing market or limit orders</li>
+                <li>Managing stop-loss and target orders</li>
+                <li>Handling order retries</li>
+                <li>Managing multiple accounts</li>
+                <li>Logging executed trades</li>
+            </ul>
+            <p class="rv ru">Without an execution platform, most strategies remain manual.</p>
+
+            <h2 class="rv ru">Where Does PointAlgo Fit?</h2>
+            <p class="rv ru">PointAlgo focuses on the <strong>research and development</strong> side of algorithmic trading. We build:</p>
+            <ul class="rv ru">
+                <li>Quantitative trading strategies</li>
+                <li>Professional TradingView indicators</li>
+                <li>Pine Script strategies</li>
+                <li>Custom trading systems</li>
+                <li>Market research models</li>
+                <li>Signal generation logic</li>
+                <li>Strategy optimization</li>
+            </ul>
+            <p class="rv ru">Our goal is to help traders develop <strong>rule-based systems</strong> backed by research instead of emotions. <strong>PointAlgo does not operate as a broker or trade execution platform.</strong></p>
+
+            <h2 class="rv ru">How Strategy and Execution Work Together</h2>
+            <p class="rv ru">A typical workflow looks like this:</p>
+
+            <div class="flex flex-col items-center gap-0 my-10 rv ru">
+                <div class="workflow-step"><span class="workflow-num">1</span> Market Data</div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="workflow-step"><span class="workflow-num">2</span> PointAlgo Strategy</div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="workflow-step"><span class="workflow-num">3</span> Trading Signal</div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="workflow-step"><span class="workflow-num">4</span> Execution Platform</div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="workflow-step broker"><span class="workflow-num">5</span> Broker API</div>
+                <div class="arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="workflow-step execute"><span class="workflow-num">6</span> Trade Executed</div>
+            </div>
+
+            <p class="rv ru">Each component has a specific responsibility. Keeping strategy development separate from execution makes the system more flexible and easier to maintain.</p>
+
+            <h2 class="rv ru">Choosing the Right Execution Platform</h2>
+            <p class="rv ru">Once your strategy is ready, the next step is selecting an execution platform that matches your requirements.</p>
+            <p class="rv ru">Some important factors include:</p>
+            <ul class="rv ru">
+                <li>Supported brokers</li>
+                <li>TradingView integration</li>
+                <li>Webhook support</li>
+                <li>API connectivity</li>
+                <li>Multi-account trading</li>
+                <li>Risk management features</li>
+                <li>Order reliability</li>
+                <li>Pricing</li>
+                <li>Paper trading</li>
+                <li>Backtesting compatibility</li>
+            </ul>
+            <p class="rv ru">Instead of reviewing each provider individually, you can compare multiple execution platforms in one place on <strong>NiveshControl's Algo Platforms directory</strong>:</p>
+
+            <div class="my-10 p-8 glass-card rounded-3xl border-l-4 border-l-[#00e676] text-center rv ru">
+                <h3 class="!mt-0 text-[#00e676] flex items-center justify-center gap-3 text-xl">
+                    <i class="fa-solid fa-layer-group"></i> NiveshControl Algo Platforms Directory
+                </h3>
+                <p class="!mt-4">Evaluate execution platforms based on supported brokers, automation features, integrations, pricing, and other capabilities before choosing the one that best fits your workflow.</p>
+                <a href="https://www.niveshcontrol.com/algo_platforms" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-4 bg-[#00e676] text-[#05080f] px-6 py-3 rounded-xl font-bold text-sm hover:bg-[#00ff8c] transition-colors">
+                    <i class="fa-solid fa-external-link-alt"></i> Browse Algo Platforms
+                </a>
+            </div>
+
+            <h2 class="rv ru">Why Keeping Strategy and Execution Separate is a Good Practice</h2>
+            <p class="rv ru">Professional quantitative traders rarely tie their strategy to a single execution platform. This approach provides several benefits:</p>
+            <ul class="rv ru">
+                <li><strong>Easier platform migration</strong> — Switch execution providers without rewriting your strategy</li>
+                <li><strong>Better scalability</strong> — Run one strategy across multiple accounts or brokers</li>
+                <li><strong>Improved testing</strong> — Test strategies independently of execution infrastructure</li>
+                <li><strong>Lower operational risk</strong> — Isolating failure points protects your capital</li>
+                <li><strong>Greater flexibility</strong> — Use the best tool for each job</li>
+                <li><strong>Freedom to choose different brokers</strong> — Optimize commissions and latency</li>
+            </ul>
+            <p class="rv ru">The strategy remains independent while the execution layer can be changed whenever needed.</p>
+
+            <h2 class="rv ru">PointAlgo's Approach</h2>
+            <p class="rv ru">At PointAlgo, we specialize in developing <strong>intelligent trading systems</strong> powered by quantitative research. Our focus includes:</p>
+            <ul class="rv ru">
+                <li>Custom TradingView indicators</li>
+                <li>Pine Script development</li>
+                <li>Strategy research</li>
+                <li>Signal generation</li>
+                <li>Quantitative models</li>
+                <li>Algorithmic trading logic</li>
+                <li>Strategy optimization</li>
+            </ul>
+            <p class="rv ru">Once a strategy is finalized, traders can integrate it with a <strong>compatible execution platform</strong> of their choice to automate order placement.</p>
+
+            <h2 class="rv ru">Final Thoughts</h2>
+            <p class="rv ru">Successful algorithmic trading is built on <strong>two pillars</strong>: a robust strategy and dependable execution.</p>
+            <p class="rv ru">A profitable strategy identifies opportunities, while an execution platform ensures those opportunities are translated into real trades <strong>accurately and efficiently</strong>.</p>
+            <p class="rv ru">If you are looking for professionally developed trading strategies, indicators, and quantitative research, <strong>PointAlgo</strong> focuses on building the <strong>intelligence</strong> behind your trading decisions. When it is time to automate those signals, you can compare compatible execution platforms through <strong>NiveshControl's Algo Platforms directory</strong> to find the solution that best fits your trading setup.</p>
+
+            <div class="mt-16 p-8 bg-[#00e676]/5 border border-[#00e676]/20 rounded-3xl text-center shadow-[0_10px_40px_rgba(0,230,118,0.05)] rv ru">
+                <h2 class="!mt-0 !mb-4">Ready to Build Your Trading Strategy?</h2>
+                <p class="!mb-4 text-slate-300">Explore our quantitative strategies, Pine Script indicators, and market research tools.</p>
+                <a href="https://pointalgo.com/strategies" class="inline-flex items-center gap-2 bg-[#00e676] text-[#05080f] px-6 py-3 rounded-xl font-bold text-sm hover:bg-[#00ff8c] transition-colors">
+                    <i class="fa-solid fa-rocket"></i> Explore Strategies
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                
+                <div class="col-span-1 md:col-span-1 space-y-6">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
+                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
+                        Advanced Quantitative <br> Intelligence Systems.
+                    </p>
+                    <div class="flex gap-5 text-xl">
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
+                    <div class="space-y-3">
+                        <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
+                        <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
+                        <a href="index.html" class="block text-[#00e676] font-bold text-sm transition-colors">Blog</a>
+                        <a href="../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
+                        <a href="../contact/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
+                    <div class="space-y-3">
+                        <a href="../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                        <a href="../legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
+                        <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
+                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#00e676]">hello@pointalgo.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
+                            <p class="text-white font-medium text-sm">+91-8452035834</p>
+                        </div>
+                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-12 border-t border-white/5">
+                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
+                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
+                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">&copy; 2026 PointAlgo Quantitative Intelligence</p>
+                <div class="flex gap-6">
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            menu.classList.toggle('hidden');
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars-staggered');
+                icon.classList.toggle('fa-xmark');
+            }
+        });
+        document.addEventListener('click', (event) => {
+            if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.add('hidden');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars-staggered');
+                    icon.classList.remove('fa-xmark');
+                }
+            }
+        });
+    }
+
+    (function(){
+        var els = document.querySelectorAll('.rv');
+        if(!('IntersectionObserver' in window)){
+            els.forEach(function(e){e.classList.add('on')});
+            return;
+        }
+        var obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(en){
+                if(en.isIntersecting){
+                    en.target.classList.add('on');
+                    obs.unobserve(en.target);
+                }
+            });
+        },{threshold:0.1});
+        els.forEach(function(el){obs.observe(el);});
+    })();
+</script>
+
+</body>
+</html>
