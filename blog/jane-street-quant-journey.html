@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GJZXB11LLJ');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <title>Inside Jane Street: The Quant Giant Making Millions — PointAlgo</title>
+    <meta name="description" content="A deep dive into how Jane Street uses functional programming, OCaml, and rigorous statistical models to make consistent millions in the financial markets.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { 
+            background: linear-gradient(135deg, #3f000f 0%, #17002e 50%, #0a0026 100%);
+            background-attachment: fixed;
+            color: #f8fafc; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+        }
+        .glass-nav { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { 
+            background: rgba(0, 0, 0, 0.3); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        
+        /* Custom formatting for the blog post content */
+        .prose h2 { color: #ffffff; font-weight: 800; font-size: 1.875rem; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: -0.025em; }
+        .prose p { color: #cbd5e1; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; }
+        .prose ul, .prose ol { color: #cbd5e1; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .prose li { margin-bottom: 0.5rem; }
+        .prose strong { color: #ffffff; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <nav class="glass-nav fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                
+                <div class="flex-shrink-0 flex items-center cursor-pointer py-2" onclick="window.location.href='../index.html'">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo Logo" class="max-h-16 md:max-h-20 w-auto h-auto block">
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">HOME</a>
+                    <a href="../strategies/index.html" class="text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                    
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            PERFORMANCE <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../reports/global/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">GLOBAL MARKET</a>
+                                <a href="../reports/india/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">INDIAN MARKET</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-[#00e676] border-b-2 border-[#00e676] pb-1 uppercase tracking-widest cursor-pointer py-2">
+                            RESOURCES <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="../doc/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">DOCUMENTATION</a>
+                                <a href="index.html" class="block px-5 py-3 text-xs font-bold text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">BLOGS</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="flex items-center gap-1.5 text-sm font-bold text-slate-300 hover:text-white transition-colors uppercase tracking-widest cursor-pointer py-2">
+                            COMMUNITY <i class="fa-solid fa-chevron-down text-[10px] opacity-70"></i>
+                        </button>
+                        <div class="absolute left-0 top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pt-2">
+                            <div class="w-48 bg-[#0a0026]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+                                <a href="https://discord.gg/72wFfgmW" target="_blank" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">DISCORD</a>
+                                <a href="../free-tools/index.html" class="block px-5 py-3 text-xs font-bold text-slate-400 hover:text-[#00e676] hover:bg-white/5 transition-colors uppercase tracking-widest">FREE TOOLKIT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:hidden relative z-[70]">
+                    <button id="mobile-menu-button" class="text-white text-2xl p-2 focus:outline-none hover:text-[#00e676] transition-colors">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 absolute w-full left-0 z-[60] animate-fade-in">
+            <div class="px-6 py-10 space-y-6 flex flex-col text-center">
+                <a href="../index.html" class="text-xl font-bold text-slate-300">HOME</a>
+                <hr class="border-white/5 w-12 mx-auto">
+                <a href="../strategies/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">INDICATOR AND STRATEGY</a>
+                
+                <div class="py-2 border-y border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Performance</p>
+                    <a href="../reports/global/index.html" class="block text-lg font-medium text-slate-300 mb-4">GLOBAL MARKET</a>
+                    <a href="../reports/india/index.html" class="block text-lg font-medium text-slate-300">INDIAN MARKET</a>
+                </div>
+
+                <div class="py-2 border-b border-white/5">
+                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-4">Resources</p>
+                    <a href="../doc/index.html" class="block text-lg font-medium text-slate-300 mb-4">DOCUMENTATION</a>
+                    <a href="index.html" class="block text-lg font-medium text-[#00e676]">BLOGS</a>
+                </div>
+
+                <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-lg font-medium text-slate-300 uppercase tracking-widest">DISCORD</a>
+                <a href="../free-tools/index.html" class="text-lg font-medium text-slate-300 uppercase tracking-widest">FREE TOOLKIT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-36 pb-24 px-6 lg:px-8 max-w-4xl mx-auto w-full">
+        
+        <header class="mb-12 text-center md:text-left">
+            <div class="inline-block bg-[#00e676]/10 text-[#00e676] text-xs font-bold px-3 py-1.5 rounded-full mb-6 uppercase tracking-widest border border-[#00e676]/20">
+                Quant Titans
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white italic tracking-tighter mb-6 leading-tight">
+                Inside Jane Street: Tech & Logic <br><span class="text-[#00e676]">— Driving Consistent Millions</span>
+            </h1>
+            <div class="flex items-center justify-center md:justify-start gap-4 text-sm text-slate-400 font-medium">
+                <span>By PointAlgo Quant Team</span>
+                <span>•</span>
+                <span>7 Min Read</span>
+            </div>
+        </header>
+
+        <div class="mb-12">
+            <img src="jane_steet.png" alt="Jane Street Trading Tech" class="w-full h-auto rounded-3xl border border-white/10 shadow-2xl object-cover">
+        </div>
+
+        <article class="prose">
+            <p>In the world of proprietary quantitative trading, a few names command absolute respect. Among them is Jane Street. Founded in 2000, Jane Street is a quantitative trading firm and liquidity provider that operates around the clock across global markets. While many firms rely on high-frequency latency arbitrage or gut-feel discretionary trading, Jane Street built its empire on rigorous mathematics, probabilities, and a highly unconventional technology stack.</p>
+            
+            <p>Today, they trade trillions of dollars in equities, bonds, ETFs, and options annually. But how exactly do they extract consistent alpha from the markets, and what makes their approach to algorithmic trading so different from the rest?</p>
+
+            <h2>How Jane Street Trades: The ETF Dominance</h2>
+            <p>Jane Street is best known as one of the world's largest market makers in Exchange-Traded Funds (ETFs). Rather than just betting on whether the S&P 500 will go up or down, they act as the plumbing of the financial system. When an institution wants to buy or sell massive blocks of an ETF, Jane Street is often on the other side of that trade.</p>
+            <p>They profit through <strong>statistical arbitrage</strong> and <strong>liquidity provision</strong>. Because an ETF is made up of a basket of underlying stocks or bonds, there are microsecond discrepancies between the price of the ETF and the net asset value (NAV) of its underlying components. Jane Street’s models constantly scan for these minute mispricings, buying the cheaper asset and shorting the expensive one to lock in a risk-free profit. Over millions of trades a day, these fractions of a cent compound into billions of dollars in revenue.</p>
+
+            <h2>The Code Difference: Why OCaml?</h2>
+            <p>If you ask what truly makes Jane Street unique in the algo-trading space, the answer lies in their technology stack. While most high-frequency and quant firms write their execution engines in C++ for speed, and their research environments in Python for data science, Jane Street uses <strong>OCaml</strong>.</p>
+            
+            <p>OCaml is a statically typed functional programming language. To the average developer, it might seem like an academic relic, but to Jane Street, it is their greatest secret weapon. Here is why it matters for trading at scale:</p>
+            
+            <ul class="list-disc">
+                <li><strong>No Runtime Surprises:</strong> In quantitative trading, a single bug in production can execute thousands of erroneous trades per second, costing millions (a scenario that destroyed Knight Capital in 2012). OCaml’s rigorous type system catches a massive class of bugs at compile-time. If the code compiles, it is mathematically proven to be free of many common errors.</li>
+                <li><strong>Safe Refactoring:</strong> Markets change constantly, requiring strategies and execution logic to be updated rapidly. OCaml allows Jane Street engineers to safely tear apart and rewrite massive chunks of their codebase with the confidence that the compiler will catch any missing dependencies or type mismatches.</li>
+                <li><strong>Functional Logic:</strong> Financial markets are stateful and complex. Functional programming treats computation as the evaluation of mathematical functions, avoiding changing state and mutable data. This makes complex quantitative models easier to reason about and test rigorously.</li>
+            </ul>
+
+            <h2>What Makes Jane Street, Jane Street?</h2>
+            <p>Beyond OCaml and ETF arbitrage, Jane Street’s edge is its culture. It operates more like an elite university mathematics department than a traditional Wall Street firm.</p>
+            
+            <p><strong>1. Probability over Certainty:</strong> Traders at Jane Street are trained to communicate strictly in probabilities. You will rarely hear someone say, "The market will drop tomorrow." Instead, they will say, "I have a 65% confidence interval that this asset will reprice downward by 20 basis points." This removes ego and emotion from the trading floor.</p>
+            
+            <p><strong>2. The Puzzle Culture:</strong> Their hiring process is notoriously rigorous, focusing less on financial knowledge and almost entirely on brainteasers, game theory, and rapid mental math. They look for individuals who can evaluate expected value (EV) instantly under pressure. Playing complex board games and poker is practically a firm-wide pastime, as it hones the exact risk-assessment skills required for trading.</p>
+
+            <p><strong>3. Deep Collaboration:</strong> Unlike many "eat-what-you-kill" proprietary trading firms where internal teams hide their strategies from one another, Jane Street fosters a highly collaborative environment. Code is shared, research is distributed, and compensation is largely tied to the firm's overall performance, incentivizing everyone to build better infrastructure rather than hoarding a localized edge.</p>
+
+            <div class="mt-12 p-8 bg-[#00e676]/5 border border-[#00e676]/20 rounded-3xl text-center">
+                <h2 class="!mt-0 !mb-4">The Bottom Line for Quant Builders</h2>
+                <p class="!mb-0 text-slate-300">While retail traders cannot replicate Jane Street's multi-million dollar fiber optic infrastructure or their massive balance sheet, the core principles apply to anyone building algorithms. Focus on statistical edge rather than gut feeling, prioritize robust error-free code (even if you are just writing Pine Script indicators or building API webhooks), and remember that risk management and mathematical expectancy are what separate gamblers from quantitative professionals.</p>
+            </div>
+            
+        </article>
+    </main>
+
+    <footer class="py-24 border-t border-white/5 bg-black/60 backdrop-blur-lg mt-auto">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-20 items-start">
+                
+                <div class="col-span-1 md:col-span-1 space-y-6">
+                    <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" class="h-12 w-auto brightness-110">
+                    <p class="text-slate-500 text-[11px] uppercase tracking-[0.2em] leading-relaxed">
+                        Advanced Quantitative <br> Intelligence Systems.
+                    </p>
+                    <div class="flex gap-5 text-xl">
+                        <a href="https://www.youtube.com/@Pointalgo" target="_blank" class="text-red-500 hover:scale-110 transition-transform"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://discord.gg/72wFfgmW" target="_blank" class="text-indigo-400 hover:scale-110 transition-transform"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://www.instagram.com/point_algo/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Platform</h4>
+                    <div class="space-y-3">
+                        <a href="../index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Home</a>
+                        <a href="../strategies/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Indicator & Strategy</a>
+                        <a href="index.html" class="block text-[#00e676] font-bold text-sm transition-colors">Blog</a>
+                        <a href="../doc/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Documentation</a>
+                        <a href="../contact/index.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Legal & Compliance</h4>
+                    <div class="space-y-3">
+                        <a href="../legal/terms.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                        <a href="../legal/privacy.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="../legal/refund.html" class="block text-slate-400 hover:text-white text-sm transition-colors">Refund & Cancellation</a>
+                        <a href="../about.html" class="block text-slate-400 hover:text-white text-sm transition-colors">About Us</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-6">Connect</h4>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Inquiries</p>
+                            <a href="mailto:hello@pointalgo.com" class="text-white font-medium text-sm hover:text-[#00e676]">hello@pointalgo.com</a>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-slate-500 text-[9px] uppercase font-bold">Support</p>
+                            <p class="text-white font-medium text-sm">+91-8452035834</p>
+                        </div>
+                        <p class="text-slate-400 text-xs italic">Ghatkopar, Mumbai, India</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-12 border-t border-white/5">
+                <h4 class="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] opacity-50">Disclaimer from PointAlgo.com</h4>
+                <div class="bg-black/40 p-8 rounded-2xl border border-white/5">
+                    <p class="text-slate-500 text-[10px] leading-relaxed text-justify font-light uppercase tracking-tighter">
+                        Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-[10px] tracking-[0.4em] uppercase">© 2026 PointAlgo Quantitative Intelligence</p>
+                <div class="flex gap-6">
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Speed</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Accuracy</span>
+                    <span class="text-[9px] text-slate-600 uppercase tracking-widest">Built for Logic</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        if (btn && menu) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                menu.classList.toggle('hidden');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars-staggered');
+                    icon.classList.toggle('fa-xmark');
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                    menu.classList.add('hidden');
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars-staggered');
+                        icon.classList.remove('fa-xmark');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
