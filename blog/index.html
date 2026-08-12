@@ -33,11 +33,11 @@
   --fh:'Space Grotesk','Inter',sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0; cursor:none !important;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}
-body{font-family:var(--fd);font-size:16px;color:var(--txt);background:var(--bg);line-height:1.65;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+body{font-family:var(--fd);font-size:16px;color:var(--txt);background:var(--bg);line-height:1.65;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;cursor:crosshair;}
 img{display:block;max-width:100%;height:auto}
-a{text-decoration:none;color:inherit}
+a{text-decoration:none;color:inherit;cursor:pointer;}
 button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 
 /* ── BG ── */
@@ -183,32 +183,13 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
   .footer{padding:52px 18px 28px}
 }
 
-/* CUSTOM CANDLE CURSOR (BRIGHTER & STRONGER MAGNET) */
+/* MAGNETIC CANDLES */
 .candle-cursor-layer{
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:9999;
   overflow:hidden;
-}
-
-.candle-cursor-arrow{
-  position:fixed;
-  left:0;
-  top:0;
-  width:18px;
-  height:18px;
-  pointer-events:none;
-  z-index:10000;
-  transform:translate3d(-100px,-100px,0);
-  opacity:.95;
-  filter:drop-shadow(0 0 8px rgba(239,68,68,.3));
-}
-
-.candle-cursor-arrow svg{
-  display:block;
-  width:100%;
-  height:100%;
 }
 
 .cursor-candle{
@@ -264,8 +245,7 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 .cursor-candle.alt6{color:rgba(255,99,132,.95);}
 
 @media (max-width: 768px){
-  .candle-cursor-layer,
-  .candle-cursor-arrow{
+  .candle-cursor-layer{
     display:none;
   }
 }
@@ -274,12 +254,6 @@ button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 <body>
 
 <div class="candle-cursor-layer" id="candleCursorLayer" aria-hidden="true"></div>
-
-<div class="candle-cursor-arrow" id="candleCursorArrow" aria-hidden="true">
-  <svg viewBox="0 0 24 24" fill="none">
-    <path d="M5 3L19 13L12.4 13.8L15.8 21L13.2 22L9.8 14.9L5 19V3Z" fill="#ef4444"/>
-  </svg>
-</div>
 
 <div class="bg-canvas" aria-hidden="true">
   <div class="bg-orb bg-orb-1"></div>
@@ -572,8 +546,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <script>
 (function(){
   var layer = document.getElementById('candleCursorLayer');
-  var arrow = document.getElementById('candleCursorArrow');
-  if(!layer || !arrow) return;
+  if(!layer) return;
 
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(prefersReduced) return;
@@ -635,8 +608,8 @@ document.addEventListener('DOMContentLoaded',function(){
       angle: rand(-18, 18),
       rotSpeed: rand(-0.08, 0.08),
       size: rand(0.85, 1.18),
-      magnet: rand(180, 280), /* Hugely increased radius */
-      pull: rand(0.025, 0.050), /* Hugely increased force */
+      magnet: rand(180, 280),
+      pull: rand(0.025, 0.050),
       ease: rand(0.92, 0.965),
       phase: rand(0, Math.PI * 2),
       bob: rand(0.08, 0.22)
@@ -670,8 +643,6 @@ document.addEventListener('DOMContentLoaded',function(){
     mouse.x += (mouse.tx - mouse.x) * 0.18;
     mouse.y += (mouse.ty - mouse.y) * 0.18;
 
-    arrow.style.transform = 'translate3d(' + (mouse.x - 1) + 'px,' + (mouse.y - 1) + 'px,0)';
-
     var t = performance.now() * 0.001;
 
     for(var i=0;i<candles.length;i++){
@@ -687,7 +658,6 @@ document.addEventListener('DOMContentLoaded',function(){
 
         if(dist < c.magnet){
           var force = (1 - dist / c.magnet) * c.pull;
-          /* Increased force multiplier to snap faster */
           c.vx += (dx / dist) * force * 4.0;
           c.vy += (dy / dist) * force * 4.0;
         }
