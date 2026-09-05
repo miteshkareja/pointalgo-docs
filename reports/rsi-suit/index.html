@@ -280,6 +280,36 @@
             background:linear-gradient(90deg,var(--teal),var(--lime));border-radius:2px;flex-shrink:0;
         }
 
+        /* ══ LOT SIMULATOR BAR ══ */
+        .lot-bar {
+            display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+            background:var(--s1);border:1px solid var(--bdr-m);
+            border-radius:16px;padding:14px 20px;margin-bottom:40px;
+        }
+        .lot-lbl {
+            display:flex;align-items:center;gap:8px;
+            font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+            white-space:nowrap;
+        }
+        .lot-lbl i { color:var(--teal); }
+        .lot-opts { display:flex;gap:6px;flex-wrap:wrap; }
+        .lot-btn {
+            font-family:var(--fh);font-size:13px;font-weight:700;color:var(--muted);
+            background:rgba(0,0,0,.3);border:1px solid var(--bdr-m);
+            padding:7px 16px;border-radius:9px;cursor:pointer;
+            transition:color .15s,border-color .15s,background .15s,box-shadow .2s;
+            display:inline-flex;align-items:center;gap:6px;
+        }
+        .lot-btn em { font-style:normal;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint); }
+        .lot-btn:hover { color:var(--txt);border-color:var(--bdr-h); }
+        .lot-btn.on {
+            color:#050810;background:var(--lime);border-color:var(--lime);
+            box-shadow:0 0 24px rgba(201,241,53,.25);
+        }
+        .lot-btn.on em { color:rgba(5,8,16,.55); }
+        .lot-note { font-size:11px;color:var(--faint);margin-left:auto; }
+        .lot-note.sim { color:var(--amber); }
+
         /* Notice */
         .notice-banner {
             background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);
@@ -507,6 +537,7 @@
             .cad-grid      { grid-template-columns:1fr 1fr; }
             .panel-card    { padding:20px 16px; }
             .verify-box    { padding:32px 20px; }
+            .lot-note      { margin-left:0;width:100%; }
         }
         @media(max-width:480px)  { .fg { grid-template-columns:1fr; } .kpi-grid { grid-template-columns:1fr 1fr; } }
     </style>
@@ -543,9 +574,10 @@
                     <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
                 </button>
                 <div class="dd-menu">
-                    <a href="../global/index.html" class="di">Global Market</a>
-                    <a href="../india/index.html"  class="di">Indian Market</a>
-                    <a href="index.html"           class="di on">XAUUSD Gold</a>
+                    <a href="../index.html"          class="di">All Reports</a>
+                    <a href="../global/index.html"   class="di">Global Market</a>
+                    <a href="../india/index.html"    class="di">Indian Market</a>
+                    <a href="index.html"             class="di on">RSI Suite · XAUUSD</a>
                 </div>
             </div>
 
@@ -583,9 +615,10 @@
     <a href="../../index.html"          class="ma">Home</a>
     <a href="../../strategies/index.html" class="ma">Indicator &amp; Strategy</a>
     <div class="mlbl">Performance</div>
+    <a href="../index.html"             class="ma">All Reports</a>
     <a href="../global/index.html"      class="ma">Global Market</a>
     <a href="../india/index.html"       class="ma">Indian Market</a>
-    <a href="index.html"                class="ma" style="color:var(--lime)">XAUUSD Gold</a>
+    <a href="index.html"                class="ma" style="color:var(--lime)">RSI Suite · XAUUSD</a>
     <div class="mlbl">Resources</div>
     <a href="../../doc/index.html"      class="ma">Documentation</a>
     <a href="../../blog/index.html"     class="ma">Blogs</a>
@@ -683,12 +716,25 @@
             </div>
         </div>
 
+        <!-- ════════ LOT SIZE SIMULATOR ════════ -->
+        <div class="lot-bar" id="lot-bar">
+            <span class="lot-lbl"><i class="fa-solid fa-calculator"></i>Simulate Lot Size</span>
+            <div class="lot-opts">
+                <button class="lot-btn" data-lot="0.01">0.01</button>
+                <button class="lot-btn" data-lot="0.05">0.05</button>
+                <button class="lot-btn on" data-lot="0.10">0.10 <em>Actual</em></button>
+                <button class="lot-btn" data-lot="0.50">0.50</button>
+                <button class="lot-btn" data-lot="1">1.00</button>
+            </div>
+            <span class="lot-note" id="lot-note">Showing real recorded results at 0.10 lot</span>
+        </div>
+
         <!-- Notice -->
         <div class="notice-banner">
             <i class="fa-solid fa-triangle-exclamation"></i>
             <p><strong>Performance Transparency:</strong> This page syncs automatically with our
             <a href="https://docs.google.com/spreadsheets/d/1d8EHOT7FRMdj0eWvw-1QYL4_46blINHK8hW__UFLbnQ/edit?usp=sharing" target="_blank" rel="noopener">public Google Sheets trade log</a> —
-            open to anyone, downloadable as CSV. Past performance does not guarantee future results. All figures reflect real executed trades, not backtests or simulations.</p>
+            open to anyone, downloadable as CSV. Real trades were executed at <strong>0.10 lot</strong>; the lot simulator above only rescales the verified per-trade results. Past performance does not guarantee future results.</p>
         </div>
 
         <!-- ════════ EXECUTIVE DASHBOARD ════════ -->
@@ -916,12 +962,12 @@ const SNAPSHOT = {
         { lbl: 'Calendar Rate',    val: '12.7',  unit: 'trades / cal day' }
     ],
     ratios: [
-        { name: 'Sharpe Ratio (Per Trade)', desc: 'Mean trade return ÷ total standard deviation',        val: '0.44',      rating: 'Excellent', cls: 'chip-lime',    red: false },
-        { name: 'Annualized Sharpe Ratio',  desc: 'Scaled by annual trade velocity',                     val: '20.99',     rating: 'Elite',     cls: 'chip-teal',    red: false },
-        { name: 'Sortino Ratio',            desc: 'Downside risk ratio (penalizes only negatives)',      val: '1.05',      rating: 'Superior',  cls: 'chip-emerald', red: false },
-        { name: 'Win / Loss Payoff Ratio',  desc: 'Average winning trade vs average losing trade',       val: '1.59',      rating: 'Favorable', cls: 'chip-cobalt',  red: false },
-        { name: 'Largest Single Win',       desc: 'Maximum upside on one trade',                         val: '$1,450.78', rating: 'Peak Win',  cls: 'chip-emerald', red: false },
-        { name: 'Largest Single Loss',      desc: 'Maximum downside on one trade',                       val: '-$413.10',  rating: 'Tail Risk', cls: 'chip-red',     red: true  }
+        { name: 'Sharpe Ratio (Per Trade)', desc: 'Mean trade return ÷ total standard deviation',   val: '0.44', rating: 'Excellent', cls: 'chip-lime',    money: false, num: null,     red: false },
+        { name: 'Annualized Sharpe Ratio',  desc: 'Scaled by annual trade velocity',                val: '20.99', rating: 'Elite',    cls: 'chip-teal',    money: false, num: null,     red: false },
+        { name: 'Sortino Ratio',            desc: 'Downside risk ratio (penalizes only negatives)', val: '1.05',  rating: 'Superior', cls: 'chip-emerald', money: false, num: null,     red: false },
+        { name: 'Win / Loss Payoff Ratio',  desc: 'Average winning trade vs average losing trade',  val: '1.59',  rating: 'Favorable', cls: 'chip-cobalt', money: false, num: null,     red: false },
+        { name: 'Largest Single Win',       desc: 'Maximum upside on one trade',                    val: '',      rating: 'Peak Win', cls: 'chip-emerald', money: true,  num: 1450.78, red: false },
+        { name: 'Largest Single Loss',      desc: 'Maximum downside on one trade',                  val: '',      rating: 'Tail Risk', cls: 'chip-red',    money: true,  num: -413.10, red: true  }
     ],
     dir: {
         long:  { trades: 2349, wr: 80.7, gp: 76359.76,  gl: -11916.97, net: 64442.79,  netInr: 6089231.45,  pf: 6.41, avg: 27.43, share: 45.7 },
@@ -945,6 +991,16 @@ const SNAPSHOT = {
 };
 
 let D = JSON.parse(JSON.stringify(SNAPSHOT)); // working dataset (live or fallback)
+
+/* ════════════════════════════════════════════════════
+   LOT SIZE SIMULATOR
+   All sheet analytics are recorded at 0.10 lot.
+   Money figures scale linearly: P&L ∝ lot size.
+   Win rate / profit factor / ratios are lot-independent.
+════════════════════════════════════════════════════ */
+const DEFAULT_LOT = 0.10;
+let currentLot    = DEFAULT_LOT;
+const lotScale    = () => currentLot / DEFAULT_LOT;
 
 /* ════════════════════════════════════════════════════
    NAV BEHAVIOUR
@@ -971,8 +1027,19 @@ const fmtUSD = v => (v < 0 ? '-$' : '$') + Math.abs(v).toLocaleString('en-US', {
 const fmtINR = v => '₹' + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
+/* Scaled money formatters (lot simulator) */
+const fUSD = v => fmtUSD(v * lotScale());
+const fINR = v => fmtINR(v * lotScale());
+
+/* Chart axis tick: $950 / $12.4k / $1.41M */
+function axisMoney(v) {
+    const a = Math.abs(v);
+    if (a >= 1e6) return '$' + (v / 1e6).toFixed(2).replace(/\.?0+$/, '') + 'M';
+    if (a >= 1e3) return '$' + (v / 1e3).toFixed(0) + 'k';
+    return '$' + v.toFixed(0);
+}
+
 function prettyMonth(s) {
-    // "2025-09 (Sep)" or "2025-09" → "Sep 2025"
     const m = String(s).match(/^(\d{4})-(\d{2})/);
     if (!m) return s;
     return MONTH_NAMES[parseInt(m[2], 10) - 1] + ' ' + m[1];
@@ -1105,9 +1172,12 @@ async function loadLive() {
         if (!p) return;
         const n = cellNum(grid[p.i][p.j + 1]);
         const rating = cellText(grid[p.i][p.j + 2]);
-        if (!isNaN(n)) D.ratios[idx].val = money ? fmtUSD(n) : String(n);
+        if (!isNaN(n)) {
+            if (money) { D.ratios[idx].num = n; }
+            else       { D.ratios[idx].val = String(n); }
+        }
         if (rating) { D.ratios[idx].rating = rating; D.ratios[idx].cls = chipCls(rating); }
-        D.ratios[idx].red = money && !isNaN(n) && n < 0;
+        if (money && !isNaN(n)) D.ratios[idx].red = n < 0;
     });
 
     /* ── Directional rows ── */
@@ -1123,31 +1193,49 @@ async function loadLive() {
         Object.keys(row).forEach(k => { if (!isNaN(row[k])) D.dir[key][k] = row[k]; });
     });
 
-    /* ── Monthly rows (label like "2025-09 (Sep)") ── */
+    /* ── Monthly rows ──
+       STRICT pattern: "2025-09 (Sep)" — requires the month
+       name in brackets, so date cells like "2025-09-04"
+       (First/Last Trade Date rows) are never matched. ── */
     const months = [];
+    const seen   = new Set();
     grid.forEach(row => {
         row.forEach((c, j) => {
-            if (/^\d{4}-\d{2}\b/.test(cellText(c))) {
-                months.push({
-                    m:      prettyMonth(cellText(c)),
-                    trades: cellNum(row[j + 1]) || 0,
-                    wins:   cellNum(row[j + 2]) || 0,
-                    losses: cellNum(row[j + 3]) || 0,
-                    wr:     cellPct(row[j + 4]) || 0,
-                    pnl:    cellNum(row[j + 5]) || 0,
-                    inr:    cellNum(row[j + 6]) || 0,
-                    pf:     cellNum(row[j + 7]) || 0,
-                    avg:    cellNum(row[j + 8]) || 0,
-                    share:  cellPct(row[j + 9]) || 0
-                });
-            }
+            const t = cellText(c);
+            if (!/^\d{4}-\d{2}\s*\([A-Za-z]{3}\)/.test(t)) return;
+            const key = t.match(/^(\d{4}-\d{2})/)[1];
+            if (seen.has(key)) return;
+            const trades = cellNum(row[j + 1]) || 0;
+            if (trades <= 0) return; // must be a real monthly row
+            seen.add(key);
+            months.push({
+                m:      prettyMonth(t),
+                trades: trades,
+                wins:   cellNum(row[j + 2]) || 0,
+                losses: cellNum(row[j + 3]) || 0,
+                wr:     cellPct(row[j + 4]) || 0,
+                pnl:    cellNum(row[j + 5]) || 0,
+                inr:    cellNum(row[j + 6]) || 0,
+                pf:     cellNum(row[j + 7]) || 0,
+                avg:    cellNum(row[j + 8]) || 0,
+                share:  cellPct(row[j + 9]) || 0
+            });
         });
     });
     if (months.length >= 2) D.monthly = months;
 }
 
 /* ════════════════════════════════════════════════════
-   RENDER
+   CHART REGISTRY (so lot changes can re-render cleanly)
+════════════════════════════════════════════════════ */
+let CHARTS = {};
+function destroyCharts() {
+    Object.values(CHARTS).forEach(c => { try { c.destroy(); } catch (e) {} });
+    CHARTS = {};
+}
+
+/* ════════════════════════════════════════════════════
+   RENDER (respects current lot size)
 ════════════════════════════════════════════════════ */
 function renderAll() {
     const k = D.kpi;
@@ -1155,7 +1243,8 @@ function renderAll() {
     const totLosses = D.monthly.reduce((a, r) => a + r.losses, 0);
     const grossWin  = D.dir.long.gp + D.dir.short.gp;
     const grossLoss = D.dir.long.gl + D.dir.short.gl;
-    const cr        = k.netPnlInr / 1e7;
+    const cr        = (k.netPnlInr * lotScale()) / 1e7;
+    const sim       = currentLot !== DEFAULT_LOT;
 
     /* Hero */
     document.getElementById('hero-trades').textContent = nf(k.trades) + ' real executed trades';
@@ -1163,8 +1252,18 @@ function renderAll() {
     document.getElementById('pill-trades').textContent = nf(k.trades);
     document.getElementById('pill-wr').textContent     = k.winRate.toFixed(1) + '%';
     document.getElementById('pill-pf').textContent     = k.pf.toFixed(2);
-    document.getElementById('pill-pnl').textContent    = '$' + nf(k.netPnl);
-    document.getElementById('pill-pnl-sub').textContent = 'Net P&L (₹' + cr.toFixed(2) + ' Cr)';
+    document.getElementById('pill-pnl').textContent    = '$' + nf(k.netPnl * lotScale());
+    document.getElementById('pill-pnl-sub').textContent = 'Net P&L (₹' + cr.toFixed(2) + ' Cr)' + (sim ? ' · sim' : '');
+
+    /* Lot note */
+    const note = document.getElementById('lot-note');
+    if (sim) {
+        note.textContent = 'Simulated view @ ' + currentLot.toFixed(2) + ' lot — actual log is 0.10 lot';
+        note.classList.add('sim');
+    } else {
+        note.textContent = 'Showing real recorded results at 0.10 lot';
+        note.classList.remove('sim');
+    }
 
     /* KPI grid */
     document.getElementById('kpi-grid').innerHTML = `
@@ -1175,8 +1274,8 @@ function renderAll() {
         </div>
         <div class="kpi">
             <div class="kpi-lbl">Net P&amp;L</div>
-            <div class="kpi-val lime">${fmtUSD(k.netPnl)}</div>
-            <div class="kpi-sub">${fmtINR(k.netPnlInr)}</div>
+            <div class="kpi-val lime">${fUSD(k.netPnl)}</div>
+            <div class="kpi-sub">${fINR(k.netPnlInr)}</div>
         </div>
         <div class="kpi">
             <div class="kpi-lbl">Win Rate</div>
@@ -1186,15 +1285,15 @@ function renderAll() {
         <div class="kpi">
             <div class="kpi-lbl">Profit Factor</div>
             <div class="kpi-val">${k.pf.toFixed(2)}</div>
-            <div class="kpi-sub">Gross Win $${nf(grossWin)}</div>
+            <div class="kpi-sub">Gross Win $${nf(grossWin * lotScale())}</div>
         </div>
         <div class="kpi">
             <div class="kpi-lbl">Expectancy (Avg)</div>
-            <div class="kpi-val lime">${fmtUSD(k.expectancy)}</div>
+            <div class="kpi-val lime">${fUSD(k.expectancy)}</div>
             <div class="kpi-sub">Per Trade</div>
         </div>`;
 
-    /* Cadence */
+    /* Cadence (lot-independent) */
     document.getElementById('cad-sub').textContent =
         nf(D.dates.spanDays) + '-day calendar span · ' + prettyDate(D.dates.first) + ' → ' + prettyDate(D.dates.last);
     document.getElementById('cad-grid').innerHTML = D.cadence.map(c => `
@@ -1203,18 +1302,21 @@ function renderAll() {
             <div class="cad-val">${c.val} <span>${c.unit}</span></div>
         </div>`).join('');
 
-    /* Ratios */
-    document.getElementById('ratio-list').innerHTML = D.ratios.map(r => `
+    /* Ratios (money values scale, pure ratios don't) */
+    document.getElementById('ratio-list').innerHTML = D.ratios.map(r => {
+        const val = r.money ? fUSD(r.num) : r.val;
+        return `
         <div class="ratio-row">
             <div>
                 <div class="ratio-name">${r.name}</div>
                 <div class="ratio-desc">${r.desc}</div>
             </div>
             <div class="ratio-right">
-                <span class="ratio-val ${r.red ? 'red' : ''}">${r.val}</span>
+                <span class="ratio-val ${r.money && r.num < 0 ? 'red' : ''}">${val}</span>
                 <span class="chip ${r.cls}">${r.rating}</span>
             </div>
-        </div>`).join('');
+        </div>`;
+    }).join('');
 
     /* Directional */
     const L = D.dir.long, S = D.dir.short;
@@ -1223,20 +1325,20 @@ function renderAll() {
             <td class="rowlabel"><i class="fa-solid fa-arrow-trend-up" style="color:var(--cobalt);margin-right:8px"></i>Long</td>
             <td class="num">${nf(L.trades)}</td>
             <td class="num">${L.wr.toFixed(1)}%</td>
-            <td class="num pos">${fmtUSD(L.net)}</td>
-            <td class="num">${fmtINR(L.netInr)}</td>
+            <td class="num pos">${fUSD(L.net)}</td>
+            <td class="num">${fINR(L.netInr)}</td>
             <td class="num">${L.pf.toFixed(2)}</td>
-            <td class="num">${fmtUSD(L.avg)}</td>
+            <td class="num">${fUSD(L.avg)}</td>
             <td class="num">${L.share.toFixed(1)}%</td>
         </tr>
         <tr>
             <td class="rowlabel"><i class="fa-solid fa-arrow-trend-down" style="color:var(--teal);margin-right:8px"></i>Short</td>
             <td class="num">${nf(S.trades)}</td>
             <td class="num">${S.wr.toFixed(1)}%</td>
-            <td class="num pos">${fmtUSD(S.net)}</td>
-            <td class="num">${fmtINR(S.netInr)}</td>
+            <td class="num pos">${fUSD(S.net)}</td>
+            <td class="num">${fINR(S.netInr)}</td>
             <td class="num">${S.pf.toFixed(2)}</td>
-            <td class="num">${fmtUSD(S.avg)}</td>
+            <td class="num">${fUSD(S.avg)}</td>
             <td class="num">${S.share.toFixed(1)}%</td>
         </tr>`;
     document.getElementById('dir-foot').innerHTML = `
@@ -1244,10 +1346,10 @@ function renderAll() {
             <td>Combined</td>
             <td class="num">${nf(L.trades + S.trades)}</td>
             <td class="num">${k.winRate.toFixed(1)}%</td>
-            <td class="num pos">${fmtUSD(L.net + S.net)}</td>
-            <td class="num">${fmtINR(L.netInr + S.netInr)}</td>
+            <td class="num pos">${fUSD(L.net + S.net)}</td>
+            <td class="num">${fINR(L.netInr + S.netInr)}</td>
             <td class="num">${k.pf.toFixed(2)}</td>
-            <td class="num">${fmtUSD(k.expectancy)}</td>
+            <td class="num">${fUSD(k.expectancy)}</td>
             <td class="num">100%</td>
         </tr>`;
     document.getElementById('share-long').style.width  = L.share + '%';
@@ -1260,21 +1362,20 @@ function renderAll() {
         : `<strong>Long Edge:</strong> Longs contributed ${L.share.toFixed(1)}% of net P&amp;L with a ${L.wr.toFixed(1)}% win rate. Profit factor edge — Short PF ${S.pf.toFixed(2)} vs Long PF ${L.pf.toFixed(2)} (spread of ${(L.pf - S.pf).toFixed(2)} favoring longs).`;
     document.getElementById('edge-note').innerHTML = leader;
     document.getElementById('gross-note').textContent =
-        `Gross profit ${fmtUSD(grossWin)} vs gross loss ${fmtUSD(grossLoss)} across the full portfolio.`;
+        `Gross profit ${fUSD(grossWin)} vs gross loss ${fUSD(grossLoss)} across the full portfolio.`;
 
     /* Monthly table (last month marked * = month-to-date) */
-    const mb = document.getElementById('monthly-body');
-    mb.innerHTML = D.monthly.map((r, i) => `
+    document.getElementById('monthly-body').innerHTML = D.monthly.map((r, i) => `
         <tr>
             <td class="rowlabel">${r.m}${i === D.monthly.length - 1 ? '*' : ''}</td>
             <td class="num">${nf(r.trades)}</td>
             <td class="num">${nf(r.wins)}</td>
             <td class="num">${nf(r.losses)}</td>
             <td class="num">${r.wr.toFixed(1)}%</td>
-            <td class="num pos">${fmtUSD(r.pnl)}</td>
-            <td class="num">${fmtINR(r.inr)}</td>
+            <td class="num pos">${fUSD(r.pnl)}</td>
+            <td class="num">${fINR(r.inr)}</td>
             <td class="num">${r.pf.toFixed(2)}</td>
-            <td class="num">${fmtUSD(r.avg)}</td>
+            <td class="num">${fUSD(r.avg)}</td>
             <td class="num">${r.share.toFixed(1)}%</td>
         </tr>`).join('');
     document.getElementById('monthly-foot').innerHTML = `
@@ -1284,10 +1385,10 @@ function renderAll() {
             <td class="num">${nf(totWins)}</td>
             <td class="num">${nf(totLosses)}</td>
             <td class="num">${k.winRate.toFixed(1)}%</td>
-            <td class="num pos">${fmtUSD(k.netPnl)}</td>
-            <td class="num">${fmtINR(k.netPnlInr)}</td>
+            <td class="num pos">${fUSD(k.netPnl)}</td>
+            <td class="num">${fINR(k.netPnlInr)}</td>
             <td class="num">${k.pf.toFixed(2)}</td>
-            <td class="num">${fmtUSD(k.expectancy)}</td>
+            <td class="num">${fUSD(k.expectancy)}</td>
             <td class="num">100%</td>
         </tr>`;
 
@@ -1298,20 +1399,23 @@ function renderAll() {
    CHARTS
 ════════════════════════════════════════════════════ */
 function renderCharts() {
+    destroyCharts();
+
     Chart.defaults.color = '#8a9bb5';
     Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
     Chart.defaults.borderColor = 'rgba(255,255,255,.05)';
     const gridOpts = { color: 'rgba(255,255,255,.05)' };
     const labels = D.monthly.map(r => r.m);
+    const s = lotScale();
 
-    /* 1 — Cumulative equity curve */
+    /* 1 — Cumulative equity curve (scaled) */
     let cum = 0;
-    const cumData = D.monthly.map(r => (cum += r.pnl));
+    const cumData = D.monthly.map(r => (cum += r.pnl * s));
     const ectx = document.getElementById('chart-equity').getContext('2d');
     const grad = ectx.createLinearGradient(0, 0, 0, 280);
     grad.addColorStop(0, 'rgba(201,241,53,.22)');
     grad.addColorStop(1, 'rgba(201,241,53,0)');
-    new Chart(ectx, {
+    CHARTS.equity = new Chart(ectx, {
         type: 'line',
         data: {
             labels,
@@ -1340,20 +1444,20 @@ function renderCharts() {
             },
             scales: {
                 x: { grid: { display: false } },
-                y: { grid: gridOpts, ticks: { callback: v => '$' + (v / 1000) + 'k' } }
+                y: { grid: gridOpts, ticks: { callback: axisMoney } }
             },
-            animation: { duration: 1100, easing: 'easeInOutQuart' }
+            animation: { duration: 900, easing: 'easeInOutQuart' }
         }
     });
 
-    /* 2 — Monthly P&L bars + win-rate line */
-    new Chart(document.getElementById('chart-monthly').getContext('2d'), {
+    /* 2 — Monthly P&L bars (scaled) + win-rate line */
+    CHARTS.monthly = new Chart(document.getElementById('chart-monthly').getContext('2d'), {
         data: {
             labels,
             datasets: [
                 {
                     type: 'bar', label: 'Net P&L ($)',
-                    data: D.monthly.map(r => r.pnl),
+                    data: D.monthly.map(r => r.pnl * s),
                     backgroundColor: 'rgba(0,212,200,.55)',
                     hoverBackgroundColor: 'rgba(0,212,200,.85)',
                     borderRadius: 6, yAxisID: 'y'
@@ -1376,21 +1480,21 @@ function renderCharts() {
             },
             scales: {
                 x: { grid: { display: false } },
-                y:  { position: 'left',  grid: gridOpts, ticks: { callback: v => '$' + (v / 1000) + 'k' },
+                y:  { position: 'left',  grid: gridOpts, ticks: { callback: axisMoney },
                       title: { display: true, text: 'Net P&L', color: '#2c3d52', font: { size: 10 } } },
                 y1: { position: 'right', min: 60, max: 100, grid: { drawOnChartArea: false },
                       ticks: { callback: v => v + '%' },
                       title: { display: true, text: 'Win Rate', color: '#2c3d52', font: { size: 10 } } }
             },
-            animation: { duration: 1100, easing: 'easeInOutQuart' }
+            animation: { duration: 900, easing: 'easeInOutQuart' }
         }
     });
 
-    /* 3 — Long vs Short doughnut */
-    new Chart(document.getElementById('chart-direction').getContext('2d'), {
+    /* 3 — Long vs Short doughnut (share % is lot-independent) */
+    CHARTS.direction = new Chart(document.getElementById('chart-direction').getContext('2d'), {
         type: 'doughnut',
         data: {
-            labels: [`Long  —  ${fmtUSD(D.dir.long.net)}`, `Short —  ${fmtUSD(D.dir.short.net)}`],
+            labels: [`Long  —  ${fUSD(D.dir.long.net)}`, `Short —  ${fUSD(D.dir.short.net)}`],
             datasets: [{
                 data: [D.dir.long.share, D.dir.short.share],
                 backgroundColor: ['rgba(59,143,245,.75)', 'rgba(0,212,200,.75)'],
@@ -1406,10 +1510,23 @@ function renderCharts() {
                     callbacks: { label: c => ' ' + c.label + '  ·  ' + c.parsed + '% of Net P&L' }
                 }
             },
-            animation: { duration: 1000, easing: 'easeInOutQuart' }
+            animation: { duration: 900, easing: 'easeInOutQuart' }
         }
     });
 }
+
+/* ════════════════════════════════════════════════════
+   LOT BUTTONS
+════════════════════════════════════════════════════ */
+document.querySelectorAll('.lot-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const lot = parseFloat(btn.dataset.lot);
+        if (isNaN(lot) || lot === currentLot) return;
+        currentLot = lot;
+        document.querySelectorAll('.lot-btn').forEach(b => b.classList.toggle('on', b === btn));
+        renderAll(); // instant rescale — no refetch needed
+    });
+});
 
 /* ════════════════════════════════════════════════════
    BOOT — paint snapshot instantly, then swap in live
