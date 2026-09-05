@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GJZXB11LLJ');
+    </script>
+    <title>Performance Reports | PointAlgo</title>
+    <meta name="description" content="Verified live performance reports — Global, Indian, and strategy-level trading reports synced from public trade logs.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ══════════════════════════════
+           CSS DESIGN TOKENS
+        ══════════════════════════════ */
+        :root {
+            --bg:     #05080f;
+            --s1:     #090e1a;
+            --s2:     #0d1424;
+            --s3:     #111b30;
+            --bdr:    rgba(255,255,255,.07);
+            --bdr-m:  rgba(255,255,255,.12);
+            --bdr-h:  rgba(255,255,255,.20);
+            --div:    rgba(255,255,255,.04);
+            --txt:    #dde6f0;
+            --muted:  #8a9bb5;
+            --faint:  #2c3d52;
+            --lime:   #c9f135;
+            --lime-g: rgba(201,241,53,.28);
+            --lime-d: rgba(201,241,53,.09);
+            --teal:   #00d4c8;
+            --cobalt: #3b8ff5;
+            --emerald:#10e88e;
+            --amber:  #f59e0b;
+            --fd: 'Inter', system-ui, sans-serif;
+            --fh: 'Space Grotesk', 'Inter', sans-serif;
+            --ease: cubic-bezier(.16,1,.3,1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        body {
+            font-family: var(--fd);
+            color: var(--txt);
+            background: var(--bg);
+            line-height: 1.65;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        a  { text-decoration: none; color: inherit; }
+        button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+
+        /* ══ SCROLLBAR ══ */
+        ::-webkit-scrollbar        { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track  { background: var(--s1); }
+        ::-webkit-scrollbar-thumb  { background: var(--faint); border-radius: 10px; }
+
+        /* ══ ANIMATED BG ══ */
+        .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .bg-orb    { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .5; }
+        .bg-orb-1  { width:680px;height:680px;top:-180px;left:-120px;
+                     background:radial-gradient(circle,rgba(0,212,200,.16) 0%,transparent 70%);
+                     animation:od1 20s ease-in-out infinite alternate; }
+        .bg-orb-2  { width:560px;height:560px;top:8%;right:-80px;
+                     background:radial-gradient(circle,rgba(201,241,53,.10) 0%,transparent 70%);
+                     animation:od2 24s ease-in-out infinite alternate; }
+        .bg-orb-3  { width:480px;height:480px;bottom:12%;left:22%;
+                     background:radial-gradient(circle,rgba(59,143,245,.09) 0%,transparent 70%);
+                     animation:od3 28s ease-in-out infinite alternate; }
+        .bg-orb-4  { width:380px;height:380px;bottom:-80px;right:12%;
+                     background:radial-gradient(circle,rgba(16,232,142,.07) 0%,transparent 70%);
+                     animation:od4 22s ease-in-out infinite alternate; }
+        @keyframes od1 { to { transform: translate(70px,110px); } }
+        @keyframes od2 { to { transform: translate(-55px,85px); } }
+        @keyframes od3 { to { transform: translate(95px,-75px); } }
+        @keyframes od4 { to { transform: translate(-75px,-55px); } }
+        .bg-grid {
+            position:absolute;inset:0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+            background-size:60px 60px;
+        }
+        .bg-vig {
+            position:absolute;inset:0;
+            background:radial-gradient(ellipse 130% 110% at 50% 50%,transparent 28%,rgba(5,8,15,.82) 100%);
+        }
+
+        /* ══ NAV ══ */
+        .nav {
+            position:fixed;top:0;left:0;right:0;z-index:200;height:76px;
+            background:rgba(5,8,15,.85);
+            backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+            border-bottom:1px solid var(--bdr);transition:border-color .3s;
+        }
+        .nav.scrolled { border-bottom-color:var(--bdr-m); }
+        .nav-in {
+            max-width:1280px;margin:0 auto;padding:0 32px;height:100%;
+            display:flex;align-items:center;justify-content:space-between;gap:24px;
+        }
+        .logo img { height:52px;width:auto;display:block; }
+        .nav-links { display:flex;align-items:center;gap:4px; }
+        .nl-a {
+            font-size:13px;font-weight:600;color:var(--muted);
+            padding:7px 14px;border-radius:7px;
+            transition:color .18s,background .18s;letter-spacing:.01em;
+        }
+        .nl-a:hover        { color:var(--txt);background:rgba(255,255,255,.06); }
+        .dd                { position:relative; }
+        .dd-btn {
+            display:flex;align-items:center;gap:6px;
+            font-size:13px;font-weight:600;color:var(--muted);
+            padding:7px 14px;border-radius:7px;
+            transition:color .18s,background .18s;cursor:pointer;letter-spacing:.01em;
+        }
+        .dd-btn.on         { color:var(--lime); }
+        .dd-btn:hover,
+        .dd:hover .dd-btn  { color:var(--txt);background:rgba(255,255,255,.06); }
+        .dd-btn svg        { width:10px;height:10px;opacity:.5;transition:transform .2s; }
+        .dd:hover .dd-btn svg { transform:rotate(180deg); }
+        .dd-menu {
+            position:absolute;top:calc(100% + 10px);left:0;min-width:210px;
+            background:var(--s2);border:1px solid var(--bdr-m);border-radius:12px;
+            overflow:hidden;box-shadow:0 18px 52px rgba(0,0,0,.65);
+            opacity:0;visibility:hidden;transform:translateY(-6px);
+            transition:opacity .18s var(--ease),visibility .18s,transform .18s var(--ease);
+        }
+        .dd:hover .dd-menu { opacity:1;visibility:visible;transform:translateY(0); }
+        .di {
+            display:block;padding:11px 18px;
+            font-size:13px;font-weight:500;color:var(--muted);
+            transition:color .15s,background .15s;
+        }
+        .di:hover { color:var(--lime);background:rgba(255,255,255,.04); }
+        .di.on    { color:var(--lime);font-weight:700; }
+        .di + .di { border-top:1px solid var(--div); }
+        .nav-cta {
+            font-size:14px;font-weight:700;color:#050810;
+            background:var(--lime);padding:10px 24px;border-radius:9px;
+            white-space:nowrap;
+            transition:opacity .18s,box-shadow .25s,transform .18s;
+        }
+        .nav-cta:hover { opacity:.88;box-shadow:0 0 32px var(--lime-g);transform:translateY(-1px); }
+        .hbg { display:none;flex-direction:column;gap:5px;padding:6px;border-radius:6px; }
+        .hbg span { width:24px;height:2px;background:var(--txt);border-radius:2px;display:block;transition:transform .25s,opacity .25s; }
+        .hbg.on span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+        .hbg.on span:nth-child(2) { opacity:0; }
+        .hbg.on span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+        /* Mobile menu */
+        .mob {
+            display:none;position:fixed;top:76px;left:0;right:0;
+            background:rgba(5,8,15,.97);backdrop-filter:blur(24px);
+            border-bottom:1px solid var(--bdr-m);z-index:199;
+            padding:18px 18px 30px;flex-direction:column;gap:2px;
+        }
+        .mob.on  { display:flex; }
+        .ma {
+            font-size:16px;font-weight:500;color:var(--muted);
+            padding:11px 14px;border-radius:8px;
+            transition:color .15s,background .15s;
+        }
+        .ma:hover { color:var(--txt);background:rgba(255,255,255,.05); }
+        .mlbl {
+            font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--faint);
+            padding:14px 14px 4px;text-transform:uppercase;
+        }
+        .m-cta {
+            margin-top:14px;padding:14px 20px;text-align:center;
+            background:var(--lime);color:#050810;font-weight:700;
+            font-size:15px;border-radius:8px;transition:opacity .18s;
+        }
+        .m-cta:hover { opacity:.88; }
+
+        /* ══ TICKER ══ */
+        .ticker-wrap {
+            border-bottom:1px solid var(--div);overflow:hidden;
+            padding:10px 0;background:rgba(255,255,255,.01);
+        }
+        .ticker-track  { display:flex;animation:tk 28s linear infinite;white-space:nowrap; }
+        .ticker-track:hover { animation-play-state:paused; }
+        .ti {
+            display:inline-flex;align-items:center;gap:10px;padding:0 32px;
+            font-size:11px;font-weight:600;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;
+        }
+        .td { width:4px;height:4px;background:var(--teal);border-radius:50%;opacity:.6; }
+        @keyframes tk { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+        /* ══ PAGE ══ */
+        .page-wrap  { position:relative;z-index:1;padding-top:76px; }
+        .page-inner { max-width:1280px;margin:0 auto;padding:52px 32px 100px; }
+
+        /* Hero */
+        .hero-badge {
+            display:inline-flex;align-items:center;gap:8px;
+            background:rgba(0,212,200,.08);border:1px solid rgba(0,212,200,.2);
+            border-radius:99px;padding:6px 16px;
+            font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+            color:var(--teal);margin-bottom:24px;
+        }
+        .hero-badge .dot {
+            width:6px;height:6px;background:var(--teal);
+            border-radius:50%;animation:pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
+        .hero-title {
+            font-family:var(--fh);
+            font-size:clamp(2.4rem,5vw,4rem);
+            font-weight:900;color:#fff;letter-spacing:-.04em;
+            line-height:1.05;margin-bottom:16px;
+        }
+        .hero-title .accent { color:var(--lime); }
+        .hero-sub { font-size:17px;color:var(--muted);max-width:600px;line-height:1.7; }
+        .hero-sub strong { color:var(--txt); }
+
+        /* Section label */
+        .sec-label {
+            font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+            color:var(--muted);margin-bottom:24px;
+            display:flex;align-items:center;gap:10px;
+        }
+        .sec-label::before {
+            content:'';display:block;width:28px;height:1.5px;
+            background:linear-gradient(90deg,var(--teal),var(--lime));border-radius:2px;flex-shrink:0;
+        }
+
+        /* ══ REPORT CARDS ══ */
+        .rep-grid {
+            display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px;
+        }
+        .rep-card {
+            background:var(--s1);border:1px solid var(--bdr);
+            border-radius:24px;padding:26px;
+            display:flex;flex-direction:column;
+            transition:border-color .2s,transform .28s var(--ease),box-shadow .28s;
+            position:relative;overflow:hidden;
+        }
+        .rep-card::after {
+            content:'';position:absolute;top:0;left:10%;right:10%;height:1.5px;
+            background:linear-gradient(90deg,transparent,var(--teal),var(--lime),transparent);
+            border-radius:99px;opacity:0;transition:opacity .3s;
+        }
+        .rep-card:hover {
+            border-color:rgba(201,241,53,.28);
+            transform:translateY(-6px);
+            box-shadow:0 24px 64px rgba(0,0,0,.45),0 0 0 1px rgba(201,241,53,.08);
+        }
+        .rep-card:hover::after { opacity:.7; }
+
+        .rep-top { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px; }
+        .rep-icon {
+            width:52px;height:52px;border-radius:14px;
+            display:flex;align-items:center;justify-content:center;font-size:21px;
+        }
+        .ri-cobalt  { background:rgba(59,143,245,.09);color:var(--cobalt);border:1px solid rgba(59,143,245,.2); }
+        .ri-saffron { background:rgba(245,158,11,.09);color:var(--amber);border:1px solid rgba(245,158,11,.2); }
+        .ri-lime    { background:var(--lime-d);color:var(--lime);border:1px solid rgba(201,241,53,.2); }
+        .ri-faint   { background:rgba(255,255,255,.03);color:var(--faint);border:1px dashed var(--bdr-m); }
+
+        .rep-badge {
+            display:inline-flex;align-items:center;gap:7px;
+            font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+            padding:5px 12px;border-radius:99px;
+        }
+        .rb-live  { background:rgba(16,232,142,.08);color:var(--emerald);border:1px solid rgba(16,232,142,.22); }
+        .rb-soon  { background:rgba(255,255,255,.03);color:var(--faint);border:1px dashed var(--bdr-m); }
+        .rep-badge .dot { width:5px;height:5px;background:currentColor;border-radius:50%;animation:pulse 2s infinite; }
+
+        .rep-title { font-family:var(--fh);font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em; }
+        .rep-sub   { font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:5px; }
+        .rep-desc  { font-size:13.5px;color:var(--muted);line-height:1.65;margin:14px 0 20px;flex:1; }
+
+        .rep-stats {
+            display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+            background:var(--div);border:1px solid var(--div);
+            border-radius:12px;overflow:hidden;margin-bottom:20px;
+        }
+        .rep-stats > div { background:rgba(0,0,0,.3);padding:12px 8px;text-align:center; }
+        .rs-val { font-family:var(--fh);font-size:17px;font-weight:800;color:#fff;line-height:1.15; }
+        .rs-val.lime { color:var(--lime); }
+        .rs-lbl { font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:3px; }
+
+        .rep-cta {
+            display:flex;align-items:center;justify-content:center;gap:9px;
+            width:100%;padding:12px;text-align:center;
+            border:1px solid rgba(201,241,53,.25);border-radius:12px;
+            background:rgba(201,241,53,.06);color:var(--lime);
+            font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+            transition:background .18s,color .18s,border-color .18s;
+        }
+        .rep-card:hover .rep-cta { background:var(--lime);color:#050810;border-color:var(--lime); }
+        .rep-cta i { font-size:11px;transition:transform .2s; }
+        .rep-card:hover .rep-cta i { transform:translateX(4px); }
+
+        /* Coming soon card */
+        .rep-card.soon {
+            border-style:dashed;border-color:var(--bdr-m);
+            background:rgba(255,255,255,.01);cursor:default;
+        }
+        .rep-card.soon:hover { transform:none;box-shadow:none;border-color:var(--bdr-h); }
+        .rep-card.soon:hover::after { opacity:0; }
+
+        /* Notice */
+        .notice-banner {
+            background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);
+            border-radius:16px;padding:16px 22px;
+            display:flex;align-items:flex-start;gap:14px;
+        }
+        .notice-banner i { color:var(--amber);font-size:15px;flex-shrink:0;margin-top:2px; }
+        .notice-banner p { font-size:13px;color:var(--muted);line-height:1.6; }
+        .notice-banner strong { color:var(--txt); }
+
+        /* ══ FOOTER ══ */
+        .footer { border-top:1px solid var(--div);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);padding:80px 48px 36px;position:relative;z-index:1; }
+        .fg { display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:60px;border-bottom:1px solid var(--div); }
+        .flog img { height:48px;width:auto;margin-bottom:16px; }
+        .ftag { font-size:10.5px;color:var(--faint);letter-spacing:.13em;text-transform:uppercase;line-height:1.75;margin-bottom:22px; }
+        .fsoc { display:flex;gap:16px;font-size:18px; }
+        .fsoc a { transition:transform .18s,opacity .18s; }
+        .fsoc a:hover { transform:scale(1.15);opacity:.85; }
+        .fct  { font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:20px; }
+        .fli  { display:block;font-size:13.5px;color:var(--muted);margin-bottom:11px;transition:color .15s; }
+        .fli:hover { color:var(--txt); }
+        .fli.cta { color:var(--lime);font-weight:600; }
+        .fcl  { font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:4px; }
+        .fcv  { font-size:13.5px;color:#fff;font-weight:500;margin-bottom:14px;transition:color .15s; }
+        .fcv:hover { color:var(--lime); }
+        .fci  { font-size:12px;color:var(--muted);font-style:italic; }
+        .fdis-wrap { margin-top:44px;padding-top:40px;border-top:1px solid var(--div); }
+        .fdis-t  { font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px; }
+        .fdis-box { background:rgba(0,0,0,.4);padding:28px 32px;border-radius:18px;border:1px solid var(--div); }
+        .fdis-p  { font-size:10px;color:var(--faint);line-height:1.82;text-align:justify;text-transform:uppercase;letter-spacing:.01em;font-weight:300; }
+        .fbar    { margin-top:40px;padding-top:26px;border-top:1px solid var(--div);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px; }
+        .fcp     { font-size:10px;color:var(--faint);letter-spacing:.36em;text-transform:uppercase; }
+        .ftags   { display:flex;gap:18px; }
+        .ftg     { font-size:9px;color:rgba(100,115,132,.5);letter-spacing:.14em;text-transform:uppercase; }
+
+        /* ══ CUSTOM CANDLE CURSOR (from Home page) ══ */
+        .candle-cursor-layer{
+          position:fixed;
+          inset:0;
+          pointer-events:none;
+          z-index:9999;
+          overflow:hidden;
+        }
+        .cursor-candle{
+          position:fixed;
+          left:0;
+          top:0;
+          width:8px;
+          height:18px;
+          pointer-events:none;
+          z-index:9999;
+          will-change:transform,opacity;
+          filter:blur(.15px) drop-shadow(0 0 8px currentColor);
+        }
+        .cursor-candle .wick{
+          position:absolute;
+          left:50%;
+          top:1px;
+          width:1px;
+          height:16px;
+          transform:translateX(-50%);
+          background:currentColor;
+          opacity:.70;
+          border-radius:2px;
+        }
+        .cursor-candle .body{
+          position:absolute;
+          left:50%;
+          top:4px;
+          width:6px;
+          height:10px;
+          transform:translateX(-50%);
+          border-radius:2px;
+          border:1px solid currentColor;
+          box-shadow:0 0 10px currentColor;
+          opacity:.9;
+        }
+        .cursor-candle.bull .body{ background:rgba(16,232,142,.45); }
+        .cursor-candle.bear .body{ background:rgba(255,99,132,.45); }
+        .cursor-candle.alt1{color:rgba(0,212,200,.95);}
+        .cursor-candle.alt2{color:rgba(201,241,53,.95);}
+        .cursor-candle.alt3{color:rgba(59,143,245,.95);}
+        .cursor-candle.alt4{color:rgba(16,232,142,.95);}
+        .cursor-candle.alt5{color:rgba(245,158,11,.95);}
+        .cursor-candle.alt6{color:rgba(255,99,132,.95);}
+        @media (max-width: 768px){
+          .candle-cursor-layer { display:none; }
+        }
+
+        /* Scroll reveal */
+        .rv{opacity:0;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+        .rv.on{opacity:1;transform:none !important}
+        .ru{transform:translateY(30px)}
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:1024px) { .rep-grid { grid-template-columns:repeat(2,1fr); } }
+        @media(max-width:700px)  {
+            .rep-grid      { grid-template-columns:1fr; }
+            .nav-links,.nav-cta { display:none; }
+            .hbg           { display:flex; }
+            .fg            { grid-template-columns:1fr 1fr; }
+            .footer        { padding:52px 20px 28px; }
+            .page-inner    { padding:36px 16px 80px; }
+        }
+        @media(max-width:480px)  { .fg { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+
+<!-- ══ CANDLE CURSOR LAYER ══ -->
+<div class="candle-cursor-layer" id="candleCursorLayer" aria-hidden="true"></div>
+
+<!-- ══ BACKGROUND ══ -->
+<div class="bg-canvas" aria-hidden="true">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-orb bg-orb-4"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-vig"></div>
+</div>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav class="nav" id="nav">
+    <div class="nav-in">
+        <a href="../index.html" class="logo">
+            <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo" width="180" height="52">
+        </a>
+        <div class="nav-links">
+            <a href="../index.html" class="nl-a">Home</a>
+            <a href="../strategies/index.html" class="nl-a">Indicator &amp; Strategy</a>
+
+            <!-- Performance (active) -->
+            <div class="dd">
+                <button class="dd-btn on">
+                    Performance
+                    <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+                </button>
+                <div class="dd-menu">
+                    <a href="index.html"             class="di on">All Reports</a>
+                    <a href="./global/index.html"    class="di">Global Market</a>
+                    <a href="./india/index.html"     class="di">Indian Market</a>
+                    <a href="./rsi-suit/index.html"  class="di">RSI Suite · XAUUSD</a>
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="dd">
+                <button class="dd-btn">
+                    Resources
+                    <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+                </button>
+                <div class="dd-menu">
+                    <a href="../doc/index.html"  class="di">Documentation</a>
+                    <a href="../blog/index.html" class="di">Blogs</a>
+                </div>
+            </div>
+
+            <!-- Community -->
+            <div class="dd">
+                <button class="dd-btn">
+                    Community
+                    <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+                </button>
+                <div class="dd-menu">
+                    <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
+                    <a href="../free-tools/index.html" class="di">Free Toolkit</a>
+                </div>
+            </div>
+        </div>
+        <a href="../strategies/index.html#pricing" class="nav-cta">Get Access</a>
+        <button class="hbg" id="hbg" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob" id="mob">
+    <a href="../index.html"          class="ma">Home</a>
+    <a href="../strategies/index.html" class="ma">Indicator &amp; Strategy</a>
+    <div class="mlbl">Performance</div>
+    <a href="index.html"             class="ma" style="color:var(--lime)">All Reports</a>
+    <a href="./global/index.html"    class="ma">Global Market</a>
+    <a href="./india/index.html"     class="ma">Indian Market</a>
+    <a href="./rsi-suit/index.html"  class="ma">RSI Suite · XAUUSD</a>
+    <div class="mlbl">Resources</div>
+    <a href="../doc/index.html"      class="ma">Documentation</a>
+    <a href="../blog/index.html"     class="ma">Blogs</a>
+    <div class="mlbl">Community</div>
+    <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
+    <a href="../free-tools/index.html" class="ma">Free Toolkit</a>
+    <a href="../strategies/index.html#pricing" class="m-cta">Get Access →</a>
+</div>
+
+<!-- ══════════════════ PAGE ══════════════════ -->
+<div class="page-wrap">
+
+    <!-- Ticker -->
+    <div class="ticker-wrap" style="position:relative;z-index:1;margin-top:76px">
+        <div class="ticker-track" aria-hidden="true">
+            <span class="ti"><span class="td"></span>Performance Hub</span>
+            <span class="ti"><span class="td"></span>Verified Reports</span>
+            <span class="ti"><span class="td"></span>Global Market</span>
+            <span class="ti"><span class="td"></span>Indian Market</span>
+            <span class="ti"><span class="td"></span>RSI Suite · Gold</span>
+            <span class="ti"><span class="td"></span>Live Data Sync</span>
+            <span class="ti"><span class="td"></span>Public Trade Logs</span>
+            <span class="ti"><span class="td"></span>Quant Transparency</span>
+            <span class="ti"><span class="td"></span>Performance Hub</span>
+            <span class="ti"><span class="td"></span>Verified Reports</span>
+            <span class="ti"><span class="td"></span>Global Market</span>
+            <span class="ti"><span class="td"></span>Indian Market</span>
+            <span class="ti"><span class="td"></span>RSI Suite · Gold</span>
+            <span class="ti"><span class="td"></span>Live Data Sync</span>
+            <span class="ti"><span class="td"></span>Public Trade Logs</span>
+            <span class="ti"><span class="td"></span>Quant Transparency</span>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="page-inner">
+
+        <!-- ── Hero ── -->
+        <div style="margin-bottom:52px" class="rv ru">
+            <div class="hero-badge"><span class="dot"></span>Performance Hub</div>
+            <h1 class="hero-title">
+                Verified Trading<br><span class="accent">Reports</span>
+            </h1>
+            <p class="hero-sub">
+                Every PointAlgo strategy is tracked in a <strong>public, auditable trade log</strong> —
+                no screenshots, no cherry-picking. Pick a report below and inspect the raw data yourself.
+            </p>
+        </div>
+
+        <!-- Section Label -->
+        <div class="sec-label">Choose a Report</div>
+
+        <!-- ── Report Cards ── -->
+        <div class="rep-grid">
+
+            <!-- Global Market -->
+            <a href="./global/index.html" class="rep-card rv ru">
+                <div class="rep-top">
+                    <div class="rep-icon ri-cobalt"><i class="fa-solid fa-globe"></i></div>
+                    <span class="rep-badge rb-live"><span class="dot"></span>Live Feed</span>
+                </div>
+                <div class="rep-title">Global Market</div>
+                <div class="rep-sub">Forex · Commodities · Crypto</div>
+                <p class="rep-desc">
+                    Multi-strategy performance across FX pairs, gold, and crypto — streamed live from
+                    executed trade logs via our Apps Script data pipeline.
+                </p>
+                <div class="rep-stats">
+                    <div>
+                        <div class="rs-val">4</div>
+                        <div class="rs-lbl">Strategies</div>
+                    </div>
+                    <div>
+                        <div class="rs-val" id="gc-trades">—</div>
+                        <div class="rs-lbl">Trades</div>
+                    </div>
+                    <div>
+                        <div class="rs-val lime" id="gc-pnl">—</div>
+                        <div class="rs-lbl">Net PnL</div>
+                    </div>
+                </div>
+                <div class="rep-cta">View Report <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- Indian Market -->
+            <a href="./india/index.html" class="rep-card rv ru" style="transition-delay:.08s">
+                <div class="rep-top">
+                    <div class="rep-icon ri-saffron"><i class="fa-solid fa-chart-candlestick"></i></div>
+                    <span class="rep-badge rb-live"><span class="dot"></span>Live Feed</span>
+                </div>
+                <div class="rep-title">Indian Market</div>
+                <div class="rep-sub">NSE · BSE · Indices</div>
+                <p class="rep-desc">
+                    Strategy performance on Indian equities and indices — tracked with the same
+                    non-repaint signal integrity and verified execution logs.
+                </p>
+                <div class="rep-stats">
+                    <div>
+                        <div class="rs-val">NSE</div>
+                        <div class="rs-lbl">Exchange</div>
+                    </div>
+                    <div>
+                        <div class="rs-val">Multi</div>
+                        <div class="rs-lbl">Strategies</div>
+                    </div>
+                    <div>
+                        <div class="rs-val lime">Live</div>
+                        <div class="rs-lbl">Tracking</div>
+                    </div>
+                </div>
+                <div class="rep-cta">View Report <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- RSI Suite (XAUUSD) -->
+            <a href="./rsi-suit/index.html" class="rep-card rv ru" style="transition-delay:.16s">
+                <div class="rep-top">
+                    <div class="rep-icon ri-lime"><i class="fa-solid fa-wave-square"></i></div>
+                    <span class="rep-badge rb-live"><span class="dot"></span>Live Sheet Sync</span>
+                </div>
+                <div class="rep-title">RSI Suite</div>
+                <div class="rep-sub">XAUUSD Gold · 10-Minute</div>
+                <p class="rep-desc">
+                    Deep-dive analytics for the RSI Suite gold engine — equity curve, monthly cadence,
+                    risk ratios and long/short edge, synced live from the public sheet.
+                </p>
+                <div class="rep-stats">
+                    <div>
+                        <div class="rs-val" id="rsi-trades">—</div>
+                        <div class="rs-lbl">Trades</div>
+                    </div>
+                    <div>
+                        <div class="rs-val" id="rsi-wr">—</div>
+                        <div class="rs-lbl">Win Rate</div>
+                    </div>
+                    <div>
+                        <div class="rs-val lime" id="rsi-pnl">—</div>
+                        <div class="rs-lbl">Net P&amp;L</div>
+                    </div>
+                </div>
+                <div class="rep-cta">View Report <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- Coming Soon -->
+            <div class="rep-card soon rv ru" style="transition-delay:.24s">
+                <div class="rep-top">
+                    <div class="rep-icon ri-faint"><i class="fa-solid fa-plus"></i></div>
+                    <span class="rep-badge rb-soon">Coming Soon</span>
+                </div>
+                <div class="rep-title" style="color:var(--muted)">More Strategy Reports</div>
+                <div class="rep-sub">In Development</div>
+                <p class="rep-desc">
+                    New verified reports land here as strategies complete forward-testing.
+                    Each one ships with a public trade log and live-synced analytics.
+                </p>
+                <div class="rep-stats">
+                    <div>
+                        <div class="rs-val" style="color:var(--faint)">—</div>
+                        <div class="rs-lbl">Trades</div>
+                    </div>
+                    <div>
+                        <div class="rs-val" style="color:var(--faint)">—</div>
+                        <div class="rs-lbl">Win Rate</div>
+                    </div>
+                    <div>
+                        <div class="rs-val" style="color:var(--faint)">—</div>
+                        <div class="rs-lbl">Net P&amp;L</div>
+                    </div>
+                </div>
+                <div class="rep-cta" style="border-style:dashed;border-color:var(--bdr-m);background:transparent;color:var(--faint)">
+                    Stay Tuned
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Notice -->
+        <div class="notice-banner rv ru">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <p><strong>Performance Transparency:</strong> All reports are computed from real executed trade logs —
+            not backtests or simulations. Past performance does not guarantee future results.
+            Trading involves significant risk; see the disclaimer below.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+    <div style="max-width:1280px;margin:0 auto">
+        <div class="fg">
+            <div class="flog">
+                <img src="../strategies/pointalgo_logo1.png" alt="PointAlgo">
+                <p class="ftag">Advanced Quantitative<br>Intelligence Systems.</p>
+                <div class="fsoc">
+                    <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" style="color:var(--muted)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="fct">Platform</div>
+                <a href="../index.html"           class="fli">Home</a>
+                <a href="../strategies/index.html" class="fli">Indicator &amp; Strategy</a>
+                <a href="../blog/index.html"      class="fli">Blog</a>
+                <a href="../doc/index.html"       class="fli">Documentation</a>
+                <a href="../contact/index.html"   class="fli cta">Contact Us</a>
+            </div>
+            <div>
+                <div class="fct">Legal &amp; Compliance</div>
+                <a href="../legal/terms.html"  class="fli">Terms &amp; Conditions</a>
+                <a href="../legal/privacy.html" class="fli">Privacy Policy</a>
+                <a href="../legal/refund.html"  class="fli">Refund &amp; Cancellation</a>
+                <a href="../about.html"         class="fli">About Us</a>
+            </div>
+            <div>
+                <div class="fct">Connect</div>
+                <div class="fcl">Inquiries</div>
+                <a href="mailto:hello@pointalgo.com" class="fcv">hello@pointalgo.com</a>
+                <div class="fcl">Support</div>
+                <div class="fcv" style="cursor:default">+91-8452035834</div>
+                <div class="fci">Ghatkopar, Mumbai, India</div>
+            </div>
+        </div>
+        <div class="fdis-wrap">
+            <div class="fdis-t">Disclaimer from PointAlgo.com</div>
+            <div class="fdis-box">
+                <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
+            </div>
+        </div>
+        <div class="fbar">
+            <div class="fcp">© 2026 PointAlgo Quantitative Intelligence</div>
+            <div class="ftags">
+                <span class="ftg">Built for Speed</span>
+                <span class="ftg">Built for Accuracy</span>
+                <span class="ftg">Built for Logic</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════ SCRIPTS ══════════════════ -->
+<script>
+/* ════════════════════════════════════════════════════
+   NAV BEHAVIOUR
+════════════════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
+});
+document.getElementById('hbg').addEventListener('click', function () {
+    this.classList.toggle('on');
+    document.getElementById('mob').classList.toggle('on');
+});
+document.addEventListener('click', function (e) {
+    if (!e.target.closest('#hbg') && !e.target.closest('#mob')) {
+        document.getElementById('hbg').classList.remove('on');
+        document.getElementById('mob').classList.remove('on');
+    }
+});
+
+/* ════════════════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════════════════ */
+(function () {
+    const els = document.querySelectorAll('.rv');
+    if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('on')); return; }
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('on'); obs.unobserve(en.target); } });
+    }, { threshold: 0.1 });
+    els.forEach(el => obs.observe(el));
+})();
+
+/* ════════════════════════════════════════════════════
+   HELPERS
+════════════════════════════════════════════════════ */
+const nf = v => Math.round(v).toLocaleString('en-US');
+const fmtMoneyShort = v => (v < 0 ? '-$' : '$') + nf(Math.abs(v));
+
+function fetchTimeout(url, ms) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), ms);
+    return fetch(url, { cache: 'no-store', signal: ctrl.signal }).finally(() => clearTimeout(t));
+}
+
+/* ════════════════════════════════════════════════════
+   RSI SUITE CARD — live stats from public sheet (gviz)
+   Same feed as reports/rsi-suit/index.html — no Apps
+   Script needed (sheet is shared "anyone with link").
+════════════════════════════════════════════════════ */
+const RSI_SHEET_ID = '1d8EHOT7FRMdj0eWvw-1QYL4_46blINHK8hW__UFLbnQ';
+const RSI_GVIZ = `https://docs.google.com/spreadsheets/d/${RSI_SHEET_ID}/gviz/tq?tqx=out:json&gid=937339054`;
+
+(async function loadRsiStats() {
+    try {
+        const res = await fetchTimeout(RSI_GVIZ, 8000);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
+        const grid = (json.table.rows || []).map(r => (r && r.c) ? r.c : []);
+
+        const cellText = c => c ? String(c.f != null ? c.f : (c.v != null ? c.v : '')).trim() : '';
+        const cellNum  = c => {
+            if (!c) return NaN;
+            if (typeof c.v === 'number') return c.v;
+            const n = parseFloat(cellText(c).replace(/[^0-9.\-]/g, ''));
+            return isNaN(n) ? NaN : n;
+        };
+        const cellPct = c => {
+            if (!c) return NaN;
+            const f = cellText(c);
+            if (f.includes('%')) return parseFloat(f.replace(/[^0-9.\-]/g, ''));
+            if (typeof c.v === 'number') return c.v > 1.5 ? c.v : c.v * 100;
+            return NaN;
+        };
+
+        /* Find the "TOTAL TRADES" header row → values in next row */
+        let kpi = null;
+        for (let i = 0; i < grid.length && !kpi; i++) {
+            for (let j = 0; j < grid[i].length; j++) {
+                if (cellText(grid[i][j]).toLowerCase() === 'total trades') { kpi = { i, j }; break; }
+            }
+        }
+        if (!kpi) throw new Error('KPI row not found');
+
+        const header = grid[kpi.i], vals = grid[kpi.i + 1] || [];
+        const colOf = name => header.findIndex(c => cellText(c).toLowerCase() === name);
+        const trades = cellNum(vals[colOf('total trades')]);
+        const wr     = cellPct(vals[colOf('win rate')]);
+        const pnl    = cellNum(vals[colOf('net p&l (usd & inr)')]);
+
+        if (!isNaN(trades)) document.getElementById('rsi-trades').textContent = nf(trades);
+        if (!isNaN(wr))     document.getElementById('rsi-wr').textContent     = wr.toFixed(1) + '%';
+        if (!isNaN(pnl))    document.getElementById('rsi-pnl').textContent    = fmtMoneyShort(pnl);
+    } catch (err) {
+        console.warn('[PointAlgo] RSI card live stats failed:', err.message);
+        /* fallback snapshot */
+        document.getElementById('rsi-trades').textContent = '4,651';
+        document.getElementById('rsi-wr').textContent     = '81.7%';
+        document.getElementById('rsi-pnl').textContent    = '$141,048';
+    }
+})();
+
+/* ════════════════════════════════════════════════════
+   GLOBAL CARD — live stats from the same Apps Script
+   feed used by reports/global/index.html
+════════════════════════════════════════════════════ */
+const GLOBAL_API = 'https://script.google.com/macros/s/AKfycbw3vhmWE9JmAjz4MDsh4InKEdZ6tGNtLdmwgoOGGoHcubz7h2FL-C-dNz0cBdnRET7M9w/exec';
+const GLOBAL_IDS = ['PA_SUPPLY_DEMAND', 'POP', 'BTC_SCALP', 'GOLD_PRO'];
+
+(async function loadGlobalStats() {
+    try {
+        const res = await fetchTimeout(GLOBAL_API, 10000);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        if (!Array.isArray(data)) throw new Error('Bad payload');
+
+        const trades = data.filter(t => GLOBAL_IDS.includes(t.Strategy_ID));
+        if (!trades.length) throw new Error('No trades');
+        const pnl = trades.reduce((a, t) => a + (parseFloat(t['Profit Amount']) || 0), 0);
+
+        document.getElementById('gc-trades').textContent = nf(trades.length);
+        document.getElementById('gc-pnl').textContent    = fmtMoneyShort(pnl);
+    } catch (err) {
+        console.warn('[PointAlgo] Global card live stats failed:', err.message);
+        document.getElementById('gc-trades').textContent = 'Live';
+        document.getElementById('gc-pnl').textContent    = 'Live';
+    }
+})();
+</script>
+
+<!-- ══ CANDLE CURSOR (same as Home page) ══ -->
+<script>
+(function(){
+  var layer = document.getElementById('candleCursorLayer');
+  if(!layer) return;
+
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+
+  var mouse = {
+    x: window.innerWidth * 0.5,
+    y: window.innerHeight * 0.5,
+    tx: window.innerWidth * 0.5,
+    ty: window.innerHeight * 0.5,
+    active: false
+  };
+
+  var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
+  var total = 18;
+  var candles = [];
+  var rafId = null;
+
+  function rand(min,max){ return Math.random() * (max - min) + min; }
+
+  function createCandle(i){
+    var el = document.createElement('div');
+    var bull = Math.random() > 0.45;
+    el.className = 'cursor-candle ' + (bull ? 'bull' : 'bear') + ' ' + colors[i % colors.length];
+
+    var wick = document.createElement('span');
+    wick.className = 'wick';
+
+    var body = document.createElement('span');
+    body.className = 'body';
+
+    var bodyH = rand(6, 12);
+    var wickH = bodyH + rand(6, 10);
+    var bodyTop = rand(3, 6);
+
+    el.style.width = rand(6, 9) + 'px';
+    el.style.height = Math.max(16, wickH + 2) + 'px';
+
+    el.style.opacity = rand(0.35, 0.75);
+
+    wick.style.height = wickH + 'px';
+    wick.style.top = '1px';
+
+    body.style.height = bodyH + 'px';
+    body.style.width = rand(4, 7) + 'px';
+    body.style.top = bodyTop + 'px';
+
+    el.appendChild(wick);
+    el.appendChild(body);
+    layer.appendChild(el);
+
+    return {
+      el: el,
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      vx: rand(-0.18, 0.18),
+      vy: rand(-0.18, 0.18),
+      driftX: rand(-0.015, 0.015),
+      driftY: rand(-0.015, 0.015),
+      angle: rand(-18, 18),
+      rotSpeed: rand(-0.08, 0.08),
+      size: rand(0.85, 1.18),
+      magnet: rand(180, 280),
+      pull: rand(0.025, 0.050),
+      ease: rand(0.92, 0.965),
+      phase: rand(0, Math.PI * 2),
+      bob: rand(0.08, 0.22)
+    };
+  }
+
+  function init(){
+    for(var i=0;i<total;i++){
+      candles.push(createCandle(i));
+    }
+  }
+
+  function onMove(e){
+    mouse.tx = e.clientX;
+    mouse.ty = e.clientY;
+    mouse.active = true;
+  }
+
+  function onLeave(){
+    mouse.active = false;
+  }
+
+  function resizeReset(){
+    for(var i=0;i<candles.length;i++){
+      candles[i].x = rand(0, window.innerWidth);
+      candles[i].y = rand(0, window.innerHeight);
+    }
+  }
+
+  function animate(){
+    mouse.x += (mouse.tx - mouse.x) * 0.18;
+    mouse.y += (mouse.ty - mouse.y) * 0.18;
+
+    var t = performance.now() * 0.001;
+
+    for(var i=0;i<candles.length;i++){
+      var c = candles[i];
+
+      c.vx += c.driftX + Math.sin(t + c.phase) * 0.0018;
+      c.vy += c.driftY + Math.cos(t * 0.9 + c.phase) * 0.0018;
+
+      if(mouse.active){
+        var dx = mouse.x - c.x;
+        var dy = mouse.y - c.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+
+        if(dist < c.magnet){
+          var force = (1 - dist / c.magnet) * c.pull;
+          c.vx += (dx / dist) * force * 4.0;
+          c.vy += (dy / dist) * force * 4.0;
+        }
+      }
+
+      c.vx *= c.ease;
+      c.vy *= c.ease;
+
+      c.x += c.vx;
+      c.y += c.vy;
+
+      if(c.x < -20){ c.x = window.innerWidth + 20; }
+      if(c.x > window.innerWidth + 20){ c.x = -20; }
+      if(c.y < -20){ c.y = window.innerHeight + 20; }
+      if(c.y > window.innerHeight + 20){ c.y = -20; }
+
+      c.angle += c.rotSpeed;
+      var bobY = Math.sin(t * 1.4 + c.phase) * c.bob * 8;
+
+      c.el.style.transform =
+        'translate3d(' + c.x + 'px,' + (c.y + bobY) + 'px,0) ' +
+        'rotate(' + c.angle + 'deg) scale(' + c.size + ')';
+    }
+
+    rafId = requestAnimationFrame(animate);
+  }
+
+  init();
+  window.addEventListener('mousemove', onMove, { passive:true });
+  window.addEventListener('mouseenter', onMove, { passive:true });
+  document.addEventListener('mouseleave', onLeave, { passive:true });
+  window.addEventListener('resize', resizeReset, { passive:true });
+
+  animate();
+})();
+</script>
+
+</body>
+</html>
