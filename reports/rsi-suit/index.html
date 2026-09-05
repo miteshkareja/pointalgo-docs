@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJZXB11LLJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GJZXB11LLJ');
+    </script>
+    <title>XAUUSD Gold Report | PointAlgo</title>
+    <meta name="description" content="Verified XAUUSD RSI Suite Intelligence performance — live-synced from a public trade log. Win rate, profit factor, monthly cadence and directional edge.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ══════════════════════════════
+           CSS DESIGN TOKENS
+        ══════════════════════════════ */
+        :root {
+            --bg:     #05080f;
+            --s1:     #090e1a;
+            --s2:     #0d1424;
+            --s3:     #111b30;
+            --bdr:    rgba(255,255,255,.07);
+            --bdr-m:  rgba(255,255,255,.12);
+            --bdr-h:  rgba(255,255,255,.20);
+            --div:    rgba(255,255,255,.04);
+            --txt:    #dde6f0;
+            --muted:  #8a9bb5;
+            --faint:  #2c3d52;
+            --lime:   #c9f135;
+            --lime-g: rgba(201,241,53,.28);
+            --lime-d: rgba(201,241,53,.09);
+            --teal:   #00d4c8;
+            --cobalt: #3b8ff5;
+            --emerald:#10e88e;
+            --amber:  #f59e0b;
+            --fd: 'Inter', system-ui, sans-serif;
+            --fh: 'Space Grotesk', 'Inter', sans-serif;
+            --ease: cubic-bezier(.16,1,.3,1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        body {
+            font-family: var(--fd);
+            color: var(--txt);
+            background: var(--bg);
+            line-height: 1.65;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        a  { text-decoration: none; color: inherit; }
+        button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+
+        /* ══ SCROLLBAR ══ */
+        ::-webkit-scrollbar        { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track  { background: var(--s1); }
+        ::-webkit-scrollbar-thumb  { background: var(--faint); border-radius: 10px; }
+
+        /* ══ ANIMATED BG ══ */
+        .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .bg-orb    { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .5; }
+        .bg-orb-1  { width:680px;height:680px;top:-180px;left:-120px;
+                     background:radial-gradient(circle,rgba(0,212,200,.16) 0%,transparent 70%);
+                     animation:od1 20s ease-in-out infinite alternate; }
+        .bg-orb-2  { width:560px;height:560px;top:8%;right:-80px;
+                     background:radial-gradient(circle,rgba(201,241,53,.10) 0%,transparent 70%);
+                     animation:od2 24s ease-in-out infinite alternate; }
+        .bg-orb-3  { width:480px;height:480px;bottom:12%;left:22%;
+                     background:radial-gradient(circle,rgba(59,143,245,.09) 0%,transparent 70%);
+                     animation:od3 28s ease-in-out infinite alternate; }
+        .bg-orb-4  { width:380px;height:380px;bottom:-80px;right:12%;
+                     background:radial-gradient(circle,rgba(16,232,142,.07) 0%,transparent 70%);
+                     animation:od4 22s ease-in-out infinite alternate; }
+        @keyframes od1 { to { transform: translate(70px,110px); } }
+        @keyframes od2 { to { transform: translate(-55px,85px); } }
+        @keyframes od3 { to { transform: translate(95px,-75px); } }
+        @keyframes od4 { to { transform: translate(-75px,-55px); } }
+        .bg-grid {
+            position:absolute;inset:0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+            background-size:60px 60px;
+        }
+        .bg-vig {
+            position:absolute;inset:0;
+            background:radial-gradient(ellipse 130% 110% at 50% 50%,transparent 28%,rgba(5,8,15,.82) 100%);
+        }
+
+        /* ══ NAV ══ */
+        .nav {
+            position:fixed;top:0;left:0;right:0;z-index:200;height:76px;
+            background:rgba(5,8,15,.85);
+            backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+            border-bottom:1px solid var(--bdr);transition:border-color .3s;
+        }
+        .nav.scrolled { border-bottom-color:var(--bdr-m); }
+        .nav-in {
+            max-width:1280px;margin:0 auto;padding:0 32px;height:100%;
+            display:flex;align-items:center;justify-content:space-between;gap:24px;
+        }
+        .logo img { height:52px;width:auto;display:block; }
+        .nav-links { display:flex;align-items:center;gap:4px; }
+        .nl-a {
+            font-size:13px;font-weight:600;color:var(--muted);
+            padding:7px 14px;border-radius:7px;
+            transition:color .18s,background .18s;letter-spacing:.01em;
+        }
+        .nl-a:hover        { color:var(--txt);background:rgba(255,255,255,.06); }
+        .dd                { position:relative; }
+        .dd-btn {
+            display:flex;align-items:center;gap:6px;
+            font-size:13px;font-weight:600;color:var(--muted);
+            padding:7px 14px;border-radius:7px;
+            transition:color .18s,background .18s;cursor:pointer;letter-spacing:.01em;
+        }
+        .dd-btn.on         { color:var(--lime); }
+        .dd-btn:hover,
+        .dd:hover .dd-btn  { color:var(--txt);background:rgba(255,255,255,.06); }
+        .dd-btn svg        { width:10px;height:10px;opacity:.5;transition:transform .2s; }
+        .dd:hover .dd-btn svg { transform:rotate(180deg); }
+        .dd-menu {
+            position:absolute;top:calc(100% + 10px);left:0;min-width:200px;
+            background:var(--s2);border:1px solid var(--bdr-m);border-radius:12px;
+            overflow:hidden;box-shadow:0 18px 52px rgba(0,0,0,.65);
+            opacity:0;visibility:hidden;transform:translateY(-6px);
+            transition:opacity .18s var(--ease),visibility .18s,transform .18s var(--ease);
+        }
+        .dd:hover .dd-menu { opacity:1;visibility:visible;transform:translateY(0); }
+        .di {
+            display:block;padding:11px 18px;
+            font-size:13px;font-weight:500;color:var(--muted);
+            transition:color .15s,background .15s;
+        }
+        .di:hover { color:var(--lime);background:rgba(255,255,255,.04); }
+        .di.on    { color:var(--lime);font-weight:700; }
+        .di + .di { border-top:1px solid var(--div); }
+        .nav-cta {
+            font-size:14px;font-weight:700;color:#050810;
+            background:var(--lime);padding:10px 24px;border-radius:9px;
+            white-space:nowrap;
+            transition:opacity .18s,box-shadow .25s,transform .18s;
+        }
+        .nav-cta:hover { opacity:.88;box-shadow:0 0 32px var(--lime-g);transform:translateY(-1px); }
+        .hbg { display:none;flex-direction:column;gap:5px;padding:6px;border-radius:6px; }
+        .hbg span { width:24px;height:2px;background:var(--txt);border-radius:2px;display:block;transition:transform .25s,opacity .25s; }
+        .hbg.on span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+        .hbg.on span:nth-child(2) { opacity:0; }
+        .hbg.on span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+        /* Mobile menu */
+        .mob {
+            display:none;position:fixed;top:76px;left:0;right:0;
+            background:rgba(5,8,15,.97);backdrop-filter:blur(24px);
+            border-bottom:1px solid var(--bdr-m);z-index:199;
+            padding:18px 18px 30px;flex-direction:column;gap:2px;
+        }
+        .mob.on  { display:flex; }
+        .ma {
+            font-size:16px;font-weight:500;color:var(--muted);
+            padding:11px 14px;border-radius:8px;
+            transition:color .15s,background .15s;
+        }
+        .ma:hover { color:var(--txt);background:rgba(255,255,255,.05); }
+        .mlbl {
+            font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--faint);
+            padding:14px 14px 4px;text-transform:uppercase;
+        }
+        .m-cta {
+            margin-top:14px;padding:14px 20px;text-align:center;
+            background:var(--lime);color:#050810;font-weight:700;
+            font-size:15px;border-radius:8px;transition:opacity .18s;
+        }
+        .m-cta:hover { opacity:.88; }
+
+        /* ══ TICKER ══ */
+        .ticker-wrap {
+            border-bottom:1px solid var(--div);overflow:hidden;
+            padding:10px 0;background:rgba(255,255,255,.01);
+        }
+        .ticker-track  { display:flex;animation:tk 28s linear infinite;white-space:nowrap; }
+        .ticker-track:hover { animation-play-state:paused; }
+        .ti {
+            display:inline-flex;align-items:center;gap:10px;padding:0 32px;
+            font-size:11px;font-weight:600;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;
+        }
+        .td { width:4px;height:4px;background:var(--teal);border-radius:50%;opacity:.6; }
+        @keyframes tk { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+        /* ══ PAGE ══ */
+        .page-wrap  { position:relative;z-index:1;padding-top:76px; }
+        .page-inner { max-width:1280px;margin:0 auto;padding:52px 32px 100px; }
+
+        /* Hero */
+        .hero-badge {
+            display:inline-flex;align-items:center;gap:8px;
+            background:rgba(201,241,53,.07);border:1px solid rgba(201,241,53,.22);
+            border-radius:99px;padding:6px 16px;
+            font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+            color:var(--lime);margin-bottom:24px;
+        }
+        .hero-badge .dot {
+            width:6px;height:6px;background:var(--lime);
+            border-radius:50%;animation:pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
+        .hero-title {
+            font-family:var(--fh);
+            font-size:clamp(2.4rem,5vw,4rem);
+            font-weight:900;color:#fff;letter-spacing:-.04em;
+            line-height:1.05;margin-bottom:16px;
+        }
+        .hero-title .accent { color:var(--lime); }
+        .hero-sub { font-size:17px;color:var(--muted);max-width:620px;line-height:1.7; }
+        .hero-sub strong { color:var(--txt); }
+
+        /* Hero buttons */
+        .btn-row { display:flex;gap:14px;flex-wrap:wrap;margin-top:30px; }
+        .btn-l {
+            display:inline-flex;align-items:center;gap:9px;
+            background:var(--lime);color:#050810;font-size:14px;font-weight:700;
+            padding:13px 28px;border-radius:9px;
+            transition:opacity .18s,box-shadow .25s,transform .18s;
+        }
+        .btn-l:hover { opacity:.9;box-shadow:0 0 40px var(--lime-g);transform:translateY(-2px); }
+        .btn-o {
+            display:inline-flex;align-items:center;gap:9px;
+            background:transparent;color:var(--muted);font-size:14px;font-weight:600;
+            padding:12px 22px;border-radius:9px;border:1px solid var(--bdr-m);
+            transition:color .18s,border-color .18s,background .18s;
+        }
+        .btn-o:hover { color:var(--txt);border-color:var(--bdr-h);background:rgba(255,255,255,.04); }
+
+        /* Live data status chip */
+        .data-status {
+            display:inline-flex;align-items:center;gap:8px;margin-top:20px;
+            font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+            background:var(--s1);border:1px solid var(--bdr);border-radius:99px;padding:6px 14px;
+        }
+        .ds-dot { width:7px;height:7px;border-radius:50%;background:var(--amber);animation:pulse 2s infinite;flex-shrink:0; }
+        .data-status.live    { color:var(--emerald);border-color:rgba(16,232,142,.25); }
+        .data-status.live .ds-dot { background:var(--emerald); }
+        .data-status.offline { color:#f87171;border-color:rgba(248,113,113,.25); }
+        .data-status.offline .ds-dot { background:#f87171;animation:none; }
+
+        /* Stats pills */
+        .stats-row { display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;margin-bottom:52px; }
+        .stat-pill {
+            display:flex;align-items:center;gap:12px;
+            background:var(--s1);border:1px solid var(--bdr-m);
+            border-radius:14px;padding:14px 20px;
+            transition:border-color .2s;
+        }
+        .stat-pill:hover { border-color:var(--bdr-h); }
+        .stat-icon { font-size:20px; }
+        .stat-icon.teal    { color:var(--teal); }
+        .stat-icon.lime    { color:var(--lime); }
+        .stat-icon.cobalt  { color:var(--cobalt); }
+        .stat-icon.emerald { color:var(--emerald); }
+        .stat-val { font-family:var(--fh);font-size:22px;font-weight:800;color:#fff;line-height:1; }
+        .stat-lbl { font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted); }
+
+        /* Section label */
+        .sec-label {
+            font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+            color:var(--muted);margin-bottom:24px;
+            display:flex;align-items:center;gap:10px;
+        }
+        .sec-label::before {
+            content:'';display:block;width:28px;height:1.5px;
+            background:linear-gradient(90deg,var(--teal),var(--lime));border-radius:2px;flex-shrink:0;
+        }
+
+        /* Notice */
+        .notice-banner {
+            background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);
+            border-radius:16px;padding:16px 22px;
+            display:flex;align-items:flex-start;gap:14px;margin-bottom:40px;
+        }
+        .notice-banner i { color:var(--amber);font-size:15px;flex-shrink:0;margin-top:2px; }
+        .notice-banner p { font-size:13px;color:var(--muted);line-height:1.6; }
+        .notice-banner strong { color:var(--txt); }
+        .notice-banner a { color:var(--lime);font-weight:600;border-bottom:1px solid rgba(201,241,53,.35); }
+        .notice-banner a:hover { color:#fff; }
+
+        /* ══ PANELS ══ */
+        .panel-card {
+            background:var(--s1);border:1px solid var(--bdr);
+            border-radius:24px;padding:28px;
+            margin-bottom:28px;
+            transition:border-color .2s;
+        }
+        .panel-card:hover { border-color:var(--bdr-m); }
+        .panel-head { margin-bottom:22px; }
+        .panel-title { font-family:var(--fh);font-size:19px;font-weight:800;color:#fff;letter-spacing:-.01em; }
+        .panel-sub   { font-size:12.5px;color:var(--faint);margin-top:4px; }
+
+        .grid-2 { display:grid;grid-template-columns:1fr 1fr;gap:28px; }
+        .grid-2 .panel-card { margin-bottom:0; }
+        .grid-wrap { margin-bottom:28px; }
+
+        /* ══ KPI GRID ══ */
+        .kpi-grid {
+            display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+            background:var(--div);border-radius:16px;overflow:hidden;
+            border:1px solid var(--div);
+        }
+        .kpi { background:rgba(0,0,0,.3);padding:22px 18px;text-align:center; }
+        .kpi-lbl { font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:8px; }
+        .kpi-val { font-family:var(--fh);font-size:26px;font-weight:800;color:#fff;line-height:1.1; }
+        .kpi-val.lime { color:var(--lime); }
+        .kpi-sub { font-size:11px;color:var(--muted);margin-top:6px; }
+
+        /* ══ CADENCE MINI STATS ══ */
+        .cad-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+        .cad-item {
+            background:rgba(0,0,0,.25);border:1px solid var(--div);
+            border-radius:14px;padding:16px 18px;
+        }
+        .cad-lbl { font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:6px; }
+        .cad-val { font-family:var(--fh);font-size:20px;font-weight:800;color:#fff; }
+        .cad-val span { font-size:11px;font-weight:600;color:var(--muted);font-family:var(--fd);letter-spacing:.02em; }
+
+        /* ══ RATIO ROWS ══ */
+        .ratio-row {
+            display:flex;align-items:center;justify-content:space-between;gap:14px;
+            padding:13px 4px;border-bottom:1px solid var(--div);
+        }
+        .ratio-row:last-child { border-bottom:none; }
+        .ratio-name { font-size:13.5px;font-weight:600;color:var(--txt); }
+        .ratio-desc { font-size:11px;color:var(--faint);margin-top:2px; }
+        .ratio-right { display:flex;align-items:center;gap:12px;flex-shrink:0; }
+        .ratio-val { font-family:var(--fh);font-size:18px;font-weight:800;color:#fff; }
+        .ratio-val.red { color:#f87171; }
+        .chip {
+            font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+            padding:4px 10px;border-radius:99px;white-space:nowrap;
+        }
+        .chip-lime    { background:var(--lime-d);color:var(--lime);border:1px solid rgba(201,241,53,.2); }
+        .chip-teal    { background:rgba(0,212,200,.09);color:var(--teal);border:1px solid rgba(0,212,200,.2); }
+        .chip-emerald { background:rgba(16,232,142,.09);color:var(--emerald);border:1px solid rgba(16,232,142,.2); }
+        .chip-cobalt  { background:rgba(59,143,245,.09);color:var(--cobalt);border:1px solid rgba(59,143,245,.2); }
+        .chip-red     { background:rgba(248,113,113,.09);color:#f87171;border:1px solid rgba(248,113,113,.2); }
+
+        /* ══ TABLES ══ */
+        .tbl-wrap { overflow-x:auto;border-radius:16px;border:1px solid var(--div); }
+        .tbl { width:100%;border-collapse:collapse;font-size:13px;min-width:760px; }
+        .tbl th {
+            font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+            color:var(--faint);text-align:left;
+            padding:12px 14px;background:rgba(0,0,0,.35);
+            border-bottom:1px solid var(--bdr);
+            white-space:nowrap;
+        }
+        .tbl td {
+            padding:11px 14px;color:var(--muted);
+            border-bottom:1px solid var(--div);
+            white-space:nowrap;
+        }
+        .tbl tbody tr:hover td { background:rgba(255,255,255,.02);color:var(--txt); }
+        .tbl tfoot td {
+            background:rgba(201,241,53,.04);
+            font-weight:700;color:var(--txt);
+            border-top:1px solid var(--bdr-m);border-bottom:none;
+        }
+        .tbl .num { text-align:right;font-variant-numeric:tabular-nums; }
+        .tbl .pos { color:var(--lime); }
+        .tbl .neg { color:#f87171; }
+        .tbl .rowlabel { color:var(--txt);font-weight:600; }
+
+        /* ══ DIRECTION SHARE BAR ══ */
+        .share-bar { display:flex;height:14px;border-radius:99px;overflow:hidden;margin:18px 0 10px;border:1px solid var(--div); }
+        .share-long  { background:linear-gradient(90deg,rgba(59,143,245,.75),rgba(59,143,245,.45));transition:width .8s var(--ease); }
+        .share-short { background:linear-gradient(90deg,rgba(0,212,200,.5),rgba(0,212,200,.8));transition:width .8s var(--ease); }
+        .share-legend { display:flex;gap:22px;font-size:11.5px;color:var(--muted);flex-wrap:wrap; }
+        .share-legend i { font-size:8px;margin-right:6px; }
+        .lg-cobalt { color:var(--cobalt); }
+        .lg-teal   { color:var(--teal); }
+        .edge-note {
+            margin-top:16px;background:rgba(0,212,200,.05);border:1px solid rgba(0,212,200,.15);
+            border-radius:12px;padding:12px 16px;font-size:12.5px;color:var(--muted);line-height:1.6;
+        }
+        .edge-note strong { color:var(--teal); }
+
+        /* ══ CHART BOX ══ */
+        .chart-box { position:relative;height:280px; }
+        .chart-box-sm { position:relative;height:230px; }
+
+        /* ══ VERIFY CTA ══ */
+        .verify-box {
+            background:linear-gradient(135deg,rgba(201,241,53,.05),rgba(0,212,200,.04));
+            border:1px solid rgba(201,241,53,.18);
+            border-radius:24px;padding:44px 36px;text-align:center;
+            position:relative;overflow:hidden;margin-bottom:28px;
+        }
+        .verify-box::before {
+            content:'';position:absolute;top:0;left:0;right:0;height:2px;
+            background:linear-gradient(90deg,var(--teal),var(--lime),var(--cobalt),var(--teal));
+            background-size:200% auto;animation:gs 4s linear infinite;
+        }
+        @keyframes gs { 0%{background-position:0% center} 100%{background-position:200% center} }
+        .verify-title { font-family:var(--fh);font-size:clamp(1.4rem,2.4vw,2rem);font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:10px; }
+        .verify-sub { font-size:14px;color:var(--muted);max-width:560px;margin:0 auto 28px;line-height:1.65; }
+
+        /* ══ FOOTER ══ */
+        .footer { border-top:1px solid var(--div);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);padding:80px 48px 36px;position:relative;z-index:1; }
+        .fg { display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:60px;border-bottom:1px solid var(--div); }
+        .flog img { height:48px;width:auto;margin-bottom:16px; }
+        .ftag { font-size:10.5px;color:var(--faint);letter-spacing:.13em;text-transform:uppercase;line-height:1.75;margin-bottom:22px; }
+        .fsoc { display:flex;gap:16px;font-size:18px; }
+        .fsoc a { transition:transform .18s,opacity .18s; }
+        .fsoc a:hover { transform:scale(1.15);opacity:.85; }
+        .fct  { font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:20px; }
+        .fli  { display:block;font-size:13.5px;color:var(--muted);margin-bottom:11px;transition:color .15s; }
+        .fli:hover { color:var(--txt); }
+        .fli.cta { color:var(--lime);font-weight:600; }
+        .fcl  { font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:4px; }
+        .fcv  { font-size:13.5px;color:#fff;font-weight:500;margin-bottom:14px;transition:color .15s; }
+        .fcv:hover { color:var(--lime); }
+        .fci  { font-size:12px;color:var(--muted);font-style:italic; }
+        .fdis-wrap { margin-top:44px;padding-top:40px;border-top:1px solid var(--div); }
+        .fdis-t  { font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px; }
+        .fdis-box { background:rgba(0,0,0,.4);padding:28px 32px;border-radius:18px;border:1px solid var(--div); }
+        .fdis-p  { font-size:10px;color:var(--faint);line-height:1.82;text-align:justify;text-transform:uppercase;letter-spacing:.01em;font-weight:300; }
+        .fbar    { margin-top:40px;padding-top:26px;border-top:1px solid var(--div);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px; }
+        .fcp     { font-size:10px;color:var(--faint);letter-spacing:.36em;text-transform:uppercase; }
+        .ftags   { display:flex;gap:18px; }
+        .ftg     { font-size:9px;color:rgba(100,115,132,.5);letter-spacing:.14em;text-transform:uppercase; }
+
+        /* ══ CUSTOM CANDLE CURSOR (from Home page) ══ */
+        .candle-cursor-layer{
+          position:fixed;
+          inset:0;
+          pointer-events:none;
+          z-index:9999;
+          overflow:hidden;
+        }
+        .cursor-candle{
+          position:fixed;
+          left:0;
+          top:0;
+          width:8px;
+          height:18px;
+          pointer-events:none;
+          z-index:9999;
+          will-change:transform,opacity;
+          filter:blur(.15px) drop-shadow(0 0 8px currentColor);
+        }
+        .cursor-candle .wick{
+          position:absolute;
+          left:50%;
+          top:1px;
+          width:1px;
+          height:16px;
+          transform:translateX(-50%);
+          background:currentColor;
+          opacity:.70;
+          border-radius:2px;
+        }
+        .cursor-candle .body{
+          position:absolute;
+          left:50%;
+          top:4px;
+          width:6px;
+          height:10px;
+          transform:translateX(-50%);
+          border-radius:2px;
+          border:1px solid currentColor;
+          box-shadow:0 0 10px currentColor;
+          opacity:.9;
+        }
+        .cursor-candle.bull .body{ background:rgba(16,232,142,.45); }
+        .cursor-candle.bear .body{ background:rgba(255,99,132,.45); }
+        .cursor-candle.alt1{color:rgba(0,212,200,.95);}
+        .cursor-candle.alt2{color:rgba(201,241,53,.95);}
+        .cursor-candle.alt3{color:rgba(59,143,245,.95);}
+        .cursor-candle.alt4{color:rgba(16,232,142,.95);}
+        .cursor-candle.alt5{color:rgba(245,158,11,.95);}
+        .cursor-candle.alt6{color:rgba(255,99,132,.95);}
+        @media (max-width: 768px){
+          .candle-cursor-layer { display:none; }
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:1024px) {
+            .kpi-grid { grid-template-columns:repeat(3,1fr); }
+            .grid-2   { grid-template-columns:1fr; }
+            .grid-2 .panel-card { margin-bottom:28px; }
+        }
+        @media(max-width:700px)  {
+            .stats-row     { flex-direction:column; }
+            .nav-links,.nav-cta { display:none; }
+            .hbg           { display:flex; }
+            .fg            { grid-template-columns:1fr 1fr; }
+            .footer        { padding:52px 20px 28px; }
+            .page-inner    { padding:36px 16px 80px; }
+            .kpi-grid      { grid-template-columns:repeat(2,1fr); }
+            .cad-grid      { grid-template-columns:1fr 1fr; }
+            .panel-card    { padding:20px 16px; }
+            .verify-box    { padding:32px 20px; }
+        }
+        @media(max-width:480px)  { .fg { grid-template-columns:1fr; } .kpi-grid { grid-template-columns:1fr 1fr; } }
+    </style>
+</head>
+<body>
+
+<!-- ══ CANDLE CURSOR LAYER ══ -->
+<div class="candle-cursor-layer" id="candleCursorLayer" aria-hidden="true"></div>
+
+<!-- ══ BACKGROUND ══ -->
+<div class="bg-canvas" aria-hidden="true">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-orb bg-orb-4"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-vig"></div>
+</div>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav class="nav" id="nav">
+    <div class="nav-in">
+        <a href="../../index.html" class="logo">
+            <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo" width="180" height="52">
+        </a>
+        <div class="nav-links">
+            <a href="../../index.html" class="nl-a">Home</a>
+            <a href="../../strategies/index.html" class="nl-a">Indicator &amp; Strategy</a>
+
+            <!-- Performance (active) -->
+            <div class="dd">
+                <button class="dd-btn on">
+                    Performance
+                    <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+                </button>
+                <div class="dd-menu">
+                    <a href="../global/index.html" class="di">Global Market</a>
+                    <a href="../india/index.html"  class="di">Indian Market</a>
+                    <a href="index.html"           class="di on">XAUUSD Gold</a>
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="dd">
+                <button class="dd-btn">
+                    Resources
+                    <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+                </button>
+                <div class="dd-menu">
+                    <a href="../../doc/index.html"  class="di">Documentation</a>
+                    <a href="../../blog/index.html" class="di">Blogs</a>
+                </div>
+            </div>
+
+            <!-- Community -->
+            <div class="dd">
+                <button class="dd-btn">
+                    Community
+                    <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
+                </button>
+                <div class="dd-menu">
+                    <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
+                    <a href="../../free-tools/index.html" class="di">Free Toolkit</a>
+                </div>
+            </div>
+        </div>
+        <a href="../../strategies/index.html#pricing" class="nav-cta">Get Access</a>
+        <button class="hbg" id="hbg" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob" id="mob">
+    <a href="../../index.html"          class="ma">Home</a>
+    <a href="../../strategies/index.html" class="ma">Indicator &amp; Strategy</a>
+    <div class="mlbl">Performance</div>
+    <a href="../global/index.html"      class="ma">Global Market</a>
+    <a href="../india/index.html"       class="ma">Indian Market</a>
+    <a href="index.html"                class="ma" style="color:var(--lime)">XAUUSD Gold</a>
+    <div class="mlbl">Resources</div>
+    <a href="../../doc/index.html"      class="ma">Documentation</a>
+    <a href="../../blog/index.html"     class="ma">Blogs</a>
+    <div class="mlbl">Community</div>
+    <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
+    <a href="../../free-tools/index.html" class="ma">Free Toolkit</a>
+    <a href="../../strategies/index.html#pricing" class="m-cta">Get Access →</a>
+</div>
+
+<!-- ══════════════════ PAGE ══════════════════ -->
+<div class="page-wrap">
+
+    <!-- Ticker -->
+    <div class="ticker-wrap" style="position:relative;z-index:1;margin-top:76px">
+        <div class="ticker-track" aria-hidden="true">
+            <span class="ti"><span class="td"></span>XAUUSD Gold</span>
+            <span class="ti"><span class="td"></span>RSI Suite Intelligence</span>
+            <span class="ti"><span class="td"></span>10-Minute Timeframe</span>
+            <span class="ti"><span class="td"></span>Live Verified Data</span>
+            <span class="ti"><span class="td"></span>Real-Time Sheet Sync</span>
+            <span class="ti"><span class="td"></span>Long &amp; Short Engine</span>
+            <span class="ti"><span class="td"></span>Public Trade Log</span>
+            <span class="ti"><span class="td"></span>Non-Repaint Signals</span>
+            <span class="ti"><span class="td"></span>XAUUSD Gold</span>
+            <span class="ti"><span class="td"></span>RSI Suite Intelligence</span>
+            <span class="ti"><span class="td"></span>10-Minute Timeframe</span>
+            <span class="ti"><span class="td"></span>Live Verified Data</span>
+            <span class="ti"><span class="td"></span>Real-Time Sheet Sync</span>
+            <span class="ti"><span class="td"></span>Long &amp; Short Engine</span>
+            <span class="ti"><span class="td"></span>Public Trade Log</span>
+            <span class="ti"><span class="td"></span>Non-Repaint Signals</span>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="page-inner">
+
+        <!-- ── Hero ── -->
+        <div style="margin-bottom:48px">
+            <div class="hero-badge"><span class="dot"></span>Verified Live Trade Log</div>
+            <h1 class="hero-title">
+                XAUUSD RSI Suite<br><span class="accent">Intelligence Report</span>
+            </h1>
+            <p class="hero-sub">
+                Complete performance analytics for the <strong>Gold (XAUUSD) RSI Suite</strong> — 10-minute timeframe,
+                dual long &amp; short engine. Every metric below is computed from
+                <strong id="hero-trades">real executed trades</strong> (<span id="hero-dates">Sep 4, 2025 → Present</span>),
+                publicly verifiable in our live trade log.
+            </p>
+
+            <div class="btn-row">
+                <a href="https://docs.google.com/spreadsheets/d/1d8EHOT7FRMdj0eWvw-1QYL4_46blINHK8hW__UFLbnQ/edit?usp=sharing" target="_blank" rel="noopener" class="btn-l">
+                    <i class="fa-solid fa-table"></i> View Full Trade Log
+                </a>
+                <a href="https://docs.google.com/spreadsheets/d/1d8EHOT7FRMdj0eWvw-1QYL4_46blINHK8hW__UFLbnQ/export?format=csv&gid=0" class="btn-o">
+                    <i class="fa-solid fa-download"></i> Download Trades (CSV)
+                </a>
+            </div>
+
+            <div class="data-status" id="data-status">
+                <span class="ds-dot"></span>
+                <span id="ds-text">Syncing with live sheet…</span>
+            </div>
+
+            <!-- Stats Pills -->
+            <div class="stats-row">
+                <div class="stat-pill">
+                    <span class="stat-icon teal"><i class="fa-solid fa-bolt-lightning"></i></span>
+                    <div>
+                        <div class="stat-val" id="pill-trades">—</div>
+                        <div class="stat-lbl">Total Trades</div>
+                    </div>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-icon lime"><i class="fa-solid fa-bullseye"></i></span>
+                    <div>
+                        <div class="stat-val" id="pill-wr">—</div>
+                        <div class="stat-lbl">Win Rate</div>
+                    </div>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-icon cobalt"><i class="fa-solid fa-scale-balanced"></i></span>
+                    <div>
+                        <div class="stat-val" id="pill-pf">—</div>
+                        <div class="stat-lbl">Profit Factor</div>
+                    </div>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-icon emerald"><i class="fa-solid fa-dollar-sign"></i></span>
+                    <div>
+                        <div class="stat-val" id="pill-pnl">—</div>
+                        <div class="stat-lbl" id="pill-pnl-sub">Net P&amp;L</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notice -->
+        <div class="notice-banner">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <p><strong>Performance Transparency:</strong> This page syncs automatically with our
+            <a href="https://docs.google.com/spreadsheets/d/1d8EHOT7FRMdj0eWvw-1QYL4_46blINHK8hW__UFLbnQ/edit?usp=sharing" target="_blank" rel="noopener">public Google Sheets trade log</a> —
+            open to anyone, downloadable as CSV. Past performance does not guarantee future results. All figures reflect real executed trades, not backtests or simulations.</p>
+        </div>
+
+        <!-- ════════ EXECUTIVE DASHBOARD ════════ -->
+        <div class="sec-label">Executive Trading Dashboard</div>
+        <div class="panel-card">
+            <div class="kpi-grid" id="kpi-grid"><!-- built by JS --></div>
+        </div>
+
+        <!-- ════════ EQUITY CURVE ════════ -->
+        <div class="sec-label">Cumulative Equity Curve</div>
+        <div class="panel-card">
+            <div class="panel-head">
+                <div class="panel-title">Cumulative Net P&amp;L Growth ($)</div>
+                <div class="panel-sub">Month-on-month compounding of verified trade P&amp;L</div>
+            </div>
+            <div class="chart-box"><canvas id="chart-equity"></canvas></div>
+        </div>
+
+        <!-- ════════ MONTHLY P&L + WIN RATE ════════ -->
+        <div class="sec-label">Monthly Momentum</div>
+        <div class="panel-card">
+            <div class="panel-head">
+                <div class="panel-title">Monthly Net P&amp;L vs Win Rate</div>
+                <div class="panel-sub">Bars: net profit in USD · Line: monthly win rate (%)</div>
+            </div>
+            <div class="chart-box"><canvas id="chart-monthly"></canvas></div>
+        </div>
+
+        <!-- ════════ CADENCE + RISK RATIOS ════════ -->
+        <div class="grid-2 grid-wrap">
+            <div>
+                <div class="sec-label">Trading Cadence</div>
+                <div class="panel-card" style="height:calc(100% - 34px)">
+                    <div class="panel-head">
+                        <div class="panel-title">Frequency Analytics</div>
+                        <div class="panel-sub" id="cad-sub">Calendar span of verified activity</div>
+                    </div>
+                    <div class="cad-grid" id="cad-grid"><!-- built by JS --></div>
+                </div>
+            </div>
+            <div>
+                <div class="sec-label">Risk-Adjusted Performance</div>
+                <div class="panel-card" style="height:calc(100% - 34px)">
+                    <div class="panel-head">
+                        <div class="panel-title">Performance &amp; Risk Ratios</div>
+                        <div class="panel-sub">Institutional-grade quality metrics</div>
+                    </div>
+                    <div id="ratio-list"><!-- built by JS --></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════ DIRECTIONAL PERFORMANCE ════════ -->
+        <div class="sec-label">Directional Edge — Long vs Short</div>
+        <div class="grid-2 grid-wrap">
+            <div class="panel-card">
+                <div class="panel-head">
+                    <div class="panel-title">Directional Performance Comparison</div>
+                    <div class="panel-sub">Net P&amp;L share by trade direction</div>
+                </div>
+                <div class="chart-box-sm"><canvas id="chart-direction"></canvas></div>
+                <div class="share-bar">
+                    <div class="share-long"  id="share-long"  style="width:45.7%"></div>
+                    <div class="share-short" id="share-short" style="width:54.3%"></div>
+                </div>
+                <div class="share-legend" id="share-legend"></div>
+                <div class="edge-note" id="edge-note"></div>
+            </div>
+            <div class="panel-card" style="padding:20px">
+                <div class="tbl-wrap" style="border:none">
+                    <table class="tbl" style="min-width:640px">
+                        <thead>
+                            <tr>
+                                <th>Direction</th>
+                                <th class="num">Trades</th>
+                                <th class="num">Win Rate</th>
+                                <th class="num">Net P&amp;L ($)</th>
+                                <th class="num">Net P&amp;L (₹)</th>
+                                <th class="num">Profit Factor</th>
+                                <th class="num">Avg Trade</th>
+                                <th class="num">P&amp;L Share</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dir-body"><!-- built by JS --></tbody>
+                        <tfoot id="dir-foot"></tfoot>
+                    </table>
+                </div>
+                <div style="margin-top:14px;font-size:11.5px;color:var(--faint);line-height:1.6;padding:0 6px" id="gross-note"></div>
+            </div>
+        </div>
+
+        <!-- ════════ MONTHLY TABLE ════════ -->
+        <div class="sec-label">Monthly Performance &amp; Return Cadence</div>
+        <div class="panel-card" style="padding:20px">
+            <div class="tbl-wrap">
+                <table class="tbl" id="monthly-table">
+                    <thead>
+                        <tr>
+                            <th>Trading Month</th>
+                            <th class="num">Trades</th>
+                            <th class="num">Wins</th>
+                            <th class="num">Losses</th>
+                            <th class="num">Win Rate</th>
+                            <th class="num">Net P&amp;L ($)</th>
+                            <th class="num">Net P&amp;L (₹)</th>
+                            <th class="num">Profit Factor</th>
+                            <th class="num">Avg Trade ($)</th>
+                            <th class="num">P&amp;L Share</th>
+                        </tr>
+                    </thead>
+                    <tbody id="monthly-body"><!-- built by JS --></tbody>
+                    <tfoot id="monthly-foot"></tfoot>
+                </table>
+            </div>
+            <div style="margin-top:12px;font-size:11px;color:var(--faint);padding:0 6px">
+                * Current month is month-to-date. Full row-level data available in the public trade log.
+            </div>
+        </div>
+
+        <!-- ════════ VERIFY CTA ════════ -->
+        <div class="verify-box">
+            <div class="verify-title">Verify Every Single Trade</div>
+            <p class="verify-sub">
+                We publish 100% of our trade data — entry time, exit time, prices, direction, lot size and P&amp;L.
+                Open the live Google Sheet to inspect, filter, or download the complete dataset yourself.
+            </p>
+            <div class="btn-row" style="justify-content:center;margin-top:0">
+                <a href="https://docs.google.com/spreadsheets/d/1d8EHOT7FRMdj0eWvw-1QYL4_46blINHK8hW__UFLbnQ/edit?usp=sharing" target="_blank" rel="noopener" class="btn-l">
+                    <i class="fa-solid fa-table"></i> Open Live Trade Log
+                </a>
+                <a href="https://docs.google.com/spreadsheets/d/1d8EHOT7FRMdj0eWvw-1QYL4_46blINHK8hW__UFLbnQ/export?format=csv&gid=0" class="btn-o">
+                    <i class="fa-solid fa-download"></i> Download CSV
+                </a>
+                <a href="../../strategies/index.html#pricing" class="btn-o">
+                    Get Access <i class="fa-solid fa-arrow-right" style="font-size:12px"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+    <div style="max-width:1280px;margin:0 auto">
+        <div class="fg">
+            <div class="flog">
+                <img src="../../strategies/pointalgo_logo1.png" alt="PointAlgo">
+                <p class="ftag">Advanced Quantitative<br>Intelligence Systems.</p>
+                <div class="fsoc">
+                    <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" style="color:var(--muted)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="fct">Platform</div>
+                <a href="../../index.html"           class="fli">Home</a>
+                <a href="../../strategies/index.html" class="fli">Indicator &amp; Strategy</a>
+                <a href="../../blog/index.html"      class="fli">Blog</a>
+                <a href="../../doc/index.html"       class="fli">Documentation</a>
+                <a href="../../contact/index.html"   class="fli cta">Contact Us</a>
+            </div>
+            <div>
+                <div class="fct">Legal &amp; Compliance</div>
+                <a href="../../legal/terms.html"  class="fli">Terms &amp; Conditions</a>
+                <a href="../../legal/privacy.html" class="fli">Privacy Policy</a>
+                <a href="../../legal/refund.html"  class="fli">Refund &amp; Cancellation</a>
+                <a href="../../about.html"         class="fli">About Us</a>
+            </div>
+            <div>
+                <div class="fct">Connect</div>
+                <div class="fcl">Inquiries</div>
+                <a href="mailto:hello@pointalgo.com" class="fcv">hello@pointalgo.com</a>
+                <div class="fcl">Support</div>
+                <div class="fcv" style="cursor:default">+91-8452035834</div>
+                <div class="fci">Ghatkopar, Mumbai, India</div>
+            </div>
+        </div>
+        <div class="fdis-wrap">
+            <div class="fdis-t">Disclaimer from PointAlgo.com</div>
+            <div class="fdis-box">
+                <p class="fdis-p">Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.</p>
+            </div>
+        </div>
+        <div class="fbar">
+            <div class="fcp">© 2026 PointAlgo Quantitative Intelligence</div>
+            <div class="ftags">
+                <span class="ftg">Built for Speed</span>
+                <span class="ftg">Built for Accuracy</span>
+                <span class="ftg">Built for Logic</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════════════ SCRIPTS ══════════════════ -->
+<script>
+/* ════════════════════════════════════════════════════
+   LIVE DATA CONFIG
+   ────────────────────────────────────────────────────
+   No Apps Script needed. Google Sheets exposes a public
+   JSON feed (gviz) for any sheet shared as
+   "Anyone with the link can view" — already enabled.
+
+   Analytics tab gid = 937339054 (from your sheet URL).
+   If the feed is unreachable, the page silently falls
+   back to the SNAPSHOT below so it never breaks.
+════════════════════════════════════════════════════ */
+const SHEET_ID      = '1d8EHOT7FRMdj0eWvw-1QYL4_46blINHK8hW__UFLbnQ';
+const ANALYTICS_GID = '937339054';
+const GVIZ_URL      = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${ANALYTICS_GID}`;
+
+/* ── Snapshot (fallback + first paint) — mirrors sheet as of Sep 5, 2026 ── */
+const SNAPSHOT = {
+    kpi: { trades: 4651, netPnl: 141047.66, netPnlInr: 13327663.92, winRate: 81.7, pf: 7.10, expectancy: 30.33 },
+    dates: { first: '2025-09-04', last: '2026-09-05', spanDays: 367 },
+    cadence: [
+        { lbl: 'Daily Activity',   val: '15',    unit: 'trades / day'     },
+        { lbl: 'Active Days',      val: '309',   unit: 'days traded'      },
+        { lbl: 'Monthly Activity', val: '358',   unit: 'trades / month'   },
+        { lbl: 'Active Months',    val: '13',    unit: 'months'           },
+        { lbl: 'Yearly Activity',  val: '2,326', unit: 'trades / year'    },
+        { lbl: 'Calendar Rate',    val: '12.7',  unit: 'trades / cal day' }
+    ],
+    ratios: [
+        { name: 'Sharpe Ratio (Per Trade)', desc: 'Mean trade return ÷ total standard deviation',        val: '0.44',      rating: 'Excellent', cls: 'chip-lime',    red: false },
+        { name: 'Annualized Sharpe Ratio',  desc: 'Scaled by annual trade velocity',                     val: '20.99',     rating: 'Elite',     cls: 'chip-teal',    red: false },
+        { name: 'Sortino Ratio',            desc: 'Downside risk ratio (penalizes only negatives)',      val: '1.05',      rating: 'Superior',  cls: 'chip-emerald', red: false },
+        { name: 'Win / Loss Payoff Ratio',  desc: 'Average winning trade vs average losing trade',       val: '1.59',      rating: 'Favorable', cls: 'chip-cobalt',  red: false },
+        { name: 'Largest Single Win',       desc: 'Maximum upside on one trade',                         val: '$1,450.78', rating: 'Peak Win',  cls: 'chip-emerald', red: false },
+        { name: 'Largest Single Loss',      desc: 'Maximum downside on one trade',                       val: '-$413.10',  rating: 'Tail Risk', cls: 'chip-red',     red: true  }
+    ],
+    dir: {
+        long:  { trades: 2349, wr: 80.7, gp: 76359.76,  gl: -11916.97, net: 64442.79,  netInr: 6089231.45,  pf: 6.41, avg: 27.43, share: 45.7 },
+        short: { trades: 2301, wr: 82.7, gp: 87811.72,  gl: -11206.85, net: 76604.87,  netInr: 7238432.47,  pf: 7.84, avg: 33.29, share: 54.3 }
+    },
+    monthly: [
+        { m: 'Sep 2025', trades: 342, wins: 276, losses: 65, wr: 80.7, pnl: 4592.53,  inr: 433950.46,  pf: 6.40,  avg: 13.43, share: 3.3  },
+        { m: 'Oct 2025', trades: 397, wins: 333, losses: 64, wr: 83.9, pnl: 12405.37, inr: 1172189.61, pf: 8.12,  avg: 31.25, share: 8.8  },
+        { m: 'Nov 2025', trades: 352, wins: 293, losses: 59, wr: 83.2, pnl: 8226.13,  inr: 777291.14,  pf: 7.72,  avg: 23.37, share: 5.8  },
+        { m: 'Dec 2025', trades: 404, wins: 324, losses: 80, wr: 80.2, pnl: 7462.97,  inr: 705179.77,  pf: 5.94,  avg: 18.47, share: 5.3  },
+        { m: 'Jan 2026', trades: 398, wins: 314, losses: 84, wr: 78.9, pnl: 15596.04, inr: 1473677.62, pf: 5.80,  avg: 39.19, share: 11.1 },
+        { m: 'Feb 2026', trades: 358, wins: 307, losses: 51, wr: 85.8, pnl: 20982.06, inr: 1982605.34, pf: 11.50, avg: 58.61, share: 14.9 },
+        { m: 'Mar 2026', trades: 409, wins: 324, losses: 85, wr: 79.2, pnl: 19033.56, inr: 1798490.60, pf: 6.89,  avg: 46.54, share: 13.5 },
+        { m: 'Apr 2026', trades: 374, wins: 300, losses: 74, wr: 80.2, pnl: 12333.65, inr: 1165412.76, pf: 6.67,  avg: 32.98, share: 8.7  },
+        { m: 'May 2026', trades: 389, wins: 320, losses: 69, wr: 82.3, pnl: 10835.87, inr: 1023886.77, pf: 7.92,  avg: 27.86, share: 7.7  },
+        { m: 'Jun 2026', trades: 376, wins: 307, losses: 69, wr: 81.6, pnl: 10070.76, inr: 951591.15,  pf: 6.16,  avg: 26.78, share: 7.1  },
+        { m: 'Jul 2026', trades: 410, wins: 334, losses: 76, wr: 81.5, pnl: 9070.73,  inr: 857097.81,  pf: 6.49,  avg: 22.12, share: 6.4  },
+        { m: 'Aug 2026', trades: 367, wins: 301, losses: 65, wr: 82.0, pnl: 8724.34,  inr: 824367.25,  pf: 6.67,  avg: 23.77, share: 6.2  },
+        { m: 'Sep 2026', trades: 75,  wins: 65,  losses: 10, wr: 86.7, pnl: 1713.65,  inr: 161923.65,  pf: 4.94,  avg: 22.85, share: 1.2  }
+    ]
+};
+
+let D = JSON.parse(JSON.stringify(SNAPSHOT)); // working dataset (live or fallback)
+
+/* ════════════════════════════════════════════════════
+   NAV BEHAVIOUR
+════════════════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
+});
+document.getElementById('hbg').addEventListener('click', function () {
+    this.classList.toggle('on');
+    document.getElementById('mob').classList.toggle('on');
+});
+document.addEventListener('click', function (e) {
+    if (!e.target.closest('#hbg') && !e.target.closest('#mob')) {
+        document.getElementById('hbg').classList.remove('on');
+        document.getElementById('mob').classList.remove('on');
+    }
+});
+
+/* ════════════════════════════════════════════════════
+   FORMATTERS
+════════════════════════════════════════════════════ */
+const nf     = v => Math.round(v).toLocaleString('en-US');
+const fmtUSD = v => (v < 0 ? '-$' : '$') + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmtINR = v => '₹' + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function prettyMonth(s) {
+    // "2025-09 (Sep)" or "2025-09" → "Sep 2025"
+    const m = String(s).match(/^(\d{4})-(\d{2})/);
+    if (!m) return s;
+    return MONTH_NAMES[parseInt(m[2], 10) - 1] + ' ' + m[1];
+}
+function prettyDate(s) {
+    const m = String(s).match(/(\d{4})-(\d{2})-(\d{2})/);
+    if (!m) return s;
+    return MONTH_NAMES[parseInt(m[2], 10) - 1] + ' ' + parseInt(m[3], 10) + ', ' + m[1];
+}
+
+/* ════════════════════════════════════════════════════
+   GVIZ PARSING HELPERS
+════════════════════════════════════════════════════ */
+function cellText(c) {
+    if (!c) return '';
+    const t = (c.f != null) ? c.f : c.v;
+    return (t == null) ? '' : String(t).trim();
+}
+function cellNum(c) {
+    if (!c) return NaN;
+    if (typeof c.v === 'number') return c.v;
+    const n = parseFloat(cellText(c).replace(/[^0-9.\-]/g, ''));
+    return isNaN(n) ? NaN : n;
+}
+function cellPct(c) {
+    if (!c) return NaN;
+    const f = cellText(c);
+    if (f.includes('%')) {
+        const n = parseFloat(f.replace(/[^0-9.\-]/g, ''));
+        return isNaN(n) ? NaN : n;
+    }
+    if (typeof c.v === 'number') return c.v > 1.5 ? c.v : c.v * 100;
+    return NaN;
+}
+function findCell(grid, test) {
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            const t = cellText(grid[i][j]);
+            if (t && test(t)) return { i, j };
+        }
+    }
+    return null;
+}
+function findLabel(grid, label) {
+    const want = label.toLowerCase();
+    return findCell(grid, t => t.toLowerCase() === want);
+}
+
+/* Rating → chip class */
+function chipCls(rating) {
+    const r = rating.toLowerCase();
+    if (r.includes('excel')) return 'chip-lime';
+    if (r.includes('elite')) return 'chip-teal';
+    if (r.includes('super')) return 'chip-emerald';
+    if (r.includes('favor')) return 'chip-cobalt';
+    if (r.includes('peak'))  return 'chip-emerald';
+    if (r.includes('tail') || r.includes('risk')) return 'chip-red';
+    return 'chip-cobalt';
+}
+
+/* ════════════════════════════════════════════════════
+   LIVE FETCH — parse the analytics tab
+════════════════════════════════════════════════════ */
+async function loadLive() {
+    const res  = await fetch(GVIZ_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
+    const grid = (json.table.rows || []).map(r => (r && r.c) ? r.c : []);
+    if (!grid.length) throw new Error('Empty grid');
+
+    /* ── KPI header row → values in the next row ── */
+    const kpiRow = findCell(grid, t => t.toLowerCase() === 'total trades');
+    if (kpiRow) {
+        const header = grid[kpiRow.i], vals = grid[kpiRow.i + 1] || [];
+        const colOf = name => header.findIndex(c => cellText(c).toLowerCase() === name);
+        const cT = colOf('total trades'), cP = colOf('net p&l (usd & inr)'),
+              cW = colOf('win rate'),    cF = colOf('profit factor'), cE = colOf('expectancy (avg)');
+        if (cT >= 0 && !isNaN(cellNum(vals[cT]))) D.kpi.trades     = cellNum(vals[cT]);
+        if (cP >= 0 && !isNaN(cellNum(vals[cP]))) D.kpi.netPnl     = cellNum(vals[cP]);
+        if (cW >= 0 && !isNaN(cellPct(vals[cW]))) D.kpi.winRate    = cellPct(vals[cW]);
+        if (cF >= 0 && !isNaN(cellNum(vals[cF]))) D.kpi.pf         = cellNum(vals[cF]);
+        if (cE >= 0 && !isNaN(cellNum(vals[cE]))) D.kpi.expectancy = cellNum(vals[cE]);
+        /* INR sits in the sub-line under Net P&L, e.g. "INR: ₹13,327,663.92" */
+        const subRow = grid[kpiRow.i + 2] || [];
+        if (cP >= 0) {
+            const n = cellNum(subRow[cP]);
+            if (!isNaN(n)) D.kpi.netPnlInr = n;
+        }
+    }
+
+    /* ── Dates ── */
+    const fD = findLabel(grid, 'first trade date');
+    if (fD) { const t = cellText(grid[fD.i][fD.j + 1]).slice(0, 10); if (t) D.dates.first = t; }
+    const lD = findLabel(grid, 'last trade date');
+    if (lD) { const t = cellText(grid[lD.i][lD.j + 1]).slice(0, 10); if (t) D.dates.last = t; }
+    const span = findLabel(grid, 'total calendar span');
+    if (span) { const n = cellNum(grid[span.i][span.j + 1]); if (!isNaN(n)) D.dates.spanDays = n; }
+
+    /* ── Cadence ── */
+    const cadMap = [
+        ['daily activity',        0],
+        ['monthly activity',      2],
+        ['yearly activity',       4]
+    ];
+    cadMap.forEach(([label, idx]) => {
+        const p = findLabel(grid, label);
+        if (!p) return;
+        const active = cellNum(grid[p.i][p.j + 1]);
+        const avg    = cellNum(grid[p.i][p.j + 2]);
+        if (!isNaN(avg))    D.cadence[idx].val     = nf(avg);
+        if (!isNaN(active)) D.cadence[idx + 1].val = nf(active);
+    });
+    if (span) {
+        const rate = cellNum(grid[span.i][span.j + 2]);
+        if (!isNaN(rate)) D.cadence[5].val = String(rate);
+    }
+
+    /* ── Risk ratios ── */
+    const ratioDefs = [
+        ['sharpe ratio (per trade)', 0, false],
+        ['annualized sharpe ratio',  1, false],
+        ['sortino ratio',            2, false],
+        ['win / loss payoff ratio',  3, false],
+        ['largest single win',       4, true ],
+        ['largest single loss',      5, true ]
+    ];
+    ratioDefs.forEach(([label, idx, money]) => {
+        const p = findLabel(grid, label);
+        if (!p) return;
+        const n = cellNum(grid[p.i][p.j + 1]);
+        const rating = cellText(grid[p.i][p.j + 2]);
+        if (!isNaN(n)) D.ratios[idx].val = money ? fmtUSD(n) : String(n);
+        if (rating) { D.ratios[idx].rating = rating; D.ratios[idx].cls = chipCls(rating); }
+        D.ratios[idx].red = money && !isNaN(n) && n < 0;
+    });
+
+    /* ── Directional rows ── */
+    [['long positions', 'long'], ['short positions', 'short']].forEach(([label, key]) => {
+        const p = findLabel(grid, label);
+        if (!p) return;
+        const r = grid[p.i], o = p.j;
+        const g = k => cellNum(r[o + k]);
+        const row = {
+            trades: g(1), wr: cellPct(r[o + 2]), gp: g(3), gl: g(4),
+            net: g(5), netInr: g(6), pf: g(7), avg: g(8), share: cellPct(r[o + 9])
+        };
+        Object.keys(row).forEach(k => { if (!isNaN(row[k])) D.dir[key][k] = row[k]; });
+    });
+
+    /* ── Monthly rows (label like "2025-09 (Sep)") ── */
+    const months = [];
+    grid.forEach(row => {
+        row.forEach((c, j) => {
+            if (/^\d{4}-\d{2}\b/.test(cellText(c))) {
+                months.push({
+                    m:      prettyMonth(cellText(c)),
+                    trades: cellNum(row[j + 1]) || 0,
+                    wins:   cellNum(row[j + 2]) || 0,
+                    losses: cellNum(row[j + 3]) || 0,
+                    wr:     cellPct(row[j + 4]) || 0,
+                    pnl:    cellNum(row[j + 5]) || 0,
+                    inr:    cellNum(row[j + 6]) || 0,
+                    pf:     cellNum(row[j + 7]) || 0,
+                    avg:    cellNum(row[j + 8]) || 0,
+                    share:  cellPct(row[j + 9]) || 0
+                });
+            }
+        });
+    });
+    if (months.length >= 2) D.monthly = months;
+}
+
+/* ════════════════════════════════════════════════════
+   RENDER
+════════════════════════════════════════════════════ */
+function renderAll() {
+    const k = D.kpi;
+    const totWins   = D.monthly.reduce((a, r) => a + r.wins, 0);
+    const totLosses = D.monthly.reduce((a, r) => a + r.losses, 0);
+    const grossWin  = D.dir.long.gp + D.dir.short.gp;
+    const grossLoss = D.dir.long.gl + D.dir.short.gl;
+    const cr        = k.netPnlInr / 1e7;
+
+    /* Hero */
+    document.getElementById('hero-trades').textContent = nf(k.trades) + ' real executed trades';
+    document.getElementById('hero-dates').textContent  = prettyDate(D.dates.first) + ' → ' + prettyDate(D.dates.last);
+    document.getElementById('pill-trades').textContent = nf(k.trades);
+    document.getElementById('pill-wr').textContent     = k.winRate.toFixed(1) + '%';
+    document.getElementById('pill-pf').textContent     = k.pf.toFixed(2);
+    document.getElementById('pill-pnl').textContent    = '$' + nf(k.netPnl);
+    document.getElementById('pill-pnl-sub').textContent = 'Net P&L (₹' + cr.toFixed(2) + ' Cr)';
+
+    /* KPI grid */
+    document.getElementById('kpi-grid').innerHTML = `
+        <div class="kpi">
+            <div class="kpi-lbl">Total Trades</div>
+            <div class="kpi-val">${nf(k.trades)}</div>
+            <div class="kpi-sub">Long ${nf(D.dir.long.trades)} &nbsp;|&nbsp; Short ${nf(D.dir.short.trades)}</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-lbl">Net P&amp;L</div>
+            <div class="kpi-val lime">${fmtUSD(k.netPnl)}</div>
+            <div class="kpi-sub">${fmtINR(k.netPnlInr)}</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-lbl">Win Rate</div>
+            <div class="kpi-val">${k.winRate.toFixed(1)}%</div>
+            <div class="kpi-sub">${nf(totWins)} Wins &nbsp;|&nbsp; ${nf(totLosses)} Losses</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-lbl">Profit Factor</div>
+            <div class="kpi-val">${k.pf.toFixed(2)}</div>
+            <div class="kpi-sub">Gross Win $${nf(grossWin)}</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-lbl">Expectancy (Avg)</div>
+            <div class="kpi-val lime">${fmtUSD(k.expectancy)}</div>
+            <div class="kpi-sub">Per Trade</div>
+        </div>`;
+
+    /* Cadence */
+    document.getElementById('cad-sub').textContent =
+        nf(D.dates.spanDays) + '-day calendar span · ' + prettyDate(D.dates.first) + ' → ' + prettyDate(D.dates.last);
+    document.getElementById('cad-grid').innerHTML = D.cadence.map(c => `
+        <div class="cad-item">
+            <div class="cad-lbl">${c.lbl}</div>
+            <div class="cad-val">${c.val} <span>${c.unit}</span></div>
+        </div>`).join('');
+
+    /* Ratios */
+    document.getElementById('ratio-list').innerHTML = D.ratios.map(r => `
+        <div class="ratio-row">
+            <div>
+                <div class="ratio-name">${r.name}</div>
+                <div class="ratio-desc">${r.desc}</div>
+            </div>
+            <div class="ratio-right">
+                <span class="ratio-val ${r.red ? 'red' : ''}">${r.val}</span>
+                <span class="chip ${r.cls}">${r.rating}</span>
+            </div>
+        </div>`).join('');
+
+    /* Directional */
+    const L = D.dir.long, S = D.dir.short;
+    document.getElementById('dir-body').innerHTML = `
+        <tr>
+            <td class="rowlabel"><i class="fa-solid fa-arrow-trend-up" style="color:var(--cobalt);margin-right:8px"></i>Long</td>
+            <td class="num">${nf(L.trades)}</td>
+            <td class="num">${L.wr.toFixed(1)}%</td>
+            <td class="num pos">${fmtUSD(L.net)}</td>
+            <td class="num">${fmtINR(L.netInr)}</td>
+            <td class="num">${L.pf.toFixed(2)}</td>
+            <td class="num">${fmtUSD(L.avg)}</td>
+            <td class="num">${L.share.toFixed(1)}%</td>
+        </tr>
+        <tr>
+            <td class="rowlabel"><i class="fa-solid fa-arrow-trend-down" style="color:var(--teal);margin-right:8px"></i>Short</td>
+            <td class="num">${nf(S.trades)}</td>
+            <td class="num">${S.wr.toFixed(1)}%</td>
+            <td class="num pos">${fmtUSD(S.net)}</td>
+            <td class="num">${fmtINR(S.netInr)}</td>
+            <td class="num">${S.pf.toFixed(2)}</td>
+            <td class="num">${fmtUSD(S.avg)}</td>
+            <td class="num">${S.share.toFixed(1)}%</td>
+        </tr>`;
+    document.getElementById('dir-foot').innerHTML = `
+        <tr>
+            <td>Combined</td>
+            <td class="num">${nf(L.trades + S.trades)}</td>
+            <td class="num">${k.winRate.toFixed(1)}%</td>
+            <td class="num pos">${fmtUSD(L.net + S.net)}</td>
+            <td class="num">${fmtINR(L.netInr + S.netInr)}</td>
+            <td class="num">${k.pf.toFixed(2)}</td>
+            <td class="num">${fmtUSD(k.expectancy)}</td>
+            <td class="num">100%</td>
+        </tr>`;
+    document.getElementById('share-long').style.width  = L.share + '%';
+    document.getElementById('share-short').style.width = S.share + '%';
+    document.getElementById('share-legend').innerHTML = `
+        <span><i class="fa-solid fa-circle lg-cobalt"></i>Long — ${L.share.toFixed(1)}% of P&amp;L</span>
+        <span><i class="fa-solid fa-circle lg-teal"></i>Short — ${S.share.toFixed(1)}% of P&amp;L</span>`;
+    const leader = S.net >= L.net
+        ? `<strong>Short Edge:</strong> Shorts contributed ${S.share.toFixed(1)}% of net P&amp;L with a ${S.wr.toFixed(1)}% win rate. Profit factor edge — Long PF ${L.pf.toFixed(2)} vs Short PF ${S.pf.toFixed(2)} (spread of ${(S.pf - L.pf).toFixed(2)} favoring shorts).`
+        : `<strong>Long Edge:</strong> Longs contributed ${L.share.toFixed(1)}% of net P&amp;L with a ${L.wr.toFixed(1)}% win rate. Profit factor edge — Short PF ${S.pf.toFixed(2)} vs Long PF ${L.pf.toFixed(2)} (spread of ${(L.pf - S.pf).toFixed(2)} favoring longs).`;
+    document.getElementById('edge-note').innerHTML = leader;
+    document.getElementById('gross-note').textContent =
+        `Gross profit ${fmtUSD(grossWin)} vs gross loss ${fmtUSD(grossLoss)} across the full portfolio.`;
+
+    /* Monthly table (last month marked * = month-to-date) */
+    const mb = document.getElementById('monthly-body');
+    mb.innerHTML = D.monthly.map((r, i) => `
+        <tr>
+            <td class="rowlabel">${r.m}${i === D.monthly.length - 1 ? '*' : ''}</td>
+            <td class="num">${nf(r.trades)}</td>
+            <td class="num">${nf(r.wins)}</td>
+            <td class="num">${nf(r.losses)}</td>
+            <td class="num">${r.wr.toFixed(1)}%</td>
+            <td class="num pos">${fmtUSD(r.pnl)}</td>
+            <td class="num">${fmtINR(r.inr)}</td>
+            <td class="num">${r.pf.toFixed(2)}</td>
+            <td class="num">${fmtUSD(r.avg)}</td>
+            <td class="num">${r.share.toFixed(1)}%</td>
+        </tr>`).join('');
+    document.getElementById('monthly-foot').innerHTML = `
+        <tr>
+            <td>Total / Cumulative</td>
+            <td class="num">${nf(D.monthly.reduce((a, r) => a + r.trades, 0))}</td>
+            <td class="num">${nf(totWins)}</td>
+            <td class="num">${nf(totLosses)}</td>
+            <td class="num">${k.winRate.toFixed(1)}%</td>
+            <td class="num pos">${fmtUSD(k.netPnl)}</td>
+            <td class="num">${fmtINR(k.netPnlInr)}</td>
+            <td class="num">${k.pf.toFixed(2)}</td>
+            <td class="num">${fmtUSD(k.expectancy)}</td>
+            <td class="num">100%</td>
+        </tr>`;
+
+    renderCharts();
+}
+
+/* ════════════════════════════════════════════════════
+   CHARTS
+════════════════════════════════════════════════════ */
+function renderCharts() {
+    Chart.defaults.color = '#8a9bb5';
+    Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
+    Chart.defaults.borderColor = 'rgba(255,255,255,.05)';
+    const gridOpts = { color: 'rgba(255,255,255,.05)' };
+    const labels = D.monthly.map(r => r.m);
+
+    /* 1 — Cumulative equity curve */
+    let cum = 0;
+    const cumData = D.monthly.map(r => (cum += r.pnl));
+    const ectx = document.getElementById('chart-equity').getContext('2d');
+    const grad = ectx.createLinearGradient(0, 0, 0, 280);
+    grad.addColorStop(0, 'rgba(201,241,53,.22)');
+    grad.addColorStop(1, 'rgba(201,241,53,0)');
+    new Chart(ectx, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                data: cumData,
+                borderColor: '#c9f135',
+                borderWidth: 2.5,
+                fill: true,
+                backgroundColor: grad,
+                tension: .35,
+                pointRadius: 4,
+                pointBackgroundColor: '#c9f135',
+                pointBorderColor: '#05080f',
+                pointBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#0d1424', borderColor: 'rgba(201,241,53,.3)', borderWidth: 1,
+                    titleColor: '#dde6f0', bodyColor: '#c9f135', padding: 12, displayColors: false,
+                    callbacks: { label: c => 'Cumulative: ' + fmtUSD(c.parsed.y) }
+                }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: { grid: gridOpts, ticks: { callback: v => '$' + (v / 1000) + 'k' } }
+            },
+            animation: { duration: 1100, easing: 'easeInOutQuart' }
+        }
+    });
+
+    /* 2 — Monthly P&L bars + win-rate line */
+    new Chart(document.getElementById('chart-monthly').getContext('2d'), {
+        data: {
+            labels,
+            datasets: [
+                {
+                    type: 'bar', label: 'Net P&L ($)',
+                    data: D.monthly.map(r => r.pnl),
+                    backgroundColor: 'rgba(0,212,200,.55)',
+                    hoverBackgroundColor: 'rgba(0,212,200,.85)',
+                    borderRadius: 6, yAxisID: 'y'
+                },
+                {
+                    type: 'line', label: 'Win Rate (%)',
+                    data: D.monthly.map(r => r.wr),
+                    borderColor: '#c9f135', borderWidth: 2.5, tension: .35,
+                    pointRadius: 4, pointBackgroundColor: '#c9f135',
+                    pointBorderColor: '#05080f', pointBorderWidth: 2,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { display: true, labels: { usePointStyle: true, pointStyle: 'circle', boxWidth: 6, padding: 18, font: { size: 11 } } },
+                tooltip: { backgroundColor: '#0d1424', borderColor: 'rgba(0,212,200,.3)', borderWidth: 1, padding: 12 }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y:  { position: 'left',  grid: gridOpts, ticks: { callback: v => '$' + (v / 1000) + 'k' },
+                      title: { display: true, text: 'Net P&L', color: '#2c3d52', font: { size: 10 } } },
+                y1: { position: 'right', min: 60, max: 100, grid: { drawOnChartArea: false },
+                      ticks: { callback: v => v + '%' },
+                      title: { display: true, text: 'Win Rate', color: '#2c3d52', font: { size: 10 } } }
+            },
+            animation: { duration: 1100, easing: 'easeInOutQuart' }
+        }
+    });
+
+    /* 3 — Long vs Short doughnut */
+    new Chart(document.getElementById('chart-direction').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            labels: [`Long  —  ${fmtUSD(D.dir.long.net)}`, `Short —  ${fmtUSD(D.dir.short.net)}`],
+            datasets: [{
+                data: [D.dir.long.share, D.dir.short.share],
+                backgroundColor: ['rgba(59,143,245,.75)', 'rgba(0,212,200,.75)'],
+                borderColor: '#090e1a', borderWidth: 4, hoverOffset: 8
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false, cutout: '62%',
+            plugins: {
+                legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'circle', boxWidth: 6, padding: 16, font: { size: 11 } } },
+                tooltip: {
+                    backgroundColor: '#0d1424', borderColor: 'rgba(255,255,255,.15)', borderWidth: 1, padding: 12,
+                    callbacks: { label: c => ' ' + c.label + '  ·  ' + c.parsed + '% of Net P&L' }
+                }
+            },
+            animation: { duration: 1000, easing: 'easeInOutQuart' }
+        }
+    });
+}
+
+/* ════════════════════════════════════════════════════
+   BOOT — paint snapshot instantly, then swap in live
+════════════════════════════════════════════════════ */
+(async function init() {
+    renderAll(); // first paint from snapshot — zero waiting
+    try {
+        await loadLive();
+        renderAll(); // re-render with live sheet data
+        const st = document.getElementById('data-status');
+        st.classList.add('live');
+        document.getElementById('ds-text').textContent = 'Live · Synced with Google Sheet';
+    } catch (err) {
+        console.warn('[PointAlgo] Live sync failed, using snapshot:', err.message);
+        const st = document.getElementById('data-status');
+        st.classList.add('offline');
+        document.getElementById('ds-text').textContent = 'Snapshot · Live feed unreachable';
+    }
+})();
+</script>
+
+<!-- ══ CANDLE CURSOR (same as Home page) ══ -->
+<script>
+(function(){
+  var layer = document.getElementById('candleCursorLayer');
+  if(!layer) return;
+
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+
+  var mouse = {
+    x: window.innerWidth * 0.5,
+    y: window.innerHeight * 0.5,
+    tx: window.innerWidth * 0.5,
+    ty: window.innerHeight * 0.5,
+    active: false
+  };
+
+  var colors = ['alt1','alt2','alt3','alt4','alt5','alt6'];
+  var total = 18;
+  var candles = [];
+  var rafId = null;
+
+  function rand(min,max){ return Math.random() * (max - min) + min; }
+
+  function createCandle(i){
+    var el = document.createElement('div');
+    var bull = Math.random() > 0.45;
+    el.className = 'cursor-candle ' + (bull ? 'bull' : 'bear') + ' ' + colors[i % colors.length];
+
+    var wick = document.createElement('span');
+    wick.className = 'wick';
+
+    var body = document.createElement('span');
+    body.className = 'body';
+
+    var bodyH = rand(6, 12);
+    var wickH = bodyH + rand(6, 10);
+    var bodyTop = rand(3, 6);
+
+    el.style.width = rand(6, 9) + 'px';
+    el.style.height = Math.max(16, wickH + 2) + 'px';
+
+    el.style.opacity = rand(0.35, 0.75);
+
+    wick.style.height = wickH + 'px';
+    wick.style.top = '1px';
+
+    body.style.height = bodyH + 'px';
+    body.style.width = rand(4, 7) + 'px';
+    body.style.top = bodyTop + 'px';
+
+    el.appendChild(wick);
+    el.appendChild(body);
+    layer.appendChild(el);
+
+    return {
+      el: el,
+      x: rand(0, window.innerWidth),
+      y: rand(0, window.innerHeight),
+      vx: rand(-0.18, 0.18),
+      vy: rand(-0.18, 0.18),
+      driftX: rand(-0.015, 0.015),
+      driftY: rand(-0.015, 0.015),
+      angle: rand(-18, 18),
+      rotSpeed: rand(-0.08, 0.08),
+      size: rand(0.85, 1.18),
+      magnet: rand(180, 280),
+      pull: rand(0.025, 0.050),
+      ease: rand(0.92, 0.965),
+      phase: rand(0, Math.PI * 2),
+      bob: rand(0.08, 0.22)
+    };
+  }
+
+  function init(){
+    for(var i=0;i<total;i++){
+      candles.push(createCandle(i));
+    }
+  }
+
+  function onMove(e){
+    mouse.tx = e.clientX;
+    mouse.ty = e.clientY;
+    mouse.active = true;
+  }
+
+  function onLeave(){
+    mouse.active = false;
+  }
+
+  function resizeReset(){
+    for(var i=0;i<candles.length;i++){
+      candles[i].x = rand(0, window.innerWidth);
+      candles[i].y = rand(0, window.innerHeight);
+    }
+  }
+
+  function animate(){
+    mouse.x += (mouse.tx - mouse.x) * 0.18;
+    mouse.y += (mouse.ty - mouse.y) * 0.18;
+
+    var t = performance.now() * 0.001;
+
+    for(var i=0;i<candles.length;i++){
+      var c = candles[i];
+
+      c.vx += c.driftX + Math.sin(t + c.phase) * 0.0018;
+      c.vy += c.driftY + Math.cos(t * 0.9 + c.phase) * 0.0018;
+
+      if(mouse.active){
+        var dx = mouse.x - c.x;
+        var dy = mouse.y - c.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+
+        if(dist < c.magnet){
+          var force = (1 - dist / c.magnet) * c.pull;
+          c.vx += (dx / dist) * force * 4.0;
+          c.vy += (dy / dist) * force * 4.0;
+        }
+      }
+
+      c.vx *= c.ease;
+      c.vy *= c.ease;
+
+      c.x += c.vx;
+      c.y += c.vy;
+
+      if(c.x < -20){ c.x = window.innerWidth + 20; }
+      if(c.x > window.innerWidth + 20){ c.x = -20; }
+      if(c.y < -20){ c.y = window.innerHeight + 20; }
+      if(c.y > window.innerHeight + 20){ c.y = -20; }
+
+      c.angle += c.rotSpeed;
+      var bobY = Math.sin(t * 1.4 + c.phase) * c.bob * 8;
+
+      c.el.style.transform =
+        'translate3d(' + c.x + 'px,' + (c.y + bobY) + 'px,0) ' +
+        'rotate(' + c.angle + 'deg) scale(' + c.size + ')';
+    }
+
+    rafId = requestAnimationFrame(animate);
+  }
+
+  init();
+  window.addEventListener('mousemove', onMove, { passive:true });
+  window.addEventListener('mouseenter', onMove, { passive:true });
+  document.addEventListener('mouseleave', onLeave, { passive:true });
+  window.addEventListener('resize', resizeReset, { passive:true });
+
+  animate();
+})();
+</script>
+
+</body>
+</html>
