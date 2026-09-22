@@ -940,4 +940,651 @@
     }
     .fdis-box{
       background:rgba(0,0,0,.4);
-      padding:28px 32
+      padding:28px 32px;
+      border-radius:18px;
+      border:1px solid var(--div);
+    }
+    .fdis-p{
+      font-size:10px;
+      color:var(--faint);
+      line-height:1.82;
+      text-align:justify;
+      text-transform:uppercase;
+      letter-spacing:.01em;
+      font-weight:300;
+    }
+    .fbar{
+      margin-top:40px;
+      padding-top:26px;
+      border-top:1px solid var(--div);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+    .fcp{
+      font-size:10px;
+      color:var(--faint);
+      letter-spacing:.36em;
+      text-transform:uppercase;
+    }
+    .ftags{display:flex;gap:18px;flex-wrap:wrap}
+    .ftg{
+      font-size:9px;
+      color:rgba(100,115,132,.5);
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    .rv{
+      opacity:0;
+      transition:opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .rv.on{
+      opacity:1;
+      transform:none !important;
+    }
+    .ru{transform:translateY(30px)}
+    .rl{transform:translateX(-26px)}
+    .rr{transform:translateX(26px)}
+
+    .delay-1{transition-delay:.08s}
+    .delay-2{transition-delay:.16s}
+    .delay-3{transition-delay:.24s}
+    .delay-4{transition-delay:.32s}
+    .delay-5{transition-delay:.40s}
+    .delay-6{transition-delay:.48s}
+    .delay-7{transition-delay:.56s}
+
+    @media (max-width: 1080px){
+      .core-grid{grid-template-columns:1fr 1fr}
+      .hero-grid{grid-template-columns:1fr;gap:40px}
+      .future-grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 860px){
+      .timeline-line{left:20px}
+      .t-node{left:20px}
+      .t-item,.t-item:nth-child(even){justify-content:flex-start}
+      .t-col{width:100%;padding-left:54px}
+      .fg{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width: 640px){
+      .nav-in{padding:0 18px}
+      .nav-links,.nav-cta{display:none}
+      .hbg{display:flex}
+      .hero{padding:104px 18px 48px}
+      .sec{padding:60px 18px}
+      .footer{padding:52px 18px 28px}
+      .core-grid{grid-template-columns:1fr}
+      .hero-stat-grid{grid-template-columns:1fr}
+      .fg{grid-template-columns:1fr;gap:28px}
+      .fdis-box{padding:22px 20px}
+      .future-block{padding:22px}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-canvas" aria-hidden="true">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-orb bg-orb-4"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-vig"></div>
+  </div>
+
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <div class="nav-in">
+        <a href="index.html" class="logo">
+          <img src="strategies/pointalgo_logo1.png" alt="PointAlgo Logo" width="180" height="56">
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html" class="nl">Home</a>
+          <a href="strategies/index.html" class="nl">Indicator & Strategy</a>
+
+          <div class="dd">
+            <button class="dd-btn">
+              Performance
+              <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 1l4 4 4-4"/>
+              </svg>
+            </button>
+            <div class="dd-menu">
+              <a href="reports/global/index.html" class="di">Global Market</a>
+              <a href="reports/india/index.html" class="di">Indian Market</a>
+            </div>
+          </div>
+
+          <div class="dd">
+            <button class="dd-btn">
+              Resources
+              <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 1l4 4 4-4"/>
+              </svg>
+            </button>
+            <div class="dd-menu">
+              <a href="doc/index.html" class="di">Documentation</a>
+              <a href="blog/index.html" class="di">Blogs</a>
+            </div>
+          </div>
+
+          <div class="dd">
+            <button class="dd-btn">
+              Community
+              <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 1l4 4 4-4"/>
+              </svg>
+            </button>
+            <div class="dd-menu">
+              <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="di">Discord</a>
+              <a href="free-tools/index.html" class="di">Free Toolkit</a>
+            </div>
+          </div>
+
+          <a href="about.html" class="nl on">About Us</a>
+        </div>
+
+        <a href="strategies/index.html" class="nav-cta">Get Access</a>
+
+        <button class="hbg" id="hbg" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mob" id="mob">
+      <a href="index.html" class="ma">Home</a>
+      <a href="strategies/index.html" class="ma">Indicator & Strategy</a>
+      <div class="mlbl">Performance</div>
+      <a href="reports/global/index.html" class="ma">Global Market</a>
+      <a href="reports/india/index.html" class="ma">Indian Market</a>
+      <div class="mlbl">Resources</div>
+      <a href="doc/index.html" class="ma">Documentation</a>
+      <a href="blog/index.html" class="ma">Blogs</a>
+      <div class="mlbl">Community</div>
+      <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" class="ma">Discord</a>
+      <a href="free-tools/index.html" class="ma">Free Toolkit</a>
+      <a href="about.html" class="ma" style="color: var(--lime);">About Us</a>
+      <a href="strategies/index.html" class="m-cta">Get Access</a>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="hero-in">
+          <div class="hero-grid">
+            <div class="rv rl">
+              <div class="hero-badge">
+                <span class="pulse"></span>
+                The Evolution of Logic
+              </div>
+
+              <h1 class="h1">
+                <span class="plain">From Retail Curiosity.</span>
+                <span class="grad">To Enterprise Quant Infrastructure.</span>
+              </h1>
+
+              <p class="h-sub">
+                PointAlgo is building a bridge between market intuition and institutional-grade quantitative execution.
+                Our mission is to make disciplined, mathematically structured trading systems accessible beyond closed enterprise environments.
+              </p>
+
+              <p class="h-sub">
+                What began as a deep study of price behavior evolved into research-led model building, custom execution logic, and broker-ready deployment infrastructure.
+              </p>
+
+              <p class="h-em">
+                Built for speed. Built for accuracy. Built for logic.
+              </p>
+            </div>
+
+            <div class="hero-side rv rr">
+              <div class="hero-ring"></div>
+
+              <div class="hero-card">
+                <div class="hero-stat-grid">
+                  <div class="mini">
+                    <div class="mi"><i class="fa-solid fa-brain"></i></div>
+                    <h4>Research-First</h4>
+                    <p>Quant frameworks designed from structure, probability, and repeatable market behavior.</p>
+                  </div>
+
+                  <div class="mini">
+                    <div class="mi"><i class="fa-solid fa-chart-line"></i></div>
+                    <h4>Market Evolution</h4>
+                    <p>A journey spanning discretionary trading, system design, model validation, and deployment.</p>
+                  </div>
+
+                  <div class="mini">
+                    <div class="mi"><i class="fa-solid fa-building-columns"></i></div>
+                    <h4>Enterprise Ready</h4>
+                    <p>Custom logic built for brokers, financial businesses, and serious market operators.</p>
+                  </div>
+
+                  <div class="mini">
+                    <div class="mi"><i class="fa-solid fa-rocket"></i></div>
+                    <h4>Retail Access</h4>
+                    <p>Institutional-style systems packaged for broader access without losing structure.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="ticker-wrap">
+      <div class="ticker-track" aria-hidden="true">
+        <span class="ti"><span class="td"></span>Quant Research</span>
+        <span class="ti"><span class="td"></span>Linear Algebra Models</span>
+        <span class="ti"><span class="td"></span>Probability Frameworks</span>
+        <span class="ti"><span class="td"></span>Institutional Logic</span>
+        <span class="ti"><span class="td"></span>Broker Integrations</span>
+        <span class="ti"><span class="td"></span>Execution Infrastructure</span>
+        <span class="ti"><span class="td"></span>Retail Access</span>
+        <span class="ti"><span class="td"></span>Quant Research</span>
+        <span class="ti"><span class="td"></span>Linear Algebra Models</span>
+        <span class="ti"><span class="td"></span>Probability Frameworks</span>
+        <span class="ti"><span class="td"></span>Institutional Logic</span>
+        <span class="ti"><span class="td"></span>Broker Integrations</span>
+        <span class="ti"><span class="td"></span>Execution Infrastructure</span>
+        <span class="ti"><span class="td"></span>Retail Access</span>
+      </div>
+    </div>
+
+    <section class="sec">
+      <div class="si">
+        <div class="rv ru" style="text-align:center;max-width:760px;margin:0 auto;">
+          <div class="slbl" style="justify-content:center;">Leadership Core</div>
+          <h2 class="stit">The People Behind <span class="a-l">PointAlgo</span></h2>
+          <p class="lead" style="margin-left:auto;margin-right:auto;">
+            A focused team driving quantitative research, product execution, ecosystem scaling, and client-side deployment.
+          </p>
+        </div>
+
+        <div class="core-grid">
+          <div class="core-card rv ru delay-1">
+            <div class="core-icon"><i class="fa-solid fa-user-astronaut"></i></div>
+            <div class="core-name">Amit Kori</div>
+            <div class="core-role">Founder & Lead Quant</div>
+            <div class="core-text">
+              Driving strategic operations, quantitative research, system architecture, and the bridge between sophisticated trading logic and product usability.
+            </div>
+            <a href="#" target="_blank" rel="noopener" class="core-link">
+              <i class="fa-brands fa-linkedin"></i>
+              Connect
+            </a>
+          </div>
+
+      </div>
+    </section>
+
+    <hr class="div">
+
+    <section class="sec">
+      <div class="si">
+        <div class="journey-head rv ru">
+          <div class="slbl" style="justify-content:center;">Timeline</div>
+          <h2 class="stit">The PointAlgo <span class="a-t">Journey</span></h2>
+          <p class="lead" style="margin-left:auto;margin-right:auto;">
+            A decade-long progression from market observation to quantitative frameworks, enterprise systems, and public access.
+          </p>
+        </div>
+
+        <div class="timeline" id="timeline">
+          <div class="timeline-line">
+            <div class="timeline-progress" id="timelineProgress"></div>
+          </div>
+
+          <div class="t-item rv rl">
+            <span class="t-node"></span>
+            <div class="t-col">
+              <article class="t-card blue">
+                <div class="t-year">
+                  <div class="t-year-num count-year" data-year="2013">0</div>
+                  <div class="t-year-tag">Genesis</div>
+                </div>
+                <h3>The Beginning</h3>
+                <p>
+                  The founding team begins their trading journey, starting a long-term study of price action, market mechanics, and behavior under real conditions.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="t-item rv rr delay-1">
+            <span class="t-node teal"></span>
+            <div class="t-col">
+              <article class="t-card teal">
+                <div class="t-year">
+                  <div class="t-year-num count-year" data-year="2017">0</div>
+                  <div class="t-year-tag">Quant Shift</div>
+                </div>
+                <h3>Shift to Quant Thinking</h3>
+                <p>
+                  The focus moves deeper into advanced technical mechanics and quantitative structure, identifying the gap between retail indicators and actual market movement.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="t-item rv rl delay-2">
+            <span class="t-node"></span>
+            <div class="t-col">
+              <article class="t-card blue">
+                <div class="t-year">
+                  <div class="t-year-num count-year" data-year="2022">0</div>
+                  <div class="t-year-tag">Build Phase</div>
+                </div>
+                <h3>Trial, Error & Construction</h3>
+                <p>
+                  Heavy development begins across custom indicators, strategy logic, and internal frameworks with repeated testing, iteration, and refinement.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="t-item rv rr delay-3">
+            <span class="t-node lime"></span>
+            <div class="t-col">
+              <article class="t-card lime">
+                <div class="t-year">
+                  <div class="t-year-num count-year" data-year="2023">0</div>
+                  <div class="t-year-tag">Research</div>
+                </div>
+                <h3>Research & Meta-Modeling</h3>
+                <p>
+                  PointAlgo research formally begins, moving beyond basic technicals into structured systems shaped by linear algebra, probability, statistics, and geometry.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="t-item rv rl delay-4">
+            <span class="t-node orange"></span>
+            <div class="t-col">
+              <article class="t-card orange">
+                <div class="t-year">
+                  <div class="t-year-num count-year" data-year="2024">0</div>
+                  <div class="t-year-tag">Execution</div>
+                </div>
+                <h3>Real-Time Implication</h3>
+                <p>
+                  Theoretical models evolve into live code and are pushed into real-time market environments to evaluate latency, execution quality, and accuracy.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="t-item rv rr delay-5">
+            <span class="t-node pink"></span>
+            <div class="t-col">
+              <article class="t-card pink">
+                <div class="t-year">
+                  <div class="t-year-num count-year" data-year="2025">0</div>
+                  <div class="t-year-tag">Enterprise</div>
+                </div>
+                <h3>Enterprise Deployment</h3>
+                <p>
+                  Custom algorithms and specialized infrastructure are successfully deployed to major Indian brokers and larger financial enterprises.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="t-item rv rl delay-6">
+            <span class="t-node white"></span>
+            <div class="t-col">
+              <article class="t-card white featured">
+                <div class="t-year">
+                  <div class="t-year-num count-year" data-year="2026">0</div>
+                  <div class="t-year-tag">Current Phase</div>
+                </div>
+                <h3>Retail Market Launch</h3>
+                <p>
+                  PointAlgo opens broader access to the public, bringing institution-style indicators and execution logic to traders who were previously outside quant-level tooling.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="t-item rv rr delay-7">
+            <span class="t-node future"></span>
+            <div class="t-col">
+              <article class="t-card teal">
+                <div class="t-year">
+                  <div class="t-year-num">Future</div>
+                  <div class="t-year-tag">Objective</div>
+                </div>
+                <h3>HFT & Hedge Fund Direction</h3>
+                <p>
+                  The long-term vision is to operate higher-performance trading infrastructure and full-scale hedge fund capabilities across enterprise and retail segments.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="future-block rv ru">
+          <div class="future-grid">
+            <div>
+              <div class="future-kicker">Long-Term Direction</div>
+              <div class="future-title">Building Toward <span>Tier-1 Quant Infrastructure</span></div>
+              <p class="future-copy">
+                The roadmap extends beyond indicators. The destination is a complete ecosystem of quantitative intelligence, execution technology, and highly customized infrastructure for both enterprise clients and advanced traders.
+              </p>
+            </div>
+
+            <div class="future-points">
+              <div class="fp">
+                <h4>HFT Infrastructure</h4>
+                <p>Low-latency systems, advanced execution logic, and production-grade routing architecture.</p>
+              </div>
+              <div class="fp">
+                <h4>Bespoke Quant Services</h4>
+                <p>Custom-built models, deployment pipelines, and institution-specific solutions.</p>
+              </div>
+              <div class="fp">
+                <h4>Retail + Enterprise Bridge</h4>
+                <p>A layered product stack that serves both serious independent traders and financial institutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="fi">
+        <div class="fg">
+          <div>
+            <div class="flog">
+              <img src="strategies/pointalgo_logo1.png" alt="PointAlgo" width="160" height="48" loading="lazy">
+            </div>
+            <p class="ftag">Advanced Quantitative <br> Intelligence Systems.</p>
+
+            <div class="fsoc">
+              <a href="https://www.youtube.com/@Pointalgo" target="_blank" rel="noopener" style="color:#ff4444" aria-label="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+              <a href="#" style="color:var(--muted)" aria-label="X / Twitter">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+              <a href="https://discord.gg/72wFfgmW" target="_blank" rel="noopener" style="color:#7289da" aria-label="Discord">
+                <i class="fa-brands fa-discord"></i>
+              </a>
+              <a href="https://www.instagram.com/point_algo/" target="_blank" rel="noopener" style="color:#e1306c" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="fct">Platform</div>
+            <a href="index.html" class="fli">Home</a>
+            <a href="strategies/index.html" class="fli">Indicator & Strategy</a>
+            <a href="blog/index.html" class="fli">Blog</a>
+            <a href="doc/index.html" class="fli">Documentation</a>
+            <a href="contact/index.html" class="fli cta">Contact Us</a>
+          </div>
+
+          <div>
+            <div class="fct">Legal & Compliance</div>
+            <a href="legal/terms.html" class="fli">Terms & Conditions</a>
+            <a href="legal/privacy.html" class="fli">Privacy Policy</a>
+            <a href="legal/refund.html" class="fli">Refund & Cancellation</a>
+            <a href="about.html" class="fli">About Us</a>
+          </div>
+
+          <div>
+            <div class="fct">Connect</div>
+            <div class="fcl">Inquiries</div>
+            <a href="mailto:hello@pointalgo.com" class="fcv">hello@pointalgo.com</a>
+
+            <div class="fcl">Support</div>
+            <div class="fcv">Email only</div>
+
+            <p class="fci">Ghatkopar, Mumbai, India</p>
+          </div>
+        </div>
+
+        <div class="fdis-wrap">
+          <h4 class="fdis-t">Disclaimer from PointAlgo.com</h4>
+          <div class="fdis-box">
+            <p class="fdis-p">
+              Trading in securities, commodities, and other markets involves significant risk, and many individuals may incur losses as a result of their trading activities. All content provided on pointalgo.com is for informational and educational purposes only and is not intended to be, nor should it be construed as, financial advice or investment recommendations. PointAlgo.com is not registered with the Securities and Exchange Board of India (SEBI) and does not provide stock recommendations, investment tips, or personalized investment advice. Decisions to buy, sell, hold, or trade in securities, commodities, or other financial instruments involve risk and should be made based on the advice of qualified financial professionals. Past performance is not indicative of future results, and no representation is made that any trading strategy or tool provided by pointalgo.com will result in profits or losses similar to those shown in any examples or simulations. PointAlgo.com provides screeners, technology, technical analysis-based strategies, algorithmic trading automation solutions, and other technology-related tools for the trading community. Hypothetical or simulated performance results presented on this site have inherent limitations. Unlike actual trading records, simulated results do not reflect real trading activity. By using pointalgo.com, you acknowledge that you understand the risks associated with trading and that pointalgo.com, its owners, employees, or affiliates are not liable for any losses incurred as a result of using our tools, services, or content.
+            </p>
+          </div>
+        </div>
+
+        <div class="fbar">
+          <span class="fcp">© 2026 PointAlgo Quantitative Intelligence</span>
+          <div class="ftags">
+            <span class="ftg">Built for Speed</span>
+            <span class="ftg">Built for Accuracy</span>
+            <span class="ftg">Built for Logic</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+    }, { passive: true });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('hbg');
+      const menu = document.getElementById('mob');
+
+      if (btn && menu) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = menu.classList.toggle('on');
+          btn.classList.toggle('on', open);
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!menu.contains(e.target) && !btn.contains(e.target)) {
+            menu.classList.remove('on');
+            btn.classList.remove('on');
+          }
+        });
+
+        menu.querySelectorAll('a').forEach((a) => {
+          a.addEventListener('click', () => {
+            menu.classList.remove('on');
+            btn.classList.remove('on');
+          });
+        });
+      }
+
+      const revealEls = document.querySelectorAll('.rv');
+      if (!('IntersectionObserver' in window)) {
+        revealEls.forEach(el => el.classList.add('on'));
+      } else {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('on');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+      }
+
+      const yearEls = document.querySelectorAll('.count-year');
+      const runCounter = (el) => {
+        const target = parseInt(el.dataset.year, 10);
+        let started = false;
+
+        const animate = () => {
+          if (started) return;
+          started = true;
+
+          const duration = 1400;
+          const start = performance.now();
+
+          const frame = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = Math.floor(target * eased);
+            el.textContent = value;
+
+            if (progress < 1) {
+              requestAnimationFrame(frame);
+            } else {
+              el.textContent = target;
+            }
+          };
+          requestAnimationFrame(frame);
+        };
+
+        if (!('IntersectionObserver' in window)) {
+          animate();
+        } else {
+          const obs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animate();
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.6 });
+          obs.observe(el);
+        }
+      };
+
+      yearEls.forEach(runCounter);
+
+      const timeline = document.getElementById('timeline');
+      const progressBar = document.getElementById('timelineProgress');
+
+      const updateTimelineProgress = () => {
+        if (!timeline || !progressBar) return;
+
+        const rect = timeline.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const total = rect.height + vh * 0.25;
+        const seen = Math.min(Math.max(vh * 0.7 - rect.top, 0), total);
+        const percent = Math.max(0, Math.min((seen / total) * 100, 100));
+
+        progressBar.style.height = percent + '%';
+      };
+
+      updateTimelineProgress();
+      window.addEventListener('scroll', updateTimelineProgress, { passive: true });
+      window.addEventListener('resize', updateTimelineProgress);
+    });
+  </script>
+</body>
+</html>
